@@ -61,7 +61,7 @@ button{cursor:pointer}
 nav.tabs{max-width:980px;margin:0 auto;padding:0 16px 10px;display:flex;gap:6px;overflow-x:auto}
 nav.tabs a{padding:8px 14px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:800;font-size:.92rem;white-space:nowrap;border:1px solid transparent}
 nav.tabs a::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--tc,var(--accent));margin-right:7px;vertical-align:1px}
-nav.tabs a[data-tab="hari-ini"]{--tc:#F27AA5}nav.tabs a[data-tab="peta"]{--tc:#A98BEA}nav.tabs a[data-tab="strategi"]{--tc:#5CC9A0}nav.tabs a[data-tab="rapor"]{--tc:#FFAB73}nav.tabs a[data-tab="avatar"]{--tc:#6BB3F0}nav.tabs a[data-tab="atur"]{--tc:#E8C34A}
+nav.tabs a[data-tab="hari-ini"]{--tc:#F27AA5}nav.tabs a[data-tab="peta"]{--tc:#A98BEA}nav.tabs a[data-tab="strategi"]{--tc:#5CC9A0}nav.tabs a[data-tab="rapor"]{--tc:#FFAB73}nav.tabs a[data-tab="ulangan"]{--tc:#E0508A}nav.tabs a[data-tab="avatar"]{--tc:#6BB3F0}nav.tabs a[data-tab="atur"]{--tc:#E8C34A}
 nav.tabs a[aria-current="page"]{background:var(--accent);color:var(--accent-ink)}
 nav.tabs a[aria-current="page"]::before{background:#fff}
 nav.tabs a:hover{border-color:var(--line)}
@@ -206,6 +206,15 @@ pre.copy{white-space:pre-wrap;background:var(--soft);border:1px solid var(--line
 .rapor{display:grid;grid-template-columns:1fr 90px 90px;gap:10px;align-items:center}
 .rapor input{padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--card);width:100%;font-weight:700}
 .form textarea{resize:vertical}
+/* ulangan */
+.exrow{border:1px solid var(--line);border-left:6px solid var(--c);border-radius:14px;padding:11px 13px;background:var(--card)}
+.exrow+.exrow{margin-top:10px}
+.exhead{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.wrapseg{flex-wrap:wrap;gap:6px;display:flex;border-radius:16px}
+.schrow{display:grid;grid-template-columns:62px 1fr;gap:10px;padding:8px 10px;border-radius:12px;background:var(--soft)}
+.schrow+.schrow{margin-top:6px}
+.schrow .sd{display:grid;line-height:1.15}
+.schrow.k-h{background:var(--pk)}.schrow.k-review{background:var(--bt)}.schrow.k-latih{background:var(--sk)}.schrow.k-learn{background:var(--mn)}
 /* strategi, avatar */
 .seg2{gap:6px}
 .ki{border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
@@ -245,6 +254,7 @@ a.tag.lnk{text-decoration:none;color:var(--ink)}a.tag.lnk:hover{border-color:var
     <a href="#hari-ini" data-tab="hari-ini">Hari Ini</a>
     <a href="#peta" data-tab="peta">Peta Belajar</a>
     <a href="#strategi" data-tab="strategi">Strategi</a>
+    <a href="#ulangan" data-tab="ulangan">Ulangan</a>
     <a href="#rapor" data-tab="rapor">Rapor &amp; Target</a>
     <a href="#avatar" data-tab="avatar">Avatar</a>
     <a href="#atur" data-tab="atur">Atur</a>

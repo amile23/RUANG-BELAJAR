@@ -188,7 +188,7 @@ RB.kisi = [
 
 /* Hal-hal yang belum ada di web ini dan perlu dikirim Adiva. Dicek manual oleh Claude saat kamu memberi materi. */
 RB.gap = [
- {t:'Jadwal ulangan & kisi-kisi dari sekolah',d:'Untuk tiap mapel kelas 11 semester 1: bab yang diujikan dan tanggalnya. Isi tanggal di tab Rapor & Target, lalu kirim fotonya ke Claude.'},
+ {t:'Jadwal ulangan & kisi-kisi dari sekolah',d:'Untuk tiap mapel kelas 11 semester 1: bab yang diujikan dan tanggalnya. Isi jenis (UH/UTS/UAS), tanggal, dan bab di tab Ulangan, lalu kirim fotonya ke Claude kalau mau dibuatkan ringkasan dan soal bab itu.'},
  {t:'Nilai rapor dan target',d:'Nilai sekarang tiap mapel dan target rapor. Isi di tab Rapor & Target supaya planner tahu mapel mana yang perlu didorong.'},
  {t:'Jadwal lomba & organisasi',d:'Tanggal lomba dan rapat/acara organisasi, supaya hari padat otomatis jadi hari ringan.'},
  {t:'TKA: Matematika wajib atau tingkat lanjut (TL)?',d:'Dalam PDF ada edisi Matematika, Matematika TL, B. Indonesia TL, dan B. Inggris TL. Web ini memakai edisi biasa. Kabari kalau kamu ambil TL.'},

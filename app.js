@@ -71,6 +71,7 @@ function defS(){return {v:2,_t:0,done:{},pins:{},micro:{},pomo:{},plan:{},budget
 function norm(r){
   var s=Object.assign(defS(),r||{});
   if(s.exam){s.exams=(s.exams||[]).concat([{id:'e0',s:s.exam.s,date:s.exam.date,label:''}]);delete s.exam}
+  (s.exams||[]).forEach(function(e){if(!e.type)e.type='UH';if(!e.bab)e.bab=[]});
   var av0=Object.assign(defAv(),s.av||{});
   if(r&&r.hijab===false&&!r.av)av0.hijab=false;
   s.av=av0;
@@ -174,6 +175,46 @@ function nearestExam(s){
   });
   return best;
 }
+var EXT={UH:{w:7,k:2,n:'Ulangan Harian',s:'UH',c:'#6BB3F0'},UTS:{w:14,k:2.5,n:'UTS',s:'UTS',c:'#FFAB73'},UAS:{w:21,k:3,n:'UAS',s:'UAS',c:'#E0508A'}};
+function exCfg(e){return EXT[e.type]||EXT.UH}
+/* ulangan yang sedang dalam masa persiapan untuk bab t */
+function examFor(t){
+  var best=null;
+  (S.exams||[]).forEach(function(e){
+    if(e.s!==t.s)return;
+    var n=daysTo(e.date),c=exCfg(e);
+    if(n<0||n>c.w)return;
+    var inBab=!(e.bab&&e.bab.length)||e.bab.indexOf(t.id)>-1,ramp=(c.w-n)/c.w;
+    var f=inBab?1+(0.35+0.65*ramp)*c.k:1.1;
+    if(!best||f>best.f)best={e:e,n:n,f:f,inBab:inBab};
+  });
+  return best;
+}
+function examBabIds(e){
+  var ids=(e.bab&&e.bab.length)?e.bab:all().filter(function(t){return t.s===e.s&&t.st===1}).map(function(t){return t.id});
+  return ids.filter(function(id){return byId(id)});
+}
+/* jadwal persiapan: tiap hari dari hari ini sampai hari H */
+function prepSchedule(e){
+  var n=daysTo(e.date);if(n<0)return [];
+  var ids=examBabIds(e).slice().sort(function(a,b){
+    var da=S.done[a]?1:0,db=S.done[b]?1:0;if(da!==db)return da-db;
+    var ma=mastery(byId(a)),mb=mastery(byId(b));return (ma===null?-1:ma)-(mb===null?-1:mb);
+  });
+  var learn=n>=3?n-1:0,rows=[],i,d0=new Date();
+  for(i=0;i<=n;i++){
+    var dt=new Date(d0.getFullYear(),d0.getMonth(),d0.getDate()+i),left=n-i,row={date:dkey(dt),left:left,dow:HARI[dt.getDay()]};
+    if(left===0){row.kind='h';row.text='Hari H. Jangan buka materi baru. Baca catatan ringkas 30 menit, makan cukup, tenang.'}
+    else if(left===1){row.kind='review';row.text='Review ringkas semua bab, ulangi soal yang pernah salah, tidur lebih awal.'}
+    else if(left===2&&n>=3){row.kind='latih';row.text='Latihan soal bertimer dan perbaiki kesalahan.'}
+    else if(learn>0){
+      row.kind='learn';row.bab=ids.filter(function(id,j){return Math.min(learn-1,Math.floor(j*learn/ids.length))===i});
+      row.text=row.bab.length?'Pelajari bab ini':'Latihan soal tambahan';
+    }else{row.kind='review';row.bab=ids;row.text='Waktunya mepet. Ulang inti semua bab dan kerjakan soal latihan.'}
+    rows.push(row);
+  }
+  return rows;
+}
 function lombaInfo(){
   var cur=null;
   (S.lombas||[]).forEach(function(l){
@@ -200,8 +241,8 @@ function dueErrors(){
 function reasons(t){
   var r=[],ph=phase(),W=PW[ph],best=null,bv=0;
   t.tr.forEach(function(k){if(W[k]>bv){bv=W[k];best=k}});
-  var ex=nearestExam(t.s);
-  if(ex&&ex.n<=21)r.push('Ulangan '+SUBJ[t.s].s+' '+nlabel(ex.n));
+  var ef=examFor(t);
+  if(ef&&ef.f>1.15)r.push(exCfg(ef.e).s+' '+SUBJ[t.s].s+' '+nlabel(ef.n));
   if(SCHOOL.indexOf(t.s)>-1&&t.tr.indexOf('R')>-1&&raporGap(t.s)>0)r.push('Rapor '+SUBJ[t.s].s+' masih kurang '+raporGap(t.s)+' poin dari target');
   var m=mastery(t);
   if(m!==null&&m<0.7)r.push('Penguasaan baru '+Math.round(m*100)+'%');
@@ -218,8 +259,8 @@ function score(t,ph,focus){
   var s=best*(1+0.06*(t.tr.length-1));
   if(focus.indexOf(t.s)>-1)s*=1.15;
   if(S.pins[t.id])s*=2;
-  var ex=nearestExam(t.s);
-  if(ex&&ex.n<=21&&t.st<=2)s*=1+(21-ex.n)/21*1.5;
+  var ef=examFor(t);
+  if(ef)s*=ef.f;
   if(SCHOOL.indexOf(t.s)>-1&&t.tr.indexOf('R')>-1)s*=1+Math.min(raporGap(t.s),20)/20*0.6;
   var m=mastery(t);
   if(m!==null){s*=(m<0.5?1.25:m<0.7?1.15:1)}
@@ -237,7 +278,8 @@ function makePlan(){
   kept.forEach(function(id){var s=byId(id).s;cnt[s]=(cnt[s]||0)+1});
   var maxPer=budget>=150?2:1,weekend=d.getDay()===0||d.getDay()===6;
   var cand=all().filter(function(t){
-    if(S.done[t.id]||!avail(t))return false;
+    var ef0=examFor(t);
+    if(S.done[t.id]||(!avail(t)&&!(ef0&&ef0.inBab&&ef0.f>1.3)))return false;
     if(ring&&t.m>45)return false;
     if(t.m>Math.max(budget*1.5,45))return false;
     if(t.m>=90&&!weekend&&budget<150)return false;
@@ -251,6 +293,12 @@ function makePlan(){
     picked.push(t.id);cnt[t.s]=(cnt[t.s]||0)+1;rem-=t.m;return true;
   }
   function firstOf(fn){for(var j=0;j<cand.length;j++){if(fn(cand[j].t))return cand[j].t}return null}
+  var exDone={},exN=0;
+  cand.forEach(function(c){
+    if(exN>=2)return;
+    var q=examFor(c.t);
+    if(q&&q.inBab&&q.f>1.3&&!exDone[c.t.s]&&tryAdd(c.t,true)){exDone[c.t.s]=1;exN++}
+  });
   if(!ring&&budget>=90){
     var sch=firstOf(function(t){return SCHOOL.indexOf(t.s)>-1&&t.m<=rem+15});
     var sat=ph<=2?firstOf(function(t){return t.s==='sat'}):null;
@@ -266,6 +314,51 @@ function planInfo(){
   var ids=S.plan[dkey()]||[],dn=0,mins=0;
   ids.forEach(function(id){var t=byId(id);if(!t)return;mins+=t.m;if(S.done[id])dn++});
   return {ids:ids,total:ids.length,done:dn,mins:mins};
+}
+
+/* ============ ulangan ============ */
+function exTag(e){var c=exCfg(e);return '<span class="tag" style="--c:'+c.c+'">'+esc(c.s)+'</span>'}
+function prepCard(){
+  var list=(S.exams||[]).filter(function(e){var n=daysTo(e.date);return n>=0&&n<=exCfg(e).w}).sort(function(a,b){return a.date<b.date?-1:1}).slice(0,2);
+  if(!list.length)return '';
+  var h='<section class="card prep"><header><h2>Persiapan ulangan</h2><span class="sp"></span><a class="btn ghost sm" href="#ulangan">Jadwal lengkap</a></header>';
+  list.forEach(function(e){
+    var n=daysTo(e.date),row=prepSchedule(e)[0],ids=examBabIds(e),dn=ids.filter(function(id){return S.done[id]}).length;
+    h+='<div class="exrow" style="--c:'+exCfg(e).c+'"><div class="exhead">'+exTag(e)+'<b>'+esc(SUBJ[e.s].n)+'</b><span class="chip">'+nlabel(n)+'</span><span class="tiny muted">'+fdate(e.date)+'</span></div>'+
+      '<p class="small" style="margin:6px 0"><b>Hari ini:</b> '+esc(row?row.text:'')+'</p>';
+    if(row&&row.bab&&row.bab.length)h+='<div class="tags">'+row.bab.map(function(id){var t=byId(id);return '<a class="tag lnk" style="--c:'+SUBJ[t.s].c+'" href="#belajar-'+id+'">'+esc(t.n)+'</a>'}).join('')+'</div>';
+    h+='<div class="bar" style="margin-top:8px" title="Bab dipelajari"><b style="width:'+(ids.length?Math.round(dn/ids.length*100):0)+'%"></b></div><p class="tiny muted" style="margin-top:4px">'+dn+' dari '+ids.length+' bab sudah dipelajari</p></div>';
+  });
+  return h+'</section>';
+}
+function viewUlangan(){
+  var F=ui.exf,h='';
+  var babs=all().filter(function(t){return t.s===F.s}).sort(function(a,b){return a.st-b.st||a.i-b.i});
+  h+='<section class="card"><header><h2>Tambah ulangan</h2></header><p class="small muted" style="margin-bottom:10px">Pilih jenis dan bab yang diujikan. Misi harian otomatis lebih mengutamakan bab itu saat harinya mendekat: UH 7 hari sebelum, UTS 14 hari, UAS 21 hari.</p><div class="form">'+
+    '<div><div class="tiny muted lbl">Jenis ulangan</div><div class="seg" role="group" aria-label="Jenis ulangan">'+['UH','UTS','UAS'].map(function(k){return '<button data-act="extype" data-v="'+k+'" aria-pressed="'+(F.type===k)+'">'+EXT[k].n+'</button>'}).join('')+'</div></div>'+
+    '<div class="frow"><label>Mapel<select data-field="exf:s">'+SCHOOL.map(function(k){return '<option value="'+k+'"'+(F.s===k?' selected':'')+'>'+esc(SUBJ[k].n)+'</option>'}).join('')+'</select></label><label>Tanggal<input type="date" data-field="exf:date" min="'+dkey()+'" value="'+esc(F.date)+'"></label></div>'+
+    '<div><div class="tiny muted lbl">Bab yang diujikan <span style="font-weight:600">(kosongkan = semua bab '+esc(SUBJ[F.s].n)+')</span></div><div class="seg wrapseg" role="group" aria-label="Bab yang diujikan">'+babs.map(function(t){return '<button data-act="exbab" data-id="'+esc(t.id)+'" aria-pressed="'+(F.bab.indexOf(t.id)>-1)+'">'+esc(t.n)+'</button>'}).join('')+'</div><div style="margin-top:6px;display:flex;gap:8px"><button class="btn ghost sm" data-act="exball">Pilih semua tahap 1</button><button class="btn ghost sm" data-act="exbab0">Kosongkan</button></div></div>'+
+    '<label>Catatan<input type="text" data-field="exf:label" value="'+esc(F.label)+'" placeholder="contoh: guru bilang soal HOTS"></label>'+
+    '<div><button class="btn sm" data-act="examadd">Tambah ulangan</button></div></div></section>';
+  var up=(S.exams||[]).filter(function(e){return daysTo(e.date)>=0}).sort(function(a,b){return a.date<b.date?-1:1});
+  var past=(S.exams||[]).filter(function(e){return daysTo(e.date)<0}).sort(function(a,b){return a.date<b.date?1:-1});
+  if(!up.length)h+='<section class="card"><header><h2>Ulangan akan datang</h2></header><p class="small muted">Belum ada. Tambahkan di atas supaya planner tahu apa yang harus diprioritaskan.</p></section>';
+  up.forEach(function(e){
+    var n=daysTo(e.date),c=exCfg(e),ids=examBabIds(e),dn=ids.filter(function(id){return S.done[id]}).length,sch=prepSchedule(e);
+    h+='<section class="card" style="--cc:'+c.c+'"><header>'+exTag(e)+'<h3>'+esc(SUBJ[e.s].n)+'</h3><span class="sp"></span><span class="chip">'+nlabel(n)+'</span></header>'+
+      '<p class="small muted">'+HARI[pd(e.date).getDay()]+', '+fdate(e.date)+(e.label?' · '+esc(e.label):'')+(n>c.w?' · persiapan dimulai '+(n-c.w)+' hari lagi':'')+'</p>'+
+      '<div class="bar" style="margin:10px 0 4px"><b style="width:'+(ids.length?Math.round(dn/ids.length*100):0)+'%"></b></div><p class="tiny muted">'+dn+' dari '+ids.length+' bab sudah dipelajari</p>'+
+      '<div style="margin-top:10px">'+ids.map(function(id){var t=byId(id),m=mastery(t);return '<div class="logrow"><span class="sc">'+(m===null?'–':Math.round(m*100)+'%')+'</span><div style="flex:1"><div class="small" style="font-weight:800">'+(S.done[id]?'✓ ':'')+esc(t.n)+'</div><div class="tiny muted">'+(m===null?'Belum dites':'Penguasaan')+'</div></div><a class="btn ghost sm" href="#belajar-'+esc(id)+'">Belajar</a></div>'}).join('')+'</div>'+
+      '<details class="ki" style="margin-top:10px"'+(n<=c.w?' open':'')+'><summary><span class="kn">Jadwal persiapan harian</span></summary><div class="kbody">'+sch.map(function(r){return '<div class="schrow k-'+r.kind+'"><div class="sd"><b>'+r.dow.slice(0,3)+'</b><span class="tiny muted">'+fdate(r.date).replace(/ \d{4}$/,'')+'</span></div><div><div class="small">'+esc(r.text)+'</div>'+(r.bab&&r.bab.length?'<div class="tags">'+r.bab.map(function(id){return '<a class="tag lnk" style="--c:'+SUBJ[e.s].c+'" href="#belajar-'+id+'">'+esc(byId(id).n)+'</a>'}).join('')+'</div>':'')+'</div></div>'}).join('')+'</div></details>'+
+      '<div style="margin-top:10px"><button class="btn ghost sm" data-act="examdel" data-id="'+esc(e.id)+'">Hapus ulangan</button></div></section>';
+  });
+  if(past.length){
+    h+='<section class="card"><header><h2>Sudah lewat</h2><span class="sp muted small">Catat nilainya supaya kelihatan perkembanganmu</span></header>'+past.map(function(e){
+      var r=S.rapor[e.s]||{},low=e.score!=null&&r.target&&e.score<r.target;
+      return '<div class="logrow">'+exTag(e)+'<div style="flex:1"><div class="small" style="font-weight:800">'+esc(SUBJ[e.s].n)+' · '+fdate(e.date)+'</div><div class="tiny muted">'+(e.score!=null?(low?'Di bawah target rapor ('+r.target+'). Ulangi bab yang lemah.':'Aman dibanding target rapor.'):'Belum ada nilai')+'</div></div><input type="number" min="0" max="100" style="width:80px" data-field="exs:'+esc(e.id)+'" value="'+(e.score!=null?e.score:'')+'" aria-label="Nilai"><button class="btn ghost sm" data-act="examdel" data-id="'+esc(e.id)+'">Hapus</button></div>';
+    }).join('')+'</section>';
+  }
+  return h;
 }
 
 /* ============ avatar ============ */
@@ -322,7 +415,7 @@ function avatar(mood,a){
    '<ellipse cx="82" cy="120" rx="8" ry="5" fill="#FF9DB5" opacity=".6"/><ellipse cx="138" cy="120" rx="8" ry="5" fill="#FF9DB5" opacity=".6"/>'+
    eyes+mouth+kaca+pita+'</g>'+spark+z+'</svg>';
 }
-var ui={kisi:'sat',msgI:0,filter:'all',addOpen:false,confirmReset:false,logType:'S',toastT:null,sess:null,step:null,stepFor:null,restoreOpen:false};
+var ui={exf:{s:'mat',type:'UH',date:'',label:'',bab:[]},kisi:'sat',msgI:0,filter:'all',addOpen:false,confirmReset:false,logType:'S',toastT:null,sess:null,step:null,stepFor:null,restoreOpen:false};
 function say(){
   var h=new Date().getHours(),p=planInfo(),a=[],sat=daysTo(SAT_MAIN),lb=lombaInfo();
   var soon=null;(S.exams||[]).forEach(function(e){var n=daysTo(e.date);if(n>=0&&n<=7&&(!soon||n<soon.n))soon={n:n,s:e.s}});
@@ -524,15 +617,16 @@ function viewToday(){
     '<div class="xpbar" aria-label="Progres level"><b style="width:'+L.pct+'%"></b></div>'+
     '<p class="tiny muted" style="margin-top:4px">'+(L.nxt?xp+' / '+L.nxt+' XP menuju level berikutnya':'Level maksimal')+'</p></div></section>';
 
+  h+=prepCard();
   var chips='';
-  (S.exams||[]).slice().sort(function(a,b){return a.date<b.date?-1:1}).forEach(function(e){var n=daysTo(e.date);if(n>=0&&n<=14)chips+='<span class="chip">Ulangan '+esc(SUBJ[e.s].s)+' · '+nlabel(n)+'</span> '});
+  (S.exams||[]).slice().sort(function(a,b){return a.date<b.date?-1:1}).forEach(function(e){var n=daysTo(e.date);if(n>=0&&n<=Math.max(14,exCfg(e).w))chips+='<span class="chip">'+esc(exCfg(e).s)+' '+esc(SUBJ[e.s].s)+' · '+nlabel(n)+'</span> '});
   if(lb)chips+='<span class="chip">Lomba '+esc(lb.l.name)+' · '+(lb.a>0?'mulai '+nlabel(lb.a):'sedang berlangsung')+'</span>';
   h+='<section class="card"><header><h2>Atur hari ini</h2><span class="sp muted small">'+esc(PHASE_D[ph])+'</span></header>'+
     '<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end">'+
     '<div><div class="tiny muted" style="margin-bottom:4px;font-weight:800">Waktu belajar</div><div class="seg" role="group" aria-label="Waktu belajar">'+
     [[45,'45 mnt'],[90,'90 mnt'],[120,'2 jam'],[180,'3 jam']].map(function(o){return '<button data-act="budget" data-v="'+o[0]+'" aria-pressed="'+(S.budget===o[0])+'">'+o[1]+'</button>'}).join('')+'</div></div>'+
     '<div><div class="tiny muted" style="margin-bottom:4px;font-weight:800">Mode ringan (capek / lomba)</div><div class="seg" role="group" aria-label="Mode ringan"><button data-act="lomba" data-v="0" aria-pressed="'+(!S.lomba)+'">Normal</button><button data-act="lomba" data-v="1" aria-pressed="'+S.lomba+'">Ringan</button></div></div></div>'+
-    '<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">'+(chips||'<span class="small muted">Belum ada ulangan atau lomba dalam 2 minggu.</span>')+'<a class="btn ghost sm" href="#rapor">Atur ulangan, lomba &amp; rapor</a></div></section>';
+    '<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">'+(chips||'<span class="small muted">Belum ada ulangan atau lomba dalam 2 minggu.</span>')+'<a class="btn ghost sm" href="#ulangan">Atur ulangan</a><a class="btn ghost sm" href="#rapor">Lomba &amp; rapor</a></div></section>';
 
   h+='<section class="card"><header><h2>Misi hari ini</h2><span class="chip">'+p.done+'/'+p.total+' selesai · '+p.mins+' menit</span><button class="btn ghost sm sp" data-act="regen">Susun ulang</button></header>';
   if(!p.total)h+='<div class="empty">Semua materi di daftar sudah selesai, atau belum ada yang cocok hari ini. Kirim materi baru ke Claude, atau tambah sendiri di Peta Belajar.</div>';
@@ -721,8 +815,7 @@ function viewGoal(){
       '<input type="number" min="0" max="100" data-field="rn:'+s+'" value="'+(r.now||'')+'" aria-label="Nilai '+esc(SUBJ[s].n)+' sekarang">'+
       '<input type="number" min="0" max="100" data-field="rt:'+s+'" value="'+(r.target||'')+'" aria-label="Target '+esc(SUBJ[s].n)+'">'}).join('')+'</div></section>';
 
-  h+='<div class="grid2"><section class="card"><header><h2>Ulangan sekolah</h2></header><div class="form"><div class="frow"><label>Mapel<select id="exS">'+SCHOOL.map(function(s){return '<option value="'+s+'">'+SUBJ[s].n+'</option>'}).join('')+'</select></label><label>Tanggal<input type="date" id="exD" min="'+dkey()+'"></label></div><label>Catatan (bab yang diujikan)<input type="text" id="exL" placeholder="contoh: bab 3 dan 4"></label><div><button class="btn sm" data-act="examadd">Tambah ulangan</button></div></div>'+
-    ((S.exams||[]).length?'<div style="margin-top:10px">'+S.exams.slice().sort(function(a,b){return a.date<b.date?-1:1}).map(function(e){var n=daysTo(e.date);return '<div class="logrow"><span class="sc">'+(n<0?'–':n)+'</span><div style="flex:1"><div class="small" style="font-weight:800">'+esc(SUBJ[e.s].n)+' · '+fdate(e.date)+'</div><div class="tiny muted">'+(n<0?'sudah lewat':nlabel(n))+(e.label?' · '+esc(e.label):'')+'</div></div><button class="btn ghost sm" data-act="examdel" data-id="'+esc(e.id)+'">Hapus</button></div>'}).join('')+'</div>':'')+'</section>'+
+  h+='<div class="grid2"><section class="card"><header><h2>Ulangan sekolah</h2></header><p class="small" style="margin-bottom:10px">UH, UTS, dan UAS sekarang diatur di tab Ulangan, lengkap dengan pilihan bab dan jadwal persiapan.</p>'+((S.exams||[]).filter(function(e){return daysTo(e.date)>=0}).length+' ulangan akan datang')+'<div style="margin-top:10px"><a class="btn sm" href="#ulangan">Buka tab Ulangan</a></div></section>'+
     '<section class="card"><header><h2>Jadwal lomba</h2></header><div class="form"><label>Nama lomba<input type="text" id="lbN" placeholder="contoh: LKTI tingkat provinsi"></label><div class="frow"><label>Mulai<input type="date" id="lbA" min="'+dkey()+'"></label><label>Selesai<input type="date" id="lbB" min="'+dkey()+'"></label></div><div><button class="btn sm" data-act="lombaadd">Tambah lomba</button></div></div><p class="tiny muted" style="margin-top:8px">Dua hari sebelum mulai sampai hari terakhir lomba, misi otomatis ringan (maksimal 45 menit).</p>'+
     ((S.lombas||[]).length?'<div style="margin-top:6px">'+S.lombas.slice().sort(function(a,b){return a.start<b.start?-1:1}).map(function(l){var n=daysTo(l.start),e=daysTo(l.end||l.start);return '<div class="logrow"><div style="flex:1"><div class="small" style="font-weight:800">'+esc(l.name)+'</div><div class="tiny muted">'+fdate(l.start)+(l.end&&l.end!==l.start?' – '+fdate(l.end):'')+' · '+(e<0?'sudah lewat':n>0?'mulai '+nlabel(n):'sedang berlangsung')+'</div></div><button class="btn ghost sm" data-act="lombadel" data-id="'+esc(l.id)+'">Hapus</button></div>'}).join('')+'</div>':'')+'</section></div>';
 
@@ -860,12 +953,12 @@ function viewStrategi(){
 function curTab(){
   var t=(location.hash||'').replace('#','');
   if(t.indexOf('belajar-')===0)return 'belajar';
-  return ['hari-ini','peta','strategi','rapor','avatar','ulang','atur'].indexOf(t)>-1?t:'hari-ini';
+  return ['hari-ini','peta','strategi','ulangan','rapor','avatar','ulang','atur'].indexOf(t)>-1?t:'hari-ini';
 }
 function render(){
   document.documentElement.dataset.accent=S.accent;
   var t=curTab(),v=$('#view');
-  v.innerHTML=t==='hari-ini'?viewToday():t==='peta'?viewMap():t==='rapor'?viewGoal():t==='strategi'?viewStrategi():t==='avatar'?viewAvatar():t==='belajar'?viewStudy():t==='ulang'?viewReview():viewSet();
+  v.innerHTML=t==='hari-ini'?viewToday():t==='peta'?viewMap():t==='rapor'?viewGoal():t==='strategi'?viewStrategi():t==='ulangan'?viewUlangan():t==='avatar'?viewAvatar():t==='belajar'?viewStudy():t==='ulang'?viewReview():viewSet();
   var nav=t==='belajar'?'peta':t==='ulang'?'hari-ini':t;
   document.querySelectorAll('#tabs a').forEach(function(a){if(a.dataset.tab===nav)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   paintStats();tmPaint();
@@ -925,7 +1018,11 @@ document.addEventListener('click',function(ev){
     persist();render();toast('Refleksi tersimpan');
   }
   /* rapor, ulangan, lomba */
-  else if(a==='examadd'){var dd=$('#exD').value;if(!dd){toast('Pilih tanggal ulangan dulu');return}S.exams.push({id:'e'+Date.now(),s:$('#exS').value,date:dd,label:$('#exL').value.trim()});makePlan();persist();render();toast('Ulangan ditambahkan')}
+  else if(a==='examadd'){var F=ui.exf;if(!F.date){toast('Pilih tanggal ulangan dulu');return}S.exams.push({id:'e'+Date.now(),s:F.s,type:F.type,date:F.date,label:F.label.trim(),bab:F.bab.slice()});ui.exf={s:F.s,type:F.type,date:'',label:'',bab:[]};makePlan();persist();render();toast('Ulangan ditambahkan, misi hari ini disesuaikan')}
+  else if(a==='extype'){ui.exf.type=v;render()}
+  else if(a==='exbab'){var bi=ui.exf.bab.indexOf(id);if(bi>-1)ui.exf.bab.splice(bi,1);else ui.exf.bab.push(id);render()}
+  else if(a==='exball'){ui.exf.bab=all().filter(function(t){return t.s===ui.exf.s&&t.st===1}).map(function(t){return t.id});render()}
+  else if(a==='exbab0'){ui.exf.bab=[];render()}
   else if(a==='examdel'){S.exams=S.exams.filter(function(x){return x.id!==id});makePlan();persist();render()}
   else if(a==='lombaadd'){var nm=$('#lbN').value.trim(),st=$('#lbA').value,en=$('#lbB').value||st;if(!nm||!st){toast('Isi nama dan tanggal mulai lomba');return}S.lombas.push({id:'l'+Date.now(),name:nm,start:st,end:en});makePlan();persist();render();toast('Lomba ditambahkan')}
   else if(a==='lombadel'){S.lombas=S.lombas.filter(function(x){return x.id!==id});makePlan();persist();render()}
@@ -960,7 +1057,16 @@ document.addEventListener('keydown',function(ev){
 document.addEventListener('change',function(ev){
   var f=ev.target.dataset&&ev.target.dataset.field;if(!f)return;
   var val=ev.target.value;
-  if(f==='nick'){S.nick=val.trim()}
+  if(f.indexOf('exf:')===0){
+    var fk=f.slice(4);
+    if(fk==='s'){ui.exf.s=val;ui.exf.bab=[];render();return}
+    ui.exf[fk]=val;return;
+  }
+  else if(f.indexOf('exs:')===0){
+    var eid=f.slice(4);S.exams.forEach(function(e){if(e.id===eid)e.score=val===''?null:Math.max(0,Math.min(100,+val||0))});
+    persist();render();return;
+  }
+  else if(f==='nick'){S.nick=val.trim()}
   else if(f==='tS'){S.targets.S=+val||0}
   else if(f==='tI'){S.targets.I=+val||0}
   else if(f==='tU'){S.targets.U=+val||0}
