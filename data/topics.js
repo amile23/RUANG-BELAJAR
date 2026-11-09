@@ -100,5 +100,18 @@ RB.rawTopics = [
 'utb6|utb|1|Literasi Bahasa Inggris (nyambung ke SAT R&W)|40|USI',
 'utb7|utb|2|Drill Penalaran Umum: 20 soal|30|U',
 'utb8|utb|2|Drill Penalaran Matematika: 15 soal|35|U',
-'utb9|utb|3|Try out UTBK #1|180|U'
+'utb9|utb|3|Try out UTBK #1|180|U',
+'mat15|mat|1|Fungsi: domain, range, invers & komposisi|45|RSTU',
+'mat16|mat|1|Program linear & sistem 3 variabel|40|RT',
+'mat17|mat|1|Kesebangunan, Pythagoras, jarak & transformasi geometri|50|RST',
+'ind8|ind|1|Teks sastra: puisi, prosa, drama & respons emosional|40|RTU',
+'ind9|ind|1|Kata serapan, kosakata & makna dalam konteks|30|RTU',
+'ing9|ing|1|Evaluasi teks: fakta vs opini, validitas, tujuan penulis|40|RSITU',
+'bio11|bio|1|Keanekaragaman hayati, klasifikasi & bakteri|45|RT',
+'bio12|bio|1|Ekosistem, interaksi & pelestarian|40|RT',
+'kim12|kim|1|Struktur atom, sistem periodik & ikatan kimia|50|RT',
+'kim13|kim|1|Redoks & elektrokimia (sel volta, elektrolisis)|50|RT',
+'sat17|sat|1|Math: Statistik, peluang & grafik data (Problem-Solving)|50|SRU',
+'iel10|iel|1|Reading: 12 tipe soal IELTS & strategi tiap tipe|60|IS',
+'utb10|utb|1|Literasi Bahasa Indonesia: teks informasional & sastra|45|UT'
 ];

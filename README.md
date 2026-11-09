@@ -6,5 +6,7 @@ Web belajar pribadi: perencana harian, materi, kuis, bank kesalahan, rapor, dan 
 - `data/topics.js`: daftar materi dan tahapnya.
 - `data/lessons.js`: ringkasan materi per bab.
 - `data/questions.js`: bank soal.
+- `data/kisikisi.js`: peta kisi-kisi SAT, TKA, UTBK, IELTS, kelas 11, plus daftar yang belum dimasukkan.
+- `assets/logo-ui.png`: logo (opsional).
 
 Materi dan soal baru cukup ditambahkan di folder `data`.

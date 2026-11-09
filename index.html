@@ -3,40 +3,45 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ruang Belajar FK UI</title>
+<title>Ruang Belajar Adiva · FK UI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* Ide layout: satu kolom lega seperti buku harian klinik; kartu misi di tengah, avatar dokter kecil di atas.
-   Warna: putih kapas-merah muda, tinta plum, aksen mawar (bisa diganti matcha / lilac). */
+/* Ide: buku harian dokter yang manis. Dasar merah muda pastel kaya, ditemani lilac, mint, peach, langit, dan butter.
+   Tiap kartu punya garis warna sendiri supaya halaman terasa hidup tapi tetap mudah dibaca. */
 :root{
-  --bg:#FFF6F4; --card:#FFFFFF; --ink:#3B2740; --muted:#7C6A82; --line:#F1DEE3;
-  --accent:#CF456D; --accent-ink:#FFFFFF;
-  --sage:#4E9F7D; --lilac:#8E73E0; --butter:#FFD98A; --warn:#C97A12; --ok:#2E8F68;
-  --soft:color-mix(in srgb,var(--accent) 12%,var(--card));
+  --bg:#FFF1F6; --card:#FFFFFF; --ink:#3B2740; --muted:#7A6580; --line:#F3D9E4;
+  --accent:#C93C68; --accent-ink:#FFFFFF;
+  --pk:#FFD3E3; --lv:#E4D9FF; --mn:#D2F2E4; --pc:#FFE1C9; --sk:#D5E8FF; --bt:#FFF0B5;
+  --sage:#4E9F7D; --lilac:#8E73E0; --butter:#FFD98A; --warn:#B86A0C; --ok:#2E8F68;
+  --soft:color-mix(in srgb,var(--accent) 11%,var(--card));
   --soft2:color-mix(in srgb,var(--accent) 22%,var(--card));
   --hijab:color-mix(in srgb,var(--accent) 45%,#fff);
-  --shadow:0 8px 24px rgba(120,60,90,.10);
+  --shadow:0 8px 26px rgba(201,60,104,.12);
   --font-d:'Fredoka','Trebuchet MS',system-ui,sans-serif;
   --font-b:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#1D1421; --card:#2A1E30; --ink:#F7EAF1; --muted:#C0AAC8; --line:#42304B;
+    --bg:#1D1421; --card:#2A1E30; --ink:#F7EAF1; --muted:#C9B4D0; --line:#42304B;
+    --pk:#5A2B42; --lv:#3F3363; --mn:#1F4A3D; --pc:#5A3A25; --sk:#233F5F; --bt:#5A4D1E;
     --shadow:0 8px 24px rgba(0,0,0,.35); --warn:#F0A94A; --ok:#58C79C; color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#1D1421; --card:#2A1E30; --ink:#F7EAF1; --muted:#C0AAC8; --line:#42304B;
+  --bg:#1D1421; --card:#2A1E30; --ink:#F7EAF1; --muted:#C9B4D0; --line:#42304B;
+  --pk:#5A2B42; --lv:#3F3363; --mn:#1F4A3D; --pc:#5A3A25; --sk:#233F5F; --bt:#5A4D1E;
   --shadow:0 8px 24px rgba(0,0,0,.35); --warn:#F0A94A; --ok:#58C79C; color-scheme:dark;
 }
 [data-accent="matcha"]{--accent:#3A8664}
 [data-accent="lilac"]{--accent:#7B5FD6}
+[data-accent="langit"]{--accent:#2F6FC0}
+[data-accent="peach"]{--accent:#B8561F}
 *{box-sizing:border-box}
 html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font-family:var(--font-b);font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+body{background:var(--bg);background-image:radial-gradient(520px 340px at 8% -4%,var(--pk),transparent 70%),radial-gradient(520px 360px at 100% 6%,var(--lv),transparent 70%),radial-gradient(560px 380px at 0% 100%,var(--mn),transparent 72%),radial-gradient(520px 340px at 100% 100%,var(--pc),transparent 70%);background-attachment:fixed;color:var(--ink);font-family:var(--font-b);font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
 h1,h2,h3{font-family:var(--font-d);font-weight:600;margin:0;text-wrap:balance;letter-spacing:.1px}
 h2{font-size:1.25rem} h3{font-size:1.05rem}
 p{margin:0}
@@ -44,26 +49,32 @@ button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 60%,transparent);outline-offset:2px}
 .wrap{max-width:980px;margin:0 auto;padding:0 16px 96px}
-.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--card) 86%,var(--pk));backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .top-in{max-width:980px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .brand{font-family:var(--font-d);font-weight:700;font-size:1.15rem;display:flex;align-items:center;gap:8px;margin-right:auto}
-.brand i{width:26px;height:26px;border-radius:9px;background:var(--accent);display:grid;place-items:center;color:#fff;font-style:normal;font-size:.95rem}
+.brand{line-height:1.1}.brand small{display:block;font-family:var(--font-b);font-weight:800;font-size:.72rem;color:var(--muted);letter-spacing:.02em}
+.crest{width:42px;height:46px;flex:none;display:grid;place-items:center}.crest svg,.crest img{width:100%;height:100%;object-fit:contain}
 .stats{display:flex;gap:8px;flex-wrap:wrap}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:var(--soft);font-weight:700;font-size:.82rem;border:1px solid var(--line);white-space:nowrap}
 .chip.k{border-color:transparent;color:#fff}
+.stats .chip:nth-child(1){background:var(--pk)}.stats .chip:nth-child(2){background:var(--bt)}.stats .chip:nth-child(3){background:var(--mn)}.stats .chip:nth-child(4){background:var(--sk)}
 nav.tabs{max-width:980px;margin:0 auto;padding:0 16px 10px;display:flex;gap:6px;overflow-x:auto}
 nav.tabs a{padding:8px 14px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:800;font-size:.92rem;white-space:nowrap;border:1px solid transparent}
+nav.tabs a::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--tc,var(--accent));margin-right:7px;vertical-align:1px}
+nav.tabs a[data-tab="hari-ini"]{--tc:#F27AA5}nav.tabs a[data-tab="peta"]{--tc:#A98BEA}nav.tabs a[data-tab="strategi"]{--tc:#5CC9A0}nav.tabs a[data-tab="rapor"]{--tc:#FFAB73}nav.tabs a[data-tab="avatar"]{--tc:#6BB3F0}nav.tabs a[data-tab="atur"]{--tc:#E8C34A}
 nav.tabs a[aria-current="page"]{background:var(--accent);color:var(--accent-ink)}
+nav.tabs a[aria-current="page"]::before{background:#fff}
 nav.tabs a:hover{border-color:var(--line)}
 main{padding-top:18px;display:grid;gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:var(--shadow)}
+.card{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--cc,#F27AA5);border-radius:20px;padding:16px;box-shadow:var(--shadow)}
+main>.card:nth-child(5n+1){--cc:#F27AA5}main>.card:nth-child(5n+2){--cc:#A98BEA}main>.card:nth-child(5n+3){--cc:#5CC9A0}main>.card:nth-child(5n+4){--cc:#FFAB73}main>.card:nth-child(5n+5){--cc:#6BB3F0}
 .card>header{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
 .card>header .sp{margin-left:auto}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 @media (max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
 .muted{color:var(--muted)} .small{font-size:.86rem} .tiny{font-size:.78rem}
-.btn{border:0;background:var(--accent);color:var(--accent-ink);font-weight:800;border-radius:12px;padding:9px 14px;transition:transform .12s}
+.btn{text-decoration:none;display:inline-block;border:0;background:var(--accent);color:var(--accent-ink);font-weight:800;border-radius:12px;padding:9px 14px;transition:transform .12s}
 .btn:hover{transform:translateY(-1px)} .btn:active{transform:translateY(0)}
 .btn.ghost{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
 .btn.sm{padding:6px 10px;font-size:.84rem;border-radius:10px}
@@ -72,7 +83,8 @@ main{padding-top:18px;display:grid;gap:16px}
 .seg button{border:0;background:transparent;padding:6px 12px;border-radius:9px;font-weight:800;color:var(--muted)}
 .seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
 /* hero */
-.hero{display:grid;grid-template-columns:230px 1fr;gap:18px;align-items:center;background:linear-gradient(160deg,var(--soft2),var(--card) 70%)}
+.hero{display:grid;grid-template-columns:230px 1fr;gap:18px;align-items:center;background:linear-gradient(150deg,var(--pk),var(--lv) 55%,var(--card) 100%)}
+.idline{font-weight:800;color:var(--accent);margin-bottom:2px}
 @media (max-width:640px){.hero{grid-template-columns:1fr;justify-items:center;text-align:center}}
 .avwrap{position:relative;width:210px;height:230px;cursor:pointer}
 .avwrap svg{width:100%;height:100%;overflow:visible}
@@ -194,19 +206,47 @@ pre.copy{white-space:pre-wrap;background:var(--soft);border:1px solid var(--line
 .rapor{display:grid;grid-template-columns:1fr 90px 90px;gap:10px;align-items:center}
 .rapor input{padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--card);width:100%;font-weight:700}
 .form textarea{resize:vertical}
+/* strategi, avatar */
+.seg2{gap:6px}
+.ki{border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
+.ki+.ki{margin-top:8px}
+.ki summary{list-style:none;cursor:pointer;display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:11px 12px}
+.ki summary::-webkit-details-marker{display:none}
+.ki summary::before{content:'▸';color:var(--accent);font-weight:900;transition:transform .15s}
+.ki[open] summary::before{transform:rotate(90deg)}
+.ki[open]{border-color:var(--accent)}
+.kn{font-weight:800;flex:1;min-width:160px}
+.kb{display:flex;gap:6px;flex-wrap:wrap}
+.kbody{padding:2px 14px 14px;display:grid;gap:8px}
+.kt{background:var(--soft);border-radius:12px;padding:9px 11px}
+a.tag.lnk{text-decoration:none;color:var(--ink)}a.tag.lnk:hover{border-color:var(--c)}
+.stratlist{margin:0;padding-left:22px;display:grid;gap:8px}
+.gaplist{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.gaplist li{display:grid;gap:2px;padding:10px 12px;border:1px solid var(--line);border-left:5px solid #FFAB73;border-radius:12px;background:var(--card)}
+.gaplist li:nth-child(3n+2){border-left-color:#A98BEA}.gaplist li:nth-child(3n){border-left-color:#5CC9A0}
+.avgrid{display:grid;grid-template-columns:260px 1fr;gap:18px;align-items:start}
+@media (max-width:700px){.avgrid{grid-template-columns:1fr}}
+.avprev{width:100%;max-width:260px;margin:0 auto;aspect-ratio:220/240}
+.avprev svg{width:100%;height:100%;overflow:visible}
+.avopts .lbl{font-weight:800;margin-bottom:6px}
+.swrow{display:flex;gap:10px;flex-wrap:wrap}
+.swatch{background-clip:padding-box}
+@media (max-width:640px){.stats .chip:nth-child(n+3){display:none}.brand{font-size:1.02rem}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div class="top">
   <div class="top-in">
-    <div class="brand"><i>+</i>Ruang Belajar FK UI</div>
+    <div class="brand"><span class="crest"><img id="logoImg" src="assets/logo-ui.png" alt="" hidden><svg id="crestSvg" viewBox="0 0 48 52" role="img" aria-label="Lencana FK UI"><defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F27AA5"/><stop offset="1" stop-color="#A98BEA"/></linearGradient></defs><path d="M24 2 L44 9 V27 C44 39 35 47 24 50 C13 47 4 39 4 27 V9 Z" fill="url(#cg)" stroke="#FFD98A" stroke-width="2.5"/><path d="M24 12 V28 M16 20 H32" stroke="#fff" stroke-width="4" stroke-linecap="round"/><circle cx="24" cy="20" r="9.5" fill="none" stroke="#fff" stroke-width="1.4" opacity=".7"/><text x="24" y="43" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="9.5" fill="#fff">FK UI</text></svg></span><span>Adiva Yumna Amilia<small>Calon dr. Sp.DVE · FK Universitas Indonesia</small></span></div>
     <div class="stats" id="stats"></div>
   </div>
   <nav class="tabs" id="tabs" aria-label="Menu utama">
     <a href="#hari-ini" data-tab="hari-ini">Hari Ini</a>
     <a href="#peta" data-tab="peta">Peta Belajar</a>
+    <a href="#strategi" data-tab="strategi">Strategi</a>
     <a href="#rapor" data-tab="rapor">Rapor &amp; Target</a>
+    <a href="#avatar" data-tab="avatar">Avatar</a>
     <a href="#atur" data-tab="atur">Atur</a>
   </nav>
 </div>
@@ -217,6 +257,13 @@ pre.copy{white-space:pre-wrap;background:var(--soft);border:1px solid var(--line
 <script src="data/topics.js"></script>
 <script src="data/lessons.js"></script>
 <script src="data/questions.js"></script>
+<script src="data/kisikisi.js"></script>
 <script src="app.js"></script>
+<script>
+(function(){var i=document.getElementById('logoImg'),v=document.getElementById('crestSvg');if(!i)return;
+i.addEventListener('load',function(){if(i.naturalWidth>0){i.hidden=false;if(v)v.style.display='none'}});
+i.addEventListener('error',function(){i.hidden=true});
+if(i.complete&&i.naturalWidth>0){i.hidden=false;if(v)v.style.display='none'}})();
+</script>
 </body>
 </html>
