@@ -39,6 +39,8 @@ var TRK={
 var STAGE={1:'Tahap 1 · Paham konsep',2:'Tahap 2 · Latih soal',3:'Tahap 3 · Uji (try out)'};
 var BASE=(RB.rawTopics||[]).map(function(r,i){var a=r.split('|');return {id:a[0],s:a[1],st:+a[2],n:a[3],m:+a[4],tr:a[5].split(''),i:i}});
 var LESSONS=RB.lessons||{};
+Object.keys(RB.buku||{}).forEach(function(k){LESSONS[k]=Object.assign({},LESSONS[k]||{},RB.buku[k])});
+Object.keys(RB.videos||{}).forEach(function(k){if(LESSONS[k])LESSONS[k].videos=RB.videos[k]});
 var QUESTIONS=RB.questions||[];
 
 var MICRO=[
@@ -57,7 +59,7 @@ var MILE=[
 ];
 var LEVELS=[[0,'Calon Maba'],[120,'Maba FK'],[350,'Anak Blok'],[700,'Asisten Lab'],[1200,'Pre-klinik'],[1900,'Koas'],[2800,'Koas Senior'],[4000,'dr. Muda'],[5600,'Dokter Umum'],[8000,'Konsulen']];
 var BOX=[1,3,7,14];
-var KIND_L={pre:'Pre-test',latihan:'Latihan',post:'Post-test',review:'Ulang kesalahan'};
+var KIND_L={pre:'Pre-test',latihan:'Latihan',post:'Post-test',review:'Ulang kesalahan',bank:'Latihan bank soal'};
 
 /* ============ state ============ */
 function defAv(){return {hijab:true,skin:1,hair:0,style:0,hjc:0,of:0,oc:0,bg:0,steto:true,kaca:false,pita:false,lencana:true}}
@@ -601,7 +603,9 @@ function finishSess(){
   s.res.forEach(function(r){errUpdate(r.qid,r.ok)});
   S.qxp=(S.qxp||0)+ok*2;
   S.qdays=S.qdays||{};S.qdays[dk]=(S.qdays[dk]||0)+n;
-  if(s.tid){
+  if(s.kind==='bank'){
+    s.res.forEach(function(r,i){var q=s.qs[i].q,Qb=S.quiz[q.t]=S.quiz[q.t]||{seen:{}};Qb.seen=Qb.seen||{};Qb.seen[r.qid]=(Qb.seen[r.qid]||0)+1});
+  }else if(s.tid){
     var Q=S.quiz[s.tid]=S.quiz[s.tid]||{seen:{}};Q.seen=Q.seen||{};
     s.res.forEach(function(r){Q.seen[r.qid]=(Q.seen[r.qid]||0)+1});
     if(s.kind==='pre'){Q.pre={s:ok,n:n,d:dk};Q.preIds=s.res.map(function(r){return r.qid})}
@@ -757,6 +761,89 @@ function viewMap(){
   return h+'</section>';
 }
 
+
+/* ============ buku catatan (lesson) ============ */
+function mdLine(x){return esc(x).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')}
+function notesHtml(arr){
+  return arr.map(function(n){
+    var h='<h3>'+esc(n.h)+'</h3>',ul=[];
+    (n.t||[]).forEach(function(x){
+      if(x.indexOf('- ')===0)ul.push('<li>'+mdLine(x.slice(2))+'</li>');
+      else{if(ul.length){h+='<ul>'+ul.join('')+'</ul>';ul=[]}h+='<p>'+mdLine(x)+'</p>'}
+    });
+    if(ul.length)h+='<ul>'+ul.join('')+'</ul>';
+    return h;
+  }).join('');
+}
+function typesHtml(arr){
+  return '<h3>Contoh tiap tipe soal</h3>'+arr.map(function(t,i){
+    var h='<div class="tp"><div class="tpn"><b>Tipe '+(i+1)+'.</b> '+esc(t.n)+'</div>';
+    if(t.ciri)h+='<div class="small"><b>Ciri soal:</b> '+mdLine(t.ciri)+'</div>';
+    if(t.cara)h+='<div class="small"><b>Cara menjawab:</b> '+mdLine(t.cara)+'</div>';
+    if(t.q){
+      h+='<div class="ex"><div style="font-weight:800;white-space:pre-line">'+esc(t.q)+'</div>';
+      if(t.o)h+='<ol class="tpo" type="A">'+t.o.map(function(o){return '<li>'+esc(o)+'</li>'}).join('')+'</ol>';
+      h+='<details><summary>Lihat jawaban &amp; pembahasan</summary><div style="margin-top:6px"><b>Jawaban: '+esc(t.a)+'</b></div><div style="white-space:pre-line">'+mdLine(t.e||'')+'</div></details></div>';
+    }
+    return h+'</div>';
+  }).join('');
+}
+function videosHtml(arr){
+  return '<h3>Video untuk memahami konsepnya</h3><p class="tiny muted" style="margin-bottom:6px">Buka di tab baru. Tonton sambil mencatat, lalu kerjakan latihannya.</p><ul class="vids">'+arr.map(function(v){
+    return '<li><a href="'+esc(v.u)+'" target="_blank" rel="noopener noreferrer">▶ '+esc(v.t)+'</a>'+(v.c?' <span class="tiny muted">· '+esc(v.c)+'</span>':'')+(v.n?'<div class="tiny muted">'+esc(v.n)+'</div>':'')+'</li>';
+  }).join('')+'</ul>';
+}
+function lessonHtml(L){
+  var book=!!(L.notes||L.types||L.videos);
+  var h='<section class="card lesson"><header><h2>'+(book?'Buku catatan':'Ringkasan')+'</h2></header><p>'+mdLine(L.intro)+'</p>';
+  if(L.notes)h+=notesHtml(L.notes);
+  h+='<h3>'+(book?'Rumus & aturan inti (hafalkan)':'Yang perlu diingat')+'</h3><ul>'+L.points.map(function(x){return '<li>'+mdLine(x)+'</li>'}).join('')+'</ul>';
+  if(L.types&&L.types.length)h+=typesHtml(L.types);
+  if(L.examples&&L.examples.length)h+='<h3>'+(book?'Contoh tambahan':'Contoh')+'</h3>'+L.examples.map(function(e){return '<div class="ex"><div style="font-weight:800;white-space:pre-line">'+esc(e.q)+'</div><div style="white-space:pre-line">'+mdLine(e.a)+'</div></div>'}).join('');
+  if(L.traps&&L.traps.length)h+='<h3>Jebakan yang sering terjadi</h3><ul>'+L.traps.map(function(x){return '<li>'+mdLine(x)+'</li>'}).join('')+'</ul>';
+  if(L.videos&&L.videos.length)h+=videosHtml(L.videos);
+  return h+'</section>';
+}
+
+/* ============ view: bank soal per rumpun ============ */
+function bankPool(ids){return QUESTIONS.filter(function(q){return ids.indexOf(q.t)>-1})}
+function startBank(ids){
+  var p=bankPool(ids),k=dkey(),seenOf=function(q){var Q=S.quiz[q.t];return Q&&Q.seen?(Q.seen[q.id]||0):0};
+  var due=p.filter(function(q){return S.err[q.id]&&S.err[q.id].due<=k});
+  var rest=shuffle(p).sort(function(a,b){return seenOf(a)-seenOf(b)});
+  var seen={},res=[];
+  shuffle(due).concat(rest).forEach(function(q){if(!seen[q.id]&&res.length<10){seen[q.id]=1;res.push(q)}});
+  if(!res.length){toast('Belum ada soal untuk ini');return}
+  ui.sess={kind:'bank',tid:ids.length===1?ids[0]:null,bankIds:ids,fb:true,i:0,picked:null,res:[],fin:false,passed:false,
+    qs:shuffle(res).map(function(q){return {q:q,perm:shuffle(q.o.map(function(_,i){return i}))}})};
+  render();
+}
+function viewBank(){
+  if(ui.sess&&ui.sess.kind==='bank')return '<section class="card"><a class="btn ghost sm" href="#bank" data-act="qquit">← Bank Soal</a></section>'+quizHtml();
+  var FAM=RB.families||[],total=QUESTIONS.length;
+  var h='<section class="card"><header><h2>Bank Soal</h2><span class="chip sp">'+total+' soal</span></header>'+
+    '<p class="muted small">Soal dikelompokkan per rumpun materi, lalu per bab dan sub-bab. Tekan <b>Latihan</b> untuk 10 soal acak dengan pembahasan, atau <b>Catatan</b> untuk membaca buku catatannya dulu. Soal yang salah masuk bank kesalahan.</p></section>';
+  FAM.forEach(function(f){
+    var all=[];f.groups.forEach(function(g){all=all.concat(g.ids)});
+    h+='<section class="card"><header><h2>'+esc(f.n)+'</h2><span class="chip sp">'+bankPool(all).length+' soal</span></header>';
+    if(f.d)h+='<p class="small muted" style="margin-bottom:8px">'+esc(f.d)+'</p>';
+    h+='<div style="margin-bottom:10px"><button class="btn sm" data-act="bankgo" data-v="'+all.join(',')+'">Latihan campur 1 rumpun (10 soal)</button></div>';
+    f.groups.forEach(function(g){
+      h+='<h3 style="margin:14px 0 6px">'+esc(g.g)+'</h3>';
+      g.ids.forEach(function(id){
+        var t=byId(id);if(!t)return;
+        var n=pool(id).length,L=LESSONS[id],book=!!(L&&(L.notes||L.types||L.videos));
+        h+='<div class="top-row'+(S.done[id]?' done':'')+'"><div><div class="nm">'+esc(t.n)+'</div><div class="tags">'+
+          '<span class="tag" style="--c:#4E9F7D">'+n+' soal</span>'+(book?'<span class="tag" style="--c:#7A8B3C">Buku catatan</span>':L?'<span class="tag" style="--c:#999">Ringkasan</span>':'')+
+          '<a class="btn ghost sm" href="#belajar-'+esc(id)+'" data-act="tomateri" data-id="'+esc(id)+'">Catatan</a>'+
+          (n?'<button class="btn sm" data-act="bankgo" data-v="'+esc(id)+'">Latihan</button>':'')+'</div></div></div>';
+      });
+    });
+    h+='</section>';
+  });
+  return h;
+}
+
 /* ============ view: belajar ============ */
 function curId(){var h=(location.hash||'').replace('#','');return h.indexOf('belajar-')===0?h.slice(8):''}
 function stepsBar(id,cur){
@@ -777,9 +864,7 @@ function viewStudy(){
     if(!L){
       h+='<section class="card"><div class="empty">Ringkasan materi bab ini belum ada. Kirim catatan atau fotonya ke Claude, nanti kutulis ringkasannya di sini.</div><div style="margin-top:10px"><button class="btn ghost sm" data-act="copy" data-v="req">Salin format permintaan</button></div></section>';
     }else{
-      h+='<section class="card lesson"><header><h2>Ringkasan</h2></header><p>'+esc(L.intro)+'</p><h3>Yang perlu diingat</h3><ul>'+L.points.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>'+
-        (L.examples&&L.examples.length?'<h3>Contoh</h3>'+L.examples.map(function(e){return '<div class="ex"><div style="font-weight:800">'+esc(e.q)+'</div><div>'+esc(e.a)+'</div></div>'}).join(''):'')+
-        (L.traps&&L.traps.length?'<h3>Jebakan yang sering terjadi</h3><ul>'+L.traps.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'')+'</section>';
+      h+=lessonHtml(L);
     }
     h+='<section class="card"><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">'+
       '<button class="btn" data-act="readok">'+(Q.read?'Sudah kubaca ✓':'Tandai sudah kubaca')+'</button>'+
@@ -1018,12 +1103,12 @@ function viewStrategi(){
 function curTab(){
   var t=(location.hash||'').replace('#','');
   if(t.indexOf('belajar-')===0)return 'belajar';
-  return ['hari-ini','peta','strategi','ulangan','rapor','avatar','ulang','atur'].indexOf(t)>-1?t:'hari-ini';
+  return ['hari-ini','peta','bank','strategi','ulangan','rapor','avatar','ulang','atur'].indexOf(t)>-1?t:'hari-ini';
 }
 function render(){
   document.documentElement.dataset.accent=S.accent;
   var t=curTab(),v=$('#view');
-  v.innerHTML=t==='hari-ini'?viewToday():t==='peta'?viewMap():t==='rapor'?viewGoal():t==='strategi'?viewStrategi():t==='ulangan'?viewUlangan():t==='avatar'?viewAvatar():t==='belajar'?viewStudy():t==='ulang'?viewReview():viewSet();
+  v.innerHTML=t==='hari-ini'?viewToday():t==='peta'?viewMap():t==='bank'?viewBank():t==='rapor'?viewGoal():t==='strategi'?viewStrategi():t==='ulangan'?viewUlangan():t==='avatar'?viewAvatar():t==='belajar'?viewStudy():t==='ulang'?viewReview():viewSet();
   var nav=t==='belajar'?'peta':t==='ulang'?'hari-ini':t;
   document.querySelectorAll('#tabs a').forEach(function(a){if(a.dataset.tab===nav)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   paintStats();tmPaint();
@@ -1070,13 +1155,15 @@ document.addEventListener('click',function(ev){
   else if(a==='sstep'){ui.step=v;ui.sess=null;render()}
   else if(a==='readok'){var Q=S.quiz[curId()]=S.quiz[curId()]||{seen:{}};Q.read=!Q.read;persist();render()}
   else if(a==='qstart'){startSess(v==='review'?null:curId(),v)}
-  else if(a==='qagain'){startSess(ui.sess.tid,ui.sess.kind)}
+  else if(a==='qagain'){if(ui.sess.kind==='bank')startBank(ui.sess.bankIds);else startSess(ui.sess.tid,ui.sess.kind)}
+  else if(a==='bankgo'){startBank(v.split(','))}
+  else if(a==='tomateri'){ui.step='materi';ui.stepFor=id}
   else if(a==='qans'){
     var s=ui.sess;if(!s||s.picked!==null)return;
     var pk=+v,q=s.qs[s.i].q;s.picked=pk;s.res.push({qid:q.id,ok:pk===q.a,pick:pk});render();
   }
   else if(a==='qnext'){var s2=ui.sess;s2.i++;s2.picked=null;if(s2.i>=s2.qs.length){finishSess()}render()}
-  else if(a==='qquit'){var wasReview=ui.sess&&ui.sess.kind==='review';ui.sess=null;if(wasReview){location.hash='#hari-ini'}render()}
+  else if(a==='qquit'){if(ui.sess&&ui.sess.kind==='bank'){ui.sess=null;render();return}var wasReview=ui.sess&&ui.sess.kind==='review';ui.sess=null;if(wasReview){location.hash='#hari-ini'}render()}
   else if(a==='rfsave'){
     var id2=curId(),Q2=S.quiz[id2]=S.quiz[id2]||{seen:{}};
     Q2.refl=Q2.refl||[];Q2.refl.push({d:dk,a:$('#rfA').value.trim(),b:$('#rfB').value.trim(),p:$('#rfC').value.trim(),c:+$('#rfD').value});

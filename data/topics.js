@@ -121,5 +121,19 @@ RB.rawTopics = [
 'utb25|utb|1|Penulisan kata: kata majemuk, kata depan, partikel pun-per, singkatan & bilangan|45|UT',
 'utb26|utb|1|Penulisan unsur serapan: adopsi & adaptasi|30|UT',
 'utb27|utb|1|Konjungsi: koordinatif, korelatif, subordinatif & antarkalimat|45|UT',
-'utb28|utb|1|Wacana PBM: kepaduan, kohesi, hubungan antarparagraf & posisi kalimat utama|45|UT'
+'utb28|utb|1|Wacana PBM: kepaduan, kohesi, hubungan antarparagraf & posisi kalimat utama|45|UT',
+'utb29|utb|1|Bilangan: FPB–KPK, faktor, prima, pangkat, akar & sisa pembagian|50|U',
+'utb30|utb|1|Pecahan, persen, perbandingan, skala & rata-rata|50|U',
+'utb31|utb|1|Aljabar: persamaan kuadrat, nilai mutlak & pertidaksamaan|55|U',
+'utb32|utb|1|Sistem persamaan & soal cerita (umur, harga, tarif, kerja)|50|U',
+'utb33|utb|1|Fungsi & grafik: komposisi, invers, domain & garis lurus|50|U',
+'utb34|utb|1|Barisan & deret: aritmetika, geometri & tak hingga|50|U',
+'utb35|utb|1|Geometri datar: Pythagoras, luas, lingkaran & sudut|50|U',
+'utb36|utb|1|Bangun ruang: volume, luas permukaan & air naik|50|U',
+'utb37|utb|1|Statistika: mean, median, modus, kuartil & tabel frekuensi|45|U',
+'utb38|utb|1|Peluang & kombinatorika: dadu, bola, permutasi & kombinasi|50|U',
+'utb39|utb|1|PK: hubungan kuantitas P dan Q|45|U',
+'utb40|utb|1|PK: kecukupan data (pernyataan 1 dan 2)|45|U',
+'utb41|utb|1|PK: pernyataan (1)–(4), pilih yang benar|45|U',
+'utb42|utb|1|PM: tabel, grafik & model kontekstual|55|U'
 ];

@@ -78,10 +78,11 @@ RB.kisi = [
    ['Wacana','Kepaduan paragraf (kalimat sumbang, kohesi), hubungan antarparagraf, ide pokok, simpulan, tujuan penulis','Cari ide pokok dulu, lalu cari kalimat yang tidak berkaitan dan penanda kohesi.','utb28,utb20,ind1,ind2']]},
 
   {g:'4 · Pengetahuan Kuantitatif (20 soal, 20 mnt)',items:[
-   ['Aritmetika','Pecahan, persentase, rasio, rata-rata, KPK–FPB','Latih hitung cepat tanpa kalkulator.','utb3,mat3'],
-   ['Aljabar','Persamaan, sistem persamaan, pertidaksamaan, fungsi sederhana','Sama dengan bab TKA Matematika.','utb3,mat2,mat15'],
-   ['Geometri','Bangun datar dan ruang, sudut, kesebangunan, koordinat','Gambar ulang sketsa soal.','utb3,mat17'],
-   ['Statistika & peluang','Mean/median/modus, simpangan, peluang, kombinasi/permutasi','Bedakan permutasi (urutan penting) dan kombinasi.','mat7,utb3']]},
+   ['Aritmetika','Pecahan, persentase, rasio, rata-rata, KPK–FPB','Latih hitung cepat tanpa kalkulator.','utb29,utb30,utb15,utb3,mat3'],
+   ['Aljabar','Persamaan, sistem persamaan, pertidaksamaan, fungsi sederhana','Sama dengan bab TKA Matematika.','utb31,utb32,utb33,utb34,utb3,mat2,mat15'],
+   ['Geometri','Bangun datar dan ruang, sudut, kesebangunan, koordinat','Gambar ulang sketsa soal.','utb35,utb36,utb3,mat17'],
+   ['Statistika & peluang','Mean/median/modus, simpangan, peluang, kombinasi/permutasi','Bedakan permutasi (urutan penting) dan kombinasi.','utb37,utb38,mat7,utb3'],
+   ['Bentuk khas PK','Hubungan kuantitas P dan Q, kecukupan data (pernyataan 1 dan 2), dan pernyataan (1)–(4) yang benar','Untuk P dan Q, uji beberapa nilai (negatif, 0, pecahan, besar). Untuk kecukupan data, periksa (1) sendiri, (2) sendiri, baru gabungan. Untuk (1)–(4), tulis tabel benar-salah dulu.','utb39,utb40,utb41']]},
   {g:'5 · Literasi Bahasa Indonesia (30 soal, 43 mnt)',items:[
    ['Teks informasional','Menemukan informasi, menyimpulkan, mengevaluasi argumen','Tandai klaim, bukti, dan kesimpulan penulis.','utb10,ind5'],
    ['Teks sastra','Tema, tokoh, suasana, makna kiasan, amanat','Tentukan suasana dari pilihan kata, bukan dari ringkasan cerita.','utb10,ind8']]},
@@ -89,10 +90,10 @@ RB.kisi = [
    ['Informational text','Main idea, inference, vocabulary in context, author’s purpose','Mirip TOEFL Reading dan TKA Inggris.','utb6,ing4,iel3'],
    ['Literary text','Theme, character, tone, figurative language','Tone ada di pilihan kata sifat dan kata kerja penulis.','utb6,ing4']]},
   {g:'7 · Penalaran Matematika (20 soal, 42 mnt)',items:[
-   ['Bilangan','Bulat, pecahan, desimal, persen, eksponen, akar, logaritma dasar','Soal sering berupa konteks sehari-hari.','utb5,mat3'],
+   ['Bilangan','Bulat, pecahan, desimal, persen, eksponen, akar, logaritma dasar','Soal sering berupa konteks sehari-hari.','utb42,utb29,utb30,utb5,mat3'],
    ['Aljabar & fungsi','Persamaan, pertidaksamaan, sistem, fungsi linear/kuadrat, komposisi','Terjemahkan cerita ke persamaan.','utb5,mat1,mat15'],
    ['Geometri','Bangun datar/ruang, kesebangunan, trigonometri dasar, koordinat','Sketsa dulu, rumus kemudian.','utb5,mat17,mat5'],
-   ['Data & ketidakpastian','Statistika deskriptif, peluang, kombinasi/permutasi, tafsir data','Baca judul dan satuan grafik.','utb5,utb8,mat7']]}
+   ['Data & ketidakpastian','Statistika deskriptif, peluang, kombinasi/permutasi, tafsir data','Baca judul dan satuan grafik.','utb42,utb37,utb38,utb5,utb8,mat7']]}
  ]},
 
 {id:'iel',n:'TOEFL',c:'#C75AC0',
