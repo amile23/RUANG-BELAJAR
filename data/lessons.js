@@ -729,4 +729,63 @@ RB.lessons = {
       'Pola UTBK: sinonim, antonim, atau makna kata dalam konteks kalimat. Coba ganti kata dengan pilihan jawaban dan cek apakah artinya tetap sama.'
     ]
   }
+  ,
+  utb18: {
+    intro: 'Struktur kalimat adalah dasar semua soal PBM tentang kalimat. Kalau kamu bisa menemukan subjek, predikat, objek, pelengkap, dan keterangan, soal kalimat efektif dan variasi kalimat jadi jauh lebih mudah.',
+    points: [
+      'Kalimat minimal punya subjek (S) dan predikat (P). Objek (O), pelengkap (Pel), dan keterangan (K) bersifat tambahan.',
+      'Subjek: hal yang dibicarakan. Biasanya kata benda atau frasa benda, dan tidak diawali kata depan. Cara mencari: tanyakan "siapa atau apa yang …?" pada predikat.',
+      'Predikat: bagian yang menerangkan subjek. Biasanya kata kerja, tetapi bisa juga kata sifat, kata benda, atau bilangan (Adik sakit. Kakaknya mahasiswa.).',
+      'Objek: muncul setelah predikat berupa kata kerja aktif transitif, tidak diawali kata depan, dan dapat menjadi subjek ketika kalimat dipasifkan.',
+      'Pelengkap: melengkapi predikat dan biasanya muncul bersama verba intransitif, verba pasif, atau kopula (adalah, ialah, merupakan). Pelengkap tidak bisa menjadi subjek kalimat pasif.',
+      'Keterangan: keterangan tempat, waktu, cara, tujuan, sebab, dan sebagainya. Posisinya bisa berpindah dan sering diawali kata depan (di, ke, pada, dengan, untuk) atau kata hubung.',
+      'Pola inti S + P + O berarti predikatnya verba aktif transitif. Pola S + P (+ Pel/K) berarti verba intransitif, kopula, atau pasif.',
+      'Kalimat aktif transitif: punya objek dan dapat dipasifkan (Kakak membaca buku → Buku dibaca kakak). Kalimat aktif intransitif: tidak punya objek dan tidak dapat dipasifkan (Bayi itu menangis).',
+      'Kalimat pasif: subjek dikenai perbuatan. Ciri: awalan di-, ter-, atau ke-an, pelaku dapat muncul dengan kata oleh. Objek kalimat aktif menjadi subjek kalimat pasif.',
+      'Variasi kalimat yang benar harus tetap mempertahankan makna, mengikuti kaidah bahasa, dan memperhatikan subjek serta predikat.',
+      'Cara membuat variasi: membuat kalimat inversi (P S, misalnya "Indah sekali pemandangan itu"), memindahkan keterangan ke awal atau akhir, atau mengubah aktif menjadi pasif.',
+      'Kata depan yang menyelip setelah verba transitif mengubah objek menjadi keterangan dan membuat kalimat kehilangan objek (Mereka membahas tentang masalah itu). Hapus kata depannya.'
+    ],
+    examples: [
+      { q: 'Tentukan S, P, O, K pada "Adik membaca komik di kamar".', a: 'Adik = S, membaca = P, komik = O, di kamar = K.' },
+      { q: 'Ubah "Petani menanam padi" menjadi kalimat pasif.', a: '"Padi ditanam petani." Objek (padi) menjadi subjek.' },
+      { q: 'Mengapa "Dalam rapat itu membahas anggaran" salah?', a: 'Keterangan "dalam rapat itu" diawali kata depan sehingga tidak bisa menjadi subjek. Perbaikan: "Rapat itu membahas anggaran" atau "Dalam rapat itu dibahas anggaran".' }
+    ],
+    traps: [
+      'Menganggap kata benda setelah kata depan sebagai subjek. Subjek tidak boleh diawali kata depan.',
+      'Menganggap semua kata kerja bisa dipasifkan. Hanya verba transitif.',
+      'Memberi objek pada verba intransitif atau kopula. "Ibu adalah guru" memiliki pelengkap, bukan objek.',
+      'Salah mengubah aktif ke pasif karena lupa menukar posisi S dan O.',
+      'Pola UTBK: kalimat dengan bagian digarisbawahi lalu pertanyaan fungsinya, atau kalimat yang tidak punya subjek atau objek. Cari predikat dulu, baru subjek dan objeknya.'
+    ]
+  },
+  utb19: {
+    intro: 'Kalimat efektif adalah kalimat yang menyampaikan gagasan dengan tepat dan mudah dipahami. Soal PBM biasanya meminta memilih kalimat yang paling efektif atau memperbaiki kalimat yang salah. Cek bertahap: struktur, logika, kesejajaran, kehematan, kecermatan.',
+    points: [
+      'Kelengkapan struktur: kalimat minimal punya subjek dan predikat, dan punya objek bila predikatnya verba aktif transitif.',
+      'Kalimat sering kehilangan subjek karena diawali kata depan (Di sekolah itu membuka kelas baru) dan kehilangan predikat karena subjek diperpanjang dengan "yang" (Para siswa yang berlatih keras itu).',
+      'Kelogisan: informasi harus masuk akal. Penyebab ketidaklogisan adalah salah pilihan kata (mempersingkat biaya, seharusnya menekan biaya) atau hubungan subjek dan predikat yang salah.',
+      'Jika anak kalimat tidak punya subjek, subjeknya mengikuti klausa induk. Bila itu menjadi tidak logis, tulis subjek anak kalimat atau ubah induknya menjadi pasif. Contoh: "Karena terlambat, Dani dihukum guru."',
+      'Kesejajaran: bentuk kata dan imbuhan dalam rincian harus sama dan bermakna sama. Kata kerja dirangkai kata kerja (menambah, melatih, meningkatkan), kata benda dirangkai kata benda.',
+      'Imbuhan harus bermakna sama: pendidikan (peng-an, proses) sejajar dengan pelatihan (peng-an, proses), bukan dengan latihan (-an, hasil).',
+      'Kehematan: hindari kata bersinonim dalam satu kalimat (agar supaya, hanya … saja), pleonasme atau kata tambahan berlebih (naik ke atas, sangat … sekali), dan reduplikasi yang mengulang makna jamak (para guru-guru, banyak buku-buku).',
+      'Kecermatan: kalimat tidak boleh multitafsir (ambigu), informasinya tepat, dan mudah dipahami.',
+      'Ambigu biasanya muncul pada frasa yang bisa diterangkan dua cara, misalnya "Rumah dosen yang tua itu dijual": yang tua rumahnya atau dosennya?',
+      'Tanda baca juga menentukan makna. Koma dapat memisahkan keterangan dari subjek: "Di dapur, ibu memasak" berbeda dengan "Di dapur ibu memasak".',
+      'Urutan cek cepat untuk soal: (1) cari S dan P, (2) lihat kata yang salah makna, (3) cek rincian sejajar, (4) coret kata mubazir, (5) cek ambigu dan tanda baca.'
+    ],
+    examples: [
+      { q: 'Perbaiki: "Kegiatan ini bertujuan menambah wawasan, melatih keberanian, dan peningkatan kerja sama."', a: '"… dan meningkatkan kerja sama." Semua rincian berupa verba.' },
+      { q: 'Perbaiki: "Para guru-guru menghadiri rapat."', a: '"Para guru menghadiri rapat." Kata para sudah bermakna jamak.' },
+      { q: 'Perbaiki: "Pemandangan itu sangat indah sekali."', a: '"Pemandangan itu sangat indah" atau "indah sekali". Sangat dan sekali sama-sama penguat, sehingga mubazir.' }
+    ],
+    traps: [
+      'Memilih kalimat yang paling panjang karena terlihat lengkap. Kalimat efektif justru hemat.',
+      'Mengira kata "para" boleh dipakai dengan kata ulang.',
+      'Lupa mengecek subjek ketika kalimat diawali kata depan.',
+      'Mencampur bentuk kata benda dan kata kerja dalam satu rincian.',
+      'Mengabaikan koma. Satu koma bisa mengubah siapa yang melakukan sesuatu.',
+      'Pola UTBK: tiga atau empat kalimat dengan satu yang efektif, atau satu kalimat dengan bagian yang diperbaiki. Eliminasi satu per satu berdasarkan lima kriteria di atas.'
+    ]
+  }
 };

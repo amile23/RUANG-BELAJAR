@@ -110,5 +110,7 @@ RB.rawTopics = [
 'utb14|utb|1|Penalaran kuantitatif I: bilangan berpangkat, pecahan & geometri dasar|50|U',
 'utb15|utb|1|Penalaran kuantitatif II: untung–rugi, bunga, diskon, pajak, perbandingan & skala|55|U',
 'utb16|utb|1|Pembentukan kata (imbuhan) & jenis frasa|45|UT',
-'utb17|utb|1|Makna kata: leksikal, denotasi–konotasi, sinonim, antonim, hipernim–hiponim|40|UT'
+'utb17|utb|1|Makna kata: leksikal, denotasi–konotasi, sinonim, antonim, hipernim–hiponim|40|UT',
+'utb18|utb|1|Struktur & jenis kalimat: S-P-O-Pel-K, aktif–pasif & variasi|45|UT',
+'utb19|utb|1|Kalimat efektif: kelengkapan, kelogisan, kesejajaran, kehematan & kecermatan|50|UT'
 ];
