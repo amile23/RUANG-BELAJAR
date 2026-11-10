@@ -62,7 +62,7 @@ RB.rawTopics = [
 'kim5|kim|1|Asam–basa, pH & konsentrasi larutan|55|RT',
 'kim6|kim|1|Hidrolisis garam & pH campuran asam–basa|50|RT',
 'kim7|kim|1|Ksp, kelarutan & pengendapan|45|RT',
-'kim8|kim|1|Hidrokarbon & senyawa karbon dasar|45|RT',
+'kim8|kim|1|Hidrokarbon: alkana, alkena, alkuna, isomer & minyak bumi|55|RT',
 'kim9|kim|1|Koloid|30|RT',
 'kim10|kim|2|Latihan soal Kimia campuran|45|RT',
 'kim11|kim|3|Try out Kimia 1 set|60|RT',
@@ -99,6 +99,8 @@ RB.rawTopics = [
 'kim16|kim|1|Tata nama, persamaan reaksi & hukum dasar kimia|45|RT',
 'kim17|kim|1|Titrasi asam–basa, indikator & kurva titrasi|45|RT',
 'kim18|kim|1|Larutan penyangga (buffer)|50|RT',
+'kim19|kim|1|Sel volta, potensial sel, korosi & baterai|55|RT',
+'kim20|kim|1|Sel elektrolisis & hukum Faraday|50|RT',
 'kim13|kim|1|Reaksi redoks: biloks, oksidator–reduktor & penyetaraan|50|RT',
 'iel10|iel|1|Reading cepat: skimming, scanning & inferensi|45|I',
 'utb10|utb|1|Literasi Bahasa Indonesia: teks informasional & sastra|45|UT'

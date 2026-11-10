@@ -436,4 +436,94 @@ RB.lessons = {
       'Pola TKA: pengolahan limbah dengan penambahan ion pengendap. Hitung konsentrasi setelah dicampur, hitung Qsp, lalu bandingkan dengan Ksp.'
     ]
   }
+  ,
+  kim19: {
+    intro: 'Sel volta mengubah energi kimia dari reaksi redoks spontan menjadi energi listrik. Dengan data potensial reduksi standar (E°), kamu bisa menentukan anoda, katoda, potensial sel, dan apakah suatu reaksi spontan. Bab ini juga mencakup korosi dan baterai.',
+    points: [
+      'Deret Volta: K–Ba–Ca–Na–Mg–Al–Mn–Zn–Cr–Fe–Cd–Co–Ni–Sn–Pb–(H)–Cu–Hg–Ag–Pt–Au. Makin ke kiri, reduktor makin kuat dan E° makin kecil. Logam dapat mereduksi ion logam di sebelah kanannya.',
+      'Logam di kiri H mendesak H₂ dari asam encer (misalnya Zn + 2HCl → ZnCl₂ + H₂). Logam di kanan H tidak.',
+      'Anoda = tempat oksidasi, E° lebih kecil, kutub negatif pada sel volta. Katoda = tempat reduksi, E° lebih besar, kutub positif pada sel volta.',
+      'Elektron mengalir lewat kawat dari anoda ke katoda. Massa anoda berkurang (logam melarut), massa katoda bertambah (logam mengendap).',
+      'E° sel = E° katoda − E° anoda (E° besar − E° kecil). Koefisien reaksi tidak dikalikan ke E°. E° sel positif berarti reaksi spontan.',
+      'Notasi sel: anoda | ion anoda || ion katoda | katoda. Contoh Zn | Zn²⁺ || Cu²⁺ | Cu.',
+      'Kondisi standar: 25 °C, 1 M, 1 atm. Di luar standar: E sel = E° sel − (0,0592/n) log Q, dengan Q = [produk]/[reaktan] berdasarkan koefisien.',
+      'Korosi besi: Fe teroksidasi oleh O₂ dengan bantuan air. Dipercepat oleh air, elektrolit (garam, asam), permukaan tidak rata, dan kontak dengan logam yang E°-nya lebih besar (misalnya besi dipaku tembaga).',
+      'Pencegahan korosi: cat, oli, plastik; galvanisasi (lapisan seng); pelapisan krom; perlindungan katodik dengan logam yang lebih mudah teroksidasi dari Fe (Mg atau Zn sebagai logam korban).',
+      'Pelapisan timah (Sn) hanya melindungi selama utuh. Jika tergores, Fe justru berkarat lebih cepat karena E° Sn lebih besar daripada Fe.',
+      'Sel primer (sekali pakai): baterai kering Zn/MnO₂, baterai perak oksida. Sel sekunder (dapat diisi ulang): aki timbal (Pb/PbO₂), karena reaksinya dapat dibalik dengan arus listrik. Sel bahan bakar: H₂ dan O₂ menghasilkan listrik dan air.'
+    ],
+    examples: [
+      { q: 'Zn²⁺ + 2e → Zn E° = −0,76 V dan Cu²⁺ + 2e → Cu E° = +0,34 V. Tentukan anoda, katoda, dan E° sel.', a: 'Zn memiliki E° lebih kecil, jadi Zn adalah anoda (oksidasi) dan Cu katoda (reduksi). E° sel = 0,34 − (−0,76) = +1,10 V. Reaksi spontan: Zn + Cu²⁺ → Zn²⁺ + Cu.' },
+      { q: 'Sel Zn|Zn²⁺(0,01 M)||Cu²⁺(1 M)|Cu. Hitung E sel (E° = 1,10 V, n = 2).', a: 'Q = [Zn²⁺]/[Cu²⁺] = 0,01. log Q = −2. E = 1,10 − (0,0592/2)(−2) = 1,10 + 0,0592 ≈ 1,16 V.' }
+    ],
+    traps: [
+      'Menukar anoda dan katoda. Anoda selalu tempat oksidasi (E° kecil).',
+      'Mengalikan E° dengan koefisien reaksi. E° adalah sifat intensif dan tidak dikalikan.',
+      'Salah membalik tanda E° sel: E° katoda dikurangi E° anoda, bukan sebaliknya.',
+      'Menganggap logam pelapis yang E°-nya lebih besar dari Fe tetap melindungi saat tergores.',
+      'Pola TKA: teks tentang baterai atau korosi kapal. Cari E° tiap logam, tentukan siapa yang teroksidasi lebih dulu, lalu kaitkan dengan pertanyaan.'
+    ]
+  },
+  kim20: {
+    intro: 'Elektrolisis memakai arus listrik untuk memaksa reaksi redoks yang tidak spontan. Kamu perlu menentukan hasil di katoda dan anoda, lalu menghitung massa atau volume memakai hukum Faraday.',
+    points: [
+      'Sel elektrolisis: energi listrik menjadi energi kimia. Katoda = kutub negatif (reduksi), anoda = kutub positif (oksidasi). Kebalikan dengan sel volta.',
+      'Katoda (hanya melihat kation): ion K⁺, Na⁺, Ca²⁺, Mg²⁺, Al³⁺, Mn²⁺ dalam larutan tidak tereduksi karena air lebih mudah: 2H₂O + 2e⁻ → H₂ + 2OH⁻. Kation lain (Cu²⁺, Ag⁺, Zn²⁺, Fe³⁺ dst) tereduksi menjadi logam. Ion H⁺ dari asam menjadi H₂.',
+      'Lelehan (tanpa air): semua kation direduksi menjadi logam, misalnya Na⁺ + e⁻ → Na dan Al³⁺ + 3e⁻ → Al.',
+      'Anoda inert (C, Pt, Au): halida (Cl⁻, Br⁻, I⁻) menjadi X₂. OH⁻ menjadi O₂ dan H₂O. Sisa asam oksi (SO₄²⁻, NO₃⁻, CO₃²⁻, PO₄³⁻) tidak teroksidasi, maka air teroksidasi: 2H₂O → 4H⁺ + O₂ + 4e⁻.',
+      'Anoda reaktif (bukan C, Pt, Au): anoda sendiri teroksidasi dan larut menjadi ion (Cu → Cu²⁺ + 2e⁻).',
+      'Penyepuhan: benda yang dilapisi di katoda, logam pelapis di anoda, larutan mengandung ion logam pelapis. Pemurnian tembaga: tembaga kotor di anoda, tembaga murni di katoda.',
+      'Industri: logam aktif (Na, Al, Mg) diperoleh dari lelehan. Larutan NaCl menghasilkan Cl₂, H₂, dan NaOH.',
+      'Hukum Faraday: mol elektron = i × t / 96.500 (i dalam ampere, t dalam detik). 1 Faraday = 1 mol elektron = 96.500 C.',
+      'Massa zat: w = (Ar / valensi) × (i × t / 96.500). Atau hitung dulu mol elektron, bagi dengan elektron per atom/molekul hasil untuk dapat mol zat.',
+      'Pada beberapa sel disusun seri, jumlah elektron sama, sehingga mol zat sebanding dengan 1/(elektron per zat).',
+      'Elektron yang sama menghasilkan OH⁻ di katoda (mol OH⁻ = mol e⁻ untuk 2H₂O + 2e⁻) atau H⁺ di anoda (mol H⁺ = mol e⁻ untuk 2H₂O → 4H⁺ + O₂ + 4e⁻), dipakai menghitung pH.'
+    ],
+    examples: [
+      { q: 'Elektrolisis larutan CuSO₄ dengan elektroda karbon, arus 5 A selama 1.930 detik. Berapa massa Cu di katoda (Ar Cu = 63,5)?', a: 'Mol elektron = 5 × 1.930 / 96.500 = 0,1. Cu²⁺ + 2e⁻ → Cu, jadi mol Cu = 0,05. Massa = 0,05 × 63,5 = 3,175 g.' },
+      { q: 'Tentukan hasil elektrolisis larutan NaCl dengan elektroda C.', a: 'Katoda: 2H₂O + 2e⁻ → H₂ + 2OH⁻ (Na⁺ tidak tereduksi). Anoda: 2Cl⁻ → Cl₂ + 2e⁻. Larutan di sekitar katoda menjadi basa.' }
+    ],
+    traps: [
+      'Menganggap Na⁺ atau Al³⁺ menjadi logam di larutan. Dalam larutan yang tereduksi air.',
+      'Lupa memeriksa jenis anoda. Anoda reaktif ikut larut.',
+      'Memakai massa langsung tanpa valensi (Al³⁺ butuh 3 elektron per atom).',
+      'Menukar katoda dan anoda dari sel volta. Di elektrolisis katoda negatif.',
+      'Pola TKA: elektrolisis garam atau penyepuhan dengan arus dan waktu. Tulis reaksi katoda dan anoda dulu, hitung mol elektron, lalu mol zat.'
+    ]
+  },
+  kim8: {
+    intro: 'Hidrokarbon adalah senyawa yang hanya tersusun dari karbon dan hidrogen. Bab ini meminta kamu menamai senyawa, mengenali isomer, memprediksi reaksi, dan mengaitkan minyak bumi dengan dampaknya.',
+    points: [
+      'Atom C punya 4 elektron valensi, dapat membentuk rantai panjang, ikatan tunggal, rangkap dua, dan rangkap tiga. Senyawa organik umumnya kovalen, titik didih rendah, mudah terbakar, larut pelarut nonpolar.',
+      'Klasifikasi atom C dalam rantai: primer (mengikat 1 C lain), sekunder (2), tersier (3), kuartener (4).',
+      'Alkana: ikatan tunggal, CₙH₂ₙ₊₂. Alkena: ada ikatan rangkap dua, CₙH₂ₙ. Alkuna: ada ikatan rangkap tiga, CₙH₂ₙ₋₂. Sikloalkana: CₙH₂ₙ.',
+      'Alkil: metil CH₃–, etil C₂H₅–, propil C₃H₇–, butil C₄H₉–.',
+      'Tata nama alkana bercabang: pilih rantai terpanjang, nomori dari ujung yang paling dekat cabang, tulis cabang berurutan alfabet, awalan di/tri/tetra tidak diurutkan. Format: posisi–nama cabang + nama rantai utama (contoh 2,3-dimetilpentana).',
+      'Alkena dan alkuna: pilih rantai terpanjang yang mengandung ikatan rangkap, nomori dari ujung terdekat ikatan rangkap, tulis posisi rangkap di depan akhiran (2-butena, 1-pentuna).',
+      'Sifat fisik: titik didih naik dengan bertambahnya jumlah C (Mr). Untuk isomer, rantai lurus titik didihnya lebih tinggi daripada yang bercabang.',
+      'Pembakaran sempurna menghasilkan CO₂ dan H₂O. Pembakaran tidak sempurna menghasilkan CO atau jelaga (C). CO beracun karena mengikat hemoglobin.',
+      'Substitusi (khas alkana): atom H diganti atom lain, contoh CH₄ + Cl₂ → CH₃Cl + HCl (dengan cahaya).',
+      'Adisi (khas alkena/alkuna): ikatan rangkap terbuka menerima atom baru (H₂, X₂, HX). Aturan Markovnikov: H dari HX menempel pada C rangkap yang sudah mengikat lebih banyak H.',
+      'Eliminasi: terbentuk ikatan rangkap dengan melepas molekul kecil (kebalikan adisi). Aturan Zaitsev: H yang dilepas dari C yang mengikat lebih sedikit H.',
+      'Polimerisasi adisi: molekul kecil beradisi menjadi rantai panjang, contoh etena menjadi polietena.',
+      'Isomer: rumus molekul sama, struktur beda. Isomer rangka (rantai), isomer posisi (letak ikatan rangkap atau gugus), dan isomer geometri cis–trans (ada pada alkena bila tiap C rangkap mengikat dua gugus yang berbeda).',
+      'Jumlah isomer: C₄H₁₀ ada 2, C₅H₁₂ ada 3.',
+      'Uji alkena atau alkuna: air bromin berubah dari cokelat menjadi tak berwarna. Hasil pembakaran dialirkan ke air kapur: keruh menandakan CO₂.',
+      'Minyak bumi dipisahkan dengan destilasi bertingkat berdasarkan titik didih: gas (C₁–C₄), bensin (C₅–C₁₀), kerosin, solar, pelumas, dan residu (aspal).',
+      'Bilangan oktan menyatakan mutu bensin: isooktana = 100, n-heptana = 0. Oktan 92 setara 92% isooktana dan 8% n-heptana. Menaikkan oktan: isomerisasi rantai lurus menjadi bercabang, menambah aromatik, atau aditif antiketukan.',
+      'Dampak pembakaran bahan bakar fosil: CO₂ (pemanasan global), CO (racun), SO₂ dan NOx (hujan asam), serta pencemaran air oleh tumpahan minyak.'
+    ],
+    examples: [
+      { q: 'Berapa jumlah atom C pada 4-etil-2-metilheksana?', a: 'Rantai utama heksana = 6 C, etil = 2 C, metil = 1 C. Total = 9 C.' },
+      { q: 'Tentukan produk adisi propena dengan HBr.', a: 'Propena CH₃–CH=CH₂. H menempel pada C yang lebih banyak H (ujung =CH₂), Br pada C tengah. Produk 2-bromopropana (Markovnikov).' },
+      { q: 'Berapa liter O₂ yang diperlukan untuk membakar sempurna 2 L C₃H₈ pada P dan T sama?', a: 'C₃H₈ + 5O₂ → 3CO₂ + 4H₂O. Volume berbanding koefisien, jadi 2 L × 5 = 10 L O₂.' }
+    ],
+    traps: [
+      'Memilih rantai utama yang bukan paling panjang, atau mengabaikan ikatan rangkap saat memilih rantai alkena.',
+      'Menomori dari ujung yang salah. Selalu pilih nomor terkecil untuk ikatan rangkap (alkena) atau cabang (alkana).',
+      'Menganggap semua alkena punya isomer cis–trans. Perlu dua gugus berbeda pada tiap C rangkap.',
+      'Lupa aturan Markovnikov saat adisi HX pada alkena tak simetris.',
+      'Pola TKA: infografik minyak bumi atau teks bahan bakar. Cari rumus dan jenis reaksi yang diminta, lalu kaitkan dengan dampak lingkungan.'
+    ]
+  }
 };
