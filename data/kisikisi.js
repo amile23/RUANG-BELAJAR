@@ -71,11 +71,11 @@ RB.kisi = [
    ['Analogi dan bahasa panda','Hubungan antarkata (fungsi, ukuran, bagian, sebab-akibat, jenis) dan sandi huruf (pergeseran, substitusi, terapit, pencerminan)','Ubah pasangan kata jadi kalimat. Untuk sandi, tulis alfabet bernomor dulu.','utb21,utb22']]},
   {g:'3 · Pemahaman Bacaan & Menulis (20 soal, 25 mnt)',items:[
    ['Ejaan','PUEBI: tanda baca (koma, titik koma, titik dua, hubung, pisah, petik, kurung), huruf kapital dan miring, penulisan kata (majemuk, kata depan, pun dan per, singkatan, bilangan), penulisan unsur serapan (adopsi dan adaptasi)','Hafal fungsi koma, titik koma, dan titik dua dulu. Lalu pasangan nama diri dan nama jenis (kacang bogor, kunci inggris), kata depan, pun dan per, serta pola serapan.','utb23,utb24,utb25,utb26,ind3'],
-   ['Kata dan makna','Pilihan kata (diksi) dan makna dalam konteks bacaan','Materi PBM ini menunggu contoh soalmu.','ind9'],
-   ['Konjungsi','Kata hubung dan hubungan antarkalimat (sebab, kontras, urutan)','Tentukan hubungan antarkalimat dulu.','ind2'],
-   ['Kalimat','Struktur kalimat dalam teks PBM','Materi PBM ini menunggu contoh soalmu.','ind3'],
-   ['Kalimat efektif','Penyuntingan kalimat dalam teks PBM','Coret kata yang berulang makna, lalu cek ejaan.','ind3'],
-   ['Wacana','Kepaduan paragraf, penyuntingan paragraf, ide pokok dalam teks PBM','Materi PBM ini menunggu contoh soalmu.','ind1,ind2']]},
+   ['Kata dan makna','Pembentukan kata (imbuhan meng-, ber-, ter-, -an, -kan, -i, konfiks, lesap k-t-s-p), makna leksikal, denotasi, konotasi, asosiasi, sinonim, antonim, hipernim, hiponim','Uraikan kata jadi kata dasar + imbuhan, lalu tentukan makna imbuhannya. Untuk makna, pelajari kata lewat kalimat.','utb16,utb17,ind9'],
+   ['Konjungsi','Konjungsi intrakalimat (koordinatif, korelatif, subordinatif) dan antarkalimat','Tentukan hubungan makna dulu (waktu, syarat, sebab, akibat, tujuan, pertentangan), baru pilih katanya.','utb27,ind2'],
+   ['Kalimat','Pola kalimat (S, P, O, Pel, K), kalimat transitif dan intransitif, aktif dan pasif, variasi kalimat','Cari predikat dulu, baru subjek dan objeknya.','utb18,ind3'],
+   ['Kalimat efektif','Kelengkapan struktur, kelogisan, kesejajaran, kehematan, kecermatan','Cek berurutan: struktur, logika, sejajar, hemat, ambigu.','utb19,ind3'],
+   ['Wacana','Kepaduan paragraf (kalimat sumbang, kohesi), hubungan antarparagraf, ide pokok, simpulan, tujuan penulis','Cari ide pokok dulu, lalu cari kalimat yang tidak berkaitan dan penanda kohesi.','utb28,utb20,ind1,ind2']]},
 
   {g:'4 · Pengetahuan Kuantitatif (20 soal, 20 mnt)',items:[
    ['Aritmetika','Pecahan, persentase, rasio, rata-rata, KPK–FPB','Latih hitung cepat tanpa kalkulator.','utb3,mat3'],
@@ -155,7 +155,7 @@ RB.gap = [
  {t:'Tanggal resmi TKA dan UTBK',d:'Tanggal di web masih perkiraan dari pola 2026. Kirim tanggal dari pengumuman resmi ketika sudah keluar.'},
  {t:'TOEFL: iBT atau ITP, target skor, tanggal tes',d:'Web mengasumsikan TOEFL iBT format 2026. Kalau kampus meminta TOEFL ITP, kabari supaya peta bab disesuaikan. Isi target skor di tab Rapor & Target.'},
  {t:'TOEFL: materi latihan',d:'Belum ada materi dan soal TOEFL. Kirim sumber latihanmu (buku, PDF, atau soal yang pernah kamu kerjakan) dan Claude membuat latihan polanya.'},
- {t:'UTBK: materi tiap seksi',d:'Sudah ada peta 7 seksi. Materi dan soal yang sudah ada: Penalaran Umum (simpulan logis, penalaran analitik, kesesuaian pernyataan, dan penalaran kuantitatif). PPU: sudah ada pembentukan kata, frasa, makna, tata kalimat, kalimat efektif, wacana, serta analogi dan bahasa panda. PPU yang masih menunggu: analisis kelas kata. PBM beda dengan PPU: sub-bab Ejaan sudah ada (tanda baca, penulisan huruf, penulisan kata), sedangkan kata dan makna, konjungsi, kalimat, kalimat efektif, dan wacana masih menunggu contoh soalmu. Seksi lain: literasi dan penalaran matematika juga belum.'},
+ {t:'UTBK: materi tiap seksi',d:'Sudah ada peta 7 seksi. Materi dan soal yang sudah ada: Penalaran Umum (simpulan logis, penalaran analitik, kesesuaian pernyataan, dan penalaran kuantitatif). PPU: sudah ada pembentukan kata, frasa, makna, tata kalimat, kalimat efektif, wacana, serta analogi dan bahasa panda. PPU yang masih menunggu: analisis kelas kata. PBM beda dengan PPU: semua enam sub-bab sudah ada (ejaan, kata dan makna, konjungsi, kalimat, kalimat efektif, wacana). Kata dan makna, kalimat, dan kalimat efektif memakai materi yang sama dengan PPU. Yang masih kurang: halaman 6 sampai 8 dari 13 pada Pembentukan Kata dan Makna. Seksi lain: literasi dan penalaran matematika juga belum.'},
  {t:'Pola soal dari kamu',d:'Kirim 5–10 contoh soal per bab (foto atau PDF). Claude membuat soal baru dengan pola sama, bukan menyalin soalnya.'},
  {t:'File prep-plan-5.pdf',d:'Isinya checklist UCAT (tes masuk kedokteran Inggris/Australia), bukan TOEFL/UTBK/TKA. Tidak dipakai kecuali kamu mau mendaftar kedokteran luar negeri.'},
  {t:'Logo Universitas Indonesia',d:'Web memakai lencana “FK UI” buatan sendiri. Kirim file logo resmi yang boleh kamu pakai, lalu Claude menaruhnya di folder assets/ dan otomatis tampil.'}

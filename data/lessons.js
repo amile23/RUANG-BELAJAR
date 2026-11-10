@@ -681,6 +681,9 @@ RB.lessons = {
       'Awalan ber- dapat bermakna mempunyai (berambisi), memakai (bersepatu), melakukan (bekerja), dan saling (berpelukan).',
       'Awalan meng- (me-) bermakna melakukan perbuatan (mengusir), membuat jadi, atau menghasilkan. Bentuknya berubah menurut huruf awal kata dasar: me- (l, m, n, r, w, y), mem- (b, p, f, v), men- (d, c, j, t, z), meng- (vokal, g, h, k), meny- (s), menge- (kata satu suku).',
       'Huruf k, p, t, s di awal kata dasar luluh setelah me-: kirim → mengirim, pukul → memukul, tulis → menulis, sapu → menyapu.',
+      'Aturan lesap awalan meng- dan peng-: huruf k, t, s, dan p di awal kata dasar lesap bila diikuti huruf vokal dan kata dasarnya lebih dari satu suku kata. Contoh: meng- + kalah jadi mengalah, peng- + tadah jadi penadah.',
+      'Kalau k, t, s, atau p diikuti huruf konsonan (kr, pl, tr, dan sejenisnya), huruf pertama tidak lesap. Contoh: meng- + plester jadi memplester, peng- + kritik jadi pengkritik.',
+      'Catatan di slide-mu: untuk kata dasar yang diawali pr (produksi, prakarsa), huruf p tetap lesap setelah peng- (pemroduksi, pemrakarsa). Jangan dihafal dulu sebelum aturan utama di atas kuat; bentuk ini jarang muncul dan penulisannya bervariasi di kamus.',
       'Awalan ter- bermakna tidak sengaja (terjatuh), paling (terbesar), dapat di- (terbaca), atau sudah di- (tertutup).',
       'Akhiran -an bermakna hasil (catatan), alat (timbangan), atau sesuatu yang di- (makanan).',
       'Akhiran -kan bermakna untuk atau melakukan bagi orang lain (membelikan adik buku) dan membuat jadi (menidurkan). Akhiran -i bermakna memberikan atau memberi sesuatu (menyelimuti), atau melakukan berulang (memukuli).',
@@ -990,6 +993,60 @@ RB.lessons = {
       'Lupa bahwa c bisa menjadi tiga huruf berbeda: sentral (s), karisma (k), cek (c).',
       'Memiringkan kata serapan. Yang dimiringkan hanya kata asing atau daerah yang belum diserap.',
       'Catatan sumber: di slide, charisma tertulis charism. Aku tulis charisma yang benar.'
+    ]
+  }
+  ,
+  utb27: {
+    intro: 'Konjungsi (kata hubung) menghubungkan kata dengan kata, frasa dengan frasa, klausa dengan klausa, atau kalimat dengan kalimat. Soal PBM biasanya meminta kamu memilih konjungsi yang tepat, jadi kuncinya menentukan dulu jenis hubungan maknanya.',
+    points: [
+      'Konjungsi dibagi dua kelompok besar: konjungsi intrakalimat (bekerja di dalam satu kalimat) dan konjungsi antarkalimat (menghubungkan kalimat dengan kalimat). Konjungsi intrakalimat dibagi lagi menjadi koordinatif, korelatif, dan subordinatif.',
+      'Konjungsi koordinatif menghubungkan dua unsur atau lebih yang setara. Contoh dan fungsinya: dan (penambahan), serta (pendampingan), atau (pemilihan), sedangkan dan padahal (pertentangan), tetapi dan melainkan (perlawanan).',
+      'Konjungsi korelatif menghubungkan kata, frasa, atau klausa yang berstatus setara, dan terdiri atas dua bagian yang terpisah. Pasangannya: tidak …, tetapi …; tidak hanya …, tetapi juga …; bukan …, melainkan …; bukan hanya …, melainkan juga …; baik … maupun …; jangankan …, … pun …; entah … entah …; apa(kah) … atau ….',
+      'Konjungsi subordinatif menghubungkan induk kalimat dengan anak kalimat. Hubungan dan contohnya: waktu (ketika, setelah, sebelum, sesudah); syarat (jika, kalau, apabila); perlawanan atau konsesif (biarpun, meski(pun), sekalipun, walau(pun)); sebab (karena, sebab); akibat atau hasil (maka, sehingga); tujuan (agar, supaya); penjelasan atau komplementasi (bahwa).',
+      'Konjungsi antarkalimat dipakai di awal kalimat kedua. Hubungan dan contohnya: penambahan (selain itu, di sisi lain, sementara itu); pertentangan (namun, akan tetapi, meski demikian, kendati demikian, walau demikian); urutan waktu (lalu, kemudian); sebab-akibat (oleh karena itu, oleh sebab itu); penyimpulan (jadi, dengan demikian); penegasan (bahkan).',
+      'Langkah mengerjakan soal konjungsi: (1) baca kalimat atau kedua kalimat, (2) tentukan hubungan maknanya (waktu, syarat, sebab, akibat, tujuan, pertentangan, dan sebagainya), (3) pilih konjungsi yang cocok dengan hubungan itu, lalu (4) pastikan jenisnya benar (di dalam kalimat atau antarkalimat).',
+      'Bedakan sebab dan akibat. Setelah karena atau sebab, yang muncul adalah penyebab (Karena hujan deras, ...). Setelah sehingga atau maka, yang muncul adalah hasilnya (..., sehingga banjir terjadi).',
+      'Pasangan korelatif harus lengkap dan tidak boleh tertukar. “Bukan …, tetapi …” tidak lazim, yang benar “bukan …, melainkan …”. Dan “baik … maupun …” tidak dipasangkan dengan atau.'
+    ],
+    examples: [
+      { q: 'Isi dengan konjungsi yang tepat: Dia tidak hanya pintar, … juga rajin.', a: 'tetapi. Pasangannya “tidak hanya …, tetapi juga …” (korelatif).' },
+      { q: 'Konjungsi apa yang tepat: … sudah larut malam, Rani masih belajar?', a: 'Meskipun (subordinatif, hubungan perlawanan atau konsesif).' },
+      { q: 'Isi dengan konjungsi antarkalimat: Ia sudah berlatih keras. …, ia gagal lolos seleksi.', a: 'Namun (pertentangan).' },
+      { q: 'Apa beda “karena” dan “sehingga”?', a: 'Karena memperkenalkan sebab. Sehingga memperkenalkan akibat atau hasil.' }
+    ],
+    traps: [
+      'Memilih konjungsi hanya karena kedengarannya enak, bukan karena hubungan maknanya.',
+      'Tertukar sebab dan akibat (karena dengan sehingga).',
+      'Memakai konjungsi intrakalimat di awal kalimat baru (misalnya Karena itu atau Tetapi sebagai pembuka), padahal pembuka kalimat memakai konjungsi antarkalimat seperti Oleh karena itu dan Namun.',
+      'Menukar pasangan korelatif: tidak hanya … melainkan juga, bukan … tetapi, baik … atau.',
+      'Mengira padahal selalu subordinatif. Di slide-mu padahal dimasukkan ke koordinatif bersama sedangkan (hubungan pertentangan). Sebagian buku menggolongkannya lain, jadi pegang maknanya: pertentangan.'
+    ]
+  },
+  utb28: {
+    intro: 'Wacana adalah satuan bahasa terlengkap, berupa karangan atau laporan utuh seperti novel, buku, artikel, pidato, atau khotbah. Di PBM kamu perlu paham kepaduan paragraf, hubungan antarparagraf, serta ide pokok, simpulan, dan tujuan penulis.',
+    points: [
+      'Unsur yang dibahas pada wacana: ide pokok, kepaduan paragraf, hubungan antarparagraf, tujuan penulisan teks, dan simpulan.',
+      'Ide pokok adalah inti permasalahan yang umum dan mampu mewakili ide lain dalam sebuah paragraf. Ide pokok biasanya dikemas dalam kalimat utama, dan kalimat lainnya menjelaskan.',
+      'Posisi kalimat utama: di awal paragraf (deduktif), di akhir paragraf (induktif), di awal dan akhir (deduktif-induktif), di tengah paragraf (ineratif). Pada paragraf naratif dan deskriptif, ide pokok sering menyebar dan tidak terpusat pada satu kalimat.',
+      'Kepaduan paragraf punya tiga syarat: memiliki satu gagasan pokok, tidak mengandung kalimat sumbang (kalimat yang tidak berkaitan dengan gagasan pokok), dan dapat ditandai dengan adanya kohesi.',
+      'Kohesi adalah keterkaitan bentuk antarkalimat. Jenisnya: kata ganti orang (aku, kamu, dia, ia, beliau, -nya, mereka); kata tunjuk (ini, itu, tersebut, demikian, di sana, berikut); konjungsi antarkalimat (oleh karena itu, oleh sebab itu, jadi, maka dari itu, bahkan); repetisi (pengulangan kata yang sama); dan sinonim (persamaan makna kata).',
+      'Hubungan antarparagraf adalah keterkaitan paragraf satu dengan paragraf lain yang terjalin secara logis. Ada dua bentuk: eksplisit (ditandai penanda seperti konjungsi) dan implisit (tidak ada penanda, harus disimpulkan dari isi).',
+      'Jenis hubungan antarparagraf: perincian atau contoh, pemaparan atau penjelasan, sebab-akibat, penambahan, simpulan, dan pertentangan.',
+      'Simpulan adalah pendapat akhir dari sebuah kutipan, berupa penyajian ringkas berdasarkan ide pokok. Caranya: baca teks dengan cermat, perhatikan kata kunci yang sering muncul, tentukan ide pokok, lalu pilih simpulan yang tepat berdasarkan ide pokok itu.',
+      'Tujuan penulis dilihat dari jenis teks: deskripsi (memberi gambaran sebuah objek), narasi (menceritakan peristiwa), persuasi (membujuk atau memengaruhi pembaca), argumentasi (memberi bukti atau meyakinkan pembaca), dan eksposisi (menyampaikan informasi).',
+      'Cara menemukan kalimat sumbang: tentukan dulu ide pokok paragraf, lalu cari kalimat yang membahas hal lain. Kalimat itu tidak perlu dihapus dari bacaan aslinya, tetapi menurut soal ia mengganggu kepaduan.'
+    ],
+    examples: [
+      { q: 'Pada paragraf yang kalimat utamanya ada di kalimat pertama, apa nama polanya?', a: 'Deduktif. Kalau kalimat utama di akhir, induktif.' },
+      { q: 'Dalam “Rina mengikuti lomba. Ia berlatih setiap hari. Ia berharap menang.”, kata mana yang menjadi kohesi?', a: 'Ia, kata ganti orang yang mengacu pada Rina.' },
+      { q: 'Paragraf kedua memberi dua contoh dari pernyataan di paragraf pertama. Apa hubungan antarparagrafnya?', a: 'Perincian atau contoh.' }
+    ],
+    traps: [
+      'Memilih kalimat utama hanya karena letaknya di awal. Kalimat utama adalah kalimat yang paling umum dan dijelaskan kalimat lain.',
+      'Menyamakan kalimat penjelas (contoh, data) dengan kalimat utama.',
+      'Menganggap kalimat sumbang adalah kalimat yang salah. Kalimat itu bisa benar, tetapi tidak berkaitan dengan gagasan pokok.',
+      'Memilih simpulan yang memuat informasi baru yang tidak ada di teks.',
+      'Mengira setiap hubungan antarparagraf harus punya konjungsi. Hubungan implisit tidak punya penanda.'
     ]
   }
 };
