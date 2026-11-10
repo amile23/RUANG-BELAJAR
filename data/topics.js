@@ -115,5 +115,8 @@ RB.rawTopics = [
 'utb19|utb|1|Kalimat efektif: kelengkapan, kelogisan, kesejajaran, kehematan & kecermatan|50|UT',
 'utb20|utb|1|Wacana: ide pokok, simpulan, tujuan & keberpihakan penulis|45|UT',
 'utb21|utb|1|Analogi kata: fungsi, ukuran, bagian, sebab–akibat & jenis|40|U',
-'utb22|utb|1|Bahasa panda (kriptografi): pergeseran, substitusi, huruf terapit & pencerminan|45|U'
+'utb22|utb|1|Bahasa panda (kriptografi): pergeseran, substitusi, huruf terapit & pencerminan|45|U',
+'utb23|utb|1|Tanda baca: koma, titik koma, titik dua, hubung, pisah, petik & kurung|50|UT',
+'utb24|utb|1|Penulisan huruf: kapital (nama diri, kata sapaan) & huruf miring|35|UT',
+'utb25|utb|1|Penulisan kata: kata majemuk, kata depan, partikel pun-per, serapan, singkatan & bilangan|55|UT'
 ];

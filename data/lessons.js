@@ -871,4 +871,99 @@ RB.lessons = {
       'Pola UTBK: satu atau dua contoh kata beserta kodenya, lalu kata baru yang harus dikodekan atau diterjemahkan.'
     ]
   }
+  ,
+  utb23: {
+    intro: 'Soal ejaan di PBM biasanya memberi kalimat dengan tanda baca yang salah atau kurang, lalu menanyakan versi yang benar. Kuncinya hafal fungsi tiap tanda, terutama koma, titik koma, titik dua, dan tanda hubung.',
+    points: [
+      'Koma (,) dipakai: (1) di antara unsur perincian atau pembilangan yang lebih dari dua; (2) sebelum kata penghubung seperti tetapi, sedangkan, melainkan; (3) memisahkan anak kalimat yang mendahului induk kalimat; (4) memisahkan petikan langsung dari bagian kalimat lain; (5) di antara nama dan alamat, bagian-bagian alamat, tempat dan tanggal, serta nama tempat dan wilayah yang ditulis berurutan; (6) mengapit keterangan tambahan (aposisi); (7) mencegah salah tafsir.',
+      'Kebalikan aturan 3: kalau anak kalimat berada di belakang induk kalimat, biasanya tidak ada koma. Jadi “Jika hujan reda, kami berangkat” memakai koma, tetapi “Kami berangkat jika hujan reda” tidak.',
+      'Titik koma (;) dipakai: (1) memisahkan kalimat setara dalam kalimat majemuk sebagai pengganti kata penghubung; (2) di akhir butir perincian yang berupa klausa; (3) memisahkan kelompok perincian yang di dalamnya sudah memakai koma.',
+      'Titik dua (:) dipakai sebelum perincian, tetapi hanya kalau bagian sebelumnya sudah berupa pernyataan lengkap. Kalau kalimat belum lengkap sebelum perincian (misalnya berhenti di kata kerja), jangan pakai titik dua.',
+      'Titik dua juga dipakai di antara jilid atau nomor dan halaman, surah dan ayat, judul dan anak judul, serta nama kota dan penerbit dalam daftar pustaka.',
+      'Tanda hubung (-) punya enam fungsi: menyambung tanggal-bulan-tahun berangka (07-10-1985); memperjelas bagian kata agar tidak ambigu (ber-evolusi); merangkai huruf dengan angka (ke-17, 1960-an); merangkai kata atau imbuhan dengan singkatan huruf kapital (ber-SIM, KTP-mu); merangkai imbuhan dengan nama diri berhuruf kapital (se-Indonesia, se-Jawa Barat); merangkai unsur Indonesia dengan unsur daerah atau asing (men-download, di-sowan-i).',
+      'Tanda pisah (—) punya dua fungsi: mengapit keterangan tambahan atau aposisi, dan menggantikan kata sampai dengan (Jakarta—Bandung). Tanda pisah lebih panjang daripada tanda hubung.',
+      'Tanda petik ganda (“…”) mengapit: petikan langsung; judul sajak, lagu, film, artikel, atau bab buku yang dipakai di dalam kalimat; dan istilah ilmiah kurang dikenal atau kata yang punya arti khusus.',
+      'Tanda petik tunggal (‘…’) mengapit petikan di dalam petikan lain, dan makna, terjemahan, atau ungkapan (tadulako ‘panglima’).',
+      'Tanda kurung ((…)) mengapit: keterangan tambahan; huruf atau kata yang boleh dimunculkan atau dihilangkan; dan huruf atau angka penanda perincian. Tanda kurung siku ([…]) dipakai untuk menandai koreksi atas kesalahan di naskah asli tulisan orang lain, dan mengapit keterangan di dalam kalimat penjelas yang sudah berkurung.'
+    ],
+    examples: [
+      { q: 'Beri tanda baca yang tepat: Ayah membeli ikan sayur dan buah di pasar.', a: 'Ayah membeli ikan, sayur, dan buah di pasar. Perincian lebih dari dua unsur dipisah koma, dan koma juga ada sebelum dan.' },
+      { q: 'Mana yang benar: “Aldila membutuhkan: buku, pulpen, dan tas” atau “Aldila membutuhkan buku, pulpen, dan tas”?', a: 'Yang kedua. Sebelum perincian, kalimat belum lengkap (berhenti di kata kerja), jadi tidak memakai titik dua. Bentuk “Aldila membutuhkan perlengkapan sekolah: buku, pulpen, dan tas” boleh karena pernyataannya sudah lengkap.' },
+      { q: 'Tanda apa yang tepat di antara kedua kalimat setara: Ayah mencuci motor_ ibu memasak di dapur?', a: 'Titik koma (;), karena menggantikan kata penghubung di antara dua kalimat setara.' },
+      { q: 'Tulis dengan tepat: rapat yang ke 5 (huruf dan angka).', a: 'ke-5, karena tanda hubung merangkai huruf dengan angka.' }
+    ],
+    traps: [
+      'Memberi koma sebelum anak kalimat yang berada di belakang induk kalimat.',
+      'Memakai titik dua setelah kata kerja atau kata penghubung yang kalimatnya belum lengkap (misalnya “terdiri dari: …”).',
+      'Tertukar titik koma dan koma: titik koma menggantikan kata penghubung, koma biasanya masih ditemani kata penghubung.',
+      'Menyamakan tanda hubung (-) dengan tanda pisah (—). “Jakarta—Bandung” memakai tanda pisah karena artinya sampai dengan.',
+      'Lupa tanda hubung pada imbuhan + nama diri (se-Indonesia) dan imbuhan + singkatan (ber-SIM).',
+      'Menulis petikan langsung tanpa koma sebelum tanda petik, misalnya “Ayah berkata “Besok …”.'
+    ]
+  },
+  utb24: {
+    intro: 'Penulisan huruf kapital mengikuti 13 aturan PUEBI. Slide yang kamu kirim menyorot dua poin utama: penulisan nama diri dan kata sapaan. Setelah itu ada aturan huruf miring.',
+    points: [
+      'Nama diri menunjukkan identitas dan diawali huruf kapital: Indonesia, Badui, Islam, Bogor, Inggris, Jawa.',
+      'Nama jenis menunjukkan ciri umum suatu benda atau konsep dan tidak diawali huruf kapital: bahasa, suku, agama. Kata ini tetap huruf kecil walaupun diikuti nama diri: bahasa Indonesia, suku Jawa, agama Islam.',
+      'Nama diri yang dipakai sebagai nama jenis kehilangan huruf kapital. Pasangan yang sering muncul: asinan Bogor (asalnya dari Bogor) dan kacang bogor (jenis kacang); film Inggris (dari Inggris) dan kunci inggris (nama alat); suku Jawa dan gula jawa.',
+      'Kata sapaan adalah kata untuk menyapa seseorang, misalnya Anda, Saudara, Tuan, Nyonya, Ibu, Bapak, Kakak, Adik. Kalau dipakai untuk menyapa atau mengacu pada orang yang disapa, huruf pertamanya kapital.',
+      'Kalau kata itu hanya menyebut hubungan kekerabatan umum, bukan menyapa, huruf pertamanya kecil: “Aku memiliki dua kakak”, “Aku bertemu dengan ayah dan ibumu”, “Aku memiliki banyak saudara di kampung”.',
+      'Cara cepat membedakan: tanya “apakah kata ini dipakai untuk memanggil atau menyapa seseorang?”. Kalau ya, kapital. Kalau cuma menyatakan hubungan atau jumlah (dua kakak, banyak saudara, ayah dan ibumu), huruf kecil.',
+      'Huruf miring dipakai untuk menuliskan judul buku, nama majalah, atau nama surat kabar yang dikutip dalam tulisan (buku Catatan Hati Seorang Siswa).',
+      'Huruf miring juga dipakai untuk menegaskan atau mengkhususkan huruf, bagian kata, kata, atau kelompok kata dalam kalimat: Huruf terakhir kata cinta adalah huruf a.',
+      'Huruf miring juga dipakai untuk kata atau ungkapan dalam bahasa daerah atau bahasa asing yang belum diserap: upacara peusijuek (tepung tawar). Ingat: kata serapan tidak dimiringkan.'
+    ],
+    examples: [
+      { q: 'Mana yang benar: “kacang Bogor” atau “kacang bogor”?', a: '“kacang bogor”. Kacang bogor adalah nama jenis kacang, jadi tidak memakai huruf kapital. “Asinan Bogor” memakai kapital karena asal daerahnya Bogor.' },
+      { q: 'Mana yang benar: “Kapan kakak pergi?” tanya orang itu, atau “Kapan Kakak pergi?” tanya orang itu?', a: 'Yang kedua. Kakak dipakai untuk menyapa, jadi kapital.' },
+      { q: 'Bagian mana yang dimiringkan pada “Naraya membaca buku Catatan Hati Seorang Siswa”?', a: 'Catatan Hati Seorang Siswa, karena itu judul buku.' }
+    ],
+    traps: [
+      'Menulis nama jenis dengan kapital hanya karena mengandung nama tempat (kunci inggris, gula jawa).',
+      'Menulis bahasa, suku, dan agama dengan kapital: yang kapital hanya nama diri di belakangnya.',
+      'Menulis kata kekerabatan dengan kapital padahal tidak sedang menyapa (dua kakak, banyak saudara).',
+      'Lupa kapital pada Anda, Saudara, dan kata sapaan lain saat dipakai menyapa.',
+      'Memiringkan kata serapan. Yang dimiringkan hanya kata daerah atau asing yang belum diserap.'
+    ]
+  },
+  utb25: {
+    intro: 'Penulisan kata mencakup banyak aturan kecil: serangkai atau terpisah, kata depan, partikel, kata serapan, singkatan, dan bilangan. Soalnya biasanya meminta memilih penulisan yang benar dari empat pilihan yang mirip.',
+    points: [
+      'Kata majemuk adalah gabungan dua kata atau lebih yang membentuk makna baru tetapi masih berkaitan dengan kata pembentuknya. Kata majemuk ditulis terpisah. Contoh: rumah tangga (hal yang berkaitan dengan urusan rumah atau keluarga).',
+      'Gabungan kata yang hanya mendapat awalan atau akhiran saja ditulis terpisah: berlipat ganda. Gabungan kata yang mendapat awalan sekaligus akhiran ditulis serangkai: melipatgandakan, mempertanggungjawabkan.',
+      'Gabungan kata yang sudah padu, yaitu seolah-olah dua kata tetapi dianggap satu kata, ditulis serangkai: dukacita, sukacita, kasatmata, saputangan. Contoh lain yang lazim: matahari, olahraga, apabila.',
+      'Kata depan (di, ke, dari, pada, kepada, untuk, dalam) ditulis terpisah dari kata sesudahnya. Awalan di- ditulis serangkai dengan kata kerja: diletakkan, tetapi kata depan terpisah: di atas meja.',
+      'Fungsi kata depan: dari (asal); untuk (tujuan atau bagi); kepada (tujuan orang); ke (arah atau tujuan); pada (posisi, dan keterangan waktu); di (posisi atau tempat); dalam (tempat yang mengandung isi, dan waktu dalam jangka tertentu).',
+      'Pakai kata depan sesuai konteks. Untuk orang yang dituju, pakai kepada (“surat ditujukan kepada Siska”). Pada lebih cocok untuk posisi atau waktu.',
+      'Partikel adalah kata yang tidak bisa berdiri sendiri: -lah, -kah, pun, dan per. Yang menjadi fokus UTBK adalah pun dan per.',
+      'Pun ditulis terpisah bila bermakna ‘juga’ atau ‘saja’: apa pun yang kamu lakukan (apa saja). Pun ditulis serangkai bila bagian dari konjungsi: adapun, andaipun, ataupun, bagaimanapun, biarpun, kalaupun, kendatipun, maupun, meskipun, sungguhpun, sekalipun, walaupun.',
+      'Per ditulis terpisah bila bermakna ‘demi’, ‘mulai’, atau ‘tiap’: satu per satu, per Oktober 2020, per bulan. Per ditulis serangkai untuk pecahan: dua pertiga, tiga perempat.',
+      'Kata serapan adalah kata dari bahasa selain Indonesia yang sudah menjadi bahasa Indonesia, jadi tidak ditulis miring. Ada dua proses: adopsi (diambil apa adanya: film, multi) dan adaptasi (penulisan dan pelafalan disesuaikan).',
+      'Pola adaptasi: x di tengah kata menjadi ks (extra jadi ekstra); x di awal kata tetap (xenophobia jadi xenofobia); -ive jadi -if (executive jadi eksekutif); c atau ch jadi c, k, atau s tergantung lafal (central jadi sentral, charisma jadi karisma, check jadi cek, echelon jadi eselon); -ity jadi -itas (university jadi universitas); y jadi i (system jadi sistem); ph jadi f (photo jadi foto); sh, dh, dz, th jadi s, d, z, t (sholat jadi salat, Ramadhan jadi Ramadan, ustadz jadi ustaz, athlete jadi atlet).',
+      'Pola adaptasi lain: vokal atau konsonan yang tidak dibunyikan di akhir kata boleh dihilangkan (permanent jadi permanen, extreme jadi ekstrem); konsonan kembar yang berdampingan cukup satu (mall jadi mal, stress jadi stres).',
+      'Singkatan adalah bentuk pendek dari satu kata atau lebih yang dieja huruf demi huruf. Aturan 1: tiap kata yang disingkat diberi titik: a.n., s.d., S.H., dr., S.Pd. Aturan ini tidak berlaku untuk singkatan lembaga, dokumen, mata uang, dan satuan ukuran: PT, KTP, Rp, km.',
+      'Aturan 2: singkatan yang terdiri atas tiga huruf diakhiri satu titik: dll., dsb., Yth., dkk. Aturan 3: singkatan dari huruf awal, baik nama diri maupun bukan, ditulis kapital tanpa titik: KTP, SD, PTN, BNN, PMI, KBBI.',
+      'Akronim (tambahan dari PUEBI, tidak ada di slide yang kamu kirim) adalah singkatan yang dibaca sebagai kata. Akronim nama diri diawali huruf kapital (Bappenas), akronim bukan nama diri huruf kecil semua (pemilu, tilang).',
+      'Bilangan yang hanya terdiri dari satu atau dua kata ditulis dengan huruf (tujuh belas), sedangkan yang lebih dari dua kata ditulis dengan angka (173). Bilangan penomoran selalu angka, meski pendek: halaman 18.',
+      'Bilangan tingkatan boleh ditulis dengan tiga cara: angka Romawi (Perang Dunia II), angka Arab dengan ke- (Perang Dunia ke-2), atau huruf (Perang Dunia Kedua). Angka tidak boleh berada di awal kalimat: tulis “Sebanyak 35 orang …”, bukan “35 orang …”.',
+      'Bilangan dalam perincian ditulis dengan angka (3 pisang, 5 terung, dan 7 peria). Bilangan yang diikuti ukuran panjang, berat, luas, isi, waktu, dan nilai uang ditulis dengan angka (2 meter, 3 kilogram, 4 bulan). Jumlah yang sangat besar ditulis sebagian dengan huruf: 250 juta, 2 triliun.'
+    ],
+    examples: [
+      { q: 'Pilih yang benar: “berlipat ganda” atau “berlipatganda”? Dan “melipat gandakan” atau “melipatgandakan”?', a: '“berlipat ganda” (hanya awalan, terpisah) dan “melipatgandakan” (awalan dan akhiran, serangkai).' },
+      { q: 'Pilih yang benar: “Apa pun yang terjadi” atau “Apapun yang terjadi”?', a: '“Apa pun yang terjadi”. Pun di sini bermakna ‘saja’ (apa saja), jadi ditulis terpisah.' },
+      { q: 'Tulis bentuk baku dari system, executive, dan photo.', a: 'sistem (y jadi i), eksekutif (-ive jadi -if, x di tengah jadi ks), foto (ph jadi f).' },
+      { q: 'Benarkan: “35 orang menjadi korban kecelakaan itu.”', a: '“Sebanyak 35 orang menjadi korban kecelakaan itu.” Angka tidak boleh di awal kalimat.' }
+    ],
+    traps: [
+      'Menulis kata depan di, ke, dari serangkai dengan kata benda tempat (di atas, ke kantor), atau menulis awalan di- terpisah (di letakkan).',
+      'Memakai pada untuk orang yang dituju, padahal pakai kepada.',
+      'Menulis pun serangkai pada apa pun, siapa pun, atau sebaliknya memisahkan pun pada meskipun, walaupun, ataupun.',
+      'Menulis per serangkai pada satu per satu, atau memisah per pada pecahan (dua per tiga).',
+      'Memakai bentuk serapan yang setengah jadi: sistim, kharisma, ekstrim, atlit, stress, mall.',
+      'Memberi titik pada singkatan lembaga atau satuan ukuran (K.T.P., k.m., Rp.), atau lupa titik pada singkatan gelar (S.Pd., S.H.).',
+      'Memulai kalimat dengan angka.',
+      'Catatan sumber: halaman 4/18 tidak ada di PDF-mu, jadi bagian “bentuk terikat” (awalan serapan seperti antar-, pasca-) belum tercakup di sini.'
+    ]
+  }
 };
