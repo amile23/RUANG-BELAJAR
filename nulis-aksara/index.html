@@ -98,6 +98,7 @@ body{font-family:'Nunito',system-ui,sans-serif;color:#3A2620;background:#FFF7F0;
         </div>
         <p class="note">Duduk atau berdiri sekitar satu lengan dari kamera, di ruangan yang cukup terang. Video hanya diproses di perangkat ini, tidak dikirim dan tidak disimpan.</p>
         <p class="note">Prototipe permainan, bukan alat terapi.</p>
+        <p class="note" id="envCheck" aria-live="polite"></p>
       </div>
 
       <div class="ov" id="ovLoading" hidden>
@@ -108,6 +109,7 @@ body{font-family:'Nunito',system-ui,sans-serif;color:#3A2620;background:#FFF7F0;
       <div class="ov" id="ovError" hidden>
         <h2>Belum bisa memakai kamera</h2>
         <p id="errText"></p>
+        <p class="note" id="errCode"></p>
         <div class="row">
           <button class="btn" id="btnRetry" type="button">Coba lagi</button>
           <button class="btn alt" id="btnErrPtr" type="button">Main dengan mouse</button>
@@ -482,9 +484,10 @@ function stopCamera() {
 function showOnly(id) {
   ['ovStart', 'ovLoading', 'ovError', 'ovPick', 'ovDone'].forEach((x) => { $(x).hidden = x !== id; });
 }
-function showError(msg) {
+function showError(msg, code) {
   S.running = false; stopCamera();
   $('errText').textContent = msg;
+  $('errCode').textContent = code ? 'Kode teknis (untuk dilaporkan): ' + code : '';
   showOnly('ovError');
 }
 async function createLandmarker() {
@@ -503,7 +506,8 @@ async function startCamera() {
   showOnly('ovLoading');
   $('loadingText').textContent = 'Meminta izin kamera…';
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-    return showError('Browser ini tidak mendukung kamera, atau halaman tidak dibuka lewat https atau localhost. Kamu tetap bisa main dengan mouse.');
+    return showError('Browser ini tidak bisa memakai kamera. Coba buka dengan Chrome, atau pakai laptop yang disambung ke layar. Kamu tetap bisa main dengan sentuh atau mouse.',
+      'mediaDevices tidak tersedia; https=' + window.isSecureContext);
   }
   try {
     stopCamera();
@@ -515,15 +519,17 @@ async function startCamera() {
   } catch (e) {
     const denied = e && (e.name === 'NotAllowedError' || e.name === 'SecurityError');
     return showError(denied
-      ? 'Izin kamera ditolak. Klik ikon kamera di bilah alamat browser, izinkan, lalu coba lagi. Atau main dengan mouse.'
-      : 'Kamera tidak ditemukan atau sedang dipakai aplikasi lain. Kamu tetap bisa main dengan mouse.');
+      ? 'Izin kamera ditolak. Izinkan kamera untuk browser ini di pengaturan perangkat atau di ikon bilah alamat, lalu coba lagi. Atau main dengan sentuh atau mouse.'
+      : 'Kamera tidak ditemukan atau sedang dipakai aplikasi lain. Pastikan kamera terpasang. Kamu tetap bisa main dengan sentuh atau mouse.',
+      (e && e.name ? e.name : 'galat') + (e && e.message ? ': ' + e.message : ''));
   }
   try {
     $('loadingText').textContent = 'Menyiapkan pelacak tangan… (pertama kali agak lama)';
     await createLandmarker();
   } catch (e) {
     console.error(e);
-    return showError('Pelacak tangan gagal dimuat. Pastikan internet menyala, lalu coba lagi. Atau main dengan mouse.');
+    return showError('Pelacak tangan gagal dimuat. Pastikan internet menyala dan tidak diblokir jaringan sekolah, lalu coba lagi. Atau main dengan sentuh atau mouse.',
+      'pelacak: ' + (e && e.name ? e.name : 'galat') + (e && e.message ? ': ' + String(e.message).slice(0, 120) : ''));
   }
   S.mode = 'camera'; S.running = true; S.lastVideoTime = -1;
   S.cursor.has = false; S.handVisible = false; S.lastSeen = 0;
@@ -576,6 +582,21 @@ document.querySelectorAll('.seg button').forEach((b) => {
 function syncLevel() {
   document.querySelectorAll('.seg button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.level === S.level)));
 }
+
+// Cek perangkat: tampil di layar mulai supaya penyebab masalah kamera mudah dilihat.
+async function checkEnv() {
+  const parts = ['https: ' + (window.isSecureContext ? 'ya' : 'tidak')];
+  const md = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+  parts.push('browser mendukung kamera: ' + (md ? 'ya' : 'tidak'));
+  if (md && navigator.mediaDevices.enumerateDevices) {
+    try {
+      const d = await navigator.mediaDevices.enumerateDevices();
+      parts.push('kamera terdeteksi: ' + d.filter((x) => x.kind === 'videoinput').length);
+    } catch (e) { parts.push('kamera terdeteksi: tidak diketahui'); }
+  }
+  $('envCheck').textContent = 'Cek perangkat → ' + parts.join(' · ');
+}
+checkEnv();
 
 loadSaved(); syncLevel(); buildGrid();
 // Untuk pengujian otomatis saja: tambahkan ?debug ke alamat halaman.
