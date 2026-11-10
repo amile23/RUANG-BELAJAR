@@ -40,7 +40,7 @@ RB.kisi = [
    ['Sistem koordinasi','Mekanisme sistem saraf dan hormon','Buat tabel: rangsangan → reseptor → jalur → efektor.','bio6'],
    ['Sistem reproduksi','Struktur dan fungsi organ reproduksi pria dan wanita','Siklus menstruasi: hafal urutan hormon dan fase.','bio7']]},
   {g:'Kimia',items:[
-   ['Kimia dasar','Struktur atom, model atom, sistem periodik, ikatan, geometri molekul, interaksi antarmolekul, hukum dasar, stoikiometri','Stoikiometri: ubah semuanya ke mol dulu.','kim12,kim1'],
+   ['Kimia dasar','Struktur atom, model atom, sistem periodik, ikatan, geometri molekul, interaksi antarmolekul, hukum dasar, stoikiometri','Stoikiometri: ubah semuanya ke mol dulu.','kim12,kim14,kim15,kim16,kim1'],
    ['Kimia analitik','Larutan, kesetimbangan larutan, asam–basa & pH, koloid','Tulis reaksi setara lebih dulu, baru hitung pH.','kim5,kim6,kim7,kim9'],
    ['Kimia fisik','Termokimia, laju & dinamika reaksi, kesetimbangan, elektrokimia (bagian ini terbaca sebagian)','Termokimia: tanda ΔH tergantung eksoterm/endoterm.','kim2,kim3,kim4,kim13'],
    ['Kimia organik','Struktur dan reaktivitas senyawa karbon','Kenali gugus fungsi dulu, sifatnya mengikuti gugus.','kim8'],
@@ -142,7 +142,7 @@ RB.gap = [
  {t:'Nilai rapor dan target',d:'Nilai sekarang tiap mapel dan target rapor. Isi di tab Rapor & Target supaya planner tahu mapel mana yang perlu didorong.'},
  {t:'Jadwal lomba & organisasi',d:'Tanggal lomba dan rapat/acara organisasi, supaya hari padat otomatis jadi hari ringan.'},
  {t:'TKA: Matematika wajib atau tingkat lanjut (TL)?',d:'Dalam PDF ada edisi Matematika, Matematika TL, B. Indonesia TL, dan B. Inggris TL. Web ini memakai edisi biasa. Kabari kalau kamu ambil TL.'},
- {t:'TKA Biologi & Kimia lengkap',d:'OCR membaca halaman Biologi dan Kimia hanya sebagian (misalnya Biologi tidak menampilkan genetika/evolusi, Kimia elektrokimia terbaca sebagian). Kirim foto halaman PDF yang jelas kalau ada bagian yang terlewat.'},
+ {t:'TKA Biologi & Kimia lengkap',d:'Kimia dasar (struktur atom, sistem periodik, ikatan, perhitungan kimia) sudah masuk dari 3 PDF yang kamu kirim. Kimia yang belum ada materinya: termokimia, laju, kesetimbangan, asam–basa, penyangga, Ksp, koloid, elektrokimia, hidrokarbon. Biologi: OCR kisi-kisi tidak menampilkan genetika/evolusi. Kirim materi bab-bab itu kalau ada.'},
  {t:'Tanggal resmi TKA dan UTBK',d:'Tanggal di web masih perkiraan dari pola 2026. Kirim tanggal dari pengumuman resmi ketika sudah keluar.'},
  {t:'TOEFL: iBT atau ITP, target skor, tanggal tes',d:'Web mengasumsikan TOEFL iBT format 2026. Kalau kampus meminta TOEFL ITP, kabari supaya peta bab disesuaikan. Isi target skor di tab Rapor & Target.'},
  {t:'TOEFL: materi latihan',d:'Belum ada materi dan soal TOEFL. Kirim sumber latihanmu (buku, PDF, atau soal yang pernah kamu kerjakan) dan Claude membuat latihan polanya.'},
