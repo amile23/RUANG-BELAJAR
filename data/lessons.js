@@ -23,22 +23,88 @@ RB.lessons = {
     ]
   },
   kim5: {
-    intro: 'pH mengukur tingkat keasaman larutan. pH = −log [H⁺] dan pOH = −log [OH⁻]. Pada 25°C berlaku pH + pOH = 14.',
+    intro: 'Asam–basa adalah bab inti Kimia. Kamu perlu mengenali kekuatan asam–basa, tiga teori asam–basa, menghitung pH, dan memakai satuan konsentrasi dengan benar.',
     points: [
-      'pH < 7 asam, pH = 7 netral, pH > 7 basa (pada 25°C).',
-      'Asam kuat terionisasi sempurna: [H⁺] = Ma × valensi asam.',
-      'Basa kuat: [OH⁻] = Mb × valensi basa.',
-      'Asam lemah: [H⁺] = √(Ka × Ma). Basa lemah: [OH⁻] = √(Kb × Mb).',
-      'Kw = [H⁺][OH⁻] = 10⁻¹⁴ pada 25°C.'
+      'Elektrolit kuat terionisasi sempurna (lampu terang): asam kuat, basa kuat, dan garam yang mudah larut. Elektrolit lemah terionisasi sebagian (lampu redup). Nonelektrolit (glukosa, urea, etanol) tidak menghantar listrik.',
+      'Asam kuat: HCl, HBr, HI, HNO₃, H₂SO₄, HClO₄. Basa kuat: hidroksida alkali (LiOH, NaOH, KOH, …) dan Ca(OH)₂, Sr(OH)₂, Ba(OH)₂. Selain itu umumnya lemah.',
+      'Arrhenius: asam melepas H⁺ dalam air, basa melepas OH⁻. Brønsted–Lowry: asam = donor proton (H⁺), basa = akseptor proton. Lewis: asam = akseptor pasangan elektron, basa = donor pasangan elektron.',
+      'Pasangan konjugasi hanya berbeda satu H⁺. Asam konjugasi = tambah H⁺. Basa konjugasi = kurangi H⁺. Makin kuat asam, makin lemah basa konjugasinya. Ka × Kb = Kw.',
+      'pH = −log [H⁺], pOH = −log [OH⁻], pH + pOH = 14 (25 °C), Kw = 10⁻¹⁴.',
+      'Asam kuat: [H⁺] = M × valensi asam. Basa kuat: [OH⁻] = M × valensi basa. Contoh H₂SO₄ valensi 2, Ca(OH)₂ valensi 2.',
+      'Asam lemah: [H⁺] = √(Ka × M) = α × M. Basa lemah: [OH⁻] = √(Kb × M) = α × M. Ka = α² × M.',
+      'Pengenceran asam kuat 10× menaikkan pH 1 satuan (selama belum mendekati 7). Pengenceran tidak pernah membuat asam menjadi basa.',
+      'Campuran dua asam kuat: [H⁺] = (V₁[H⁺]₁ + V₂[H⁺]₂) / (V₁ + V₂). Cara sama untuk dua basa kuat dengan [OH⁻].',
+      'Molaritas = mol / liter = (gram / Mr) × (1000 / mL). Dari persen massa: M = 10 × % × ρ / Mr. Pengenceran: M₁V₁ = M₂V₂.',
+      '% massa = massa zat terlarut / massa larutan × 100%. Molalitas = mol zat terlarut / kg pelarut. ppm = mg zat per kg larutan. Fraksi mol = mol zat / mol total.',
+      'Indikator: lakmus merah–biru; fenolftalein tak berwarna (asam) menjadi merah muda (basa, pH > 8,3).'
     ],
     examples: [
-      { q: 'Berapa pH larutan HCl 0,01 M?', a: 'HCl asam kuat valensi 1, jadi [H⁺] = 10⁻² M dan pH = 2.' },
-      { q: 'Berapa pH larutan NaOH 0,001 M?', a: '[OH⁻] = 10⁻³ M, pOH = 3, jadi pH = 14 − 3 = 11.' }
+      { q: 'Hitung pH larutan H₂SO₄ 0,005 M.', a: '[H⁺] = 0,005 × 2 = 10⁻² M. pH = 2.' },
+      { q: 'Hitung pH asam lemah HA 0,1 M dengan Ka = 10⁻⁵.', a: '[H⁺] = √(10⁻⁵ × 10⁻¹) = 10⁻³ M. pH = 3.' },
+      { q: 'Tentukan basa konjugasi dari H₂PO₄⁻.', a: 'Kurangi satu H⁺: HPO₄²⁻.' },
+      { q: 'H₂SO₄ 98% massa jenis 1,8 g/mL, Mr = 98. Berapa molaritasnya?', a: 'M = 10 × 98 × 1,8 / 98 = 18 M.' }
     ],
     traps: [
-      'Lupa valensi, misalnya H₂SO₄ memberi 2 H⁺ per molekul.',
-      'Memakai rumus akar (untuk asam lemah) pada asam kuat.',
-      'Berhenti di pOH padahal yang ditanya pH.'
+      'Lupa valensi, misalnya H₂SO₄ memberi 2 H⁺ dan Ca(OH)₂ memberi 2 OH⁻.',
+      'Memakai rumus akar (asam lemah) pada asam kuat, atau sebaliknya.',
+      'Berhenti di pOH padahal yang ditanya pH.',
+      'Menganggap air selalu hanya pelarut. Dalam Brønsted–Lowry air bisa bertindak sebagai asam atau basa.',
+      'Pola TKA: tabel uji daya hantar atau uji indikator limbah. Tentukan kuat/lemah dulu dari terang lampu, lalu pilih rumusnya.'
+    ]
+  },
+  kim6: {
+    intro: 'Garam hasil reaksi asam dan basa bisa membuat larutan bersifat asam, basa, atau netral, tergantung ion mana yang bereaksi dengan air (hidrolisis). Bab ini juga memuat cara menghitung pH campuran asam dan basa, termasuk larutan penyangga.',
+    points: [
+      'Hanya ion dari asam lemah atau basa lemah yang terhidrolisis. Ion dari asam kuat (Cl⁻, Br⁻, I⁻, NO₃⁻, SO₄²⁻, ClO₄⁻) dan basa kuat (Na⁺, K⁺, Ca²⁺, Ba²⁺, …) tidak terhidrolisis.',
+      'Basa kuat + asam kuat (NaCl, K₂SO₄): tidak terhidrolisis, pH = 7.',
+      'Basa kuat + asam lemah (CH₃COONa): anion terhidrolisis, A⁻ + H₂O ⇌ HA + OH⁻, larutan basa (pH > 7). [OH⁻] = √(Kw/Ka × [A⁻]).',
+      'Basa lemah + asam kuat (NH₄Cl): kation terhidrolisis, M⁺ + H₂O ⇌ MOH + H⁺, larutan asam (pH < 7). [H⁺] = √(Kw/Kb × [M⁺]).',
+      'Basa lemah + asam lemah (CH₃COONH₄): terhidrolisis sempurna. [H⁺] = √(Kw × Ka / Kb). Ka > Kb asam, Ka < Kb basa, Ka = Kb netral.',
+      'Konsentrasi ion yang terhidrolisis = molaritas garam × jumlah ion itu dalam rumus (misal (CH₃COO)₂Ca memberi 2 ion asetat, (NH₄)₂SO₄ memberi 2 ion NH₄⁺).',
+      'Kh = Kw / Ka (garam basa) atau Kw / Kb (garam asam).',
+      'pH campuran asam + basa: hitung mol H⁺ dan mol OH⁻, lalu lihat sisanya.',
+      'Habis tepat (tidak ada sisa): pakai rumus hidrolisis garam (pH titik ekivalen).',
+      'Sisa asam atau basa kuat: pH dari sisa yang kuat, [H⁺] atau [OH⁻] = mol sisa / volume total.',
+      'Sisa asam atau basa lemah (bersama garamnya): terbentuk larutan penyangga.',
+      'Penyangga asam: [H⁺] = Ka × (mol asam lemah / mol basa konjugasi). Penyangga basa: [OH⁻] = Kb × (mol basa lemah / mol asam konjugasi).',
+      'Penyangga menahan perubahan pH pada penambahan sedikit asam, sedikit basa, atau pengenceran.'
+    ],
+    examples: [
+      { q: 'Hitung pH CH₃COONa 0,1 M, Ka CH₃COOH = 10⁻⁵.', a: '[OH⁻] = √(10⁻¹⁴/10⁻⁵ × 10⁻¹) = √10⁻¹⁰ = 10⁻⁵. pOH = 5, pH = 9.' },
+      { q: '100 mL CH₃COOH 0,2 M dicampur 50 mL NaOH 0,2 M (Ka = 10⁻⁵). Hitung pH.', a: 'Mol asam 20 mmol, mol NaOH 10 mmol. Sisa asam 10 mmol, garam terbentuk 10 mmol: penyangga. [H⁺] = 10⁻⁵ × 10/10 = 10⁻⁵, pH = 5.' },
+      { q: '100 mL HCl 0,3 M + 100 mL NaOH 0,1 M. Hitung pH.', a: 'H⁺ 30 mmol, OH⁻ 10 mmol. Sisa H⁺ 20 mmol dalam 200 mL = 0,1 M. pH = 1.' }
+    ],
+    traps: [
+      'Menganggap semua garam bersifat netral.',
+      'Memakai Ka untuk garam padahal yang diketahui Kb (atau sebaliknya). Pakai Kh = Kw/K yang tepat.',
+      'Lupa membagi mol garam dengan volume total campuran.',
+      'Memakai rumus penyangga saat asam lemah habis tepat. Itu sudah hidrolisis.',
+      'Pola TKA: pencampuran larutan dengan volume dan molaritas berbeda. Selalu mulai dengan tabel mol (mula, bereaksi, sisa) sebelum memilih rumus.'
+    ]
+  },
+  kim17: {
+    intro: 'Titrasi menentukan konsentrasi suatu larutan dengan meneteskan larutan lain yang konsentrasinya diketahui sampai tepat habis bereaksi. Kamu perlu menghitung konsentrasi dari data, memilih indikator, dan membaca kurva titrasi.',
+    points: [
+      'Titrat (analit) = larutan yang dicari konsentrasinya, di labu. Titran = larutan standar di buret.',
+      'Titik ekivalen: asam dan basa tepat habis, mol H⁺ = mol OH⁻. Titik akhir: indikator berubah warna. Indikator dipilih supaya titik akhir sedekat mungkin dengan titik ekivalen.',
+      'Rumus: Va × Ma × valensi asam = Vb × Mb × valensi basa.',
+      'Jika titrasi diulang, pakai volume rata-rata (abaikan data yang menyimpang jauh).',
+      'Kurva titrasi: asam kuat–basa kuat, pH ekivalen = 7. Asam lemah–basa kuat, pH ekivalen > 7. Basa lemah–asam kuat, pH ekivalen < 7. pH ekivalen dihitung dengan rumus hidrolisis garam.',
+      'Pada titrasi asam lemah dengan basa kuat, ada daerah penyangga sebelum ekivalen. Saat separuh asam bereaksi (setengah ekivalen), pH = pKa.',
+      'Pilih indikator yang trayek pH-nya mencakup pH ekivalen: asam kuat–basa kuat bromtimol biru atau fenolftalein, asam lemah–basa kuat fenolftalein (8,3–10), basa lemah–asam kuat metil merah (4,2–6,3) atau metil jingga (3,1–4,4).',
+      'Trayek indikator: metil jingga 3,1–4,4 (merah–kuning), metil merah 4,2–6,3 (merah–kuning), bromtimol biru 6,0–7,6 (kuning–biru), fenolftalein 8,3–10,0 (tak berwarna–merah).',
+      'Titrasi redoks: iodometri memakai KI berlebih agar oksidator melepas I₂, lalu I₂ dititrasi dengan natrium tiosulfat. Indikator amilum (biru tua dengan I₂) ditambahkan mendekati titik akhir, titik akhir saat warna biru hilang.'
+    ],
+    examples: [
+      { q: '25 mL larutan CH₃COOH dititrasi NaOH 0,1 M. Volume NaOH rata-rata 20 mL. Berapa molaritas asam?', a: 'Valensi masing-masing 1. 25 × Ma = 20 × 0,1, jadi Ma = 0,08 M.' },
+      { q: 'Titrasi 50 mL CH₃COOH 0,2 M dengan NaOH 0,2 M (Ka = 10⁻⁵). Berapa pH di titik ekivalen?', a: 'Ekivalen saat NaOH 50 mL. Garam = 10 mmol / 100 mL = 0,1 M. [OH⁻] = √(10⁻⁹ × 10⁻¹) = 10⁻⁵. pH = 9. Indikator cocok: fenolftalein.' }
+    ],
+    traps: [
+      'Lupa valensi, misalnya H₂SO₄ dititrasi NaOH butuh faktor 2.',
+      'Memakai titik netral pH 7 sebagai titik ekivalen untuk semua titrasi. Hanya benar untuk asam kuat–basa kuat.',
+      'Lupa faktor pengenceran bila sampel diencerkan sebelum dititrasi (kalikan kembali).',
+      'Menganggap titik akhir selalu sama dengan titik ekivalen. Keduanya berdekatan, tetapi tidak identik.',
+      'Pola TKA: kurva titrasi dengan tabel trayek indikator. Tentukan pH ekivalen dari jenis asam–basa, lalu cari indikator yang trayeknya melingkupi pH itu.'
     ]
   },
   ing2: {
