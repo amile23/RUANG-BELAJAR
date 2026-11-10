@@ -673,4 +673,60 @@ RB.lessons = {
       'Pola UTBK: cerita belanja, tabungan, atau peta. Tulis diketahui dan ditanya, tentukan jenis perbandingan, baru hitung.'
     ]
   }
+  ,
+  utb16: {
+    intro: 'Pembentukan kata dan frasa adalah bagian tata bahasa yang sering keluar di PBM UTBK, TKA Bahasa Indonesia, dan ulangan sekolah. Intinya: tiap imbuhan punya fungsi dan makna, dan frasa adalah gabungan kata yang belum berupa kalimat.',
+    points: [
+      'Imbuhan (afiks) ditambahkan pada kata dasar. Awalan (prefiks): meng-, ber-, ter-, di-, pe-, per-. Akhiran (sufiks): -an, -kan, -i. Gabungan awalan dan akhiran (konfiks): ke-an, pe-an, per-an, ber-an. Ada juga gabungan me-kan dan me-i.',
+      'Awalan ber- dapat bermakna mempunyai (berambisi), memakai (bersepatu), melakukan (bekerja), dan saling (berpelukan).',
+      'Awalan meng- (me-) bermakna melakukan perbuatan (mengusir), membuat jadi, atau menghasilkan. Bentuknya berubah menurut huruf awal kata dasar: me- (l, m, n, r, w, y), mem- (b, p, f, v), men- (d, c, j, t, z), meng- (vokal, g, h, k), meny- (s), menge- (kata satu suku).',
+      'Huruf k, p, t, s di awal kata dasar luluh setelah me-: kirim → mengirim, pukul → memukul, tulis → menulis, sapu → menyapu.',
+      'Awalan ter- bermakna tidak sengaja (terjatuh), paling (terbesar), dapat di- (terbaca), atau sudah di- (tertutup).',
+      'Akhiran -an bermakna hasil (catatan), alat (timbangan), atau sesuatu yang di- (makanan).',
+      'Akhiran -kan bermakna untuk atau melakukan bagi orang lain (membelikan adik buku) dan membuat jadi (menidurkan). Akhiran -i bermakna memberikan atau memberi sesuatu (menyelimuti), atau melakukan berulang (memukuli).',
+      'Konfiks ke-an bermakna terlalu (kekecilan), keadaan (kesehatan), atau mengalami hal yang tidak menyenangkan (kehujanan). Pe-an bermakna proses (pembersihan). Per-an bermakna tempat atau hal (perkebunan). Me-kan bermakna membuat jadi (memalukan: membuat menjadi malu).',
+      'Frasa: gabungan dua kata atau lebih yang tidak berpredikat (nonpredikatif), memiliki satu makna, dan mengisi satu fungsi dalam kalimat (subjek, predikat, objek, pelengkap, atau keterangan).',
+      'Frasa dibedakan menurut jenis kata inti: nominal (gadis cantik, inti kata benda), verbal (hanya bercanda, inti kata kerja), adjektival (tidak gelisah, inti kata sifat), numeral (tiga ekor, inti kata bilangan), pronominal (kita berdua), adverbial, dan preposisional (diawali kata depan: di sawah, dengan segera).',
+      'Inti adalah bagian utama frasa, pewatas adalah penjelasnya. Pada "rumah besar", inti rumah dan pewatas besar.',
+      'Berdasarkan hubungan unsurnya, frasa koordinatif menghubungkan unsur setara (ayah dan ibu), frasa atributif terdiri dari inti dan pewatas (buku baru), dan frasa apositif menjelaskan unsur lain (Pak Budi, guru kami).'
+    ],
+    examples: [
+      { q: 'Bentuk kata dari me- + kirim, me- + pukul, me- + sapu.', a: 'Huruf awal k, p, s luluh: mengirim, memukul, menyapu.' },
+      { q: 'Apa makna imbuhan pada kata "kehujanan" dan "pembersihan"?', a: 'ke-an pada kehujanan berarti mengalami (terkena hujan). pe-an pada pembersihan berarti proses membersihkan.' },
+      { q: 'Tentukan jenis frasa "sedang membaca" dan "dua puluh orang".', a: '"Sedang membaca" frasa verbal (inti membaca, pewatas sedang). "Dua puluh orang" frasa numeral.' }
+    ],
+    traps: [
+      'Tidak meluluhkan huruf k, p, t, s (menkirim, mempukul). Bentuk yang benar mengirim, memukul.',
+      'Menganggap semua kalimat pendek sebagai frasa. Jika ada subjek dan predikat (Ibu memasak), itu klausa atau kalimat, bukan frasa.',
+      'Menyamakan -an dengan -kan atau -i. Cari makna dari imbuhannya, bukan dari bunyinya.',
+      'Menentukan jenis frasa dari pewatas, bukan dari inti. Lihat jenis kata inti dulu.',
+      'Pola UTBK: kalimat dengan kata berimbuhan yang digarisbawahi, lalu pertanyaan makna imbuhan atau jenis frasa. Uraikan kata ke kata dasar + imbuhan dulu.'
+    ]
+  },
+  utb17: {
+    intro: 'Bab makna kata membahas jenis makna dan hubungan antarmakna (sinonim, antonim, hipernim–hiponim). Soalnya sering berupa kata yang diganti, dilawankan, atau diklasifikasikan. Kuncinya: pahami arti kata dulu, baru tentukan hubungannya.',
+    points: [
+      'Makna leksikal: makna dasar sebuah kata, seperti dalam kamus ("makan" = memasukkan makanan ke mulut lalu mengunyah).',
+      'Makna gramatikal: makna yang muncul setelah kata mendapat imbuhan atau diulang, atau berada dalam kalimat ("makanan" = sesuatu yang dimakan, "penulis" = orang yang menulis).',
+      'Makna denotasi: makna sebenarnya (apa adanya, dapat diamati). Makna konotasi: makna tambahan yang berkaitan dengan nilai rasa atau bukan arti sebenarnya ("makan uang kas" = menggunakan uang yang bukan haknya).',
+      'Makna asosiasi: makna lambang atau perumpamaan, yaitu kata dihubungkan dengan hal lain (putih melambangkan kesucian, merah melambangkan keberanian).',
+      'Sinonim: kata-kata yang maknanya sama atau mirip (sukar = sulit, bertemu = berjumpa). Dua sinonim dapat saling menggantikan dalam kalimat, tetapi tidak selalu cocok dalam semua konteks.',
+      'Antonim: kata-kata yang maknanya berlawanan (tinggi × rendah, bersih × kotor, hemat × boros). Untuk mencari antonim, pastikan dulu arti kata.',
+      'Hipernim: kata yang maknanya lebih umum (hewan, bunga). Hiponim: kata yang maknanya lebih khusus yang termasuk dalam hipernim (kucing, anjing, kuda adalah hiponim dari hewan).',
+      'Bedakan hiponimi dengan hubungan bagian–keseluruhan (meronimi). Daun adalah bagian dari pohon, bukan jenis pohon, jadi bukan hiponim.',
+      'Polisemi: satu kata dengan beberapa makna yang masih berhubungan (kepala: bagian tubuh, kepala surat, kepala sekolah). Homonim: kata yang bunyi atau tulisannya sama tetapi maknanya tidak berhubungan (bisa = racun, bisa = dapat).'
+    ],
+    examples: [
+      { q: 'Tentukan jenis makna kata "kepala" pada "Ayahnya menjadi kepala sekolah".', a: 'Bukan bagian tubuh. Itu makna lain yang masih berhubungan (pemimpin), jadi contoh polisemi.' },
+      { q: 'Apa hubungan antara "kendaraan" dan "sepeda"?', a: 'Kendaraan lebih umum (hipernim), sepeda lebih khusus (hiponim).' },
+      { q: 'Apakah "bijaksana" dan "arif" bersinonim?', a: 'Ya, keduanya bermakna mampu mengambil keputusan dengan pertimbangan yang baik.' }
+    ],
+    traps: [
+      'Mengira sinonim selalu bisa menggantikan di semua kalimat. Cek apakah kalimatnya tetap wajar.',
+      'Menjawab antonim dari kata yang salah arti. Pastikan arti kata dalam kalimat dulu.',
+      'Menukar hipernim dan hiponim. Hipernim lebih umum, hiponim lebih khusus.',
+      'Mencampur denotasi dan konotasi. Denotasi berarti makna sebenarnya, konotasi punya nilai rasa atau bermakna kiasan.',
+      'Pola UTBK: sinonim, antonim, atau makna kata dalam konteks kalimat. Coba ganti kata dengan pilihan jawaban dan cek apakah artinya tetap sama.'
+    ]
+  }
 };

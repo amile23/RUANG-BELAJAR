@@ -108,5 +108,7 @@ RB.rawTopics = [
 'utb12|utb|1|Penalaran analitik: urutan, syarat & membaca memindai|45|U',
 'utb13|utb|1|Kesesuaian pernyataan: teks, tabel & diagram|45|U',
 'utb14|utb|1|Penalaran kuantitatif I: bilangan berpangkat, pecahan & geometri dasar|50|U',
-'utb15|utb|1|Penalaran kuantitatif II: untung–rugi, bunga, diskon, pajak, perbandingan & skala|55|U'
+'utb15|utb|1|Penalaran kuantitatif II: untung–rugi, bunga, diskon, pajak, perbandingan & skala|55|U',
+'utb16|utb|1|Pembentukan kata (imbuhan) & jenis frasa|45|UT',
+'utb17|utb|1|Makna kata: leksikal, denotasi–konotasi, sinonim, antonim, hipernim–hiponim|40|UT'
 ];
