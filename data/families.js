@@ -13,14 +13,18 @@ RB.families = [
   groups:[
    {g:'Bilangan & aritmetika',ids:['utb29','utb30','utb15','utb14','utb3']},
    {g:'Aljabar, fungsi & barisan',ids:['utb31','utb32','utb33','utb34']},
-   {g:'Geometri',ids:['utb35','utb36']},
+   {g:'Geometri (PK)',ids:['utb35','utb36']},
    {g:'Statistika & peluang',ids:['utb37','utb38']},
    {g:'Bentuk khas PK (P vs Q, kecukupan data, 1-2-3)',ids:['utb39','utb40','utb41']},
    {g:'Penalaran Matematika (kontekstual)',ids:['utb42','utb5','utb8']},
+   {g:'Geometri (PM, sama dengan PK)',ids:['utb35','utb36']},
    {g:'Penalaran Umum (logika)',ids:['utb2','utb11','utb12','utb13','utb7']}]},
  {id:'r3',n:'Bahasa Inggris (terpisah)',
-  d:'Literasi Bahasa Inggris UTBK, TKA Inggris, dan TOEFL berbagi bekal membaca yang sama.',
+  d:'Literasi Bahasa Inggris UTBK punya 3 bab: Specific, Implied, dan General Information. TKA Inggris dan TOEFL memakai bekal membaca yang sama.',
   groups:[
-   {g:'UTBK & TKA',ids:['utb6','ing4','ing5','ing9']},
+   {g:'Specific Information',ids:['utb44']},
+   {g:'Implied Information',ids:['utb45']},
+   {g:'General Information',ids:['utb46']},
+   {g:'Latihan campuran UTBK & TKA',ids:['utb6','ing4','ing5','ing9']},
    {g:'Tata bahasa',ids:['ing1','ing2','ing3']}]}
 ];

@@ -136,5 +136,8 @@ RB.rawTopics = [
 'utb40|utb|1|PK: kecukupan data (pernyataan 1 dan 2)|45|U',
 'utb41|utb|1|PK: pernyataan (1)–(4), pilih yang benar|45|U',
 'utb42|utb|1|PM: tabel, grafik & model kontekstual|55|U',
-'utb43|utb|1|Kelas kata & frasa (PPU–PBM): nomina, verba, adjektiva, adverbia, preposisi|40|UT'
+'utb43|utb|1|Kelas kata & frasa (PPU–PBM): nomina, verba, adjektiva, adverbia, preposisi|40|UT',
+'utb44|utb|1|Literasi B.Inggris: Specific Information (detail, kalimat, referent, sinonim, parafrase)|45|UI',
+'utb45|utb|1|Literasi B.Inggris: Implied Information (inferensi, asumsi, tone, koherensi, analogi)|45|UI',
+'utb46|utb|1|Literasi B.Inggris: General Information (main idea, summary, purpose)|45|UI'
 ];

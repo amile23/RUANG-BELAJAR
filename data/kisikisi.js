@@ -87,12 +87,13 @@ RB.kisi = [
    ['Teks informasional','Menemukan informasi, menyimpulkan, mengevaluasi argumen','Tandai klaim, bukti, dan kesimpulan penulis.','utb10,ind5'],
    ['Teks sastra','Tema, tokoh, suasana, makna kiasan, amanat','Tentukan suasana dari pilihan kata, bukan dari ringkasan cerita.','utb10,ind8']]},
   {g:'6 · Literasi Bahasa Inggris (20 soal, 20 mnt)',items:[
-   ['Informational text','Main idea, inference, vocabulary in context, author’s purpose','Mirip TOEFL Reading dan TKA Inggris.','utb6,ing4,iel3'],
-   ['Literary text','Theme, character, tone, figurative language','Tone ada di pilihan kata sifat dan kata kerja penulis.','utb6,ing4']]},
+   ['Specific Information','Detail yang disebut dan tidak disebut, pola kalimat (aktif–pasif, majemuk–bertingkat), referent, sinonim, parafrase','Cari kata kunci pertanyaan di teks. Untuk EXCEPT, coret pilihan yang ada di teks.','utb44,utb6,ing4'],
+   ['Implied Information','Inferensi, asumsi, tone penulis, koherensi (kata hubung, pengulangan, paralel), analogi','Pilih simpulan yang paling didukung teks, hindari kata mutlak.','utb45,utb6,ing4'],
+   ['General Information','Main idea, summary, tujuan teks dan tujuan informasi tertentu','Cari ide tiap paragraf dulu, lalu gabungkan. Ringkasan tidak memuat detail kecil.','utb46,utb6,ing4,iel3']]},
   {g:'7 · Penalaran Matematika (20 soal, 42 mnt)',items:[
    ['Bilangan','Bulat, pecahan, desimal, persen, eksponen, akar, logaritma dasar','Soal sering berupa konteks sehari-hari.','utb42,utb29,utb30,utb5,mat3'],
    ['Aljabar & fungsi','Persamaan, pertidaksamaan, sistem, fungsi linear/kuadrat, komposisi','Terjemahkan cerita ke persamaan.','utb5,mat1,mat15'],
-   ['Geometri','Bangun datar/ruang, kesebangunan, trigonometri dasar, koordinat','Sketsa dulu, rumus kemudian.','utb5,mat17,mat5'],
+   ['Geometri','Bangun datar dan ruang, sudut, kesebangunan, koordinat (sama dengan PK)','Sama dengan Geometri di PK: sketsa dulu, rumus kemudian.','utb35,utb36,utb5,mat17,mat5'],
    ['Data & ketidakpastian','Statistika deskriptif, peluang, kombinasi/permutasi, tafsir data','Baca judul dan satuan grafik.','utb42,utb37,utb38,utb5,utb8,mat7']]}
  ]},
 

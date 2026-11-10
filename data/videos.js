@@ -37,3 +37,18 @@ RB.videos = {
 };
 RB.videos.utb16=(RB.videos.utb16||[]).concat(RB.videos.frasa||[]);
 RB.videos.utb43=RB.videos.kelaskata;
+
+RB.videos.utb44=[
+ {t:'Skill: find pronoun referents (TOEFL Reading, bahasa Indonesia)',u:'https://www.youtube.com/watch?v=yXMH9wSAGaM'},
+ {t:'Pronoun and referent',u:'https://www.youtube.com/watch?v=BAnzw2LBYvc'},
+ {t:'Pembahasan soal Literasi B.Inggris: detail information (UTBK)',u:'https://www.youtube.com/watch?v=O4HB2D_yFVE'}];
+RB.videos.utb45=[
+ {t:'Deciphering the author\'s tone (reading comprehension)',u:'https://www.youtube.com/watch?v=GO_zf0ECALc'},
+ {t:'Tone: analyzing the author\'s attitude',u:'https://www.youtube.com/watch?v=TnpwyZLyUJE'},
+ {t:'Tips dan trik soal Literasi Bahasa Inggris UTBK (Ruangguru)',u:'https://www.youtube.com/watch?v=wabTpV_077w'}];
+RB.videos.utb46=[
+ {t:'Main idea reading strategy',u:'https://www.youtube.com/watch?v=HPt76VABPmU'},
+ {t:'How to write a summary using main ideas',u:'https://www.youtube.com/watch?v=LZ9OKWsZZac'},
+ {t:'Literasi B.Inggris UTBK: topic and main idea',u:'https://www.youtube.com/watch?v=mRMAUKfvBmE'},
+ {t:'Author\'s purpose: why authors write',u:'https://www.youtube.com/watch?v=6tAaviZz6eI'}];
+RB.videos.utb6=(RB.videos.utb6||[]).concat([{t:'Trik memahami soal Literasi B.Inggris UTBK',u:'https://www.youtube.com/watch?v=0huBpDmmr9A'}]);
