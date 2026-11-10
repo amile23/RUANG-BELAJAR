@@ -1,5 +1,5 @@
 /* Peta kisi-kisi. Isinya dari: PDF kisi-kisi TKA 2026 (resmi), ruangtes.id (UTBK),
-   PDF IELTS Reading Strategy + Task 1 Checklist + IELTS Prep, buku Matriks kelas XI.
+   ETS/TOEFL (pencarian web), buku Matriks kelas XI.
    Satu item = [nama, isi bab, cara kerjanya (strategi singkat), id materi di Peta Belajar (pisah koma)] */
 window.RB = window.RB || {};
 RB.kisi = [
@@ -53,7 +53,7 @@ RB.kisi = [
  strat:[
   'Mulai dari seksi yang kamu kuat untuk mengumpulkan poin, lalu pindah ke yang sulit.',
   'Penalaran Matematika dan Pengetahuan Kuantitatif memakai bab SMA yang sama dengan TKA dan rapor, jadi tumpang tindih besar.',
-  'Literasi Inggris mirip IELTS Reading dan TKA Inggris, tinggal ganti tipe soal.',
+  'Literasi Inggris mirip TOEFL Reading dan TKA Inggris, tinggal ganti tipe soal.',
   'Latihan lewat soal bertimer. UTBK kalah di waktu, bukan di konsep.'],
  groups:[
   {g:'1 · Penalaran Umum (30 soal, 30 mnt)',items:[
@@ -77,7 +77,7 @@ RB.kisi = [
    ['Teks informasional','Menemukan informasi, menyimpulkan, mengevaluasi argumen','Tandai klaim, bukti, dan kesimpulan penulis.','utb10,ind5'],
    ['Teks sastra','Tema, tokoh, suasana, makna kiasan, amanat','Tentukan suasana dari pilihan kata, bukan dari ringkasan cerita.','utb10,ind8']]},
   {g:'6 · Literasi Bahasa Inggris (20 soal, 20 mnt)',items:[
-   ['Informational text','Main idea, inference, vocabulary in context, author’s purpose','Mirip IELTS Reading dan TKA Inggris.','utb6,ing4,iel3'],
+   ['Informational text','Main idea, inference, vocabulary in context, author’s purpose','Mirip TOEFL Reading dan TKA Inggris.','utb6,ing4,iel3'],
    ['Literary text','Theme, character, tone, figurative language','Tone ada di pilihan kata sifat dan kata kerja penulis.','utb6,ing4']]},
   {g:'7 · Penalaran Matematika (20 soal, 42 mnt)',items:[
    ['Bilangan','Bulat, pecahan, desimal, persen, eksponen, akar, logaritma dasar','Soal sering berupa konteks sehari-hari.','utb5,mat3'],
@@ -86,42 +86,39 @@ RB.kisi = [
    ['Data & ketidakpastian','Statistika deskriptif, peluang, kombinasi/permutasi, tafsir data','Baca judul dan satuan grafik.','utb5,utb8,mat7']]}
  ]},
 
-{id:'iel',n:'IELTS',c:'#C75AC0',
- fmt:'4 skill: Listening, Reading (3 teks, 40 soal, 60 menit), Writing (Task 1 & 2), Speaking (3 bagian). Pilih Academic atau General sesuai tujuanmu. Kampus biasanya Academic.',
- sumber:'PDF IELTS Reading Strategy, IELTS Academic Writing Task 1 Checklist, dan IELTS Prep 3 Months milikmu.',
+{id:'iel',n:'TOEFL',c:'#C75AC0',
+ fmt:'TOEFL iBT format baru (sejak 21 Januari 2026): 4 bagian Reading, Listening, Speaking, Writing. Reading dan Listening adaptif (soal kedua menyesuaikan jawaban pertama). Total sekitar 2 jam. Skor tiap bagian dan total memakai skala 1–6 (naik 0,5), dan skala lama 0–120 masih ditampilkan sampai sekitar 2028. Kalau kampus meminta TOEFL ITP, bentuknya berbeda.',
+ sumber:'ETS dan beberapa situs persiapan TOEFL (dicari 10 Nov 2026). Nama tugas diambil dari ringkasan situs persiapan, jadi cek lagi di ets.org/toefl. PDF IELTS-mu sudah tidak dipakai.',
  strat:[
-  'Reading: jawaban selalu urut sesuai teks. Cari lokasinya dulu, baru baca detail di situ.',
-  'Writing & Speaking biasanya skor paling rendah. Mulai latihan lebih awal dan rekam dirimu.',
-  'Kosakata akademik yang sama dipakai di UTBK dan TKA Inggris, jadi latihan satu menolong tiga.',
-  'Mulai dengan tes resmi gratis untuk tahu posisi awalmu, lalu latihan per tipe soal.'],
+  'Kenali formatnya dulu. Kerjakan satu practice test resmi ETS untuk tahu posisi awalmu, lalu latih bagian yang paling rendah.',
+  'Reading dan Listening adaptif, jadi modul pertama paling menentukan. Kerjakan teliti, jangan terburu-buru.',
+  'Speaking dan Writing paling berubah di format baru, jadi mulai latihan lebih awal. Rekam suaramu dan tulis tiap hari 1 kalimat atau paragraf.',
+  'Kosakata akademik yang sama dipakai di UTBK dan TKA Inggris, jadi latihan satu menolong tiga.'],
  groups:[
-  {g:'Reading · 12 tipe soal',items:[
-   ['Short Answer','Jawab singkat dari teks','Perhatikan batas jumlah kata. Jangan beropini.','iel10,iel3'],
-   ['Multiple Choice','Pilih satu atau lebih jawaban','Prediksi jawaban sendiri, lalu cek kenapa tiap pilihan salah. Kata penentu seperti “all/only” sering menjebak.','iel10'],
-   ['Summary Completion','Lengkapi ringkasan','Tebak jenis kata (benda/kerja/sifat) lalu cek tata bahasa.','iel10'],
-   ['Matching Sentences','Pasangkan awal dan akhir kalimat','Baca awal kalimat dulu tanpa melihat akhirannya.','iel10'],
-   ['Sentence Completion','Lengkapi kalimat dengan kata dari teks','Waspada sinonim, jawaban jarang memakai kata yang sama persis.','iel10'],
-   ['True / False / Not Given','Cocokkan pernyataan dengan fakta teks','Not Given = informasinya tidak ada. Jangan pakai pengetahuan luar. Waspadai kata “some, all, mainly”.','iel3,iel10'],
-   ['Yes / No / Not Given','Cocokkan pernyataan dengan opini penulis','Hanya opini penulis yang dinilai, bukan fakta atau opini orang lain.','iel3,iel10'],
-   ['Matching Headings','Pilih judul tiap paragraf','Kerjakan dulu sebelum tipe lain. Baca kalimat pertama dan terakhir paragraf.','iel3,iel10'],
-   ['Labelling a Diagram','Beri label pada gambar','Lihat gambar sebentar saja, fokus cari bagian teks yang menjelaskannya.','iel10'],
-   ['Matching Names','Pasangkan nama tokoh dengan pernyataannya','Mulai dari nama yang hanya muncul sekali.','iel10'],
-   ['Matching Information','Pasangkan pernyataan ke paragraf','Kerjakan paling akhir. Cari angka, nama, dan sinonimnya.','iel10'],
-   ['Table Completion','Lengkapi tabel atau diagram alur','Pahami judul tabel dulu, perhatikan batas kata.','iel10']]},
+  {g:'Reading',items:[
+   ['Complete the Words','Paragraf pendek dengan beberapa kata yang hurufnya terpotong, kamu lengkapi','Baca seluruh paragraf dulu untuk konteks, baru tebak kata dari huruf awal dan makna kalimat.','iel7'],
+   ['Read in Daily Life','Teks sehari-hari seperti pengumuman, email, iklan, atau jadwal','Tentukan dulu tujuan teks (siapa menulis untuk apa), baru cari detail yang ditanya.','iel3'],
+   ['Read an Academic Passage','Bacaan akademik pendek: ide pokok, detail, kosakata, simpulan','Tandai ide tiap paragraf dengan 3–4 kata. Jawaban selalu bisa ditemukan di teks.','iel3,iel10,ing4,utb6']]},
+  {g:'Listening',items:[
+   ['Listen and Choose a Response','Dengar satu ucapan, pilih jawaban yang paling pas','Tangkap maksud ucapan (meminta, menawarkan, bertanya), bukan kata per kata.','iel2'],
+   ['Conversation','Percakapan dua orang di lingkungan kampus','Catat siapa ingin apa dan masalahnya apa.','iel2,iel8'],
+   ['Announcement','Pengumuman kampus atau kelas','Perhatikan perubahan jadwal, tempat, dan tindakan yang diminta.','iel2,iel8'],
+   ['Academic Talk','Penjelasan singkat dari dosen','Tangkap ide pokok dan contoh. Soal sering menanyakan hubungan contoh dengan idenya.','iel2,iel8']]},
   {g:'Writing',items:[
-   ['Task 1 (Academic): grafik, tabel, proses','Laporan data, 4 kriteria penilaian (Task Achievement, Coherence & Cohesion, Lexical Resource, Grammar)','Overview yang jelas adalah bagian terpenting. Bahas fitur utama saja, tanpa opini dan tanpa analisis.','iel4'],
-   ['Task 2: esai','Opini, diskusi, masalah–solusi','Satu paragraf = satu ide, dengan contoh. Tulis tiap hari 1 paragraf.','iel5']]},
-  {g:'Listening & Speaking',items:[
-   ['Listening','4 bagian, tipe soal berbeda','Baca soal sebelum audio diputar dan tebak jawabannya.','iel2,iel8'],
-   ['Speaking Part 1–3','Perkenalan, monolog, diskusi','Rekam suara sendiri dan dengar ulang.','iel6']]}
+   ['Build a Sentence','Susun kata yang acak menjadi kalimat yang benar','Cari subjek dan kata kerja dulu, lalu pasang keterangannya.','iel4,ing1'],
+   ['Write an Email','Email singkat sesuai situasi yang diberikan','Pakai pola: salam, tujuan, rincian, harapan, penutup. Nadanya sopan.','iel4'],
+   ['Write for an Academic Discussion','Menanggapi diskusi antara dosen dan teman','Tulis pendapat yang jelas, satu alasan kuat dengan contoh, lalu hubungkan dengan pendapat teman.','iel5,ing6']]},
+  {g:'Speaking',items:[
+   ['Listen and Repeat','Dengar kalimat, lalu ulangi persis','Latih menyimpan kalimat di kepala dan ucapkan dengan ritme yang sama.','iel6'],
+   ['Take an Interview','Menjawab pertanyaan dari pewawancara virtual','Jawab langsung, beri satu alasan dan contoh pendek. Rekam dan dengarkan ulang.','iel6']]}
  ]},
 
 {id:'kls',n:'Kelas 11',c:'#CF456D',
  fmt:'Rapor dan ulangan kelas 11 semester 1. Yang pasti dari PDF-mu baru Matematika (buku Matriks). Mapel lain masih memakai perkiraan bab umum sampai kamu mengirim silabus atau kisi-kisi ulangan sekolahmu.',
- sumber:'Buku “Matriks untuk SMA/SMK Kelas XI” (PDF-mu). Bab mapel lain: perkiraan, belum dicocokkan dengan sekolahmu.',
+ sumber:'Buku “Matriks untuk SMA/SMK Kelas XI” (PDF-mu). Bahasa Inggris tidak dimasukkan ke rapor dan ulangan. Bab mapel lain: perkiraan, belum dicocokkan dengan sekolahmu.',
  strat:[
   'Kerjakan ulangan dari bab yang paling dekat jadwalnya. Planner otomatis menaikkan prioritas mapel yang punya ulangan dalam 21 hari.',
-  'Sebisa mungkin pilih bab sekolah yang juga keluar di TKA, UTBK, atau IELTS (ditandai banyak target). Bab itu paling hemat waktu.',
+  'Sebisa mungkin pilih bab sekolah yang juga keluar di TKA, UTBK, atau TOEFL (ditandai banyak target). Bab itu paling hemat waktu.',
   'Waktu lomba, cukup 1 misi kecil per hari. Rapor aman kalau tidak putus sama sekali.'],
  groups:[
   {g:'Matematika (dari buku Matriks)',items:[
@@ -135,7 +132,7 @@ RB.kisi = [
    ['Fisika','Vektor & kinematika, Newton, energi & momentum, fluida, kalor, termodinamika, gelombang, rotasi','Gambarkan gaya (free-body diagram) sebelum menghitung.','fis1,fis2,fis3,fis5,fis6,fis7,fis8,fis9'],
    ['Biologi','Sel, metabolisme, sistem organ, genetika','Banyak bab yang sama dengan TKA Biologi.','bio1,bio2,bio4,bio5,bio6,bio7,bio8'],
    ['Kimia','Termokimia, laju, kesetimbangan, asam–basa, penyangga, Ksp, hidrokarbon','Banyak bab yang sama dengan TKA Kimia.','kim2,kim3,kim4,kim5,kim6,kim7,kim8'],
-   ['Bahasa Indonesia & Inggris','Teks eksposisi, argumentasi, struktur teks; tenses, conditional, passive','Sama dengan bab TKA dan UTBK.','ind1,ind2,ind3,ing1,ing2,ing3']]}
+   ['Bahasa Indonesia','Teks eksposisi, argumentasi, struktur dan kebahasaan teks','Sama dengan bab TKA dan UTBK.','ind1,ind2,ind3']]}
  ]}
 ];
 
@@ -147,10 +144,10 @@ RB.gap = [
  {t:'TKA: Matematika wajib atau tingkat lanjut (TL)?',d:'Dalam PDF ada edisi Matematika, Matematika TL, B. Indonesia TL, dan B. Inggris TL. Web ini memakai edisi biasa. Kabari kalau kamu ambil TL.'},
  {t:'TKA Biologi & Kimia lengkap',d:'OCR membaca halaman Biologi dan Kimia hanya sebagian (misalnya Biologi tidak menampilkan genetika/evolusi, Kimia elektrokimia terbaca sebagian). Kirim foto halaman PDF yang jelas kalau ada bagian yang terlewat.'},
  {t:'Tanggal resmi TKA dan UTBK',d:'Tanggal di web masih perkiraan dari pola 2026. Kirim tanggal dari pengumuman resmi ketika sudah keluar.'},
- {t:'IELTS: Academic atau General, target band',d:'Web mengasumsikan Academic dan target band 7. Kabari kalau berbeda, dan kapan rencana tes IELTS-mu supaya tanggalnya masuk jadwal.'},
- {t:'IELTS: materi Listening dan Speaking',d:'PDF-mu fokus ke Reading dan Writing Task 1. Belum ada materi Listening, Speaking, dan Writing Task 2.'},
+ {t:'TOEFL: iBT atau ITP, target skor, tanggal tes',d:'Web mengasumsikan TOEFL iBT format 2026. Kalau kampus meminta TOEFL ITP, kabari supaya peta bab disesuaikan. Isi target skor di tab Rapor & Target.'},
+ {t:'TOEFL: materi latihan',d:'Belum ada materi dan soal TOEFL. Kirim sumber latihanmu (buku, PDF, atau soal yang pernah kamu kerjakan) dan Claude membuat latihan polanya.'},
  {t:'UTBK: materi tiap seksi',d:'Sudah ada peta 7 seksi. Materi dan contoh soalnya belum ada. Kirim contoh soal pola yang sering keluar.'},
  {t:'Pola soal dari kamu',d:'Kirim 5–10 contoh soal per bab (foto atau PDF). Claude membuat soal baru dengan pola sama, bukan menyalin soalnya.'},
- {t:'File prep-plan-5.pdf',d:'Isinya checklist UCAT (tes masuk kedokteran Inggris/Australia), bukan IELTS/UTBK/TKA. Tidak dipakai kecuali kamu mau mendaftar kedokteran luar negeri.'},
+ {t:'File prep-plan-5.pdf',d:'Isinya checklist UCAT (tes masuk kedokteran Inggris/Australia), bukan TOEFL/UTBK/TKA. Tidak dipakai kecuali kamu mau mendaftar kedokteran luar negeri.'},
  {t:'Logo Universitas Indonesia',d:'Web memakai lencana “FK UI” buatan sendiri. Kirim file logo resmi yang boleh kamu pakai, lalu Claude menaruhnya di folder assets/ dan otomatis tampil.'}
 ];

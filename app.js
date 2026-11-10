@@ -26,13 +26,13 @@ var SUBJ={
   fis:{n:'Fisika',s:'FIS',c:'#8A6FE0'},
   bio:{n:'Biologi',s:'BIO',c:'#3FA27A'},
   kim:{n:'Kimia',s:'KIM',c:'#E59A2F'},
-  iel:{n:'IELTS',s:'IELTS',c:'#C75AC0'},
+  iel:{n:'TOEFL',s:'TOEFL',c:'#C75AC0'},
   utb:{n:'UTBK & TKA',s:'UTBK',c:'#7A8B3C'}
 };
-var SCHOOL=['mat','ind','ing','fis','bio','kim'];
+var SCHOOL=['mat','ind','fis','bio','kim'];
 var TRK={
   R:{n:'Rapor',c:'#CF456D',d:'Rapor & ulangan sekolah'},
-  I:{n:'IELTS',c:'#C75AC0',d:'IELTS'},
+  I:{n:'TOEFL',c:'#C75AC0',d:'TOEFL'},
   T:{n:'TKA',c:'#E59A2F',d:'TKA'},
   U:{n:'UTBK',c:'#7A8B3C',d:'UTBK-SNBT'}
 };
@@ -42,14 +42,14 @@ var LESSONS=RB.lessons||{};
 var QUESTIONS=RB.questions||[];
 
 var MICRO=[
- {id:'m1',t:'10 kata akademik (dipakai IELTS, UTBK, TKA Inggris)'},
- {id:'m2',t:'1 soal IELTS Reading atau 1 paragraf Writing'},
+ {id:'m1',t:'10 kata akademik (dipakai TOEFL, UTBK, TKA Inggris)'},
+ {id:'m2',t:'1 soal TOEFL Reading atau 1 kalimat Build a Sentence'},
  {id:'m3',t:'1 soal penalaran (UTBK / Penalaran Matematika)'},
  {id:'m4',t:'Cek bank kesalahan 5 menit'}
 ];
 var PW={1:{R:1.3,I:.9,T:.7,U:.5},2:{R:1.1,I:1.7,T:.7,U:.4},3:{R:1,I:1.4,T:1,U:.8},4:{R:1,I:.6,T:1.3,U:1.5}};
-var PHASE_N={1:'Fondasi',2:'Sprint IELTS',3:'IELTS & TKA',4:'TKA & UTBK'};
-var PHASE_D={1:'Bangun dasar yang dipakai semua ujian + jaga nilai rapor.',2:'Fokus IELTS. Rapor tetap dijaga lewat misi kecil.',3:'IELTS dilanjut, mulai siap-siap TKA.',4:'TKA dan UTBK-SNBT jadi prioritas.'};
+var PHASE_N={1:'Fondasi',2:'Sprint TOEFL',3:'TOEFL & TKA',4:'TKA & UTBK'};
+var PHASE_D={1:'Bangun dasar yang dipakai semua ujian + jaga nilai rapor.',2:'Fokus TOEFL. Rapor tetap dijaga lewat misi kecil.',3:'TOEFL dilanjut, mulai siap-siap TKA.',4:'TKA dan UTBK-SNBT jadi prioritas.'};
 var DAYFOCUS=[['utb','iel'],['mat','iel'],['bio','kim'],['ing','iel'],['fis','mat'],['iel','ind'],['ing','utb']];
 var MILE=[
  {d:'2027-10-26',t:'TKA kelas 12',n:'Perkiraan dari pola 2026. Cek pengumuman resmi.',a:true},
@@ -61,13 +61,15 @@ var KIND_L={pre:'Pre-test',latihan:'Latihan',post:'Post-test',review:'Ulang kesa
 
 /* ============ state ============ */
 function defAv(){return {hijab:true,skin:1,hair:0,style:0,hjc:0,of:0,oc:0,bg:0,steto:true,kaca:false,pita:false,lencana:true}}
-function defS(){return {v:2,_t:0,done:{},pins:{},micro:{},pomo:{},plan:{},budget:90,lomba:false,exams:[],lombas:[],rapor:{},quiz:{},err:{},qxp:0,nick:'Adiva',full:'Adiva Yumna Amilia',accent:'rose',hijab:true,av:defAv(),targets:{I:7,U:0},logs:[],custom:[]}}
+function defS(){return {v:2,_t:0,done:{},pins:{},micro:{},pomo:{},plan:{},budget:90,lomba:false,exams:[],lombas:[],rapor:{},quiz:{},err:{},qxp:0,nick:'Adiva',full:'Adiva Yumna Amilia',accent:'rose',hijab:true,av:defAv(),targets:{I:0,U:0},logs:[],custom:[]}}
 function norm(r){
   var s=Object.assign(defS(),r||{});
   if(s.exam){s.exams=(s.exams||[]).concat([{id:'e0',s:s.exam.s,date:s.exam.date,label:''}]);delete s.exam}
   (s.exams||[]).forEach(function(e){if(!e.type)e.type='UH';if(!e.bab)e.bab=[]});
-  if(s.targets)delete s.targets.S;
-  s.logs=(s.logs||[]).filter(function(l){return l.type!=='S'});
+  if(s.targets){delete s.targets.S;if(s.targets.I>0&&s.targets.I<=9)s.targets.I=0}
+  s.exams=(s.exams||[]).filter(function(e){return e.s!=='ing'});
+  if(s.rapor)delete s.rapor.ing;
+  s.logs=(s.logs||[]).filter(function(l){return l.type!=='S'&&!(l.type==='I'&&+l.score<=9)});
   s.custom=(s.custom||[]).filter(function(c){return c.s!=='sat'}).map(function(c){c.tr=(c.tr||[]).filter(function(k){return k!=='S'});if(!c.tr.length)c.tr=['R'];return c});
   var av0=Object.assign(defAv(),s.av||{});
   if(r&&r.hijab===false&&!r.av)av0.hijab=false;
@@ -609,7 +611,7 @@ function viewToday(){
     '<h1 style="margin-top:14px">'+esc('Halo, '+(S.nick||'Adiva')+'!')+'</h1>'+
     '<p class="idline">Calon dr. '+esc(S.full||'Adiva Yumna Amilia')+', Sp.DVE · Fakultas Kedokteran UI</p>'+
     '<p class="muted">'+HARI[d.getDay()]+', '+d.getDate()+' '+BULAN[d.getMonth()]+' '+d.getFullYear()+'</p>'+
-    '<div class="hero-meta"><a class="btn ghost sm" href="#avatar">Ganti penampilan</a><span class="chip">Fase: '+PHASE_N[ph]+'</span><span class="chip">Target IELTS '+esc(String(S.targets.I||'—'))+'</span></div>'+
+    '<div class="hero-meta"><a class="btn ghost sm" href="#avatar">Ganti penampilan</a><span class="chip">Fase: '+PHASE_N[ph]+'</span><span class="chip">Target TOEFL '+esc(String(S.targets.I||'belum diisi'))+'</span></div>'+
     '<div class="xpbar" aria-label="Progres level"><b style="width:'+L.pct+'%"></b></div>'+
     '<p class="tiny muted" style="margin-top:4px">'+(L.nxt?xp+' / '+L.nxt+' XP menuju level berikutnya':'Level maksimal')+'</p></div></section>';
 
@@ -835,14 +837,14 @@ function viewGoal(){
   h+='</ul><p class="tiny muted" style="margin-top:12px">Tanggal TKA dan UTBK masih perkiraan dari jadwal tahun ini. Syarat FK UI (misalnya nilai bahasa Inggris untuk kelas internasional) sering berubah, jadi cek ulang di situs resmi FK UI dan SNPMB.</p></section>';
 
   h+='<section class="card"><header><h2>Skor target</h2></header><div class="form"><div class="frow">'+
-    '<label>IELTS (0–9)<input type="number" data-field="tI" value="'+(S.targets.I||'')+'" min="0" max="9" step="0.5"></label>'+
+    '<label>TOEFL (skor)<input type="number" data-field="tI" value="'+(S.targets.I||'')+'" min="0" max="677" step="0.5"></label>'+
     '<label>UTBK (skor)<input type="number" data-field="tU" value="'+(S.targets.U||'')+'" min="0" max="1000" step="5"></label></div></div></section>';
 
-  h+='<section class="card"><header><h2>Catat try out</h2><span class="sp muted small">Try out IELTS dan UTBK dikerjakan di luar web, skornya dicatat di sini</span></header><div class="form"><div class="frow">'+
-    '<label>Ujian<select id="lgT"><option value="I"'+(ui.logType==='I'?' selected':'')+'>IELTS</option><option value="U"'+(ui.logType==='U'?' selected':'')+'>UTBK</option></select></label>'+
+  h+='<section class="card"><header><h2>Catat try out</h2><span class="sp muted small">Try out TOEFL dan UTBK dikerjakan di luar web, skornya dicatat di sini</span></header><div class="form"><div class="frow">'+
+    '<label>Ujian<select id="lgT"><option value="I"'+(ui.logType==='I'?' selected':'')+'>TOEFL</option><option value="U"'+(ui.logType==='U'?' selected':'')+'>UTBK</option></select></label>'+
     '<label>Skor<input type="number" id="lgS" step="0.5" min="0"></label>'+
     '<label>Tanggal<input type="date" id="lgD" value="'+dkey()+'"></label></div>'+
-    '<label>Bagian yang masih lemah<input type="text" id="lgN" placeholder="contoh: Reading T/F/NG, Writing Task 1"></label>'+
+    '<label>Bagian yang masih lemah<input type="text" id="lgN" placeholder="contoh: Listening talk akademik, Build a Sentence"></label>'+
     '<div><button class="btn" data-act="logadd">Simpan skor</button></div></div></section>';
   ['I','U'].forEach(function(k){
     var l=S.logs.filter(function(x){return x.type===k}).sort(function(a,b){return a.date<b.date?1:-1});
