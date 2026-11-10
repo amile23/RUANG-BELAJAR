@@ -946,6 +946,7 @@ function viewSet(){
   h+='</section>';
   h+='<section class="card"><header><h2>Mulai dari nol</h2></header><p class="small muted" style="margin-bottom:10px">Menghapus semua centang, skor, XP, kuis, dan materi tambahan.</p>'+
     (ui.confirmReset?'<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="small" style="font-weight:800">Yakin? Ini tidak bisa dibatalkan.</span><button class="btn sm" data-act="reset2">Ya, hapus semua</button><button class="btn ghost sm" data-act="reset0">Batal</button></div>':'<button class="btn ghost sm" data-act="reset1">Reset progres</button>')+'</section>';
+  h+='<p class="tiny muted" style="margin-top:14px">Situs belajar pribadi. Bukan situs resmi dan tidak berafiliasi dengan Universitas Indonesia. Logo UI dipakai sebagai penyemangat target.</p>';
   return h;
 }
 

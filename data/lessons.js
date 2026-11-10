@@ -684,6 +684,8 @@ RB.lessons = {
       'Aturan lesap awalan meng- dan peng-: huruf k, t, s, dan p di awal kata dasar lesap bila diikuti huruf vokal dan kata dasarnya lebih dari satu suku kata. Contoh: meng- + kalah jadi mengalah, peng- + tadah jadi penadah.',
       'Kalau k, t, s, atau p diikuti huruf konsonan (kr, pl, tr, dan sejenisnya), huruf pertama tidak lesap. Contoh: meng- + plester jadi memplester, peng- + kritik jadi pengkritik.',
       'Catatan di slide-mu: untuk kata dasar yang diawali pr (produksi, prakarsa), huruf p tetap lesap setelah peng- (pemroduksi, pemrakarsa). Jangan dihafal dulu sebelum aturan utama di atas kuat; bentuk ini jarang muncul dan penulisannya bervariasi di kamus.',
+      'Tambahan umum (halaman 6 sampai 8 dari 13 tidak ada di PDF-mu, jadi bagian ini kuisi dari aturan umum): kata dasar satu suku kata mendapat penge-/menge-: cat jadi mengecat dan pengecat, tik jadi mengetik, bom jadi mengebom. Inilah mengapa lesap k, t, s, p hanya berlaku untuk kata dasar lebih dari satu suku kata.',
+      'Tambahan umum: awalan ber- berubah menjadi be- bila kata dasar diawali r atau suku pertamanya berakhir er (bekerja, beternak, berenang dari be- + renang), dan menjadi bel- pada belajar. Awalan ter- dan per- mengikuti pola yang sama (terasa, pelajar).',
       'Awalan ter- bermakna tidak sengaja (terjatuh), paling (terbesar), dapat di- (terbaca), atau sudah di- (tertutup).',
       'Akhiran -an bermakna hasil (catatan), alat (timbangan), atau sesuatu yang di- (makanan).',
       'Akhiran -kan bermakna untuk atau melakukan bagi orang lain (membelikan adik buku) dan membuat jadi (menidurkan). Akhiran -i bermakna memberikan atau memberi sesuatu (menyelimuti), atau melakukan berulang (memukuli).',
@@ -936,6 +938,8 @@ RB.lessons = {
       'Kata majemuk adalah gabungan dua kata atau lebih yang membentuk makna baru tetapi masih berkaitan dengan kata pembentuknya. Kata majemuk ditulis terpisah. Contoh: rumah tangga (hal yang berkaitan dengan urusan rumah atau keluarga).',
       'Gabungan kata yang hanya mendapat awalan atau akhiran saja ditulis terpisah: berlipat ganda. Gabungan kata yang mendapat awalan sekaligus akhiran ditulis serangkai: melipatgandakan, mempertanggungjawabkan.',
       'Gabungan kata yang sudah padu, yaitu seolah-olah dua kata tetapi dianggap satu kata, ditulis serangkai: dukacita, sukacita, kasatmata, saputangan. Contoh lain yang lazim: matahari, olahraga, apabila.',
+      'Tambahan umum (halaman 4/18 tidak ada di PDF-mu, bagian ini kuisi dari PUEBI): bentuk terikat adalah unsur yang tidak bisa berdiri sendiri, misalnya antar-, anti-, pasca-, non-, sub-, maha-, multi-, tuna-, dan ultra-. Bentuk terikat ditulis serangkai dengan kata dasar: antarkota, antibiotik, pascasarjana, nonformal, subbagian, mahasiswa, multilateral, tunanetra, ultramodern.',
+      'Tambahan umum: kalau bentuk terikat diikuti kata yang diawali huruf kapital, dipakai tanda hubung: non-Indonesia, pan-Afrika, anti-Amerika. Bentuk maha yang diikuti kata berimbuhan atau berupa sifat Tuhan ditulis terpisah dengan huruf kapital: Maha Pengasih, Maha Esa.',
       'Kata depan (di, ke, dari, pada, kepada, untuk, dalam) ditulis terpisah dari kata sesudahnya. Awalan di- ditulis serangkai dengan kata kerja: diletakkan, tetapi kata depan terpisah: di atas meja.',
       'Fungsi kata depan: dari (asal); untuk (tujuan atau bagi); kepada (tujuan orang); ke (arah atau tujuan); pada (posisi, dan keterangan waktu); di (posisi atau tempat); dalam (tempat yang mengandung isi, dan waktu dalam jangka tertentu).',
       'Pakai kata depan sesuai konteks. Untuk orang yang dituju, pakai kepada (“surat ditujukan kepada Siska”). Pada lebih cocok untuk posisi atau waktu.',
@@ -961,7 +965,6 @@ RB.lessons = {
       'Menulis per serangkai pada satu per satu, atau memisah per pada pecahan (dua per tiga).',
       'Memberi titik pada singkatan lembaga atau satuan ukuran (K.T.P., k.m., Rp.), atau lupa titik pada singkatan gelar (S.Pd., S.H.).',
       'Memulai kalimat dengan angka.',
-      'Catatan sumber: halaman 4/18 tidak ada di PDF-mu, jadi bagian “bentuk terikat” (awalan serapan seperti antar-, pasca-) belum tercakup di sini.'
     ]
   }
   ,
