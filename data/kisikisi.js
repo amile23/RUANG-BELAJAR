@@ -57,11 +57,9 @@ RB.kisi = [
   'Latihan lewat soal bertimer. UTBK kalah di waktu, bukan di konsep.'],
  groups:[
   {g:'1 · Penalaran Umum (30 soal, 30 mnt)',items:[
-   ['Penalaran induktif','Generalisasi, analogi pola, sebab-akibat, prediksi tren','Cari pola dari 2–3 contoh, lalu uji ke contoh keempat.','utb2,utb7'],
-   ['Penalaran deduktif','Silogisme, validitas argumen, implikasi logis','Gambar diagram Venn untuk silogisme.','utb11,utb2,utb7'],
-   ['Penalaran analitik','Urutan, posisi, dan pemilihan berdasarkan batasan dalam bacaan','Catat batasan jadi tabel atau garis urutan, lalu uji pilihan satu per satu.','utb12,utb2,utb7'],
-   ['Penalaran kuantitatif','Operasi bilangan, perbandingan, deret, tafsir data','Tulis data dalam tabel kecil sebelum menghitung.','utb14,utb15,utb2,utb3'],
-   ['Kesesuaian pernyataan','Mencocokkan pernyataan dengan teks, tabel, atau diagram','Cari dasar data untuk tiap pilihan. Waspadai kata semua, selalu, hanya.','utb13']]},
+   ['Penalaran induktif','Generalisasi, analogi pola, sebab-akibat, prediksi tren, kesesuaian pernyataan dengan teks, tabel, atau diagram','Cari pola dari 2–3 contoh, lalu uji ke contoh keempat. Untuk kesesuaian pernyataan, cari dasar data tiap pilihan dan waspadai kata semua, selalu, hanya.','utb13,utb2,utb7'],
+   ['Penalaran deduktif','Silogisme, validitas argumen, implikasi logis, dan penalaran analitik (urutan, posisi, pemilihan berdasarkan batasan)','Gambar diagram Venn untuk silogisme. Untuk soal batasan, catat jadi tabel atau garis urutan lalu uji pilihan satu per satu.','utb11,utb12,utb2,utb7'],
+   ['Penalaran kuantitatif','Operasi bilangan, perbandingan, deret, tafsir data','Tulis data dalam tabel kecil sebelum menghitung.','utb14,utb15,utb2,utb3']]},
   {g:'2 · Pengetahuan & Pemahaman Umum (20 soal, 15 mnt)',items:[
    ['Pengetahuan umum','Wawasan umum, isu kebangsaan, sains populer, sejarah ringkas','Baca satu berita sains/nasional per hari, 5 menit.','utb4'],
    ['Pemahaman bahasa','Sinonim, antonim, kosakata, makna kontekstual','Pelajari kata baru lewat kalimat, bukan daftar.','utb4,ind9'],
