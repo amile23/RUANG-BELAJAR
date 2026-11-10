@@ -26,14 +26,12 @@ var SUBJ={
   fis:{n:'Fisika',s:'FIS',c:'#8A6FE0'},
   bio:{n:'Biologi',s:'BIO',c:'#3FA27A'},
   kim:{n:'Kimia',s:'KIM',c:'#E59A2F'},
-  sat:{n:'SAT',s:'SAT',c:'#2FA7B8'},
   iel:{n:'IELTS',s:'IELTS',c:'#C75AC0'},
   utb:{n:'UTBK & TKA',s:'UTBK',c:'#7A8B3C'}
 };
 var SCHOOL=['mat','ind','ing','fis','bio','kim'];
 var TRK={
   R:{n:'Rapor',c:'#CF456D',d:'Rapor & ulangan sekolah'},
-  S:{n:'SAT',c:'#2FA7B8',d:'SAT'},
   I:{n:'IELTS',c:'#C75AC0',d:'IELTS'},
   T:{n:'TKA',c:'#E59A2F',d:'TKA'},
   U:{n:'UTBK',c:'#7A8B3C',d:'UTBK-SNBT'}
@@ -44,34 +42,33 @@ var LESSONS=RB.lessons||{};
 var QUESTIONS=RB.questions||[];
 
 var MICRO=[
- {id:'m1',t:'10 kata akademik (dipakai SAT, IELTS, UTBK)'},
- {id:'m2',t:'1 soal SAT Math + 1 soal SAT Reading'},
+ {id:'m1',t:'10 kata akademik (dipakai IELTS, UTBK, TKA Inggris)'},
+ {id:'m2',t:'1 soal IELTS Reading atau 1 paragraf Writing'},
  {id:'m3',t:'1 soal penalaran (UTBK / Penalaran Matematika)'},
  {id:'m4',t:'Cek bank kesalahan 5 menit'}
 ];
-var PW={1:{R:1.3,S:1.2,I:.7,T:.6,U:.5},2:{R:1.1,S:1.8,I:.7,T:.5,U:.4},3:{R:1,S:.4,I:1.4,T:1,U:.8},4:{R:1,S:.2,I:.6,T:1.3,U:1.5}};
-var PHASE_N={1:'Fondasi',2:'Sprint SAT',3:'IELTS & TKA',4:'TKA & UTBK'};
-var PHASE_D={1:'Bangun dasar yang dipakai semua ujian + jaga nilai rapor.',2:'Fokus SAT. Rapor tetap dijaga lewat misi kecil.',3:'Setelah SAT: IELTS, lalu siap-siap TKA.',4:'TKA dan UTBK-SNBT jadi prioritas.'};
-var DAYFOCUS=[['utb','iel'],['mat','sat'],['bio','kim'],['ing','sat'],['fis','mat'],['iel','ind'],['sat','utb']];
+var PW={1:{R:1.3,I:.9,T:.7,U:.5},2:{R:1.1,I:1.7,T:.7,U:.4},3:{R:1,I:1.4,T:1,U:.8},4:{R:1,I:.6,T:1.3,U:1.5}};
+var PHASE_N={1:'Fondasi',2:'Sprint IELTS',3:'IELTS & TKA',4:'TKA & UTBK'};
+var PHASE_D={1:'Bangun dasar yang dipakai semua ujian + jaga nilai rapor.',2:'Fokus IELTS. Rapor tetap dijaga lewat misi kecil.',3:'IELTS dilanjut, mulai siap-siap TKA.',4:'TKA dan UTBK-SNBT jadi prioritas.'};
+var DAYFOCUS=[['utb','iel'],['mat','iel'],['bio','kim'],['ing','iel'],['fis','mat'],['iel','ind'],['ing','utb']];
 var MILE=[
- {d:'2027-03-06',t:'SAT, percobaan pertama (opsional)',n:'Daftar paling lambat 19 Feb 2027',a:false},
- {d:'2027-05-01',t:'SAT cadangan',n:'Daftar paling lambat 16 Apr 2027',a:false},
- {d:'2027-06-05',t:'SAT target utama',n:'Daftar paling lambat 21 Mei 2027',a:false,main:true},
  {d:'2027-10-26',t:'TKA kelas 12',n:'Perkiraan dari pola 2026. Cek pengumuman resmi.',a:true},
  {d:'2028-04-21',t:'UTBK-SNBT',n:'Perkiraan dari pola 2026. Cek SNPMB.',a:true}
 ];
-var SAT_MAIN='2027-06-05';
 var LEVELS=[[0,'Calon Maba'],[120,'Maba FK'],[350,'Anak Blok'],[700,'Asisten Lab'],[1200,'Pre-klinik'],[1900,'Koas'],[2800,'Koas Senior'],[4000,'dr. Muda'],[5600,'Dokter Umum'],[8000,'Konsulen']];
 var BOX=[1,3,7,14];
 var KIND_L={pre:'Pre-test',latihan:'Latihan',post:'Post-test',review:'Ulang kesalahan'};
 
 /* ============ state ============ */
 function defAv(){return {hijab:true,skin:1,hair:0,style:0,hjc:0,of:0,oc:0,bg:0,steto:true,kaca:false,pita:false,lencana:true}}
-function defS(){return {v:2,_t:0,done:{},pins:{},micro:{},pomo:{},plan:{},budget:90,lomba:false,exams:[],lombas:[],rapor:{},quiz:{},err:{},qxp:0,nick:'Adiva',full:'Adiva Yumna Amilia',accent:'rose',hijab:true,av:defAv(),targets:{S:1400,I:7,U:0},logs:[],custom:[]}}
+function defS(){return {v:2,_t:0,done:{},pins:{},micro:{},pomo:{},plan:{},budget:90,lomba:false,exams:[],lombas:[],rapor:{},quiz:{},err:{},qxp:0,nick:'Adiva',full:'Adiva Yumna Amilia',accent:'rose',hijab:true,av:defAv(),targets:{I:7,U:0},logs:[],custom:[]}}
 function norm(r){
   var s=Object.assign(defS(),r||{});
   if(s.exam){s.exams=(s.exams||[]).concat([{id:'e0',s:s.exam.s,date:s.exam.date,label:''}]);delete s.exam}
   (s.exams||[]).forEach(function(e){if(!e.type)e.type='UH';if(!e.bab)e.bab=[]});
+  if(s.targets)delete s.targets.S;
+  s.logs=(s.logs||[]).filter(function(l){return l.type!=='S'});
+  s.custom=(s.custom||[]).filter(function(c){return c.s!=='sat'}).map(function(c){c.tr=(c.tr||[]).filter(function(k){return k!=='S'});if(!c.tr.length)c.tr=['R'];return c});
   var av0=Object.assign(defAv(),s.av||{});
   if(r&&r.hijab===false&&!r.av)av0.hijab=false;
   s.av=av0;
@@ -301,10 +298,10 @@ function makePlan(){
   });
   if(!ring&&budget>=90){
     var sch=firstOf(function(t){return SCHOOL.indexOf(t.s)>-1&&t.m<=rem+15});
-    var sat=ph<=2?firstOf(function(t){return t.s==='sat'}):null;
+    var iel=ph<=3?firstOf(function(t){return t.s==='iel'}):null;
     var urgent=SCHOOL.some(function(s){var e=nearestExam(s);return e&&e.n<=7});
-    if(sat&&/diagnostik/i.test(sat.n)&&!urgent){tryAdd(sat,true);tryAdd(sch)}
-    else{tryAdd(sch);tryAdd(sat)}
+    if(iel&&/diagnostik/i.test(iel.n)&&!urgent){tryAdd(iel,true);tryAdd(sch)}
+    else{tryAdd(sch);tryAdd(iel)}
   }
   for(var i=0;i<cand.length;i++){tryAdd(cand[i].t)}
   S.plan[dk]=picked;
@@ -415,9 +412,9 @@ function avatar(mood,a){
    '<ellipse cx="82" cy="120" rx="8" ry="5" fill="#FF9DB5" opacity=".6"/><ellipse cx="138" cy="120" rx="8" ry="5" fill="#FF9DB5" opacity=".6"/>'+
    eyes+mouth+kaca+pita+'</g>'+spark+z+'</svg>';
 }
-var ui={exf:{s:'mat',type:'UH',date:'',label:'',bab:[]},kisi:'sat',msgI:0,filter:'all',addOpen:false,confirmReset:false,logType:'S',toastT:null,sess:null,step:null,stepFor:null,restoreOpen:false};
+var ui={exf:{s:'mat',type:'UH',date:'',label:'',bab:[]},kisi:'iel',msgI:0,filter:'all',addOpen:false,confirmReset:false,logType:'I',toastT:null,sess:null,step:null,stepFor:null,restoreOpen:false};
 function say(){
-  var h=new Date().getHours(),p=planInfo(),a=[],sat=daysTo(SAT_MAIN),lb=lombaInfo();
+  var h=new Date().getHours(),p=planInfo(),a=[],lb=lombaInfo();
   var soon=null;(S.exams||[]).forEach(function(e){var n=daysTo(e.date);if(n>=0&&n<=7&&(!soon||n<soon.n))soon={n:n,s:e.s}});
   if(p.total>0&&p.done===p.total){a.push('Semua misi hari ini beres. Hebat! Boleh istirahat dengan tenang.');a.push('Satu hari lagi yang kamu menangkan. dr. masa depan bangga!')}
   else if(lb){a.push('Lagi musim lomba, jadi misinya ringan dulu. Fokus lomba, belajar tetap jalan pelan-pelan.')}
@@ -429,7 +426,6 @@ function say(){
   else{a.push('Sudah malam. Cukup minum-minum kecil di bawah, lalu tidur.')}
   if(soon)a.push('Ulangan '+SUBJ[soon.s].n+' '+nlabel(soon.n)+'. Misi hari ini sudah diarahkan ke sana.');
   if(dueErrors().length)a.push('Ada '+dueErrors().length+' soal salah yang waktunya diulang. Ini cara tercepat naik nilai.');
-  if(sat>0)a.push(sat+' hari lagi menuju SAT. Cicil sedikit tiap hari.');
   a.push('Ingat: satu bab sering mengenai 3-4 ujian sekaligus.');
   return a[ui.msgI%a.length];
 }
@@ -606,14 +602,14 @@ function resultHtml(){
 function viewToday(){
   var dk=dkey(),d=new Date();
   if(!S.plan[dk]){makePlan()}
-  var p=planInfo(),xp=xpTotal(),L=level(xp),ph=phase(),sat=daysTo(SAT_MAIN),lb=lombaInfo(),fo=DAYFOCUS[d.getDay()];
+  var p=planInfo(),xp=xpTotal(),L=level(xp),ph=phase(),lb=lombaInfo(),fo=DAYFOCUS[d.getDay()];
   var due=dueErrors().length;
   var h='<section class="card hero"><div class="avwrap" data-act="say" role="button" tabindex="0" aria-label="Ketuk avatar untuk pesan baru">'+avatar(mood())+'</div><div>'+
     '<div class="bubble" id="bubble">'+esc(say())+'</div>'+
     '<h1 style="margin-top:14px">'+esc('Halo, '+(S.nick||'Adiva')+'!')+'</h1>'+
     '<p class="idline">Calon dr. '+esc(S.full||'Adiva Yumna Amilia')+', Sp.DVE · Fakultas Kedokteran UI</p>'+
     '<p class="muted">'+HARI[d.getDay()]+', '+d.getDate()+' '+BULAN[d.getMonth()]+' '+d.getFullYear()+'</p>'+
-    '<div class="hero-meta"><a class="btn ghost sm" href="#avatar">Ganti penampilan</a><span class="chip">Fase: '+PHASE_N[ph]+'</span><span class="chip">'+(sat>0?sat+' hari lagi SAT utama ('+fdate(SAT_MAIN)+')':'SAT utama sudah lewat')+'</span></div>'+
+    '<div class="hero-meta"><a class="btn ghost sm" href="#avatar">Ganti penampilan</a><span class="chip">Fase: '+PHASE_N[ph]+'</span><span class="chip">Target IELTS '+esc(String(S.targets.I||'—'))+'</span></div>'+
     '<div class="xpbar" aria-label="Progres level"><b style="width:'+L.pct+'%"></b></div>'+
     '<p class="tiny muted" style="margin-top:4px">'+(L.nxt?xp+' / '+L.nxt+' XP menuju level berikutnya':'Level maksimal')+'</p></div></section>';
 
@@ -836,20 +832,19 @@ function viewGoal(){
     if(!past)nextDone=true;
     h+='<li class="'+cls+'"><div class="dt">'+fdate(m.d).replace(/ \d{4}$/,'')+'<small>'+m.d.slice(0,4)+(m.a?' · perkiraan':'')+'</small></div><div><div style="font-weight:800">'+esc(m.t)+(m.main?' · target utama':'')+'</div><div class="small muted">'+esc(m.n)+' · '+(past?'sudah lewat':nlabel(n))+'</div></div></li>';
   });
-  h+='</ul><p class="tiny muted" style="margin-top:12px">Tanggal SAT dari College Board. Tanggal TKA dan UTBK masih perkiraan dari jadwal tahun ini. Syarat FK UI (misalnya nilai bahasa Inggris untuk kelas internasional) sering berubah, jadi cek ulang di situs resmi FK UI dan SNPMB.</p></section>';
+  h+='</ul><p class="tiny muted" style="margin-top:12px">Tanggal TKA dan UTBK masih perkiraan dari jadwal tahun ini. Syarat FK UI (misalnya nilai bahasa Inggris untuk kelas internasional) sering berubah, jadi cek ulang di situs resmi FK UI dan SNPMB.</p></section>';
 
   h+='<section class="card"><header><h2>Skor target</h2></header><div class="form"><div class="frow">'+
-    '<label>SAT (400–1600)<input type="number" data-field="tS" value="'+(S.targets.S||'')+'" min="400" max="1600" step="10"></label>'+
     '<label>IELTS (0–9)<input type="number" data-field="tI" value="'+(S.targets.I||'')+'" min="0" max="9" step="0.5"></label>'+
     '<label>UTBK (skor)<input type="number" data-field="tU" value="'+(S.targets.U||'')+'" min="0" max="1000" step="5"></label></div></div></section>';
 
-  h+='<section class="card"><header><h2>Catat try out</h2><span class="sp muted small">Bluebook dan IELTS dikerjakan di luar web, skornya dicatat di sini</span></header><div class="form"><div class="frow">'+
-    '<label>Ujian<select id="lgT"><option value="S"'+(ui.logType==='S'?' selected':'')+'>SAT</option><option value="I"'+(ui.logType==='I'?' selected':'')+'>IELTS</option><option value="U"'+(ui.logType==='U'?' selected':'')+'>UTBK</option></select></label>'+
+  h+='<section class="card"><header><h2>Catat try out</h2><span class="sp muted small">Try out IELTS dan UTBK dikerjakan di luar web, skornya dicatat di sini</span></header><div class="form"><div class="frow">'+
+    '<label>Ujian<select id="lgT"><option value="I"'+(ui.logType==='I'?' selected':'')+'>IELTS</option><option value="U"'+(ui.logType==='U'?' selected':'')+'>UTBK</option></select></label>'+
     '<label>Skor<input type="number" id="lgS" step="0.5" min="0"></label>'+
     '<label>Tanggal<input type="date" id="lgD" value="'+dkey()+'"></label></div>'+
-    '<label>Bagian yang masih lemah<input type="text" id="lgN" placeholder="contoh: Math bagian geometri, R&W transisi"></label>'+
+    '<label>Bagian yang masih lemah<input type="text" id="lgN" placeholder="contoh: Reading T/F/NG, Writing Task 1"></label>'+
     '<div><button class="btn" data-act="logadd">Simpan skor</button></div></div></section>';
-  ['S','I','U'].forEach(function(k){
+  ['I','U'].forEach(function(k){
     var l=S.logs.filter(function(x){return x.type===k}).sort(function(a,b){return a.date<b.date?1:-1});
     h+='<section class="card"><header><h2>Grafik '+TRK[k].n+'</h2></header>'+chart(k)+
       l.map(function(x){return '<div class="logrow"><span class="sc">'+esc(x.score)+'</span><div style="flex:1"><div class="small" style="font-weight:800">'+fdate(x.date)+'</div>'+(x.note?'<div class="small muted">'+esc(x.note)+'</div>':'')+'</div><button class="btn ghost sm" data-act="logdel" data-id="'+esc(x.id)+'">Hapus</button></div>'}).join('')+'</section>';
@@ -862,7 +857,7 @@ function summary(){
   var o='RINGKASAN PROGRES ('+fdate(dkey())+')\n';
   Object.keys(SUBJ).forEach(function(s){var ts=all().filter(function(t){return t.s===s});o+=SUBJ[s].n+': '+ts.filter(topicDone).length+'/'+ts.length+' materi\n'});
   Object.keys(TRK).forEach(function(k){o+='Target '+TRK[k].n+': '+Math.round(pctTrack(k)*100)+'%\n'});
-  ['S','I','U'].forEach(function(k){var l=lastScore(k);if(l!==null)o+='Skor terakhir '+TRK[k].n+': '+l+' (target '+(S.targets[k]||'-')+')\n'});
+  ['I','U'].forEach(function(k){var l=lastScore(k);if(l!==null)o+='Skor terakhir '+TRK[k].n+': '+l+' (target '+(S.targets[k]||'-')+')\n'});
   SCHOOL.forEach(function(s){var r=S.rapor[s];if(r&&r.now)o+='Rapor '+SUBJ[s].n+': '+r.now+(r.target?' (target '+r.target+')':'')+'\n'});
   var w=all().filter(function(t){var m=mastery(t);return m!==null&&m<0.7}).map(function(t){return t.n+' '+Math.round(mastery(t)*100)+'%'});
   if(w.length)o+='Bab lemah: '+w.join('; ')+'\n';
@@ -922,7 +917,7 @@ function kExamSum(ex){
   return {n:n,les:les,q:q,pct:n?Math.round(pc/n):0};
 }
 function viewStrategi(){
-  var K=RB.kisi||[],cur=ui.kisi||'sat',h='';
+  var K=RB.kisi||[],cur=ui.kisi||'iel',h='';
   var tabs=K.map(function(e){return '<button data-act="kisi" data-v="'+e.id+'" aria-pressed="'+(cur===e.id)+'">'+esc(e.n)+'</button>'}).join('')+'<button data-act="kisi" data-v="gap" aria-pressed="'+(cur==='gap')+'">Belum dimasukkan</button>';
   var sakti=BASE.filter(function(t){return t.st===1&&t.tr.length>=4}).sort(function(a,b){return b.tr.length-a.tr.length||a.i-b.i}).slice(0,8);
   h+='<section class="card hero2"><header><h2>Kisi-kisi & strategi</h2></header><p class="small" style="margin-bottom:10px">Satu bab sering dipakai beberapa ujian sekaligus. Itu dasar “berenang sambil minum”: pilih bab yang menolong paling banyak target dulu. Tiap ujian di bawah punya peta bab, isi bab, dan cara kerjanya.</p><div class="filters seg2" role="group" aria-label="Pilih ujian">'+tabs+'</div></section>';
@@ -1067,7 +1062,6 @@ document.addEventListener('change',function(ev){
     persist();render();return;
   }
   else if(f==='nick'){S.nick=val.trim()}
-  else if(f==='tS'){S.targets.S=+val||0}
   else if(f==='tI'){S.targets.I=+val||0}
   else if(f==='tU'){S.targets.U=+val||0}
   else if(f.indexOf('rn:')===0||f.indexOf('rt:')===0){

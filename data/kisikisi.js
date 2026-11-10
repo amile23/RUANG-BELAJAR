@@ -1,66 +1,19 @@
-/* Peta kisi-kisi. Isinya dari: PDF kisi-kisi TKA 2026 (resmi), ruangtes.id (UTBK), struktur resmi Digital SAT,
+/* Peta kisi-kisi. Isinya dari: PDF kisi-kisi TKA 2026 (resmi), ruangtes.id (UTBK),
    PDF IELTS Reading Strategy + Task 1 Checklist + IELTS Prep, buku Matriks kelas XI.
    Satu item = [nama, isi bab, cara kerjanya (strategi singkat), id materi di Peta Belajar (pisah koma)] */
 window.RB = window.RB || {};
 RB.kisi = [
-{id:'sat',n:'SAT',c:'#2FA7B8',
- fmt:'Digital SAT (Bluebook): Reading & Writing 2 modul × 27 soal × 32 menit; Math 2 modul × 22 soal × 35 menit. Modul ke-2 menyesuaikan hasil modul ke-1 (adaptif). Kalkulator Desmos tersedia di seluruh bagian Math.',
- sumber:'Struktur resmi Digital SAT (College Board) + buku 411 SAT Algebra & Geometry milikmu. Halaman Khan Academy tidak bisa dibaca otomatis, jadi cocokkan lagi dengan daftar topik di Khan kalau ada beda.',
- strat:[
-  'Modul pertama adalah penentu. Kerjakan dengan teliti, jangan buru-buru, karena hasilnya menentukan seberapa sulit modul kedua.',
-  'Math: kalau soal berbentuk grafik atau persamaan rumit, coba Desmos dulu. Latih Desmos sampai refleks.',
-  'R&W: jawaban selalu ada di teks. Cari kalimat bukti, bukan pakai perasaan.',
-  'Setelah tiap latihan, tulis ulang soal yang salah ke bank kesalahan. Itu yang paling cepat menaikkan skor.',
-  'Full test Bluebook cukup 1 kali per 2–3 minggu. Sisanya latihan per domain.'],
- groups:[
-  {g:'Math · Algebra',items:[
-   ['Persamaan linear 1 variabel','Cari nilai x, soal tanpa solusi / solusi tak hingga','Kalau kedua sisi jadi sama persis: solusi tak hingga. Kalau x hilang tapi tidak sama: tidak ada solusi.','sat2,mat2'],
-   ['Persamaan & fungsi linear 2 variabel','Gradien, titik potong, tafsir garis dalam cerita','Dalam cerita, gradien = perubahan per satuan (biaya per jam, dst.), titik potong y = nilai awal.','sat2,mat2'],
-   ['Sistem 2 persamaan linear','Substitusi atau eliminasi, jumlah solusi','Gradien sama + titik potong beda = tak punya solusi. Sama semua = tak hingga.','sat2,mat2'],
-   ['Pertidaksamaan linear','Penyelesaian dan tafsirannya dalam soal cerita','Kalikan atau bagi dengan bilangan negatif: tanda dibalik.','sat2,mat2']]},
-  {g:'Math · Advanced Math',items:[
-   ['Ekspresi ekuivalen','Faktorisasi, memperluas, menyederhanakan, eksponen & akar','Tulis ulang dalam bentuk yang diminta pilihan jawaban. Pola umum: selisih kuadrat dan kuadrat sempurna.','sat3,mat1'],
-   ['Persamaan non-linear 1 variabel & sistemnya','Kuadrat, rasional, akar; sistem linear–kuadrat','Kuadrat: faktorkan, lengkapi kuadrat, atau rumus abc. Cek diskriminan untuk jumlah akar.','sat3,mat1,mat9'],
-   ['Fungsi non-linear','Kuadrat, eksponensial, polinomial, transformasi grafik','Eksponensial: a·bˣ, b>1 tumbuh, 0<b<1 meluruh. Titik puncak parabola sering ditanya.','sat3,mat15,mat3']]},
-  {g:'Math · Problem-Solving & Data Analysis',items:[
-   ['Rasio, laju, proporsi, satuan','Konversi satuan, perbandingan, kecepatan','Tulis satuan di setiap angka lalu coret. Cara ini mencegah salah konversi.','sat4'],
-   ['Persentase','Naik/turun persen, persen berurutan','Perubahan persen berurutan dikalikan (1+p), bukan ditambah.','sat4'],
-   ['Data satu variabel','Mean, median, simpangan baku, bentuk sebaran','Tambah data ekstrem: mean ikut bergeser, median hampir tidak.','sat17,mat7'],
-   ['Data dua variabel','Scatterplot, garis tren, model linear/eksponensial','Tafsirkan gradien garis tren dengan satuannya.','sat17'],
-   ['Peluang & peluang bersyarat','Tabel dua arah, peluang gabungan','Peluang bersyarat: penyebut = jumlah baris/kolom yang diberi syarat.','sat17,mat7'],
-   ['Inferensi & klaim statistik','Margin of error, sampel acak, sebab-akibat','Hasil survei hanya bisa digeneralisasi ke populasi yang sampelnya acak.','sat17']]},
-  {g:'Math · Geometry & Trigonometry',items:[
-   ['Luas & volume','Bangun datar, prisma, silinder, kerucut, bola','Rumus volume diberikan di soal. Fokus ke cara menyusun persamaannya.','sat5,mat6'],
-   ['Garis, sudut, segitiga','Sudut dalam, sejajar, kesebangunan, kongruensi','Kesebangunan: bandingkan sisi yang bersesuaian, bukan sembarang sisi.','sat5,mat17'],
-   ['Segitiga siku-siku & trigonometri','Pythagoras, sin/cos/tan, segitiga 30-60-90 dan 45-45-90','Hafal triple 3-4-5, 5-12-13, 8-15-17. Sin sudut = cos sudut pelengkapnya.','sat5,mat5'],
-   ['Lingkaran','Persamaan lingkaran, busur, juring, sudut pusat','Persamaan lingkaran: lengkapi kuadrat untuk mencari pusat dan jari-jari.','sat5,mat6']]},
-  {g:'Reading & Writing · Craft & Structure',items:[
-   ['Words in Context','Arti kata/frasa sesuai konteks kalimat','Tutup pilihan jawaban, tebak kata sendiri dulu dari konteks, baru cocokkan.','sat6,iel7'],
-   ['Text Structure & Purpose','Fungsi sebuah kalimat atau tujuan keseluruhan teks','Tanya diri: bagian ini tugasnya apa? Menjelaskan, mengkritik, memberi contoh?','sat6'],
-   ['Cross-Text Connections','Hubungan dua teks pendek','Ringkas posisi teks 1 dan teks 2 dalam satu kalimat masing-masing, lalu bandingkan.','sat6']]},
-  {g:'Reading & Writing · Information & Ideas',items:[
-   ['Central Ideas & Details','Ide utama dan detail pendukung','Ide utama harus mencakup seluruh teks, bukan satu detail saja.','sat7,ing4'],
-   ['Command of Evidence','Bukti tekstual atau data dalam grafik/tabel','Cek tiap pilihan: apakah benar-benar mendukung klaim, bukan hanya satu topik dengannya.','sat7'],
-   ['Inferences','Simpulan logis dari teks','Jawaban benar tidak menambah fakta baru. Pilihan yang terlalu ekstrem biasanya salah.','sat7,ing4']]},
-  {g:'Reading & Writing · Standard English Conventions',items:[
-   ['Boundaries','Titik, koma, titik koma, titik dua, tanda pisah','Dua klausa lengkap tidak boleh disambung koma saja. Pakai titik, titik koma, atau konjungsi.','sat8,ing1'],
-   ['Form, Structure & Sense','Tenses, subjek–predikat, pronomina, modifier, plural/possessive','Cari subjek asli kalimat, lewati frasa tambahan di tengah, lalu cek kesesuaian.','sat8,ing1,ing3']]},
-  {g:'Reading & Writing · Expression of Ideas',items:[
-   ['Rhetorical Synthesis','Gabungkan catatan jadi satu kalimat yang memenuhi tujuan','Baca dulu tujuan di soal (misal: menekankan perbedaan), lalu pilih kalimat yang memuatnya.','sat9'],
-   ['Transitions','Kata penghubung yang tepat','Tentukan hubungan antarkalimat dulu: lanjutan, kontras, sebab, contoh. Baru pilih kata.','sat9']]}
- ]},
-
 {id:'tka',n:'TKA',c:'#E59A2F',
  fmt:'Mapel pilihanmu: Matematika, B. Indonesia, B. Inggris, Biologi, Kimia. Kisi-kisi di bawah dibaca langsung dari PDF kisi-kisi resmi TKA-SMA 2026 yang kamu kirim.',
  sumber:'KISI-KISI TKA-SMA 2026 (PDF-mu). PDF-nya berupa gambar, jadi dibaca dengan OCR; beberapa kata bisa kurang tepat.',
  strat:[
   'TKA menilai pemahaman dan penalaran, bukan hafalan. Latihan terbaik: soal cerita dan teks wacana.',
-  'Karena bab TKA Matematika hampir sama dengan SAT, UTBK, dan rapor, satu kali belajar menolong empat tujuan.',
+  'Karena bab TKA Matematika hampir sama dengan UTBK dan rapor, satu kali belajar menolong tiga tujuan.',
   'Kimia & Biologi: soal sering berupa wacana atau data. Biasakan baca grafik/tabel sebelum membaca pilihan.',
   'B. Indonesia & Inggris: tiga level yang sama (paham teks → simpulkan → nilai/apresiasi). Latih level 3, itu yang paling jarang dilatih.'],
  groups:[
   {g:'Matematika',items:[
-   ['Bilangan real','Jenis & sifat bilangan, operasi, bilangan berpangkat bulat/pecahan','Hafal sifat pangkat. Muncul lagi di SAT dan UTBK.','mat3'],
+   ['Bilangan real','Jenis & sifat bilangan, operasi, bilangan berpangkat bulat/pecahan','Hafal sifat pangkat. Muncul lagi di UTBK dan rapor.','mat3'],
    ['Persamaan & pertidaksamaan linear','Sistem persamaan dan pertidaksamaan linear, maksimal 3 variabel; program linear','Ubah cerita jadi persamaan dulu. Program linear: gambar daerah, uji titik pojok.','mat2,mat16'],
    ['Fungsi','Domain, kodomain, range; linear, kuadrat, rasional; invers; komposisi','Invers: tukar x dan y lalu selesaikan. Komposisi: kerjakan dari dalam ke luar.','mat15,mat1'],
    ['Barisan & deret','Aritmetika dan geometri; bunga tunggal & majemuk; pertumbuhan dan peluruhan','Bunga tunggal = aritmetika, bunga majemuk = geometri.','mat4'],
@@ -99,8 +52,8 @@ RB.kisi = [
  sumber:'ruangtes.id/kisi-kisi/utbk',
  strat:[
   'Mulai dari seksi yang kamu kuat untuk mengumpulkan poin, lalu pindah ke yang sulit.',
-  'Penalaran Matematika dan Pengetahuan Kuantitatif memakai bab SMA yang sama dengan TKA dan SAT, jadi tumpang tindih besar.',
-  'Literasi Inggris sama dengan SAT Reading dan IELTS Reading, tinggal ganti tipe soal.',
+  'Penalaran Matematika dan Pengetahuan Kuantitatif memakai bab SMA yang sama dengan TKA dan rapor, jadi tumpang tindih besar.',
+  'Literasi Inggris mirip IELTS Reading dan TKA Inggris, tinggal ganti tipe soal.',
   'Latihan lewat soal bertimer. UTBK kalah di waktu, bukan di konsep.'],
  groups:[
   {g:'1 · Penalaran Umum (30 soal, 30 mnt)',items:[
@@ -117,14 +70,14 @@ RB.kisi = [
    ['Penyuntingan','Kata baku, struktur, makna ganda, redundansi','Coret kata yang berulang makna, lalu cek ejaan.','ind3,utb4']]},
   {g:'4 · Pengetahuan Kuantitatif (20 soal, 20 mnt)',items:[
    ['Aritmetika','Pecahan, persentase, rasio, rata-rata, KPK–FPB','Latih hitung cepat tanpa kalkulator.','utb3,mat3'],
-   ['Aljabar','Persamaan, sistem persamaan, pertidaksamaan, fungsi sederhana','Sama dengan bab SAT Algebra.','utb3,mat2,mat15'],
+   ['Aljabar','Persamaan, sistem persamaan, pertidaksamaan, fungsi sederhana','Sama dengan bab TKA Matematika.','utb3,mat2,mat15'],
    ['Geometri','Bangun datar dan ruang, sudut, kesebangunan, koordinat','Gambar ulang sketsa soal.','utb3,mat17'],
    ['Statistika & peluang','Mean/median/modus, simpangan, peluang, kombinasi/permutasi','Bedakan permutasi (urutan penting) dan kombinasi.','mat7,utb3']]},
   {g:'5 · Literasi Bahasa Indonesia (30 soal, 43 mnt)',items:[
    ['Teks informasional','Menemukan informasi, menyimpulkan, mengevaluasi argumen','Tandai klaim, bukti, dan kesimpulan penulis.','utb10,ind5'],
    ['Teks sastra','Tema, tokoh, suasana, makna kiasan, amanat','Tentukan suasana dari pilihan kata, bukan dari ringkasan cerita.','utb10,ind8']]},
   {g:'6 · Literasi Bahasa Inggris (20 soal, 20 mnt)',items:[
-   ['Informational text','Main idea, inference, vocabulary in context, author’s purpose','Sama dengan SAT Reading.','utb6,ing4,sat7'],
+   ['Informational text','Main idea, inference, vocabulary in context, author’s purpose','Mirip IELTS Reading dan TKA Inggris.','utb6,ing4,iel3'],
    ['Literary text','Theme, character, tone, figurative language','Tone ada di pilihan kata sifat dan kata kerja penulis.','utb6,ing4']]},
   {g:'7 · Penalaran Matematika (20 soal, 42 mnt)',items:[
    ['Bilangan','Bulat, pecahan, desimal, persen, eksponen, akar, logaritma dasar','Soal sering berupa konteks sehari-hari.','utb5,mat3'],
@@ -139,7 +92,7 @@ RB.kisi = [
  strat:[
   'Reading: jawaban selalu urut sesuai teks. Cari lokasinya dulu, baru baca detail di situ.',
   'Writing & Speaking biasanya skor paling rendah. Mulai latihan lebih awal dan rekam dirimu.',
-  'Kosakata akademik yang sama dipakai di SAT dan UTBK Inggris, jadi latihan satu menolong tiga.',
+  'Kosakata akademik yang sama dipakai di UTBK dan TKA Inggris, jadi latihan satu menolong tiga.',
   'Mulai dengan tes resmi gratis untuk tahu posisi awalmu, lalu latihan per tipe soal.'],
  groups:[
   {g:'Reading · 12 tipe soal',items:[
@@ -168,7 +121,7 @@ RB.kisi = [
  sumber:'Buku “Matriks untuk SMA/SMK Kelas XI” (PDF-mu). Bab mapel lain: perkiraan, belum dicocokkan dengan sekolahmu.',
  strat:[
   'Kerjakan ulangan dari bab yang paling dekat jadwalnya. Planner otomatis menaikkan prioritas mapel yang punya ulangan dalam 21 hari.',
-  'Sebisa mungkin pilih bab sekolah yang juga keluar di TKA/SAT/UTBK (ditandai banyak target). Bab itu paling hemat waktu.',
+  'Sebisa mungkin pilih bab sekolah yang juga keluar di TKA, UTBK, atau IELTS (ditandai banyak target). Bab itu paling hemat waktu.',
   'Waktu lomba, cukup 1 misi kecil per hari. Rapor aman kalau tidak putus sama sekali.'],
  groups:[
   {g:'Matematika (dari buku Matriks)',items:[
@@ -182,7 +135,7 @@ RB.kisi = [
    ['Fisika','Vektor & kinematika, Newton, energi & momentum, fluida, kalor, termodinamika, gelombang, rotasi','Gambarkan gaya (free-body diagram) sebelum menghitung.','fis1,fis2,fis3,fis5,fis6,fis7,fis8,fis9'],
    ['Biologi','Sel, metabolisme, sistem organ, genetika','Banyak bab yang sama dengan TKA Biologi.','bio1,bio2,bio4,bio5,bio6,bio7,bio8'],
    ['Kimia','Termokimia, laju, kesetimbangan, asam–basa, penyangga, Ksp, hidrokarbon','Banyak bab yang sama dengan TKA Kimia.','kim2,kim3,kim4,kim5,kim6,kim7,kim8'],
-   ['Bahasa Indonesia & Inggris','Teks eksposisi, argumentasi, struktur teks; tenses, conditional, passive','Sama dengan bab TKA dan SAT/UTBK.','ind1,ind2,ind3,ing1,ing2,ing3']]}
+   ['Bahasa Indonesia & Inggris','Teks eksposisi, argumentasi, struktur teks; tenses, conditional, passive','Sama dengan bab TKA dan UTBK.','ind1,ind2,ind3,ing1,ing2,ing3']]}
  ]}
 ];
 
@@ -194,12 +147,10 @@ RB.gap = [
  {t:'TKA: Matematika wajib atau tingkat lanjut (TL)?',d:'Dalam PDF ada edisi Matematika, Matematika TL, B. Indonesia TL, dan B. Inggris TL. Web ini memakai edisi biasa. Kabari kalau kamu ambil TL.'},
  {t:'TKA Biologi & Kimia lengkap',d:'OCR membaca halaman Biologi dan Kimia hanya sebagian (misalnya Biologi tidak menampilkan genetika/evolusi, Kimia elektrokimia terbaca sebagian). Kirim foto halaman PDF yang jelas kalau ada bagian yang terlewat.'},
  {t:'Tanggal resmi TKA dan UTBK',d:'Tanggal di web masih perkiraan dari pola 2026. Kirim tanggal dari pengumuman resmi ketika sudah keluar.'},
- {t:'SAT: daftar topik dari Khan Academy',d:'Halaman Khan Academy tidak bisa dibaca otomatis. Peta SAT di web memakai struktur resmi Digital SAT. Kalau ada topik di Khan yang tidak ada di sini, screenshot dan kirim.'},
- {t:'SAT: target skor dan tanggal daftar',d:'Target 1400 sementara. Ubah di tab Rapor & Target. Tanggal SAT target: 5 Juni 2027 (daftar paling lambat 21 Mei 2027).'},
- {t:'IELTS: Academic atau General, target band',d:'Web mengasumsikan Academic dan band 7. Beri tahu kalau berbeda.'},
+ {t:'IELTS: Academic atau General, target band',d:'Web mengasumsikan Academic dan target band 7. Kabari kalau berbeda, dan kapan rencana tes IELTS-mu supaya tanggalnya masuk jadwal.'},
  {t:'IELTS: materi Listening dan Speaking',d:'PDF-mu fokus ke Reading dan Writing Task 1. Belum ada materi Listening, Speaking, dan Writing Task 2.'},
  {t:'UTBK: materi tiap seksi',d:'Sudah ada peta 7 seksi. Materi dan contoh soalnya belum ada. Kirim contoh soal pola yang sering keluar.'},
  {t:'Pola soal dari kamu',d:'Kirim 5–10 contoh soal per bab (foto atau PDF). Claude membuat soal baru dengan pola sama, bukan menyalin soalnya.'},
- {t:'File prep-plan-5.pdf',d:'Isinya checklist UCAT (tes masuk kedokteran Inggris/Australia), bukan SAT/UTBK/TKA. Tidak dipakai kecuali kamu mau mendaftar kedokteran luar negeri.'},
+ {t:'File prep-plan-5.pdf',d:'Isinya checklist UCAT (tes masuk kedokteran Inggris/Australia), bukan IELTS/UTBK/TKA. Tidak dipakai kecuali kamu mau mendaftar kedokteran luar negeri.'},
  {t:'Logo Universitas Indonesia',d:'Web memakai lencana “FK UI” buatan sendiri. Kirim file logo resmi yang boleh kamu pakai, lalu Claude menaruhnya di folder assets/ dan otomatis tampil.'}
 ];
