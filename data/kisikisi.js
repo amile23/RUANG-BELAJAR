@@ -58,7 +58,8 @@ RB.kisi = [
  groups:[
   {g:'1 · Penalaran Umum (30 soal, 30 mnt)',items:[
    ['Penalaran induktif','Generalisasi, analogi pola, sebab-akibat, prediksi tren','Cari pola dari 2–3 contoh, lalu uji ke contoh keempat.','utb2,utb7'],
-   ['Penalaran deduktif','Silogisme, validitas argumen, implikasi logis','Gambar diagram Venn untuk silogisme.','utb2,utb7'],
+   ['Penalaran deduktif','Silogisme, validitas argumen, implikasi logis','Gambar diagram Venn untuk silogisme.','utb11,utb2,utb7'],
+   ['Penalaran analitik','Urutan, posisi, dan pemilihan berdasarkan batasan dalam bacaan','Catat batasan jadi tabel atau garis urutan, lalu uji pilihan satu per satu.','utb12,utb2,utb7'],
    ['Penalaran kuantitatif','Operasi bilangan, perbandingan, deret, tafsir data','Tulis data dalam tabel kecil sebelum menghitung.','utb2,utb3']]},
   {g:'2 · Pengetahuan & Pemahaman Umum (20 soal, 15 mnt)',items:[
    ['Pengetahuan umum','Wawasan umum, isu kebangsaan, sains populer, sejarah ringkas','Baca satu berita sains/nasional per hari, 5 menit.','utb4'],
@@ -146,7 +147,7 @@ RB.gap = [
  {t:'Tanggal resmi TKA dan UTBK',d:'Tanggal di web masih perkiraan dari pola 2026. Kirim tanggal dari pengumuman resmi ketika sudah keluar.'},
  {t:'TOEFL: iBT atau ITP, target skor, tanggal tes',d:'Web mengasumsikan TOEFL iBT format 2026. Kalau kampus meminta TOEFL ITP, kabari supaya peta bab disesuaikan. Isi target skor di tab Rapor & Target.'},
  {t:'TOEFL: materi latihan',d:'Belum ada materi dan soal TOEFL. Kirim sumber latihanmu (buku, PDF, atau soal yang pernah kamu kerjakan) dan Claude membuat latihan polanya.'},
- {t:'UTBK: materi tiap seksi',d:'Sudah ada peta 7 seksi. Materi dan contoh soalnya belum ada. Kirim contoh soal pola yang sering keluar.'},
+ {t:'UTBK: materi tiap seksi',d:'Sudah ada peta 7 seksi. Materi dan soal yang sudah ada: simpulan logis dan penalaran analitik (Penalaran Umum). Seksi lain (kuantitatif, PPU, PBM, literasi) masih menunggu contoh soalmu.'},
  {t:'Pola soal dari kamu',d:'Kirim 5–10 contoh soal per bab (foto atau PDF). Claude membuat soal baru dengan pola sama, bukan menyalin soalnya.'},
  {t:'File prep-plan-5.pdf',d:'Isinya checklist UCAT (tes masuk kedokteran Inggris/Australia), bukan TOEFL/UTBK/TKA. Tidak dipakai kecuali kamu mau mendaftar kedokteran luar negeri.'},
  {t:'Logo Universitas Indonesia',d:'Web memakai lencana “FK UI” buatan sendiri. Kirim file logo resmi yang boleh kamu pakai, lalu Claude menaruhnya di folder assets/ dan otomatis tampil.'}

@@ -539,4 +539,59 @@ RB.lessons = {
       'Pola TKA: infografik minyak bumi atau teks bahan bakar. Cari rumus dan jenis reaksi yang diminta, lalu kaitkan dengan dampak lingkungan.'
     ]
   }
+  ,
+  utb11: {
+    intro: 'Simpulan logis mengajarkan cara menilai benar–salahnya kalimat majemuk dan menarik kesimpulan yang pasti benar dari dua pernyataan. Di UTBK, bab ini muncul sebagai soal penalaran deduktif. Kuncinya: hafal tabel kebenaran sekali, lalu pakai ekuivalensi untuk menyederhanakan.',
+    points: [
+      'Pernyataan adalah kalimat yang bisa dinilai Benar (B) atau Salah (S). Negasi (ingkaran, ditulis ~p) membalik nilainya.',
+      'Konjungsi p ∧ q (kata "dan"): benar hanya jika p dan q sama-sama benar. Selain itu salah.',
+      'Disjungsi p ∨ q (kata "atau"): salah hanya jika p dan q sama-sama salah. Selain itu benar.',
+      'Implikasi p ⇒ q ("jika p maka q"): salah hanya jika p benar dan q salah. Kalau p salah, implikasi selalu benar.',
+      'Biimplikasi p ⇔ q ("p jika dan hanya jika q"): benar jika p dan q bernilai sama (sama-sama B atau sama-sama S).',
+      'Tiga bentuk dari p ⇒ q: konvers q ⇒ p, invers ~p ⇒ ~q, kontraposisi ~q ⇒ ~p. Hanya kontraposisi yang ekuivalen (nilai kebenarannya sama) dengan p ⇒ q. Konvers dan invers ekuivalen satu sama lain, tetapi tidak dengan implikasinya.',
+      'Ingkaran: ~(p ∧ q) ≡ ~p ∨ ~q dan ~(p ∨ q) ≡ ~p ∧ ~q (De Morgan: "dan" jadi "atau", tiap bagian diingkar).',
+      'Ingkaran implikasi: ~(p ⇒ q) ≡ p ∧ ~q. Implikasi juga bisa ditulis p ⇒ q ≡ ~p ∨ q.',
+      'Biimplikasi p ⇔ q ≡ (p ⇒ q) ∧ (q ⇒ p). Ingkarannya ~(p ⇔ q) ≡ (p ∧ ~q) ∨ (~p ∧ q).',
+      'Ingkaran kuantor: "semua" diingkar menjadi "ada yang tidak", dan "ada" diingkar menjadi "tidak ada" (atau "semua tidak").',
+      'Tautologi: bernilai benar untuk semua kemungkinan (contoh p ∨ ~p). Kontradiksi: selalu salah (contoh p ∧ ~p).',
+      'Modus ponens: p ⇒ q dan p benar, maka q. Modus tollens: p ⇒ q dan ~q, maka ~p. Silogisme: p ⇒ q dan q ⇒ r, maka p ⇒ r.'
+    ],
+    examples: [
+      { q: 'Tentukan ingkaran dari "Jika Adiva belajar rutin, maka nilainya naik".', a: 'Ingkaran p ⇒ q adalah p ∧ ~q: "Adiva belajar rutin dan nilainya tidak naik".' },
+      { q: 'Premis 1: Jika rapat selesai, maka ruang dikunci. Premis 2: Jika ruang dikunci, maka lampu dimatikan. Apa kesimpulannya?', a: 'Pola silogisme: Jika rapat selesai, maka lampu dimatikan.' },
+      { q: 'Premis 1: Jika hujan, maka lapangan basah. Premis 2: Lapangan tidak basah. Apa kesimpulannya?', a: 'Modus tollens: hari tidak hujan.' }
+    ],
+    traps: [
+      'Menganggap konvers atau invers sama nilainya dengan implikasi. Hanya kontraposisi yang pasti sama.',
+      'Mengingkar "jika p maka q" dengan "jika p maka tidak q". Yang benar adalah "p dan tidak q".',
+      'Menarik kesimpulan dari q benar pada p ⇒ q (misalnya "jalan basah, maka hujan"). Itu tidak sah, karena jalan bisa basah oleh sebab lain.',
+      'Lupa bahwa implikasi dengan p salah selalu benar (contoh "jika 2 = 3 maka 5 = 7" tetap benar).',
+      'Saat mengingkar "dan"/"atau", lupa mengganti kata hubungnya sekaligus mengingkar kedua bagian.',
+      'Pola UTBK: dua premis lalu lima pilihan kesimpulan. Ubah ke simbol, cocokkan dengan modus ponens, tollens, atau silogisme, lalu cek pilihan satu per satu.'
+    ]
+  },
+  utb12: {
+    intro: 'Penalaran analitik menguji kemampuan menarik kesimpulan dari bacaan yang berisi aturan atau batasan, misalnya urutan tampil, posisi duduk, atau pemilihan anggota tim. Semua informasi ada di soal, jadi kuncinya rapi mencatat batasan dan teliti saat menggabungkannya.',
+    points: [
+      'Susunan soal: pengantar (masalah yang dibahas), petunjuk atau batasan (syarat yang harus dipatuhi), dan pertanyaan.',
+      'Batasan bisa berupa poin bernomor atau paragraf biasa. Ubah menjadi catatan singkat atau simbol sebelum mengerjakan.',
+      'Kerjakan dari batasan yang paling pasti: yang menyebut posisi tepat, kata "wajib", "tidak boleh", atau "harus bersama". Batasan bersyarat ("jika … maka …") dipakai belakangan.',
+      'Pakai alat bantu: garis urutan untuk soal "sebelum/sesudah", tabel untuk menempatkan orang ke posisi, dan daftar "wajib / dilarang / berpasangan" untuk soal memilih.',
+      'Untuk soal pilihan jawaban, uji tiap pilihan terhadap satu batasan sekaligus dan coret yang melanggar. Pilihan yang tersisa adalah jawaban.',
+      'Waspadai kata "pasti" (berlaku di semua kemungkinan), "mungkin/dapat" (berlaku di sebagian kemungkinan), dan "tidak mungkin".',
+      'Informasi tambahan yang muncul di dalam pertanyaan (misalnya "jika X tampil pertama") hanya berlaku untuk soal itu, tidak untuk soal lain pada bacaan yang sama.',
+      'Membaca memindai (scanning): cari cepat nama, angka, dan kata kunci seperti "sebelum", "setelah", "tepat", "tidak boleh", tanpa membaca pelan-pelan semua kata. Latih supaya hemat waktu.'
+    ],
+    examples: [
+      { q: 'Lima siswa (Rani, Dito, Mira, Tio, Wulan) tampil satu per satu. Dito tampil setelah Mira. Mira tampil setelah Rani. Tio tampil setelah Dito. Wulan tampil sebelum Rani. Siapa yang tampil ketiga?', a: 'Susun garis urutan: Wulan < Rani < Mira < Dito < Tio. Yang ketiga adalah Mira.' },
+      { q: 'Tiga topping dipilih dari cokelat, keju, stroberi, kacang, kelapa. (1) Jika stroberi dipakai, keju dipakai. (2) Cokelat dan kacang tidak boleh bersama. (3) Kelapa wajib dipakai. Apakah kelapa, stroberi, cokelat boleh?', a: 'Tidak. Stroberi dipakai, tetapi keju tidak, sehingga melanggar batasan (1).' }
+    ],
+    traps: [
+      'Terburu-buru menjawab sebelum semua batasan terpakai. Cek jawaban terhadap setiap batasan.',
+      'Membaca "A setelah B" sebagai "A langsung setelah B". Kata "tepat" atau "langsung" yang berarti bersebelahan.',
+      'Memakai informasi tambahan dari satu soal untuk soal berikutnya.',
+      'Menyamakan "mungkin" dengan "pasti".',
+      'Pola UTBK: satu bacaan, 2–4 pertanyaan. Gambar tabel atau garis urutan sekali, lalu pakai ulang untuk semua pertanyaan.'
+    ]
+  }
 };
