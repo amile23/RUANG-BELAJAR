@@ -594,4 +594,83 @@ RB.lessons = {
       'Pola UTBK: satu bacaan, 2–4 pertanyaan. Gambar tabel atau garis urutan sekali, lalu pakai ulang untuk semua pertanyaan.'
     ]
   }
+  ,
+  utb13: {
+    intro: 'Soal kesesuaian pernyataan meminta kamu memilih pernyataan yang cocok dengan informasi dalam teks, tabel, atau diagram. Semua jawaban ada di bahan yang diberikan. Jangan memakai pengetahuan sendiri, cukup cocokkan pilihan dengan data.',
+    points: [
+      'Informasi eksplisit: tertulis langsung dalam bahan. Informasi implisit: tidak tertulis, tetapi bisa disimpulkan dengan pasti dari yang tertulis.',
+      'Teks: baca pertanyaannya dulu, ambil kata kunci tiap pilihan, lalu cari kalimat pendukung di teks. Pilihan benar punya dasar kalimat, pilihan salah tidak.',
+      'Jebakan di pilihan teks: menambah informasi yang tidak ada, membalik sebab dan akibat, dan kata terlalu ekstrem seperti "semua", "selalu", "hanya", "tidak pernah".',
+      'Tabel: baca judul, satuan, dan kepala kolom dulu. Kenaikan atau penurunan = nilai baru − nilai lama. Pastikan membandingkan baris dan kolom yang tepat.',
+      'Diagram garis: lihat arah tren (naik, turun, datar) dan titik tertingginya. Diagram batang: bandingkan tinggi atau panjang batang dan baca label nilainya. Diagram lingkaran: tiap bagian adalah porsi dari total.',
+      'Rumus yang sering dipakai: rata-rata = jumlah data / banyak data. Persentase bagian = bagian / total × 100%. Sudut sektor = bagian / total × 360°. Sisa = 100% − bagian yang diketahui.',
+      'Bedakan "persen" dan "poin persentase". Naik dari 60% ke 75% adalah naik 15 poin persentase (atau 25% relatif terhadap 60%).',
+      'Perhatikan skala sumbu pada diagram. Sumbu yang tidak mulai dari nol membuat selisih tampak lebih besar daripada kenyataan.'
+    ],
+    examples: [
+      { q: 'Diagram lingkaran menunjukkan 200 peserta lomba: Puisi 40, Pidato 60, Cerpen 25, Debat 75. Berapa persen peserta Debat?', a: '75 / 200 × 100% = 37,5%.' },
+      { q: 'Nilai rata-rata kelas tiap bulan: Jan 70, Feb 74, Mar 72, Apr 80. Pada bulan apa kenaikannya paling besar?', a: 'Selisih: Feb +4, Mar −2, Apr +8. Kenaikan terbesar terjadi pada April.' }
+    ],
+    traps: [
+      'Memilih pernyataan yang menurutmu benar di dunia nyata padahal tidak ada di bahan soal.',
+      'Terkecoh kata "semua", "selalu", dan "hanya". Cek apakah teks benar-benar mengatakannya.',
+      'Salah membaca satuan (ribu, juta, persen) atau salah membandingkan baris tahun.',
+      'Menjawab persentase dari total yang salah. Pastikan penyebutnya total keseluruhan.',
+      'Pola UTBK: satu teks atau grafik, lalu empat sampai lima pernyataan. Coret satu per satu pernyataan yang tidak punya dasar di bahan.'
+    ]
+  },
+  utb14: {
+    intro: 'Penalaran kuantitatif pertama: bilangan berpangkat, pecahan, dan geometri dasar. Ini fondasi untuk hampir semua soal hitungan UTBK, TKA Matematika, dan ulangan di sekolah.',
+    points: [
+      'Bilangan berpangkat: aⁿ berarti a dikali dirinya sebanyak n kali.',
+      'Sifat pangkat: aᵐ × aⁿ = aᵐ⁺ⁿ. aᵐ ÷ aⁿ = aᵐ⁻ⁿ. (aᵐ)ⁿ = aᵐˣⁿ. (ab)ᵐ = aᵐbᵐ. (a/b)ᵐ = aᵐ/bᵐ.',
+      'a⁰ = 1 (a tidak nol). a⁻ᵐ = 1 / aᵐ. Pangkat negatif berarti dibalik, bukan hasilnya negatif.',
+      'Membandingkan pecahan positif: penyebut sama, pembilang besar berarti pecahan lebih besar. Pembilang sama, penyebut besar berarti pecahan lebih kecil. Jika keduanya beda, samakan penyebut atau bandingkan perkalian silang.',
+      'Pecahan negatif: bandingkan dulu bentuk positifnya. Makin besar pecahan positifnya, makin kecil pecahan negatifnya.',
+      'Operasi pecahan: a/c + b/d = (ad + bc)/cd. Perkalian: pembilang × pembilang, penyebut × penyebut. Pembagian: kalikan dengan kebalikan pecahan pembagi.',
+      'Persegi: K = 4s dan L = s². Persegi panjang: K = 2(p + l) dan L = p × l. Segitiga: K = a + b + c dan L = ½ × alas × tinggi (tinggi tegak lurus alas).',
+      'Lingkaran: K = πd = 2πr dan L = πr². Pakai π = 22/7 jika jari-jari kelipatan 7, selain itu π = 3,14.'
+    ],
+    examples: [
+      { q: 'Sederhanakan 3² × 3⁴ ÷ 3⁵.', a: 'Pangkat dijumlahkan lalu dikurangi: 2 + 4 − 5 = 1. Hasilnya 3¹ = 3.' },
+      { q: 'Mana yang lebih besar, 3/7 atau 5/12?', a: 'Samakan penyebut 84: 3/7 = 36/84 dan 5/12 = 35/84. Jadi 3/7 lebih besar.' },
+      { q: 'Hitung luas lingkaran berjari-jari 14 cm (π = 22/7).', a: 'L = 22/7 × 14 × 14 = 22 × 2 × 14 = 616 cm².' }
+    ],
+    traps: [
+      'Menjumlahkan pangkat padahal bilangan pokoknya berbeda (2³ × 3² tidak sama dengan 6⁵).',
+      'Menganggap a⁻ᵐ bernilai negatif. Hasilnya tetap positif, hanya berupa kebalikan.',
+      'Membandingkan pecahan dengan hanya melihat penyebutnya yang besar. Pecahan itu belum tentu lebih besar.',
+      'Menjumlahkan pecahan dengan menjumlahkan penyebutnya.',
+      'Memakai sisi miring sebagai tinggi segitiga. Tinggi harus tegak lurus dengan alas.',
+      'Pola UTBK: soal cerita pendek dengan angka yang bisa disederhanakan. Cari sifat pangkat atau faktor persekutuan sebelum menghitung panjang-panjang.'
+    ]
+  },
+  utb15: {
+    intro: 'Penalaran kuantitatif kedua: aritmetika sosial (untung rugi, bunga, diskon, pajak), perbandingan senilai dan berbalik nilai, serta skala. Soalnya berupa cerita sehari-hari yang hanya butuh persentase dan perbandingan.',
+    points: [
+      'Untung = harga jual − harga beli (Hj > Hb). Rugi = harga beli − harga jual (Hb > Hj). Impas jika Hj = Hb.',
+      '% untung = untung / harga beli × 100%. % rugi = rugi / harga beli × 100%. Penyebutnya selalu harga beli (modal).',
+      'Jika untung p%, maka Hj = (100 + p)% × Hb. Jika rugi p%, maka Hj = (100 − p)% × Hb.',
+      'Bunga tunggal: bunga = M₀ × %B × n. Total = M₀(1 + %B × n). Sesuaikan satuan n dengan suku bunga (per tahun berarti n dalam tahun, 9 bulan = 9/12 tahun).',
+      'Diskon: besar diskon = %D × harga awal. Harga setelah diskon = (100% − %D) × harga awal. Diskon bertingkat dihitung berurutan, bukan dijumlahkan.',
+      'Pajak: PPN = %PPN × harga sebelum pajak. Harga yang dibayar = (100 + %PPN)% × harga. Pajak UMKM = % pajak × omzet (omzet = jumlah hasil penjualan).',
+      'Perbandingan senilai: dua besaran naik atau turun searah, x₁/y₁ = x₂/y₂. Grafiknya garis lurus yang melalui titik (0, 0).',
+      'Perbandingan berbalik nilai: satu naik, yang lain turun, x₁ × y₁ = x₂ × y₂. Grafiknya melengkung dan tidak melalui (0, 0).',
+      'Skala = jarak pada peta / jarak sebenarnya (satuan harus sama). Skala 1 : 500.000 berarti 1 cm pada peta mewakili 500.000 cm = 5 km.',
+      'Skala termometer: C : R : (F − 32) : (K − 273) = 5 : 4 : 9 : 5.'
+    ],
+    examples: [
+      { q: 'Barang dibeli Rp80.000 lalu dijual Rp92.000. Berapa persen untungnya?', a: 'Untung 12.000. % untung = 12.000 / 80.000 × 100% = 15%.' },
+      { q: 'Harga baju Rp240.000 diberi diskon 20% lalu diskon tambahan 10%. Berapa harga akhir?', a: 'Setelah 20%: 240.000 × 0,8 = 192.000. Lalu 192.000 × 0,9 = 172.800.' },
+      { q: '12 pekerja menyelesaikan proyek dalam 15 hari. Berapa hari jika 9 pekerja?', a: 'Berbalik nilai: 12 × 15 = 9 × h, h = 20 hari.' }
+    ],
+    traps: [
+      'Menghitung persentase untung atau rugi dari harga jual. Dasarnya harga beli.',
+      'Menjumlahkan diskon bertingkat (20% + 10% = 30%). Hasilnya tidak sama.',
+      'Salah satuan pada bunga: suku bunga per tahun dipakai dengan lama dalam bulan.',
+      'Menyamakan perbandingan senilai dengan berbalik nilai. Tanyakan: kalau satu naik, yang lain naik atau turun?',
+      'Lupa mengubah satuan pada skala (cm ke km).',
+      'Pola UTBK: cerita belanja, tabungan, atau peta. Tulis diketahui dan ditanya, tentukan jenis perbandingan, baru hitung.'
+    ]
+  }
 };

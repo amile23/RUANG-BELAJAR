@@ -105,5 +105,8 @@ RB.rawTopics = [
 'iel10|iel|1|Reading cepat: skimming, scanning & inferensi|45|I',
 'utb10|utb|1|Literasi Bahasa Indonesia: teks informasional & sastra|45|UT',
 'utb11|utb|1|Simpulan logis: konjungsi, implikasi, ingkaran & silogisme|45|U',
-'utb12|utb|1|Penalaran analitik: urutan, syarat & membaca memindai|45|U'
+'utb12|utb|1|Penalaran analitik: urutan, syarat & membaca memindai|45|U',
+'utb13|utb|1|Kesesuaian pernyataan: teks, tabel & diagram|45|U',
+'utb14|utb|1|Penalaran kuantitatif I: bilangan berpangkat, pecahan & geometri dasar|50|U',
+'utb15|utb|1|Penalaran kuantitatif II: untung–rugi, bunga, diskon, pajak, perbandingan & skala|55|U'
 ];
