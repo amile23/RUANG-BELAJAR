@@ -112,5 +112,8 @@ RB.rawTopics = [
 'utb16|utb|1|Pembentukan kata (imbuhan) & jenis frasa|45|UT',
 'utb17|utb|1|Makna kata: leksikal, denotasi–konotasi, sinonim, antonim, hipernim–hiponim|40|UT',
 'utb18|utb|1|Struktur & jenis kalimat: S-P-O-Pel-K, aktif–pasif & variasi|45|UT',
-'utb19|utb|1|Kalimat efektif: kelengkapan, kelogisan, kesejajaran, kehematan & kecermatan|50|UT'
+'utb19|utb|1|Kalimat efektif: kelengkapan, kelogisan, kesejajaran, kehematan & kecermatan|50|UT',
+'utb20|utb|1|Wacana: ide pokok, simpulan, tujuan & keberpihakan penulis|45|UT',
+'utb21|utb|1|Analogi kata: fungsi, ukuran, bagian, sebab–akibat & jenis|40|U',
+'utb22|utb|1|Bahasa panda (kriptografi): pergeseran, substitusi, huruf terapit & pencerminan|45|U'
 ];

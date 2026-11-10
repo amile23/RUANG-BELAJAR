@@ -788,4 +788,87 @@ RB.lessons = {
       'Pola UTBK: tiga atau empat kalimat dengan satu yang efektif, atau satu kalimat dengan bagian yang diperbaiki. Eliminasi satu per satu berdasarkan lima kriteria di atas.'
     ]
   }
+  ,
+  utb20: {
+    intro: 'Soal wacana di UTBK biasanya menanyakan ide pokok, simpulan, tujuan penulis, atau keberpihakan penulis. Semuanya berangkat dari satu kemampuan: menemukan inti teks lalu membaca arah penulis.',
+    points: [
+      'Ide pokok adalah inti permasalahan dalam sebuah paragraf. Sebutan lain: gagasan utama, gagasan pokok, ide utama, pikiran utama, pokok pikiran, dan inti paragraf.',
+      'Ide pokok ada di kalimat utama, yaitu kalimat yang berisi informasi umum. Kalimat lainnya adalah kalimat penjelas.',
+      'Kalimat penjelas berfungsi menjelaskan kalimat utama. Cirinya: berupa pemerincian, contoh, data atau bukti, dan bersifat khusus.',
+      'Posisi kalimat utama: di awal paragraf (deduktif), di akhir (induktif), di awal dan akhir (campuran), di tengah, atau menyebar. Pada paragraf menyebar tidak ada satu kalimat utama, jadi ide pokok harus disimpulkan dari seluruh kalimat.',
+      'Cara cepat mencari ide pokok: baca paragraf dengan cermat, cari kata kunci yang sering muncul, lalu pilih kalimat umum yang dijelaskan kalimat lainnya.',
+      'Simpulan adalah pendapat akhir dari sebuah teks atau kutipan. Penandanya konjungsi seperti jadi, oleh karena itu, oleh sebab itu, dan dengan demikian.',
+      'Langkah menentukan simpulan: baca teks dengan cermat, perhatikan kata kunci, tentukan ide pokok, lalu rumuskan simpulan berdasarkan ide pokok. Simpulan tidak boleh memuat informasi baru yang tidak ada di teks.',
+      'Tujuan penulis adalah maksud yang ingin disampaikan penulis dalam teks. Untuk mengetahuinya, pahami ide pokok dan jenis teks.',
+      'Jenis teks dan tujuannya: deskripsi (memberi gambaran suatu objek), narasi (menceritakan peristiwa), persuasif (membujuk atau memengaruhi pembaca), argumentasi (memberi bukti dan meyakinkan pembaca), eksposisi (menyampaikan informasi).',
+      'Keberpihakan penulis adalah kecenderungan penulis mendukung pihak atau hal yang dibahas. Untuk memahaminya diperlukan tiga hal: ide pokok, jenis teks, dan kata kunci.',
+      'Petunjuk keberpihakan: pilihan kata bernilai positif atau negatif, kata ajakan atau saran (hendaknya, patut, mari), serta data yang hanya mendukung satu pihak. Teks yang memaparkan dua sisi secara seimbang cenderung netral.'
+    ],
+    examples: [
+      { q: 'Paragraf: "Membaca sebelum tidur memberi banyak manfaat. Pikiran menjadi lebih tenang. Kebiasaan ini menambah kosakata. Tidur pun lebih nyenyak." Apa ide pokoknya?', a: 'Kalimat pertama (umum, dijelaskan kalimat lain): membaca sebelum tidur memberi banyak manfaat.' },
+      { q: 'Teks berisi ajakan "Mari hemat air mulai dari rumah". Apa jenis dan tujuannya?', a: 'Teks persuasif, tujuannya membujuk atau memengaruhi pembaca.' },
+      { q: 'Paragraf memuji sebuah program dan menyarankan agar dilanjutkan. Bagaimana keberpihakan penulisnya?', a: 'Mendukung program tersebut (kata bernilai positif dan ada saran melanjutkan).' }
+    ],
+    traps: [
+      'Memilih kalimat yang berisi contoh atau data sebagai ide pokok. Itu kalimat penjelas.',
+      'Mengambil simpulan yang menambah informasi baru di luar teks.',
+      'Menyamakan teks persuasif dengan argumentasi. Persuasif membujuk dengan ajakan, argumentasi meyakinkan dengan bukti.',
+      'Menebak keberpihakan dari topik, bukan dari pilihan kata dan arah argumen penulis.',
+      'Pola UTBK: paragraf pendek, lalu pertanyaan ide pokok atau simpulan. Baca pertanyaannya dulu, lalu cari kata kunci yang sering muncul.'
+    ]
+  },
+  utb21: {
+    intro: 'Analogi menguji kemampuan melihat hubungan antara dua kata, lalu menerapkan hubungan yang sama pada pasangan kata lain. Kuncinya bukan menghafal kata, tetapi menentukan jenis hubungannya.',
+    points: [
+      'Analogi adalah persamaan atau persesuaian antara dua hal yang berlainan. Soal analogi mengukur kemampuan mengetahui hubungan antara dua kata atau lebih. Bentuk soalnya: A : B = C : ?',
+      'Tiga hal yang diperlukan: memahami makna kata, fungsi kata, dan hubungan antarkata. Logika dan nalar berbahasa sangat dipakai.',
+      'Hubungan fungsi: benda dan kegunaannya (pisau : memotong).',
+      'Hubungan ukuran atau urutan: yang satu lebih besar, lebih tinggi, atau lebih awal daripada yang lain (bukit : gunung).',
+      'Hubungan bagian: bagian dan keseluruhannya (roda : sepeda).',
+      'Hubungan sebab–akibat: yang satu menyebabkan yang lain (kemarau : kekeringan).',
+      'Hubungan jenis: salah satu jenis dari kelompok yang lebih umum (mawar : bunga).',
+      'Hubungan lain yang sering muncul: sinonim (pandai : cerdas), antonim (tinggi : rendah), pelaku dan alat (pelukis : kuas), tempat kerja (guru : sekolah), dan bahan (roti : tepung).',
+      'Langkah mengerjakan: (1) tentukan kata kunci atau jenis hubungannya, (2) ubah pasangan kata pertama menjadi kalimat, (3) pakai kalimat yang sama pada pilihan jawaban.',
+      'Urutan harus searah dengan soal. Kalau pasangan pertama "bagian : keseluruhan", pasangan kedua juga harus "bagian : keseluruhan", tidak dibalik.'
+    ],
+    examples: [
+      { q: 'Jam : waktu = termometer : …', a: 'Jam menunjukkan waktu, termometer mengukur suhu. Jawab: suhu (hubungan fungsi).' },
+      { q: 'Hujan : banjir = kemarau : …', a: 'Hujan menyebabkan banjir, kemarau menyebabkan kekeringan (sebab–akibat).' },
+      { q: 'Mawar : bunga = kakaktua : …', a: 'Mawar adalah jenis bunga, kakaktua adalah jenis burung.' }
+    ],
+    traps: [
+      'Memilih kata yang "berhubungan" tanpa menentukan jenis hubungannya, sehingga terkecoh pilihan yang hanya berkaitan.',
+      'Membalik urutan pasangan (bagian : keseluruhan menjadi keseluruhan : bagian).',
+      'Memilih hubungan yang terlalu umum, padahal ada jenis hubungan yang lebih tepat.',
+      'Tidak membuat kalimat penghubung. Kalimat sederhana seperti "A adalah bagian dari B" membantu mengecek pilihan jawaban.',
+      'Pola UTBK: A : B = C : ? dengan lima pilihan. Eliminasi pilihan yang urutannya tidak searah atau hubungannya berbeda.'
+    ]
+  },
+  utb22: {
+    intro: 'Bahasa panda (kriptografi) adalah soal sandi: kata asli diubah menjadi kode dengan pola tertentu. Kamu diminta menemukan polanya dari contoh, lalu menerapkannya pada kata lain. Rajin berlatih akan membuatnya sangat cepat.',
+    points: [
+      'Langkah umum: (1) perhatikan kode dan kata asli yang sama pada clue, (2) susun kode pada clue sampai mendapatkan kode yang diinginkan, (3) perhatikan pilihan jawaban jika ada huruf baru yang tidak ada pada clue.',
+      'Trik awal: tulis alfabet dengan nomor (A=1, B=2, … Z=26). Banyak soal selesai hanya dengan membandingkan nomor huruf.',
+      'Pergeseran: setiap huruf diganti huruf yang bergeser sebanyak pola tertentu. Polanya bisa sama untuk semua huruf, atau berbeda dan berulang (misalnya +2, −1, +2, −1).',
+      'Contoh pergeseran +1 untuk semua huruf: PASIR menjadi QBTJS. Contoh pola +1, −1 bergantian: BATU menjadi CZUT.',
+      'Substitusi dengan pola tertentu: huruf atau angka diganti secara teratur, biasanya berupa tabel. Tabel menunjukkan huruf pada kode menggantikan huruf aslinya, tetapi bisa juga sebaliknya. Baca arah tabel dulu.',
+      'Huruf terapit: setiap huruf asli diapit oleh huruf sebelum dan sesudahnya pada kode. Jumlah huruf kode dua kali lebih banyak daripada kata asli. Contoh: BUKU menjadi ACTVJLTV.',
+      'Cara mendeteksi huruf terapit: panjang kode tepat dua kali kata asli. Kode dibaca berpasangan, lalu cari huruf yang berada di antara pasangan tersebut.',
+      'Pencerminan: alfabet dilipat di tengah (26 huruf). Hanya ada satu pola: A↔Z, B↔Y, C↔X, dan seterusnya. Rumusnya: huruf ke-n berpasangan dengan huruf ke-(27 − n).',
+      'Contoh pencerminan: BESI menjadi YVHR, KOPI menjadi PLKR. Pencerminan bisa dipakai balik: mencerminkan kode menghasilkan kata asli.',
+      'Setelah dapat pola, cek ke semua huruf di clue, jangan hanya satu huruf. Kalau ada satu huruf yang tidak cocok, kemungkinan polanya berbeda (misalnya pergeseran bergantian).'
+    ],
+    examples: [
+      { q: 'Kode pencerminan untuk SAPI?', a: 'S↔H, A↔Z, P↔K, I↔R, jadi HZKR.' },
+      { q: 'Kode huruf terapit untuk ROTI?', a: 'R→QS, O→NP, T→SU, I→HJ, jadi QSNPSUHJ.' },
+      { q: 'Pola pergeseran +2, −1 diterapkan pada KATA. Apa kodenya?', a: 'K+2=M, A−1=Z, T+2=V, A−1=Z, jadi MZVZ.' }
+    ],
+    traps: [
+      'Menebak pola dari satu huruf saja. Uji ke seluruh huruf pada clue.',
+      'Lupa arah tabel substitusi (kode ke asli atau asli ke kode).',
+      'Salah menghitung geseran di ujung alfabet. Setelah Z kembali ke A.',
+      'Mencampur pencerminan dengan pergeseran. Pencerminan selalu berpasangan dengan jumlah nomor 27.',
+      'Pola UTBK: satu atau dua contoh kata beserta kodenya, lalu kata baru yang harus dikodekan atau diterjemahkan.'
+    ]
+  }
 };
