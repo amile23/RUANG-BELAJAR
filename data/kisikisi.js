@@ -70,7 +70,7 @@ RB.kisi = [
    ['Wacana','Ide pokok, simpulan, tujuan penulis, keberpihakan penulis','Baca pertanyaan dulu, baru teks. Cari kata kunci yang sering muncul.','utb20,ind1'],
    ['Analogi dan bahasa panda','Hubungan antarkata (fungsi, ukuran, bagian, sebab-akibat, jenis) dan sandi huruf (pergeseran, substitusi, terapit, pencerminan)','Ubah pasangan kata jadi kalimat. Untuk sandi, tulis alfabet bernomor dulu.','utb21,utb22']]},
   {g:'3 · Pemahaman Bacaan & Menulis (20 soal, 25 mnt)',items:[
-   ['Ejaan','PUEBI: tanda baca (koma, titik koma, titik dua, hubung, pisah, petik, kurung), huruf kapital dan miring, penulisan kata (majemuk, kata depan, pun dan per, serapan, singkatan, bilangan)','Hafal fungsi koma, titik koma, dan titik dua dulu. Lalu pasangan nama diri dan nama jenis (kacang bogor, kunci inggris), kata depan, pun dan per, serta pola serapan.','utb23,utb24,utb25,ind3'],
+   ['Ejaan','PUEBI: tanda baca (koma, titik koma, titik dua, hubung, pisah, petik, kurung), huruf kapital dan miring, penulisan kata (majemuk, kata depan, pun dan per, singkatan, bilangan), penulisan unsur serapan (adopsi dan adaptasi)','Hafal fungsi koma, titik koma, dan titik dua dulu. Lalu pasangan nama diri dan nama jenis (kacang bogor, kunci inggris), kata depan, pun dan per, serta pola serapan.','utb23,utb24,utb25,utb26,ind3'],
    ['Kata dan makna','Pilihan kata (diksi) dan makna dalam konteks bacaan','Materi PBM ini menunggu contoh soalmu.','ind9'],
    ['Konjungsi','Kata hubung dan hubungan antarkalimat (sebab, kontras, urutan)','Tentukan hubungan antarkalimat dulu.','ind2'],
    ['Kalimat','Struktur kalimat dalam teks PBM','Materi PBM ini menunggu contoh soalmu.','ind3'],

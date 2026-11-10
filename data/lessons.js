@@ -928,7 +928,7 @@ RB.lessons = {
     ]
   },
   utb25: {
-    intro: 'Penulisan kata mencakup banyak aturan kecil: serangkai atau terpisah, kata depan, partikel, kata serapan, singkatan, dan bilangan. Soalnya biasanya meminta memilih penulisan yang benar dari empat pilihan yang mirip.',
+    intro: 'Penulisan kata mencakup banyak aturan kecil: serangkai atau terpisah, kata depan, partikel, singkatan, dan bilangan. Soalnya biasanya meminta memilih penulisan yang benar dari empat pilihan yang mirip.',
     points: [
       'Kata majemuk adalah gabungan dua kata atau lebih yang membentuk makna baru tetapi masih berkaitan dengan kata pembentuknya. Kata majemuk ditulis terpisah. Contoh: rumah tangga (hal yang berkaitan dengan urusan rumah atau keluarga).',
       'Gabungan kata yang hanya mendapat awalan atau akhiran saja ditulis terpisah: berlipat ganda. Gabungan kata yang mendapat awalan sekaligus akhiran ditulis serangkai: melipatgandakan, mempertanggungjawabkan.',
@@ -939,9 +939,6 @@ RB.lessons = {
       'Partikel adalah kata yang tidak bisa berdiri sendiri: -lah, -kah, pun, dan per. Yang menjadi fokus UTBK adalah pun dan per.',
       'Pun ditulis terpisah bila bermakna ‘juga’ atau ‘saja’: apa pun yang kamu lakukan (apa saja). Pun ditulis serangkai bila bagian dari konjungsi: adapun, andaipun, ataupun, bagaimanapun, biarpun, kalaupun, kendatipun, maupun, meskipun, sungguhpun, sekalipun, walaupun.',
       'Per ditulis terpisah bila bermakna ‘demi’, ‘mulai’, atau ‘tiap’: satu per satu, per Oktober 2020, per bulan. Per ditulis serangkai untuk pecahan: dua pertiga, tiga perempat.',
-      'Kata serapan adalah kata dari bahasa selain Indonesia yang sudah menjadi bahasa Indonesia, jadi tidak ditulis miring. Ada dua proses: adopsi (diambil apa adanya: film, multi) dan adaptasi (penulisan dan pelafalan disesuaikan).',
-      'Pola adaptasi: x di tengah kata menjadi ks (extra jadi ekstra); x di awal kata tetap (xenophobia jadi xenofobia); -ive jadi -if (executive jadi eksekutif); c atau ch jadi c, k, atau s tergantung lafal (central jadi sentral, charisma jadi karisma, check jadi cek, echelon jadi eselon); -ity jadi -itas (university jadi universitas); y jadi i (system jadi sistem); ph jadi f (photo jadi foto); sh, dh, dz, th jadi s, d, z, t (sholat jadi salat, Ramadhan jadi Ramadan, ustadz jadi ustaz, athlete jadi atlet).',
-      'Pola adaptasi lain: vokal atau konsonan yang tidak dibunyikan di akhir kata boleh dihilangkan (permanent jadi permanen, extreme jadi ekstrem); konsonan kembar yang berdampingan cukup satu (mall jadi mal, stress jadi stres).',
       'Singkatan adalah bentuk pendek dari satu kata atau lebih yang dieja huruf demi huruf. Aturan 1: tiap kata yang disingkat diberi titik: a.n., s.d., S.H., dr., S.Pd. Aturan ini tidak berlaku untuk singkatan lembaga, dokumen, mata uang, dan satuan ukuran: PT, KTP, Rp, km.',
       'Aturan 2: singkatan yang terdiri atas tiga huruf diakhiri satu titik: dll., dsb., Yth., dkk. Aturan 3: singkatan dari huruf awal, baik nama diri maupun bukan, ditulis kapital tanpa titik: KTP, SD, PTN, BNN, PMI, KBBI.',
       'Akronim (tambahan dari PUEBI, tidak ada di slide yang kamu kirim) adalah singkatan yang dibaca sebagai kata. Akronim nama diri diawali huruf kapital (Bappenas), akronim bukan nama diri huruf kecil semua (pemilu, tilang).',
@@ -952,7 +949,6 @@ RB.lessons = {
     examples: [
       { q: 'Pilih yang benar: “berlipat ganda” atau “berlipatganda”? Dan “melipat gandakan” atau “melipatgandakan”?', a: '“berlipat ganda” (hanya awalan, terpisah) dan “melipatgandakan” (awalan dan akhiran, serangkai).' },
       { q: 'Pilih yang benar: “Apa pun yang terjadi” atau “Apapun yang terjadi”?', a: '“Apa pun yang terjadi”. Pun di sini bermakna ‘saja’ (apa saja), jadi ditulis terpisah.' },
-      { q: 'Tulis bentuk baku dari system, executive, dan photo.', a: 'sistem (y jadi i), eksekutif (-ive jadi -if, x di tengah jadi ks), foto (ph jadi f).' },
       { q: 'Benarkan: “35 orang menjadi korban kecelakaan itu.”', a: '“Sebanyak 35 orang menjadi korban kecelakaan itu.” Angka tidak boleh di awal kalimat.' }
     ],
     traps: [
@@ -960,10 +956,40 @@ RB.lessons = {
       'Memakai pada untuk orang yang dituju, padahal pakai kepada.',
       'Menulis pun serangkai pada apa pun, siapa pun, atau sebaliknya memisahkan pun pada meskipun, walaupun, ataupun.',
       'Menulis per serangkai pada satu per satu, atau memisah per pada pecahan (dua per tiga).',
-      'Memakai bentuk serapan yang setengah jadi: sistim, kharisma, ekstrim, atlit, stress, mall.',
       'Memberi titik pada singkatan lembaga atau satuan ukuran (K.T.P., k.m., Rp.), atau lupa titik pada singkatan gelar (S.Pd., S.H.).',
       'Memulai kalimat dengan angka.',
       'Catatan sumber: halaman 4/18 tidak ada di PDF-mu, jadi bagian “bentuk terikat” (awalan serapan seperti antar-, pasca-) belum tercakup di sini.'
+    ]
+  }
+  ,
+  utb26: {
+    intro: 'Kata serapan adalah kata dari bahasa selain bahasa Indonesia yang sudah dipakai sebagai bagian dari bahasa Indonesia. Soal ejaan biasanya meminta bentuk baku, jadi yang perlu dihafal adalah pola perubahan huruf dari bentuk asing ke bentuk Indonesia.',
+    points: [
+      'Kata serapan dipakai sebagai bahasa Indonesia, jadi penulisannya tidak memakai huruf miring. Yang dimiringkan hanya kata asing atau daerah yang belum diserap.',
+      'Proses pembentukan kata serapan ada dua: adopsi dan adaptasi.',
+      'Adopsi: kata asing diserap tanpa mengubah bentuknya sedikit pun. Contoh: pro, multi, film.',
+      'Adaptasi: penulisan dan pelafalan kata asing disesuaikan dengan bahasa Indonesia. Ini yang paling sering diujikan.',
+      'Pola huruf x: x di tengah kata menjadi ks (extra jadi ekstra). x di awal kata tidak berubah (xenophobia jadi xenofobia, hanya ph-nya yang berubah jadi f).',
+      'Pola akhiran: -ive menjadi -if (executive jadi eksekutif, active jadi aktif); -ity menjadi -itas (university jadi universitas).',
+      'Pola huruf c dan ch: bisa menjadi c, k, atau s tergantung lafal aslinya. Contoh: central jadi sentral, charisma jadi karisma, check jadi cek, echelon jadi eselon.',
+      'Pola huruf y menjadi i (system jadi sistem) dan ph menjadi f (photo jadi foto).',
+      'Pola konsonan rangkap sh, dh, dz, dan th: berubah menjadi s, d, z, atau t. Contoh: sholat jadi salat, Ramadhan jadi Ramadan, ustadz jadi ustaz, athlete jadi atlet.',
+      'Vokal atau konsonan yang tidak dibunyikan di akhir kata dapat dihilangkan: permanent jadi permanen, extreme jadi ekstrem.',
+      'Dua konsonan sama yang berdampingan cukup ditulis satu: mall jadi mal, stress jadi stres.',
+      'Cara cepat di ujian: baca bentuk asingnya dengan lafal Indonesia, lalu cocokkan dengan pola di atas. Pilihan yang masih memuat huruf asing (ph, th, dh, ch, y, x di tengah kata) hampir pasti bukan bentuk baku.'
+    ],
+    examples: [
+      { q: 'Tulis bentuk baku dari system, executive, dan photo.', a: 'sistem (y jadi i), eksekutif (x di tengah jadi ks, -ive jadi -if), foto (ph jadi f).' },
+      { q: 'Apa bedanya adopsi dan adaptasi? Beri satu contoh masing-masing.', a: 'Adopsi mengambil kata tanpa mengubah bentuk (film). Adaptasi menyesuaikan penulisan dan pelafalan (university jadi universitas).' },
+      { q: 'Mana yang baku: sholat, solat, atau salat? Dan ustadz, ustad, atau ustaz?', a: 'salat dan ustaz. sh jadi s, dz jadi z.' },
+      { q: 'Apakah kata “stres” ditulis miring dalam kalimat?', a: 'Tidak. Stres sudah menjadi kata serapan, bagian dari bahasa Indonesia.' }
+    ],
+    traps: [
+      'Memakai bentuk setengah jadi: sistim, kharisma, ekstrim, atlit, stress, mall, ramadhan.',
+      'Menyamakan x di awal kata dengan x di tengah. Di awal tetap x, di tengah menjadi ks.',
+      'Lupa bahwa c bisa menjadi tiga huruf berbeda: sentral (s), karisma (k), cek (c).',
+      'Memiringkan kata serapan. Yang dimiringkan hanya kata asing atau daerah yang belum diserap.',
+      'Catatan sumber: di slide, charisma tertulis charism. Aku tulis charisma yang benar.'
     ]
   }
 };

@@ -118,5 +118,6 @@ RB.rawTopics = [
 'utb22|utb|1|Bahasa panda (kriptografi): pergeseran, substitusi, huruf terapit & pencerminan|45|U',
 'utb23|utb|1|Tanda baca: koma, titik koma, titik dua, hubung, pisah, petik & kurung|50|UT',
 'utb24|utb|1|Penulisan huruf: kapital (nama diri, kata sapaan) & huruf miring|35|UT',
-'utb25|utb|1|Penulisan kata: kata majemuk, kata depan, partikel pun-per, serapan, singkatan & bilangan|55|UT'
+'utb25|utb|1|Penulisan kata: kata majemuk, kata depan, partikel pun-per, singkatan & bilangan|45|UT',
+'utb26|utb|1|Penulisan unsur serapan: adopsi & adaptasi|30|UT'
 ];
