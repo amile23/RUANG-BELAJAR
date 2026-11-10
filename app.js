@@ -112,6 +112,71 @@ function connectDb(){
   }).catch(function(){});
 }
 
+/* ============ sinkron Firebase (khusus github.io) ============ */
+var fbUser=null,fbAuth=null;
+function fbOn(){return !!RB.fbConfig&&!(window.claude&&window.claude.use)}
+function fbLoad(cb){
+  if(window.firebase&&window.firebase.firestore){cb();return}
+  var base='https://www.gstatic.com/firebasejs/10.12.2/',files=['firebase-app-compat.js','firebase-auth-compat.js','firebase-firestore-compat.js'],i=0;
+  (function next(){
+    if(i>=files.length){cb();return}
+    var s=document.createElement('script');s.src=base+files[i++];s.onload=next;
+    s.onerror=function(){syncState='error';paintStats()};
+    document.head.appendChild(s);
+  })();
+}
+function connectFb(){
+  if(!fbOn())return;
+  fbLoad(function(){
+    try{
+      if(!firebase.apps.length)firebase.initializeApp(RB.fbConfig);
+      fbAuth=firebase.auth();
+      fbAuth.onAuthStateChanged(function(u){
+        fbUser=u||null;
+        if(u){fbAttach(u)}else{DOC=null;syncState='local'}
+        paintStats();
+        if(location.hash==='#atur')render();
+      });
+    }catch(e){syncState='error';paintStats()}
+  });
+}
+function fbAttach(u){
+  var ref=firebase.firestore().collection('progress').doc(u.uid);
+  DOC={set:function(o){return ref.set({json:JSON.stringify(o),t:o._t||0})}};
+  var flagK='rb_fb_'+u.uid,first=false;
+  try{first=!localStorage.getItem(flagK)}catch(e){}
+  function joined(){first=false;try{localStorage.setItem(flagK,'1')}catch(e){}}
+  syncState='cloud';
+  ref.onSnapshot(function(snap){
+    if(snap.metadata&&snap.metadata.hasPendingWrites){return}
+    if(snap.exists){
+      var r=null;
+      try{r=JSON.parse(snap.data().json)}catch(e){}
+      if(!r){paintStats();return}
+      if(first){
+        joined();
+        if(S._t&&(r._t||0)!==S._t){
+          if(!window.confirm('Akun sudah punya progres tersimpan.\n\nOK = pakai progres dari akun (progres di perangkat ini diganti).\nBatal = pakai progres perangkat ini (progres di akun diganti).')){
+            S._t=Date.now();flush();paintStats();return;
+          }
+        }
+        S=norm(r);
+        try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}
+        render();paintStats();return;
+      }
+      if((r._t||0)>(S._t||0)){
+        S=norm(r);
+        try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}
+        render();
+      }
+    }else{
+      joined();
+      if(S._t){flush()}
+    }
+    paintStats();
+  },function(){syncState='error';paintStats()});
+}
+
 /* ============ turunan ============ */
 function all(){return BASE.concat(S.custom||[])}
 function byId(id){var a=all();for(var i=0;i<a.length;i++){if(a[i].id===id)return a[i]}return null}
@@ -868,13 +933,15 @@ function summary(){
 }
 function viewSet(){
   var sync=syncState==='cloud'?'Progresmu tersimpan di akun dan bisa dibuka dari HP atau laptop.':syncState==='error'?'Sinkron gagal. Progres masih aman di perangkat ini.':'Progresmu tersimpan di perangkat ini saja. Salin cadangan di bawah kalau mau pindah perangkat.';
+  var fbH='';
+  if(fbOn()){fbH=fbUser?'<p class="small" style="margin-bottom:10px">Masuk sebagai '+esc(fbUser.email||'akun Google')+'. Progres otomatis sinkron di perangkat yang masuk dengan akun ini.</p><div style="margin-bottom:10px"><button class="btn ghost sm" data-act="fblogout">Keluar dari sinkron</button></div>':'<div style="margin-bottom:10px"><button class="btn sm" data-act="fblogin">Masuk dengan Google untuk sinkron</button></div>'}
   var h='<section class="card"><header><h2>Tampilan</h2></header><div class="form">'+
     '<label>Nama panggilan<input type="text" data-field="nick" value="'+esc(S.nick)+'" maxlength="24" placeholder="Adiva"></label>'+
     '<div><div class="tiny muted" style="font-weight:800;margin-bottom:6px">Warna utama</div><div style="display:flex;gap:10px;flex-wrap:wrap">'+
     [['rose','#C93C68','Mawar'],['lilac','#7B5FD6','Lilac'],['matcha','#3A8664','Matcha'],['langit','#2F6FC0','Langit'],['peach','#B8561F','Peach']].map(function(a){return '<button class="swatch" style="background:'+a[1]+'" data-act="accent" data-v="'+a[0]+'" aria-pressed="'+(S.accent===a[0])+'" aria-label="'+a[2]+'"></button>'}).join('')+'</div></div>'+
     '<div><a class="btn ghost sm" href="#avatar">Dandan avatar</a></div></div></section>';
   h+='<section class="card"><header><h2>Kirim materi ke Claude</h2></header><p class="small muted" style="margin-bottom:10px">Kirim ke chat Claude: foto silabus, catatan, contoh soal, atau pola soal yang sering keluar. Claude menyusun ringkasan materi, membuat soal dengan pola yang sama, lalu memasukkannya ke web ini. Boleh salin format di bawah.</p><pre class="copy">'+esc(REQ_TEMPLATE)+'</pre><div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" data-act="copy" data-v="req">Salin format</button><button class="btn ghost sm" data-act="copy" data-v="sum">Salin ringkasan progres</button></div></section>';
-  h+='<section class="card"><header><h2>Penyimpanan & cadangan</h2></header><p class="small" style="margin-bottom:10px">'+esc(sync)+'</p><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" data-act="copy" data-v="bak">Salin cadangan</button><button class="btn ghost sm" data-act="restoreopen">'+(ui.restoreOpen?'Tutup':'Pulihkan dari cadangan')+'</button></div>';
+  h+='<section class="card"><header><h2>Penyimpanan & cadangan</h2></header><p class="small" style="margin-bottom:10px">'+esc(sync)+'</p>'+fbH+'<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" data-act="copy" data-v="bak">Salin cadangan</button><button class="btn ghost sm" data-act="restoreopen">'+(ui.restoreOpen?'Tutup':'Pulihkan dari cadangan')+'</button></div>';
   if(ui.restoreOpen)h+='<div class="form" style="margin-top:10px"><label>Tempel cadangan di sini<textarea id="bkT" rows="3"></textarea></label><div><button class="btn sm" data-act="restore">Pulihkan</button></div></div>';
   h+='</section>';
   h+='<section class="card"><header><h2>Mulai dari nol</h2></header><p class="small muted" style="margin-bottom:10px">Menghapus semua centang, skor, XP, kuis, dan materi tambahan.</p>'+
@@ -1039,6 +1106,11 @@ document.addEventListener('click',function(ev){
   else if(a==='avreset'){S.av=defAv();persist();render()}
   else if(a==='hijab'){S.hijab=v==='1';persist();render()}
   else if(a==='copy'){copyText(v==='sum'?summary():v==='bak'?JSON.stringify(S):REQ_TEMPLATE)}
+  else if(a==='fblogin'){
+    if(!fbAuth){toast('Sinkron belum siap. Coba lagi sebentar.')}
+    else{fbAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){toast('Gagal masuk'+(e&&e.code?': '+e.code:''))})}
+  }
+  else if(a==='fblogout'){if(fbAuth)fbAuth.signOut()}
   else if(a==='restoreopen'){ui.restoreOpen=!ui.restoreOpen;render()}
   else if(a==='restore'){
     try{var r=JSON.parse($('#bkT').value);if(!r||typeof r!=='object'||!r.v)throw 1;S=norm(r);ui.restoreOpen=false;persist();render();toast('Cadangan dipulihkan')}
@@ -1078,4 +1150,5 @@ window.addEventListener('hashchange',function(){ui.sess=null;render();window.scr
 load();
 render();
 connectDb();
+connectFb();
 })();
