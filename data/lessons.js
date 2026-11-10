@@ -202,4 +202,90 @@ RB.lessons = {
       'Pola TKA: wacana industri (pupuk, Haber–Bosch, pembuatan asam fosfat). Reaksi sering sudah diberikan di teks, tugasmu tinggal setarakan dan hitung mol.'
     ]
   }
+  ,
+  kim2: {
+    intro: 'Termokimia membahas kalor yang ikut dalam reaksi. Perubahan kalor pada tekanan tetap disebut perubahan entalpi (ΔH). Tanda ΔH menunjukkan apakah reaksi melepas atau menyerap kalor.',
+    points: [
+      'Eksoterm: sistem melepas kalor ke lingkungan, ΔH negatif, suhu lingkungan naik, entalpi produk lebih rendah daripada reaktan.',
+      'Endoterm: sistem menyerap kalor dari lingkungan, ΔH positif, suhu lingkungan turun (terasa dingin), entalpi produk lebih tinggi.',
+      'ΔH pembentukan standar (ΔHf°): pembentukan 1 mol senyawa dari unsur-unsurnya yang paling stabil. ΔHf unsur bebas = 0.',
+      'ΔH penguraian: kebalikan pembentukan. ΔH pembakaran: 1 mol zat dibakar sempurna dengan O₂ (selalu eksoterm). ΔH penetralan: pembentukan 1 mol air dari H⁺ + OH⁻ (eksoterm, sekitar −57 kJ/mol).',
+      'Molekul diatomik: H₂, N₂, O₂, F₂, Cl₂, Br₂, I₂. Unsur lain ditulis monoatomik (C, S, Fe, …).',
+      'Persamaan termokimia: dibalik → tanda ΔH dibalik. Dikali x → ΔH dikali x. Dijumlahkan → ΔH dijumlahkan.',
+      'Kalorimeter sederhana: q = m × c × ΔT, dengan m massa larutan. Kalor reaksi = −q larutan. ΔH per mol = −q / mol zat.',
+      'Jika kalorimeter ikut menyerap kalor: q total = (m × c × ΔT) + (C × ΔT), dengan C kapasitas kalor wadah.',
+      'Hukum Hess: ΔH hanya bergantung pada keadaan awal dan akhir, jadi ΔH total = jumlah ΔH tiap tahap.',
+      'Dari ΔHf: ΔH reaksi = Σ ΔHf produk − Σ ΔHf reaktan (dikali koefisien).',
+      'Dari energi ikatan: ΔH reaksi = Σ energi ikatan yang diputus (reaktan) − Σ energi ikatan yang dibentuk (produk). Gambar struktur Lewis dulu untuk tahu ikatan apa saja.',
+      'Jumlah ikatan tiap atom: C 4, H 1, O 2, N 3, F/Cl/Br/I 1.'
+    ],
+    examples: [
+      { q: 'Sebanyak 50 mL HCl 1 M dan 50 mL NaOH 1 M dicampur di kalorimeter. Suhu naik 6,5 °C. (massa jenis 1 g/mL, c = 4,2 J/g °C). Berapa ΔH netralisasi per mol?', a: 'm = 100 g. q = 100 × 4,2 × 6,5 = 2.730 J. Mol air = 0,05. ΔH = −2.730 / 0,05 = −54.600 J/mol = −54,6 kJ/mol.' },
+      { q: 'C + O₂ → CO₂ ΔH = −394 kJ dan CO + ½O₂ → CO₂ ΔH = −283 kJ. Hitung ΔH untuk C + ½O₂ → CO.', a: 'Pakai reaksi pertama apa adanya, balik reaksi kedua (ΔH jadi +283). Jumlahkan: −394 + 283 = −111 kJ.' },
+      { q: 'H₂ + Cl₂ → 2HCl. Energi ikatan H–H 436, Cl–Cl 243, H–Cl 432 kJ/mol. Hitung ΔH.', a: 'Putus: 436 + 243 = 679. Bentuk: 2 × 432 = 864. ΔH = 679 − 864 = −185 kJ (eksoterm).' }
+    ],
+    traps: [
+      'Menukar rumus energi ikatan: yang benar putus dikurangi bentuk, bukan sebaliknya.',
+      'Lupa membalik tanda ΔH saat reaksi dibalik, atau lupa mengali ΔH saat reaksi dikali.',
+      'Menghitung ΔH per mol tanpa membagi dengan mol zat yang bereaksi, atau lupa tanda minus untuk reaksi eksoterm di kalorimeter.',
+      'Menganggap penetralan endoterm. Penetralan asam–basa melepas kalor (suhu campuran naik).',
+      'Pola TKA: wacana (kompres dingin instan, penghangat instan, bahan bakar) lalu diagram tingkat energi atau data kalorimeter. Tentukan dulu eksoterm atau endoterm dari diagramnya.'
+    ]
+  },
+  kim3: {
+    intro: 'Laju reaksi menyatakan seberapa cepat pereaksi berkurang atau hasil bertambah per satuan waktu. Bab ini meminta kamu membaca data percobaan untuk menentukan persamaan laju dan menjelaskan faktor yang mempercepat reaksi.',
+    points: [
+      'Laju = perubahan konsentrasi per waktu, satuan M/s (mol L⁻¹ s⁻¹). Perbandingan laju zat-zat dalam satu reaksi sama dengan perbandingan koefisiennya.',
+      'Persamaan laju: v = k [A]ᵐ [B]ⁿ. m dan n adalah orde reaksi dan hanya bisa ditentukan dari percobaan (bukan dari koefisien, kecuali reaksi satu tahap).',
+      'Orde total = m + n. Orde 0: laju tidak berubah dengan konsentrasi. Orde 1: konsentrasi ×2 → laju ×2. Orde 2: konsentrasi ×2 → laju ×4.',
+      'Cara menentukan orde dari data: ambil dua percobaan yang hanya berbeda pada konsentrasi zat yang dicari, lalu bandingkan perubahan lajunya.',
+      'Tetapan laju k bergantung pada jenis reaksi dan suhu. Ganti suhu, k berubah.',
+      'Teori tumbukan: reaksi terjadi jika tumbukan efektif, yaitu orientasi tepat dan energi ≥ energi aktivasi (Ea). Ea makin kecil, reaksi makin cepat.',
+      'Faktor yang mempercepat: konsentrasi lebih besar, luas permukaan lebih besar (serbuk), suhu lebih tinggi, tekanan gas lebih besar, dan katalis.',
+      'Suhu: jika laju naik n kali tiap kenaikan ΔT, maka v₂ = v₁ × n^((T₂−T₁)/ΔT). Waktu reaksi berbanding terbalik dengan laju.',
+      'Katalis menurunkan Ea lewat jalur reaksi lain. Ia tidak habis (kembali pada akhir reaksi), tidak mengubah ΔH, dan tidak mengubah hasil akhir.',
+      'Waktu paruh orde 1: t½ = 0,693 / k, tidak bergantung pada konsentrasi awal. Setelah n kali waktu paruh, sisa = awal × (½)ⁿ.'
+    ],
+    examples: [
+      { q: 'Data: percobaan 1 [A]=0,1 [B]=0,1 v=2; percobaan 2 [A]=0,2 [B]=0,1 v=8; percobaan 3 [A]=0,1 [B]=0,2 v=4. Tentukan persamaan laju.', a: 'Percobaan 1→2: [A] ×2, laju ×4, jadi orde A = 2. Percobaan 1→3: [B] ×2, laju ×2, jadi orde B = 1. v = k [A]² [B].' },
+      { q: 'Laju reaksi naik 2 kali tiap kenaikan 10 °C. Pada 25 °C reaksi selesai dalam 80 detik. Berapa lama pada 55 °C?', a: 'Kenaikan 30 °C = 3 kali 10 °C, laju ×2³ = 8. Waktu = 80 / 8 = 10 detik.' }
+    ],
+    traps: [
+      'Mengambil orde dari koefisien reaksi. Orde harus dari data percobaan.',
+      'Membandingkan dua percobaan yang konsentrasi dua zatnya berubah sekaligus.',
+      'Menganggap katalis mengubah ΔH atau menambah hasil. Katalis hanya mempercepat.',
+      'Lupa bahwa waktu berbanding terbalik dengan laju (laju ×8 berarti waktu ÷8).',
+      'Pola TKA: tabel percobaan atau grafik, lalu pernyataan Benar/Salah. Cari dulu orde tiap zat, baru cek pernyataan satu per satu.'
+    ]
+  },
+  kim4: {
+    intro: 'Pada reaksi reversibel, reaksi bisa berjalan dua arah sampai laju maju sama dengan laju balik. Saat itu konsentrasi tetap (setimbang dinamis). Bab ini meminta kamu menghitung K dan memprediksi arah pergeseran.',
+    points: [
+      'Setimbang dinamis: laju maju = laju balik dan konsentrasi tiap zat konstan (reaksi tetap berjalan, tetapi tidak ada perubahan yang terlihat).',
+      'Homogen: semua zat satu fase. Heterogen: fase berbeda.',
+      'Kc = [produk]^koefisien / [reaktan]^koefisien. Hanya gas dan larutan (aq) yang ditulis. Padatan dan cairan murni tidak ditulis. Kp hanya memuat gas, memakai tekanan parsial.',
+      'Tekanan parsial: P gas = (mol gas / mol total gas) × P total.',
+      'Hitungan memakai tabel M–B–S (mula-mula, bereaksi, setimbang). Yang dimasukkan ke rumus K harus konsentrasi setimbang (mol ÷ volume).',
+      'K hanya berubah oleh suhu. Endoterm: suhu naik → K naik. Eksoterm: suhu naik → K turun.',
+      'Reaksi dibalik → K menjadi 1/K. Reaksi dikali x → K dipangkatkan x. Reaksi dijumlahkan → K dikalikan.',
+      'Kuosien reaksi Qc (rumus sama dengan K, tetapi dengan konsentrasi sembarang): Qc < K bergeser ke kanan, Qc > K bergeser ke kiri, Qc = K setimbang.',
+      'Kp = Kc (RT)^Δn, dengan Δn = koefisien gas produk − koefisien gas reaktan. R = 0,082 L atm/mol K, T dalam kelvin.',
+      'Derajat disosiasi α = mol terurai / mol mula-mula.',
+      'Le Chatelier: sistem melawan gangguan. Tambah zat → bergeser menjauhi zat itu. Kurangi zat → bergeser ke arah zat itu.',
+      'Suhu naik → bergeser ke arah endoterm. Suhu turun → ke arah eksoterm.',
+      'Tekanan naik (volume turun) → bergeser ke sisi dengan jumlah koefisien gas lebih kecil. Jika jumlah koefisien gas sama, tidak bergeser.',
+      'Katalis tidak menggeser kesetimbangan, hanya mempercepat tercapainya. Menambah gas inert pada volume tetap juga tidak menggeser.'
+    ],
+    examples: [
+      { q: '2 mol N₂O₄ dalam wadah 2 L terurai: N₂O₄ ⇌ 2NO₂ dengan α = 0,5. Hitung Kc.', a: 'Terurai 1 mol. Setimbang: N₂O₄ = 1 mol (0,5 M), NO₂ = 2 mol (1 M). Kc = (1)² / 0,5 = 2.' },
+      { q: 'N₂ + 3H₂ ⇌ 2NH₃ ΔH = −92 kJ. Bagaimana meningkatkan hasil NH₃?', a: 'Tekanan dinaikkan (4 mol gas → 2 mol), suhu tidak terlalu tinggi (eksoterm), dan NH₃ dikeluarkan. Katalis hanya mempercepat.' }
+    ],
+    traps: [
+      'Memasukkan padatan atau cairan murni ke rumus K.',
+      'Memasukkan mol langsung ke rumus Kc padahal harus konsentrasi (mol ÷ volume), kecuali jika volume sama dan Δn = 0.',
+      'Mengira katalis atau tekanan mengubah nilai K. K hanya berubah oleh suhu.',
+      'Menghitung pergeseran tekanan dengan semua zat, padahal hanya gas yang dihitung.',
+      'Pola TKA: proses industri (Haber–Bosch, kontak, reduksi besi) dengan pernyataan Tepat/Tidak Tepat tentang strategi produksi. Tulis reaksi, tandai ΔH dan koefisien gas, baru nilai tiap strategi.'
+    ]
+  }
 };
