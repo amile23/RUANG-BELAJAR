@@ -283,19 +283,26 @@ RB.lessons = {
       'Hukum Hess: ΔH hanya bergantung pada keadaan awal dan akhir, jadi ΔH total = jumlah ΔH tiap tahap.',
       'Dari ΔHf: ΔH reaksi = Σ ΔHf produk − Σ ΔHf reaktan (dikali koefisien).',
       'Dari energi ikatan: ΔH reaksi = Σ energi ikatan yang diputus (reaktan) − Σ energi ikatan yang dibentuk (produk). Gambar struktur Lewis dulu untuk tahu ikatan apa saja.',
-      'Jumlah ikatan tiap atom: C 4, H 1, O 2, N 3, F/Cl/Br/I 1.'
+      'Jumlah ikatan tiap atom: C 4, H 1, O 2, N 3, F/Cl/Br/I 1.',
+      'Mengenali jenis ΔH dari persamaan: pembentukan → hasil tepat 1 mol senyawa dan semua pereaksi adalah unsur (boleh pecahan). Penguraian → 1 mol senyawa menjadi unsur-unsurnya. Pembakaran → ada O₂ sebagai pereaksi dan hasil CO₂, H₂O.',
+      'Kalor suatu proses = mol × ΔH. Mol dari massa = gram / Mr, mol gas STP = volume / 22,4.',
+      'Diagram siklus Hess: ΔH jalur langsung sama dengan jumlah ΔH jalur memutar. Jika unsur → A (ΔH₁) dan unsur → B (ΔH₂), maka A → B memiliki ΔH = ΔH₂ − ΔH₁.',
+      'Kalorimeter bom bervolume tetap: q = (m air × c + C bom) × ΔT, lalu ΔH = −q / mol zat.'
     ],
     examples: [
       { q: 'Sebanyak 50 mL HCl 1 M dan 50 mL NaOH 1 M dicampur di kalorimeter. Suhu naik 6,5 °C. (massa jenis 1 g/mL, c = 4,2 J/g °C). Berapa ΔH netralisasi per mol?', a: 'm = 100 g. q = 100 × 4,2 × 6,5 = 2.730 J. Mol air = 0,05. ΔH = −2.730 / 0,05 = −54.600 J/mol = −54,6 kJ/mol.' },
       { q: 'C + O₂ → CO₂ ΔH = −394 kJ dan CO + ½O₂ → CO₂ ΔH = −283 kJ. Hitung ΔH untuk C + ½O₂ → CO.', a: 'Pakai reaksi pertama apa adanya, balik reaksi kedua (ΔH jadi +283). Jumlahkan: −394 + 283 = −111 kJ.' },
-      { q: 'H₂ + Cl₂ → 2HCl. Energi ikatan H–H 436, Cl–Cl 243, H–Cl 432 kJ/mol. Hitung ΔH.', a: 'Putus: 436 + 243 = 679. Bentuk: 2 × 432 = 864. ΔH = 679 − 864 = −185 kJ (eksoterm).' }
+      { q: 'H₂ + Cl₂ → 2HCl. Energi ikatan H–H 436, Cl–Cl 243, H–Cl 432 kJ/mol. Hitung ΔH.', a: 'Putus: 436 + 243 = 679. Bentuk: 2 × 432 = 864. ΔH = 679 − 864 = −185 kJ (eksoterm).' },
+      { q: 'Ca + H₂ + O₂ → CaO + H₂O memiliki ΔH₁ = −800 kJ dan Ca + H₂ + O₂ → Ca(OH)₂ memiliki ΔH₂ = −1.050 kJ. Hitung ΔH untuk CaO + H₂O → Ca(OH)₂.', a: 'Dua jalur berawal dari unsur yang sama. ΔH = ΔH₂ − ΔH₁ = −1.050 − (−800) = −250 kJ.' }
     ],
     traps: [
       'Menukar rumus energi ikatan: yang benar putus dikurangi bentuk, bukan sebaliknya.',
       'Lupa membalik tanda ΔH saat reaksi dibalik, atau lupa mengali ΔH saat reaksi dikali.',
       'Menghitung ΔH per mol tanpa membagi dengan mol zat yang bereaksi, atau lupa tanda minus untuk reaksi eksoterm di kalorimeter.',
       'Menganggap penetralan endoterm. Penetralan asam–basa melepas kalor (suhu campuran naik).',
-      'Pola TKA: wacana (kompres dingin instan, penghangat instan, bahan bakar) lalu diagram tingkat energi atau data kalorimeter. Tentukan dulu eksoterm atau endoterm dari diagramnya.'
+      'Pola TKA: wacana (kompres dingin instan, penghangat instan, bahan bakar) lalu diagram tingkat energi atau data kalorimeter. Tentukan dulu eksoterm atau endoterm dari diagramnya.',
+      'Soal pembentukan: kalau persamaan menghasilkan 2 mol senyawa, ΔH-nya harus dibagi 2 dulu untuk menjadi ΔHf.',
+      'Soal "kalor untuk menguraikan sekian gram": hitung ΔH per mol dulu, baru kalikan dengan mol dari massa. Periksa juga satuan Ar/Mr yang dipakai soal.'
     ]
   },
   kim3: {
@@ -310,18 +317,24 @@ RB.lessons = {
       'Faktor yang mempercepat: konsentrasi lebih besar, luas permukaan lebih besar (serbuk), suhu lebih tinggi, tekanan gas lebih besar, dan katalis.',
       'Suhu: jika laju naik n kali tiap kenaikan ΔT, maka v₂ = v₁ × n^((T₂−T₁)/ΔT). Waktu reaksi berbanding terbalik dengan laju.',
       'Katalis menurunkan Ea lewat jalur reaksi lain. Ia tidak habis (kembali pada akhir reaksi), tidak mengubah ΔH, dan tidak mengubah hasil akhir.',
-      'Waktu paruh orde 1: t½ = 0,693 / k, tidak bergantung pada konsentrasi awal. Setelah n kali waktu paruh, sisa = awal × (½)ⁿ.'
+      'Waktu paruh orde 1: t½ = 0,693 / k, tidak bergantung pada konsentrasi awal. Setelah n kali waktu paruh, sisa = awal × (½)ⁿ.',
+      'Kemolaran (M) = mol zat terlarut / liter larutan. Dari larutan pekat: M = kadar(%) × massa jenis(g/mL) × 10 / Mr. Pengenceran: M₁V₁ = M₂V₂.',
+      'Grafik v terhadap [A]: orde 0 garis datar, orde 1 garis lurus naik dari titik (0,0), orde 2 melengkung naik seperti parabola.',
+      'Satuan k bergantung orde total (laju dalam M/s): orde 0 → M s⁻¹, orde 1 → s⁻¹, orde 2 → M⁻¹ s⁻¹, orde 3 → M⁻² s⁻¹.',
+      'Pada diagram energi, Ea = puncak − energi reaktan. Katalis hanya menurunkan puncak, level reaktan dan produk tetap, jadi ΔH tidak berubah. Laju percobaan juga bisa dinyatakan 1/t (t = waktu sampai tanda tertentu, misalnya larutan keruh).'
     ],
     examples: [
       { q: 'Data: percobaan 1 [A]=0,1 [B]=0,1 v=2; percobaan 2 [A]=0,2 [B]=0,1 v=8; percobaan 3 [A]=0,1 [B]=0,2 v=4. Tentukan persamaan laju.', a: 'Percobaan 1→2: [A] ×2, laju ×4, jadi orde A = 2. Percobaan 1→3: [B] ×2, laju ×2, jadi orde B = 1. v = k [A]² [B].' },
-      { q: 'Laju reaksi naik 2 kali tiap kenaikan 10 °C. Pada 25 °C reaksi selesai dalam 80 detik. Berapa lama pada 55 °C?', a: 'Kenaikan 30 °C = 3 kali 10 °C, laju ×2³ = 8. Waktu = 80 / 8 = 10 detik.' }
+      { q: 'Laju reaksi naik 2 kali tiap kenaikan 10 °C. Pada 25 °C reaksi selesai dalam 80 detik. Berapa lama pada 55 °C?', a: 'Kenaikan 30 °C = 3 kali 10 °C, laju ×2³ = 8. Waktu = 80 / 8 = 10 detik.' },
+      { q: 'Larutan H₂SO₄ pekat berkadar 97% dengan massa jenis 1,8 g/mL (Mr = 98). Hitung kemolarannya.', a: 'M = 97 × 1,8 × 10 / 98 = 1.746 / 98 ≈ 17,8 M.' }
     ],
     traps: [
       'Mengambil orde dari koefisien reaksi. Orde harus dari data percobaan.',
       'Membandingkan dua percobaan yang konsentrasi dua zatnya berubah sekaligus.',
       'Menganggap katalis mengubah ΔH atau menambah hasil. Katalis hanya mempercepat.',
       'Lupa bahwa waktu berbanding terbalik dengan laju (laju ×8 berarti waktu ÷8).',
-      'Pola TKA: tabel percobaan atau grafik, lalu pernyataan Benar/Salah. Cari dulu orde tiap zat, baru cek pernyataan satu per satu.'
+      'Pola TKA: tabel percobaan atau grafik, lalu pernyataan Benar/Salah. Cari dulu orde tiap zat, baru cek pernyataan satu per satu.',
+      'Pada percobaan waktu (1/t), waktu lebih singkat berarti laju lebih besar. Jangan membaca waktu sebagai laju.'
     ]
   },
   kim4: {
