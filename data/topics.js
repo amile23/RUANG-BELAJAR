@@ -135,5 +135,6 @@ RB.rawTopics = [
 'utb39|utb|1|PK: hubungan kuantitas P dan Q|45|U',
 'utb40|utb|1|PK: kecukupan data (pernyataan 1 dan 2)|45|U',
 'utb41|utb|1|PK: pernyataan (1)–(4), pilih yang benar|45|U',
-'utb42|utb|1|PM: tabel, grafik & model kontekstual|55|U'
+'utb42|utb|1|PM: tabel, grafik & model kontekstual|55|U',
+'utb43|utb|1|Kelas kata & frasa (PPU–PBM): nomina, verba, adjektiva, adverbia, preposisi|40|UT'
 ];

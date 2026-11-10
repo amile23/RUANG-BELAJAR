@@ -62,7 +62,7 @@ RB.kisi = [
    ['Penalaran kuantitatif','Operasi bilangan, perbandingan, deret, tafsir data','Tulis data dalam tabel kecil sebelum menghitung.','utb14,utb15,utb2,utb3']]},
   {g:'2 · Pengetahuan & Pemahaman Umum (20 soal, 15 mnt)',items:[
    ['Pembentukan kata','Imbuhan (awalan, akhiran, konfiks) dan fungsinya','Uraikan kata jadi kata dasar + imbuhan. Ingat huruf k, p, t, s luluh setelah me-.','utb16'],
-   ['Pembentukan frasa','Pengertian frasa, jenis frasa menurut intinya, inti dan pewatas','Cari inti dulu, baru tentukan jenis frasanya.','utb16'],
+   ['Pembentukan frasa','Pengertian frasa, jenis frasa menurut intinya, inti dan pewatas','Cari inti dulu, baru tentukan jenis frasanya.','utb16,utb43'],
    ['Makna','Makna leksikal, gramatikal, denotasi, konotasi, asosiasi, sinonim, antonim, hipernim, hiponim','Pelajari kata baru lewat kalimat, bukan daftar.','utb17,utb4'],
    ['Tata kalimat','Subjek, predikat, objek, pelengkap, keterangan; kalimat aktif, pasif, transitif; variasi kalimat','Cari predikat dulu, baru subjek dan objeknya.','utb18'],
    ['Kalimat efektif','Kelengkapan struktur, kelogisan, kesejajaran, kehematan, kecermatan','Cek berurutan: struktur, logika, sejajar, hemat, ambigu.','utb19'],
@@ -71,7 +71,7 @@ RB.kisi = [
    ['Analogi dan bahasa panda','Hubungan antarkata (fungsi, ukuran, bagian, sebab-akibat, jenis) dan sandi huruf (pergeseran, substitusi, terapit, pencerminan)','Ubah pasangan kata jadi kalimat. Untuk sandi, tulis alfabet bernomor dulu.','utb21,utb22']]},
   {g:'3 · Pemahaman Bacaan & Menulis (20 soal, 25 mnt)',items:[
    ['Ejaan','PUEBI: tanda baca (koma, titik koma, titik dua, hubung, pisah, petik, kurung), huruf kapital dan miring, penulisan kata (majemuk, kata depan, pun dan per, singkatan, bilangan), penulisan unsur serapan (adopsi dan adaptasi)','Hafal fungsi koma, titik koma, dan titik dua dulu. Lalu pasangan nama diri dan nama jenis (kacang bogor, kunci inggris), kata depan, pun dan per, serta pola serapan.','utb23,utb24,utb25,utb26,ind3'],
-   ['Kata dan makna','Pembentukan kata (imbuhan meng-, ber-, ter-, -an, -kan, -i, konfiks, lesap k-t-s-p), makna leksikal, denotasi, konotasi, asosiasi, sinonim, antonim, hipernim, hiponim','Uraikan kata jadi kata dasar + imbuhan, lalu tentukan makna imbuhannya. Untuk makna, pelajari kata lewat kalimat.','utb16,utb17,ind9'],
+   ['Kata dan makna','Pembentukan kata (imbuhan meng-, ber-, ter-, -an, -kan, -i, konfiks, lesap k-t-s-p), makna leksikal, denotasi, konotasi, asosiasi, sinonim, antonim, hipernim, hiponim','Uraikan kata jadi kata dasar + imbuhan, lalu tentukan makna imbuhannya. Untuk makna, pelajari kata lewat kalimat.','utb16,utb43,utb17,ind9'],
    ['Konjungsi','Konjungsi intrakalimat (koordinatif, korelatif, subordinatif) dan antarkalimat','Tentukan hubungan makna dulu (waktu, syarat, sebab, akibat, tujuan, pertentangan), baru pilih katanya.','utb27,ind2'],
    ['Kalimat','Pola kalimat (S, P, O, Pel, K), kalimat transitif dan intransitif, aktif dan pasif, variasi kalimat','Cari predikat dulu, baru subjek dan objeknya.','utb18,ind3'],
    ['Kalimat efektif','Kelengkapan struktur, kelogisan, kesejajaran, kehematan, kecermatan','Cek berurutan: struktur, logika, sejajar, hemat, ambigu.','utb19,ind3'],

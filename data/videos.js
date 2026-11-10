@@ -35,3 +35,5 @@ RB.videos = {
   frasa:[{t:'Jenis-jenis frasa (endosentrik & eksosentrik)',u:'https://www.youtube.com/watch?v=uAaJHnNhHiM'},{t:'Frasa dan klausa: materi UTBK-SNBT',u:'https://www.youtube.com/watch?v=q83C14nCZuo'},{t:'Pembahasan soal frasa: prediksi PPU SNBT',u:'https://www.youtube.com/watch?v=WP6ZLQ2Oe9Q'}],
   kelaskata:[{t:'Preposisi: persiapan UTBK-SNBT',u:'https://www.youtube.com/watch?v=MJVAkrKZPS0'},{t:'Kelas kata penting dan pola kalimat (SNBT)',u:'https://www.youtube.com/watch?v=MK1iSxdwkvQ'}]
 };
+RB.videos.utb16=(RB.videos.utb16||[]).concat(RB.videos.frasa||[]);
+RB.videos.utb43=RB.videos.kelaskata;

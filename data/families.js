@@ -4,7 +4,7 @@ RB.families = [
  {id:'r1',n:'Rumpun 1 · PPU + PBM + Literasi Bahasa Indonesia',
   d:'Pengetahuan & Pemahaman Umum, Pemahaman Bacaan & Menulis, dan Literasi B. Indonesia memakai bekal yang sama: kata, kalimat, ejaan, dan membaca wacana.',
   groups:[
-   {g:'Kata & makna',ids:['utb16','utb17','utb21','utb22']},
+   {g:'Kata & makna',ids:['utb16','utb43','utb17','utb21','utb22']},
    {g:'Ejaan (PUEBI)',ids:['utb23','utb24','utb25','utb26']},
    {g:'Kalimat, konjungsi & kalimat efektif',ids:['utb18','utb27','utb19']},
    {g:'Wacana & membaca teks',ids:['utb28','utb20','utb10','utb4']}]},
