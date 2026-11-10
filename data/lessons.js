@@ -354,4 +354,86 @@ RB.lessons = {
       'Pola TKA: proses industri (Haber–Bosch, kontak, reduksi besi) dengan pernyataan Tepat/Tidak Tepat tentang strategi produksi. Tulis reaksi, tandai ΔH dan koefisien gas, baru nilai tiap strategi.'
     ]
   }
+  ,
+  kim13: {
+    intro: 'Reaksi redoks adalah reaksi dengan perpindahan elektron, yang terlihat dari berubahnya bilangan oksidasi (biloks). Bab ini melatih menentukan biloks, mengenali oksidator dan reduktor, dan menyetarakan reaksi.',
+    points: [
+      'Aturan biloks: unsur bebas = 0. Jumlah biloks dalam senyawa = 0, dalam ion = muatan ion. H = +1, O = −2, logam IA = +1, IIA = +2, Al = +3. Halogen dengan logam = −1.',
+      'Pengecualian: O dalam peroksida (H₂O₂, Na₂O₂) = −1, O dalam OF₂ = +2, H dalam hidrida logam (NaH, CaH₂) = −1.',
+      'Oksidasi = biloks naik, melepas elektron, bertambah oksigen. Reduksi = biloks turun, menangkap elektron, berkurang oksigen.',
+      'Reduktor = zat yang mengalami oksidasi (biloksnya naik). Oksidator = zat yang mengalami reduksi (biloksnya turun).',
+      'Ciri reaksi redoks: ada unsur bebas di salah satu sisi, atau ada atom (selain H, O, logam IA/IIA) yang biloksnya berubah. Reaksi yang biloksnya tidak berubah (asam + basa, pengendapan) bukan redoks.',
+      'Autoredoks (disproporsionasi): satu zat sekaligus teroksidasi dan tereduksi, contoh Cl₂ + 2OH⁻ → Cl⁻ + ClO⁻ + H₂O. Konproporsionasi: hasil oksidasi dan reduksi berupa zat yang sama, contoh 2H₂S + SO₂ → 3S + 2H₂O.',
+      'Mol elektron = mol zat × perubahan biloks (perhatikan jumlah atomnya).',
+      'Menyetarakan dengan biloks: (1) tentukan atom yang biloksnya berubah, (2) samakan jumlah atom itu di kiri dan kanan, (3) hitung total biloks tiap sisi, (4) cari selisihnya, (5) samakan jumlah elektron lepas dan terima, (6) samakan muatan dengan H⁺ (asam) atau OH⁻ (basa), (7) samakan H dengan H₂O.',
+      'Pemeriksaan akhir: jumlah atom O di kiri dan kanan harus sama, dan muatan total harus sama.',
+      'Reaksi molekul (tanpa ion), samakan atom lain dulu (logam IA, IIA, lalu sisa), dan senyawa asam atau basa biasanya disetarakan terakhir.'
+    ],
+    examples: [
+      { q: 'Tentukan biloks Mn dalam MnO₄⁻ dan Cr dalam Cr₂O₇²⁻.', a: 'MnO₄⁻: Mn + 4(−2) = −1, jadi Mn = +7. Cr₂O₇²⁻: 2Cr + 7(−2) = −2, jadi 2Cr = +12 dan Cr = +6.' },
+      { q: 'Setarakan (suasana asam): MnO₄⁻ + C₂O₄²⁻ + H⁺ → Mn²⁺ + CO₂ + H₂O.', a: 'Mn turun 5 (+7 ke +2), tiap C naik 1 (C₂ naik 2). KPK 10: 2 MnO₄⁻ dan 5 C₂O₄²⁻ dan 10 CO₂. Muatan kiri −12 dan kanan +4, tambah 16 H⁺, lalu 8 H₂O. Hasil: 2MnO₄⁻ + 5C₂O₄²⁻ + 16H⁺ → 2Mn²⁺ + 10CO₂ + 8H₂O.' },
+      { q: 'Pada Zn + CuSO₄ → ZnSO₄ + Cu, tentukan oksidator dan reduktor.', a: 'Zn naik dari 0 ke +2 (reduktor, teroksidasi). Cu turun dari +2 ke 0 (CuSO₄ adalah oksidator).' }
+    ],
+    traps: [
+      'Menghitung biloks satu atom padahal ada lebih dari satu (misal C₂O₄²⁻ total C₂ = +6).',
+      'Menyebut zat hasil sebagai oksidator. Oksidator dan reduktor adalah pereaksi.',
+      'Lupa pengecualian O dalam peroksida (−1).',
+      'Menyetarakan muatan di suasana basa dengan H⁺, seharusnya OH⁻.',
+      'Pola TKA: wacana tentang klorin, hipoklorit, atau pembuatan amonia. Tulis biloks di atas tiap atom yang berubah, baru jawab pertanyaan oksidator atau reduktor.'
+    ]
+  },
+  kim18: {
+    intro: 'Larutan penyangga (buffer) menahan perubahan pH ketika ditambah sedikit asam, sedikit basa, atau diencerkan. Ia terdiri dari pasangan asam/basa lemah dengan konjugatnya.',
+    points: [
+      'Penyangga asam: asam lemah + basa konjugasinya (dari garam), contoh CH₃COOH + CH₃COONa. Penyangga basa: basa lemah + asam konjugasinya, contoh NH₃ + NH₄Cl.',
+      'Penyangga asam: [H⁺] = Ka × (mol asam lemah / mol basa konjugasi). Penyangga basa: [OH⁻] = Kb × (mol basa lemah / mol asam konjugasi).',
+      'Jika garam melepas lebih dari satu ion konjugat (misal (CH₃COO)₂Ca memberi 2 ion), mol konjugat = mol garam × jumlah ion itu.',
+      'Jika volume sama, boleh memakai konsentrasi saja. Jika konsentrasi lemah = konjugat, pH = pKa (atau pOH = pKb).',
+      'Cara langsung: campur asam/basa lemah dengan garamnya. Cara tidak langsung: campur asam/basa lemah dengan basa/asam kuat, dengan syarat yang lemah bersisa.',
+      'Cara tidak langsung: lemah berlebih dengan kuat. Mol garam yang terbentuk = mol yang kuat. Mol lemah sisa = mol lemah awal − mol kuat.',
+      'Penambahan sedikit asam kuat: konjugat berkurang, lemah bertambah. Penambahan sedikit basa kuat: lemah berkurang, konjugat bertambah. Perubahan mol sebesar mol H⁺ atau OH⁻ yang ditambahkan.',
+      'Pengenceran: mol lemah dan konjugat tetap, perbandingannya tetap, sehingga pH hampir tidak berubah.',
+      'Penyangga dalam tubuh: darah memakai pasangan H₂CO₃/HCO₃⁻ (pH sekitar 7,4). Di dalam sel ada penyangga fosfat.',
+      'Penyangga bekerja pada batas tertentu. Jika asam atau basa yang ditambahkan melebihi komponen penyangga, pH berubah drastis.'
+    ],
+    examples: [
+      { q: '100 mL CH₃COOH 0,1 M dicampur 100 mL CH₃COONa 0,1 M (Ka = 10⁻⁵). Hitung pH.', a: 'Mol asam = mol garam = 10 mmol. [H⁺] = 10⁻⁵ × 10/10 = 10⁻⁵, pH = 5.' },
+      { q: 'Penyangga 0,2 mol CH₃COOH dan 0,2 mol CH₃COONa (Ka = 10⁻⁵) ditambah 0,02 mol HCl. Berapa pH?', a: 'Asam menjadi 0,22 mol, garam menjadi 0,18 mol. [H⁺] = 10⁻⁵ × 0,22/0,18 = 1,22 × 10⁻⁵, pH ≈ 4,9. Hanya turun 0,1.' },
+      { q: 'Perbandingan CH₃COOH : CH₃COO⁻ agar pH = 6 (Ka = 10⁻⁵)?', a: '[H⁺] = 10⁻⁶ = 10⁻⁵ × (asam/garam), jadi asam : garam = 1 : 10.' }
+    ],
+    traps: [
+      'Memakai rumus penyangga ketika lemah habis tepat. Itu hidrolisis garam.',
+      'Menukar posisi: asam lemah di atas (pembilang) untuk [H⁺], bukan garam.',
+      'Lupa jumlah ion konjugat per rumus garam (misal (NH₄)₂SO₄ memberi 2 NH₄⁺).',
+      'Menghitung perubahan dengan konsentrasi padahal mol yang berubah saat ditambah asam atau basa.',
+      'Pola TKA: kasus klinis darah atau minuman, menjelaskan bagaimana penyangga menetralkan asam. Tulis dua reaksi: konjugat + H⁺ dan lemah + OH⁻.'
+    ]
+  },
+  kim7: {
+    intro: 'Garam yang sukar larut tetap melarut dalam jumlah sangat kecil sehingga terbentuk kesetimbangan antara padatan dan ion-ionnya. Ksp menyatakan tetapan kesetimbangan itu dan dipakai untuk menghitung kelarutan serta memprediksi pengendapan.',
+    points: [
+      'Kelarutan (s) = mol zat yang larut per liter larutan jenuh (mol/L).',
+      'Untuk AₘBₙ(s) ⇌ mAⁿ⁺ + nBᵐ⁻: Ksp = [Aⁿ⁺]ᵐ [Bᵐ⁻]ⁿ. Padatan tidak ditulis.',
+      'Dalam air: AB → Ksp = s². AB₂ atau A₂B → Ksp = 4s³. AB₃ → Ksp = 27s⁴. Rumus umum Ksp = mᵐ nⁿ s^(m+n).',
+      'Untuk membandingkan kelarutan, bandingkan Ksp hanya jika tipenya sama (jumlah ion sama). Jika berbeda, hitung s masing-masing.',
+      'Ion senama (ion yang sama dengan salah satu ion garam) memperkecil kelarutan. Hitung dari Ksp memakai konsentrasi ion senama yang sudah ada, dan abaikan s yang sangat kecil.',
+      'Qsp memakai rumus sama dengan Ksp tetapi dengan konsentrasi sesaat. Qsp < Ksp: belum jenuh, tidak mengendap. Qsp = Ksp: tepat jenuh. Qsp > Ksp: mengendap.',
+      'Saat dua larutan dicampur, hitung dulu konsentrasi ion setelah pencampuran (volume bertambah) sebelum menghitung Qsp.',
+      'pH berpengaruh: hidroksida logam lebih larut dalam asam (OH⁻ bereaksi dengan H⁺). Pada pH tinggi kelarutannya turun.',
+      'Pembentukan ion kompleks (misal AgCl dengan NH₃ membentuk [Ag(NH₃)₂]⁺) menaikkan kelarutan.',
+      'Suhu naik umumnya menaikkan kelarutan padatan. Pengendapan bertahap: pada konsentrasi ion sama, garam dengan Ksp lebih kecil (tipe sama) mengendap lebih dulu.'
+    ],
+    examples: [
+      { q: 'Ksp Mg(OH)₂ = 4 × 10⁻¹². Hitung kelarutan dalam air.', a: 'Tipe AB₂: Ksp = 4s³. 4s³ = 4 × 10⁻¹², s³ = 10⁻¹², s = 10⁻⁴ M.' },
+      { q: 'Ksp AgCl = 10⁻¹⁰. Hitung kelarutannya dalam NaCl 0,1 M.', a: '[Cl⁻] ≈ 0,1 M. [Ag⁺] = Ksp/[Cl⁻] = 10⁻¹⁰/10⁻¹ = 10⁻⁹. Jadi s = 10⁻⁹ M (jauh lebih kecil daripada 10⁻⁵ M di air murni).' },
+      { q: 'Pada pH berapa Mg(OH)₂ (Ksp = 4 × 10⁻¹²) mulai mengendap dari larutan Mg²⁺ 0,01 M?', a: '[OH⁻]² = Ksp/[Mg²⁺] = 4 × 10⁻¹⁰, [OH⁻] = 2 × 10⁻⁵. pOH = 5 − log 2, pH = 9 + log 2.' }
+    ],
+    traps: [
+      'Menulis padatan di dalam rumus Ksp.',
+      'Salah menghitung konsentrasi OH⁻ pada Ca(OH)₂ (ingat [OH⁻] = 2s).',
+      'Membandingkan kelarutan dari Ksp saja untuk garam yang tipenya berbeda.',
+      'Lupa mengencerkan konsentrasi saat dua larutan dicampur sebelum menghitung Qsp.',
+      'Pola TKA: pengolahan limbah dengan penambahan ion pengendap. Hitung konsentrasi setelah dicampur, hitung Qsp, lalu bandingkan dengan Ksp.'
+    ]
+  }
 };
