@@ -32,6 +32,28 @@ body{background:#2B2350;font-family:'Fredoka','Trebuchet MS',system-ui,sans-seri
 .rb svg{width:calc(var(--u) * 36);height:calc(var(--u) * 36)}
 .rb:active{transform:translateY(calc(var(--u) * 4));box-shadow:0 calc(var(--u) * 1) 0 #17306B}
 
+.ov.edit{pointer-events:none}
+.ov.edit > *{pointer-events:auto}
+.edtop{position:absolute;left:calc(var(--u) * 14);right:calc(var(--u) * 14);top:calc(var(--u) * 10);display:flex;flex-direction:column;gap:calc(var(--u) * 8);background:rgba(255,255,255,.93);border:calc(var(--u) * 4) solid #F2A7BE;border-radius:calc(var(--u) * 26);padding:calc(var(--u) * 10) calc(var(--u) * 16);box-shadow:0 calc(var(--u) * 6) calc(var(--u) * 14) rgba(0,0,0,.2)}
+.edrow{display:flex;flex-wrap:wrap;align-items:center;gap:calc(var(--u) * 10)}
+.eb{height:calc(var(--u) * 46);padding:0 calc(var(--u) * 16);border-radius:999px;border:calc(var(--u) * 3) solid #fff;background:linear-gradient(#4A78D6,#2A4FA4);color:#fff;font:600 calc(var(--u) * 20)/1 'Fredoka',sans-serif;cursor:pointer;box-shadow:0 calc(var(--u) * 4) 0 #17306B}
+.eb:active{transform:translateY(calc(var(--u) * 3));box-shadow:0 calc(var(--u) * 1) 0 #17306B}
+.eb.gold{background:linear-gradient(#FFD25C,#EDA62A);color:#5A3300;box-shadow:0 calc(var(--u) * 4) 0 #9A6212}
+.eb.pink{background:linear-gradient(#F57FA2,#D9457A);box-shadow:0 calc(var(--u) * 4) 0 #8E2450}
+.eb[aria-pressed="true"]{background:linear-gradient(#3CC3B2,#1E8F82);box-shadow:0 calc(var(--u) * 4) 0 #11645B}
+.eb:focus-visible{outline:calc(var(--u) * 4) solid #FFE066;outline-offset:calc(var(--u) * 2)}
+.edname{font:700 calc(var(--u) * 30)/1 'Fredoka',sans-serif;color:#D9457A;min-width:calc(var(--u) * 120);text-align:center}
+.edstat{font:600 calc(var(--u) * 19)/1.2 'Fredoka',sans-serif;color:#1E6B3A}
+.edhelp{position:absolute;left:calc(var(--u) * 14);right:calc(var(--u) * 14);bottom:calc(var(--u) * 78);text-align:center;font:600 calc(var(--u) * 21)/1.25 'Fredoka',sans-serif;color:#1d3a10;background:rgba(255,255,255,.82);border-radius:calc(var(--u) * 18);padding:calc(var(--u) * 6) calc(var(--u) * 14);pointer-events:none!important}
+.edsel{position:absolute;left:calc(var(--u) * 10);right:calc(var(--u) * 10);bottom:calc(var(--u) * 10);display:flex;gap:calc(var(--u) * 4);justify-content:center}
+.edsel .eb{height:calc(var(--u) * 54);min-width:calc(var(--u) * 56);padding:0 calc(var(--u) * 6);font-size:calc(var(--u) * 32);font-family:'AksaraJawa','Noto Sans Javanese',serif;font-weight:700;background:#fff;color:#2F3E7E;box-shadow:0 calc(var(--u) * 3) 0 #9aa6c8;border-color:#CFD8F3;position:relative}
+.edsel .eb.has{background:#FFE4EC;color:#B83A62;border-color:#F2A7BE}
+.edsel .eb.cur{outline:calc(var(--u) * 4) solid #3CC3B2;outline-offset:calc(var(--u) * 1)}
+.edbox{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:calc(var(--u) * 900);background:#FFFCE8;border:calc(var(--u) * 5) dashed #D9733E;border-radius:calc(var(--u) * 30);padding:calc(var(--u) * 18) calc(var(--u) * 24);display:flex;flex-direction:column;gap:calc(var(--u) * 10);align-items:center;z-index:3}
+.edbox[hidden]{display:none}
+.edbox p{margin:0;font:600 calc(var(--u) * 22)/1.25 'Fredoka',sans-serif;color:#2B7490;text-align:center}
+.edbox textarea{width:100%;height:calc(var(--u) * 300);font:500 calc(var(--u) * 15)/1.3 monospace;border-radius:calc(var(--u) * 12);border:calc(var(--u) * 2) solid #ccc;padding:calc(var(--u) * 8)}
+.edlink{position:absolute;right:calc(var(--u) * 22);bottom:calc(var(--u) * 40);background:rgba(255,255,255,.88);border-radius:999px;padding:calc(var(--u) * 8) calc(var(--u) * 18);font-size:calc(var(--u) * 20)}
 .hud{position:absolute;inset:0;z-index:4;pointer-events:none}
 .hud[hidden]{display:none}
 .hud > * {pointer-events:none}
@@ -168,6 +190,7 @@ body{background:#2B2350;font-family:'Fredoka','Trebuchet MS',system-ui,sans-seri
     <div class="tl">
       <button class="rb" id="hMenu" type="button" aria-label="Jeda dan menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg></button>
       <button class="rb" id="hHear" type="button" aria-label="Dengar nama aksara"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"/><path d="M16 8.5a5 5 0 010 7M19 5.5a9 9 0 010 13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+      <button class="bigbtn gold sm" id="hEdBack" type="button" hidden>Kembali ke editor</button>
       <button class="rb" id="hFull" type="button" aria-label="Layar penuh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
     <div class="tr">
@@ -185,6 +208,7 @@ body{background:#2B2350;font-family:'Fredoka','Trebuchet MS',system-ui,sans-seri
     <div class="btnrow"><button class="bigbtn" id="btnPlay" type="button">Main</button><button class="bigbtn pink" id="btnSettings" type="button">Pengaturan</button></div>
     <svg class="mascot" viewBox="0 0 120 120" aria-hidden="true"><use href="#kancil"/></svg>
     <div class="env" id="envCheck" aria-live="polite"></div>
+    <button class="linkbtn edlink" id="btnEditor" type="button">Atur urutan bintang (guru)</button>
   </div>
 
   <div class="ov" id="ovSelect" hidden>
@@ -219,6 +243,27 @@ body{background:#2B2350;font-family:'Fredoka','Trebuchet MS',system-ui,sans-seri
       <h2>Menyiapkan<br>permainanmu!</h2>
       <p id="loadText">Sebentar ya…</p>
     </div>
+  </div>
+
+  <div class="ov edit" id="ovEdit" hidden>
+    <div class="edtop">
+      <div class="edrow">
+        <button class="eb" id="edPrev" type="button">Sebelumnya</button><b class="edname" id="edName">ha</b><button class="eb" id="edNext" type="button">Berikutnya</button>
+        <button class="eb" id="edUndo" type="button">Urungkan</button>
+        <button class="eb" id="edLift" type="button" aria-pressed="false">Angkat pena</button>
+        <button class="eb" id="edClear" type="button">Hapus semua</button>
+        <button class="eb" id="edAuto" type="button">Mulai dari saran otomatis</button>
+      </div>
+      <div class="edrow">
+        <button class="eb gold" id="edTest" type="button">Coba main</button>
+        <button class="eb gold" id="edCopy" type="button">Salin semua hasil</button>
+        <button class="eb pink" id="edExit" type="button">Selesai</button>
+        <span class="edstat" id="edStat" role="status" aria-live="polite"></span>
+      </div>
+    </div>
+    <div class="edhelp" id="edHelp">Klik di huruf sesuai urutan menulis: bintang 1 di titik awal, lalu 2, 3, dan seterusnya. Geser bintang untuk memindahnya. Klik kanan bintang untuk menghapusnya.</div>
+    <div class="edsel" id="edSel"></div>
+    <div class="edbox" id="edBox" hidden><p>Salin tulisan di bawah ini (tekan Ctrl+A lalu Ctrl+C), lalu kirim ke Claude.</p><textarea id="edText" readonly></textarea><button class="eb" id="edBoxClose" type="button">Tutup</button></div>
   </div>
 
   <div class="ov dim" id="ovError" hidden><div class="card">
@@ -309,9 +354,15 @@ const S = {
   handEver: false, hadHand: false, handLostAt: 0, firstHandPrompt: false, playMs: 0, lastTick: 0, lastSecTick: -1,
   letterStartAt: 0, lastGainAt: 0, hintUntil: 0, hints: 0, mission: 0, touches: 0,
   particles: [], items: [], autoTimer: null, winTimer: null, pq: [], pops: [],
+  orders: {}, editing: false, fromEdit: false, ed: null, box: null, autoPts: [],
   settings: { voice: true, sfx: true, auto: true, decor: true, timer: true }, saved: { done: {} }, audio: null
 };
 
+const BAKED = {};                 // urutan bintang resmi dari editor (diisi dari hasil editor)
+const ORDER_KEY = 'dolanGerak.nulisAksara.urutan.v1';
+function loadOrders() { try { const o = JSON.parse(localStorage.getItem(ORDER_KEY) || 'null'); return o && typeof o === 'object' ? o : {}; } catch (e) { return {}; } }
+function saveOrders() { try { localStorage.setItem(ORDER_KEY, JSON.stringify(S.orders)); return true; } catch (e) { return false; } }
+function getOrder(name) { const o = S.orders[name] || BAKED[name]; return o && o.length >= 2 ? o : null; }
 function loadSaved() {
   try {
     const o = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
@@ -589,6 +640,16 @@ function placeStars(op) {
   });
   return { stars: out, keep: keep };
 }
+function planFromOrder(pts, box) {      // urutan buatan editor -> jalur cat dan bintang
+  const op = [], stars = [], keep = []; let ri = -1, curRun = null, ids = null, prev = null;
+  pts.forEach(function (p) {
+    const x = box.x + p[0] * box.w, y = box.y + p[1] * box.h, r = p[2] | 0;
+    if (r !== curRun) { curRun = r; ri++; ids = []; keep.push(ids); prev = null; }
+    if (prev) { const d = Math.hypot(x - prev.x, y - prev.y), n = Math.max(1, Math.ceil(d / 4)); for (let k = 1; k < n; k++) { ids.push(op.length); op.push({ x: prev.x + (x - prev.x) * k / n, y: prev.y + (y - prev.y) * k / n, run: ri }); } }
+    ids.push(op.length); op.push({ x: x, y: y, run: ri }); stars.push({ x: x, y: y, oi: op.length - 1, run: ri, must: true }); prev = { x: x, y: y };
+  });
+  return { op: op, stars: stars, keep: keep.filter(function (k) { return k.length > 1; }) };
+}
 async function buildLetter(i) {
   S.idx = i; S.done = false; S.ready = false; S.got = 0; S.stars = []; S.op = []; S.hintUntil = 0; S.hints = 0; S.fullAt = 0; S.playMs = 0; S.particles = []; S.pq = []; S.pops = [];
   clearTimeout(S.winTimer); clearTimeout(S.autoTimer);
@@ -598,11 +659,12 @@ async function buildLetter(i) {
   mctx.clearRect(0, 0, W, H); mctx.textAlign = 'left'; mctx.textBaseline = 'alphabetic'; mctx.font = '700 ' + base + 'px AksaraJawa';
   let m = mctx.measureText(g);
   const bw = m.actualBoundingBoxLeft + m.actualBoundingBoxRight, bh = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent;
-  const k = Math.min((H * 0.58) / bh, (W * (S.hand === 'dua' ? 0.34 : 0.30)) / bw), px = base * k;
+  const k = S.editing ? Math.min((H * 0.56) / bh, (W * 0.60) / bw) : Math.min((H * 0.58) / bh, (W * (S.hand === 'dua' ? 0.34 : 0.30)) / bw), px = base * k;
   mctx.font = '700 ' + px + 'px AksaraJawa'; m = mctx.measureText(g);
-  const cx = W * SIDE_X[S.hand], cy = H * 0.40;
+  const cx = S.editing ? W / 2 : W * SIDE_X[S.hand], cy = S.editing ? H * 0.50 : H * 0.40;
   const x = cx - (m.actualBoundingBoxRight - m.actualBoundingBoxLeft) / 2;
   const y = cy - (m.actualBoundingBoxDescent - m.actualBoundingBoxAscent) / 2;
+  S.box = { x: x - m.actualBoundingBoxLeft, y: y - m.actualBoundingBoxAscent, w: m.actualBoundingBoxLeft + m.actualBoundingBoxRight, h: m.actualBoundingBoxAscent + m.actualBoundingBoxDescent };
   mctx.fillStyle = '#000'; mctx.fillText(g, x, y);
   const alpha = mctx.getImageData(0, 0, W, H).data;
 
@@ -612,8 +674,17 @@ async function buildLetter(i) {
   cctx.clearRect(0, 0, W, H); cctx.font = gctx.font; cctx.textAlign = 'left'; cctx.textBaseline = 'alphabetic'; cctx.fillStyle = S.color; cctx.fillText(g, x, y);
   pctx.clearRect(0, 0, W, H); fctx.clearRect(0, 0, W, H);
 
-  S.op = skeletonPath(alpha);
-  const pl = placeStars(S.op); S.stars = pl.stars;
+  let pl;
+  if (S.editing) {
+    pl = placeStars(skeletonPath(alpha)); const bx = S.box;
+    S.autoPts = pl.stars.map(function (s) { return [(s.x - bx.x) / bx.w, (s.y - bx.y) / bx.h, s.run]; });
+    S.op = []; pl = { stars: [], keep: [] };
+  } else {
+    const cu = getOrder(LETTERS[i][1]);
+    if (cu) { const pp = planFromOrder(cu, S.box); S.op = pp.op; pl = { stars: pp.stars, keep: pp.keep }; }
+    else { S.op = skeletonPath(alpha); pl = placeStars(S.op); }
+  }
+  S.stars = pl.stars;
   gctx.save(); gctx.strokeStyle = 'rgba(247,120,160,.95)'; gctx.lineWidth = 5; gctx.lineCap = 'round'; gctx.setLineDash([14, 12]);
   pl.keep.forEach(function (ids) { gctx.beginPath(); ids.forEach(function (oi, n) { if (n) gctx.lineTo(S.op[oi].x, S.op[oi].y); else gctx.moveTo(S.op[oi].x, S.op[oi].y); }); gctx.stroke(); });
   gctx.restore();
@@ -621,7 +692,7 @@ async function buildLetter(i) {
   $('aliveG').textContent = g; $('alive').style.setProperty('--c', S.color);
   S.letterStartAt = S.lastGainAt = performance.now();
   S.handEver = TRK.some(function (t) { return t.has; });
-  S.ready = S.stars.length >= 4; updateHud();
+  S.ready = S.stars.length >= 2; updateHud();
 }
 function paintRange(from, to, withDot) {
   pctx.strokeStyle = pctx.fillStyle = S.color; pctx.lineWidth = FILLR * 2; pctx.lineCap = pctx.lineJoin = 'round';
@@ -692,6 +763,7 @@ function finish() {
   if (S.done) return;
   S.done = true; flushPaint(); updateFill(); S.fullAt = performance.now(); $('say').hidden = true;
   TRK.forEach(function (t) { t.has = false; });
+  if (S.fromEdit) { spawnConfetti(50, 'rain'); S.winTimer = setTimeout(function () { if (S.fromEdit && S.done) openEditor(S.idx); }, 2300); return; }
   S.saved.done[S.idx] = 1; save(); S.mission++;
   const mission = S.mission % CFG.missionSize === 0, name = LETTERS[S.idx][1], nxt = LETTERS[(S.idx + 1) % LETTERS.length];
   spawnConfetti(mission ? 130 : 80, 'rain'); spawnConfetti(mission ? 90 : 56, 'burst'); celebrateSound(mission);
@@ -883,6 +955,7 @@ function frame() {
     if (vid.currentTime !== S.lastVideoTime) { S.lastVideoTime = vid.currentTime; if (!S.done && S.ui === null) detect(); }
     drawVideo(); ctx.drawImage(fgCv, 0, 0);
   } else if (inGame) { ctx.drawImage(skyCv, 0, 0); drawClouds(now); }
+  else if (S.ui === 'ovEdit') { ctx.drawImage(skyCv, 0, 0); drawClouds(now); ctx.drawImage(guideCv, 0, 0); drawEdit(); }
   else { ctx.drawImage(skyCv, 0, 0); drawClouds(now); if (S.ui === 'ovTitle') drawCanting(now); }
   if (inGame && S.ready) {
     ctx.drawImage(guideCv, 0, 0);
@@ -917,11 +990,13 @@ cv.addEventListener('pointerup', endPointer); cv.addEventListener('pointercancel
 cv.addEventListener('pointerleave', function (e) { endPointer(e); if (e.pointerType === 'mouse') TRK.forEach(function (t) { if (t.ptr === null) t.has = false; }); });
 
 // ===== Layar =====
-const OVERLAYS = ['ovBoot', 'ovTitle', 'ovSelect', 'ovHow', 'ovLoad', 'ovError', 'ovPause', 'ovWin', 'ovSettings'];
+const OVERLAYS = ['ovBoot', 'ovTitle', 'ovSelect', 'ovHow', 'ovLoad', 'ovError', 'ovPause', 'ovWin', 'ovSettings', 'ovEdit'];
 function showOnly(id) {
   OVERLAYS.forEach(function (x) { $(x).hidden = x !== id; });
   S.ui = id;
   $('hud').hidden = !(id === null || id === 'ovPause' || (id === 'ovSettings' && S.settingsFrom === 'ovPause'));
+  if (id === 'ovTitle' || id === 'ovSelect' || id === 'ovHow') { S.fromEdit = false; S.editing = false; }
+  $('hEdBack').hidden = !S.fromEdit;
   if (id !== 'ovWin') clearTimeout(S.autoTimer);
   if (id === null || id === 'ovPause') S.lastTick = performance.now();
   if (id !== null && id !== 'ovPause' && id !== 'ovWin' && id !== 'ovLoadMini') $('say').hidden = true;
@@ -991,6 +1066,90 @@ async function startPointer() {
   say('Halo, teman! Ayo menulis aksara ' + LETTERS[S.idx][1] + '. Geser jarimu menyentuh bintang yang bersinar. Boleh pakai dua jari!', { force: true, key: 'greet' });
 }
 
+// ===== Editor urutan bintang =====
+const ED_COLS = ['#FFC53D', '#5BD0C0', '#B58CF0', '#FF8C5A', '#7BCB4F'];
+function edName() { return LETTERS[S.idx][1]; }
+function edXY(p) { return { x: S.box.x + p[0] * S.box.w, y: S.box.y + p[1] * S.box.h }; }
+function edNote(t) { $('edStat').textContent = t; }
+function edSave() {
+  const pts = S.ed.pts.map(function (p) { return [Math.round(p[0] * 10000) / 10000, Math.round(p[1] * 10000) / 10000, p[2]]; });
+  if (pts.length >= 2) S.orders[edName()] = pts; else delete S.orders[edName()];
+  const ok = saveOrders();
+  edNote(pts.length < 2 ? (pts.length ? 'Tambah minimal 2 bintang agar tersimpan.' : 'Belum ada bintang: game memakai urutan otomatis.') : (ok ? 'Tersimpan otomatis ✓ (' + pts.length + ' bintang)' : 'Gagal menyimpan di perangkat ini. Pakai “Salin semua hasil”.'));
+  edSel();
+}
+function edSel() {
+  const box = $('edSel'); box.innerHTML = ''; let n = 0;
+  LETTERS.forEach(function (l, i) {
+    const has = !!getOrder(l[1]); if (has) n++;
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'eb' + (has ? ' has' : '') + (i === S.idx ? ' cur' : ''); b.textContent = l[0]; b.setAttribute('aria-label', 'Aksara ' + l[1] + (has ? ', sudah diatur' : ''));
+    b.addEventListener('click', function () { openEditor(i); });
+    box.appendChild(b);
+  });
+  $('edName').textContent = edName() + '  (' + (S.idx + 1) + '/20)';
+  $('edHelp').dataset.n = n;
+}
+function edLiftSet(v) { S.ed.lift = v; $('edLift').setAttribute('aria-pressed', String(v)); $('edLift').textContent = v ? 'Pena diangkat: klik titik awal potongan baru' : 'Angkat pena'; }
+async function openEditor(i) {
+  clearTimeout(S.winTimer); clearTimeout(S.autoTimer);
+  S.editing = true; S.fromEdit = false; S.mode = null; S.done = false; S.ready = false; TRK.forEach(function (t) { t.has = false; t.ptr = null; });
+  await buildLetter(i);
+  const cur = getOrder(edName());
+  S.ed = { pts: cur ? cur.map(function (p) { return [p[0], p[1], p[2]]; }) : [], lift: false, drag: -1, moved: false };
+  showOnly('ovEdit'); edLiftSet(false); $('edBox').hidden = true; edSel();
+  edNote(cur ? 'Urutan tersimpan dimuat. Boleh diubah.' : 'Belum ada urutan: game memakai urutan otomatis.');
+}
+function drawEdit() {
+  const pts = S.ed.pts; let prev = null;
+  ctx.save(); ctx.lineCap = ctx.lineJoin = 'round'; ctx.lineWidth = 5; ctx.setLineDash([14, 12]);
+  pts.forEach(function (p) { const q = edXY(p); if (prev && prev.run === p[2]) { ctx.strokeStyle = 'rgba(247,120,160,.95)'; ctx.beginPath(); ctx.moveTo(prev.x, prev.y); ctx.lineTo(q.x, q.y); ctx.stroke(); } prev = { x: q.x, y: q.y, run: p[2] }; });
+  ctx.restore();
+  pts.forEach(function (p, k) {
+    const q = edXY(p); ctx.save(); ctx.translate(q.x, q.y); starPath(ctx, 23);
+    ctx.fillStyle = ED_COLS[p[2] % ED_COLS.length]; ctx.fill(); ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.strokeStyle = '#8a5a12'; ctx.stroke();
+    ctx.fillStyle = '#4a2600'; ctx.font = '700 22px Fredoka, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(String(k + 1), 0, 3); ctx.restore();
+  });
+}
+function edHit(pos) { let best = -1, bd = 28; S.ed.pts.forEach(function (p, k) { const q = edXY(p), d = Math.hypot(pos.x - q.x, pos.y - q.y); if (d < bd) { bd = d; best = k; } }); return best; }
+cv.addEventListener('pointerdown', function (e) {
+  if (S.ui !== 'ovEdit' || e.button === 2) return;
+  const pos = pointerPos(e), hit = edHit(pos);
+  if (hit >= 0) { S.ed.drag = hit; S.ed.moved = false; try { cv.setPointerCapture(e.pointerId); } catch (err) { /* abaikan */ } return; }
+  const pts = S.ed.pts, last = pts.length ? pts[pts.length - 1][2] : 0, run = !pts.length ? 0 : (S.ed.lift ? last + 1 : last);
+  pts.push([(pos.x - S.box.x) / S.box.w, (pos.y - S.box.y) / S.box.h, run]); edLiftSet(false); edSave();
+});
+cv.addEventListener('pointermove', function (e) {
+  if (S.ui !== 'ovEdit' || S.ed.drag < 0) return;
+  const pos = pointerPos(e), p = S.ed.pts[S.ed.drag]; p[0] = (pos.x - S.box.x) / S.box.w; p[1] = (pos.y - S.box.y) / S.box.h; S.ed.moved = true;
+});
+function edEndDrag() { if (S.ui === 'ovEdit' && S.ed.drag >= 0) { S.ed.drag = -1; if (S.ed.moved) edSave(); } }
+cv.addEventListener('pointerup', edEndDrag); cv.addEventListener('pointercancel', edEndDrag);
+cv.addEventListener('contextmenu', function (e) {
+  if (S.ui !== 'ovEdit') return; e.preventDefault();
+  const hit = edHit(pointerPos(e)); if (hit >= 0) { S.ed.pts.splice(hit, 1); edSave(); }
+});
+$('edUndo').addEventListener('click', function () { if (S.ed.pts.length) { S.ed.pts.pop(); edLiftSet(false); edSave(); } });
+$('edLift').addEventListener('click', function () { if (S.ed.pts.length) edLiftSet(!S.ed.lift); else edNote('Pena diangkat dipakai setelah bintang pertama ada.'); });
+$('edClear').addEventListener('click', function () { S.ed.pts = []; edLiftSet(false); delete S.orders[edName()]; saveOrders(); edSel(); edNote('Dihapus. Game memakai urutan otomatis untuk huruf ini.'); });
+$('edAuto').addEventListener('click', function () { S.ed.pts = S.autoPts.map(function (p) { return [p[0], p[1], p[2]]; }); edLiftSet(false); edSave(); edNote('Saran otomatis dimuat. Geser, hapus, atau tambah bintang sampai benar.'); });
+$('edPrev').addEventListener('click', function () { openEditor((S.idx + 19) % 20); });
+$('edNext').addEventListener('click', function () { openEditor((S.idx + 1) % 20); });
+$('edTest').addEventListener('click', async function () {
+  if (S.ed.pts.length < 2) { edNote('Buat minimal 2 bintang dulu, baru dicoba.'); return; }
+  edSave(); S.editing = false; S.fromEdit = true; S.mode = 'pointer'; TRK.forEach(function (t) { t.has = false; t.ptr = null; });
+  await buildLetter(S.idx); showOnly(null); S.lastTick = performance.now();
+});
+$('hEdBack').addEventListener('click', function () { openEditor(S.idx); });
+function edAll() { const o = {}; LETTERS.forEach(function (l) { const v = getOrder(l[1]); if (v) o[l[1]] = v; }); return JSON.stringify(o); }
+$('edCopy').addEventListener('click', async function () {
+  const txt = edAll(); let ok = false;
+  try { await navigator.clipboard.writeText(txt); ok = true; } catch (e) { ok = false; }
+  if (ok) edNote('Tersalin! Tempel di chat ke Claude.'); else { $('edText').value = txt; $('edBox').hidden = false; $('edText').focus(); $('edText').select(); }
+});
+$('edBoxClose').addEventListener('click', function () { $('edBox').hidden = true; });
+$('edExit').addEventListener('click', function () { S.editing = false; S.fromEdit = false; showOnly('ovTitle'); });
+$('btnEditor').addEventListener('click', function () { openEditor(0); });
+
 // ===== Tombol =====
 function goHome() { stopSpeech(); stopCamera(); S.mode = null; S.done = false; S.ready = false; S.settingsFrom = null; $('say').hidden = true; showOnly('ovTitle'); }
 $('btnPlay').addEventListener('click', function () { ac(); buildGrid(); showOnly('ovSelect'); say('Pilih aksara yang mau kamu tulis.', { force: true, key: 'sel', bubble: false }); });
@@ -1032,17 +1191,17 @@ async function checkEnv() {
 }
 
 // ===== Mulai =====
-loadSaved(); resize(); buildScenery(); initItems(); syncSettings(); buildTiles(); checkEnv(); requestAnimationFrame(frame);
+loadSaved(); S.orders = loadOrders(); resize(); buildScenery(); initItems(); syncSettings(); buildTiles(); checkEnv(); requestAnimationFrame(frame);
 (async function boot() {
   $('bootBar').style.width = '35%';
   try { await Promise.all([document.fonts.load('700 40px AksaraJawa', 'ꦲ'), document.fonts.load('700 40px Fredoka', 'Aa')]); } catch (e) { /* lanjut */ }
   $('bootBar').style.width = '100%';
-  setTimeout(function () { showOnly('ovTitle'); }, 800);
+  setTimeout(function () { if (new URLSearchParams(location.search).has('editor')) openEditor(0); else showOnly('ovTitle'); }, 800);
 })();
 
 if (new URLSearchParams(location.search).has('debug')) {
   window.__aksaraDebug = {
-    cfg: CFG,
+    cfg: CFG, S: S, openEditor: openEditor, edAll: edAll,
     get spoken() { return V.log; },
     get stars() { return S.stars.map(function (s) { return { x: s.x, y: s.y, run: s.run }; }); },
     get items() { return S.items.map(function (i) { return { x: i.x, y: i.y, name: i.name }; }); },
