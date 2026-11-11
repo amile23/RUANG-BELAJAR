@@ -274,7 +274,6 @@ body{background:#2B2350;font-family:'Fredoka','Trebuchet MS',system-ui,sans-seri
       <div class="hands" role="group" aria-label="Pilih tangan">
         <button class="hc" type="button" data-hand="kiri" aria-pressed="false"><svg viewBox="0 0 50 78" aria-hidden="true" style="transform:scaleX(-1)"><use href="#hand" width="50" height="78"/></svg>Tangan kiri</button>
         <button class="hc" type="button" data-hand="kanan" aria-pressed="true"><svg viewBox="0 0 50 78" aria-hidden="true"><use href="#hand" width="50" height="78"/></svg>Tangan kanan</button>
-        <button class="hc" type="button" data-hand="dua" aria-pressed="false"><svg viewBox="0 0 100 78" aria-hidden="true" style="width:calc(var(--u) * 84)"><use href="#hand" width="50" height="78"/><use href="#hand" x="50" width="50" height="78"/></svg>Dua tangan</button>
       </div>
       <div class="st">2. Kumpulkan semua bintang untuk menulis aksara</div>
       <svg viewBox="0 0 24 24" style="width:calc(var(--u) * 56);height:calc(var(--u) * 56)" aria-hidden="true"><use href="#star" fill="#FFC93C"/></svg>
@@ -332,7 +331,7 @@ body{background:#2B2350;font-family:'Fredoka','Trebuchet MS',system-ui,sans-seri
     <div class="card inst pa" id="bubInst">
       <h2>PETUNJUK</h2>
       <div class="stp"><b>Langkah 1</b><div class="sbub aksara" id="bubTarget">ꦲ</div><span>Pecahkan gelembung yang ada aksara <b id="bubTargetN">“ha”</b></span></div>
-      <div class="stp"><b>Langkah 2</b><svg viewBox="0 0 50 78" style="width:calc(var(--u) * 40);height:calc(var(--u) * 62)" aria-hidden="true"><use href="#hand" width="50" height="78"/></svg><span>Pakai satu atau dua tangan</span></div>
+      <div class="stp"><b>Langkah 2</b><svg viewBox="0 0 50 78" style="width:calc(var(--u) * 40);height:calc(var(--u) * 62)" aria-hidden="true"><use href="#hand" width="50" height="78"/></svg><span>Pakai dua tangan</span></div>
       <button class="bigbtn sm" id="btnBubGo" type="button">Mulai</button>
     </div>
   </div>
@@ -405,7 +404,7 @@ const LETTERS = [
   ['ꦩ','ma'],['ꦒ','ga'],['ꦧ','ba'],['ꦛ','tha'],['ꦔ','nga']
 ];
 const COLORS = ['#F2497E', '#E8613A', '#2FA36B', '#E89B12', '#3E86E8', '#9A63D8'];
-const SIDE_X = { kiri: 0.30, kanan: 0.70, dua: 0.5 };
+const SIDE_X = { kiri: 0.34, kanan: 0.66, dua: 0.5 };
 const ITEMS_DEF = [
   { kind: 'gunungan', name: 'Gunungan', x: 90, y: 215, note: 0 }, { kind: 'blangkon', name: 'Blangkon', x: 90, y: 395, note: 1 },
   { kind: 'gong', name: 'Gong', x: 90, y: 560, note: 2 }, { kind: 'kawung', name: 'Batik kawung', x: 1190, y: 215, note: 3 },
@@ -455,7 +454,7 @@ function loadSaved() {
     if (o.done) S.saved.done = o.done;
     if (o.settings) for (const k in S.settings) if (typeof o.settings[k] === 'boolean') S.settings[k] = o.settings[k];
     if (o.level && LEVELS[o.level]) S.level = o.level;
-    if (o.hand && SIDE_X[o.hand]) S.hand = o.hand;
+    if (o.hand && SIDE_X[o.hand]) S.hand = o.hand === 'dua' ? 'kanan' : o.hand;
   } catch (e) { /* penyimpanan tidak tersedia */ }
 }
 function save() {
@@ -542,6 +541,7 @@ function flower(c, x, y, r, col, stem) {
   c.fillStyle = col === '#FFFFFF' ? '#F5B233' : '#fff'; c.beginPath(); c.arc(x, y, r * 0.36, 0, TAU); c.fill();
 }
 function drawHills(c) {
+  c.save(); c.translate(0, 64);   /* rumput diturunkan supaya area bermain lebih luas */
   c.fillStyle = '#A9D14B'; c.beginPath(); c.moveTo(0, 590); c.bezierCurveTo(250, 520, 520, 560, 760, 540); c.bezierCurveTo(1000, 520, 1150, 560, W, 540); c.lineTo(W, H); c.lineTo(0, H); c.fill();
   c.fillStyle = '#BEDC5C'; c.beginPath(); c.moveTo(0, 640); c.bezierCurveTo(300, 560, 800, 590, W, 620); c.lineTo(W, H); c.lineTo(0, H); c.fill();
   c.fillStyle = '#CFE47A'; c.beginPath(); c.ellipse(640, 690, 560, 60, 0, 0, TAU); c.fill();
@@ -552,6 +552,7 @@ function drawHills(c) {
   });
   [[420, 650, 16, '#FFFFFF'], [250, 690, 17, '#F7A9BC'], [600, 676, 15, '#FFC53D'], [780, 652, 17, '#F7A9BC'], [940, 690, 16, '#FFFFFF'], [1110, 652, 17, '#F46B4E'], [150, 655, 15, '#F46B4E'], [510, 700, 14, '#F7A9BC'], [880, 705, 14, '#FFC53D']].forEach(function (f) { flower(c, f[0], f[1], f[2], f[3], 40); });
   flower(c, 175, 505, 30, '#F7A9BC', 120); flower(c, 1115, 495, 30, '#F46B4E', 125);
+  c.restore();
 }
 function buildScenery() {
   let c = skyCv.getContext('2d');
@@ -744,9 +745,9 @@ async function buildLetter(i) {
   mctx.clearRect(0, 0, W, H); mctx.textAlign = 'left'; mctx.textBaseline = 'alphabetic'; mctx.font = '700 ' + base + 'px AksaraJawa';
   let m = mctx.measureText(g);
   const bw = m.actualBoundingBoxLeft + m.actualBoundingBoxRight, bh = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent;
-  const k = S.editing ? Math.min((H * 0.56) / bh, (W * 0.60) / bw) : Math.min((H * 0.58) / bh, (W * (S.hand === 'dua' ? 0.34 : 0.30)) / bw), px = base * k;
+  const k = S.editing ? Math.min((H * 0.56) / bh, (W * 0.60) / bw) : Math.min((H * 0.66) / bh, (W * 0.40) / bw), px = base * k;
   mctx.font = '700 ' + px + 'px AksaraJawa'; m = mctx.measureText(g);
-  const cx = S.editing ? W / 2 : W * SIDE_X[S.hand], cy = S.editing ? H * 0.50 : H * 0.40;
+  const cx = S.editing ? W / 2 : W * SIDE_X[S.hand], cy = S.editing ? H * 0.50 : H * 0.47;
   const x = cx - (m.actualBoundingBoxRight - m.actualBoundingBoxLeft) / 2;
   const y = cy - (m.actualBoundingBoxDescent - m.actualBoundingBoxAscent) / 2;
   S.box = { x: x - m.actualBoundingBoxLeft, y: y - m.actualBoundingBoxAscent, w: m.actualBoundingBoxLeft + m.actualBoundingBoxRight, h: m.actualBoundingBoxAscent + m.actualBoundingBoxDescent };
@@ -966,7 +967,7 @@ function drawCursors() {
 }
 /* Tombol bisa ditekan dengan tangan: tahan jari di atas tombol sampai lingkaran hijau penuh */
 const DWELL_UIS = ['ovLearn', 'ovBub', 'ovGood', 'ovSelfie', 'ovPhoto', 'ovQuiz', 'ovWin'];
-const DWELL_MS = 1000;
+const DWELL_MS = 700;
 function dwellButtons() {
   const out = [];
   document.querySelectorAll('#stage button').forEach(function (b) {
@@ -987,8 +988,8 @@ function dwellStep(now) {
     for (let k = 0; k < btns.length; k++) { const r = btns[k].r; if (sx >= r.left - pad && sx <= r.right + pad && sy >= r.top - pad && sy <= r.bottom + pad) { hit = btns[k].b; break; } }
     if (!hit || (S.dwellLock && now < S.dwellLock && S.dwellStage === S.stage)) { t.dw = null; continue; }
     if (!t.dw || t.dw.b !== hit) t.dw = { b: hit, t0: now, p: 0 };
-    t.dw.need = (hit.id === 'btnSkip' || hit.id === 'btnChainHome') ? 1700 : DWELL_MS; t.dw.p = (now - t.dw.t0) / t.dw.need;
-    if (t.dw.p >= 1) { S.dwellLock = now + 1500; S.dwellStage = S.stage; t.dw = null; hit.click(); return; }
+    t.dw.need = (hit.id === 'btnSkip' || hit.id === 'btnChainHome') ? 1200 : DWELL_MS; t.dw.p = (now - t.dw.t0) / t.dw.need;
+    if (t.dw.p >= 1) { S.dwellLock = now + 1500; S.dwellStage = S.stage; t.dw = null; sparkle(t.x, t.y, 18, ['#FFE066', '#FFFFFF', '#7BCB4F', '#5BC0EB']); spawnConfetti(14, 'burst'); hit.click(); return; }
   }
 }
 function drawParticles() {
@@ -1049,7 +1050,7 @@ function detect() {
   let res;
   try { res = S.landmarker.detectForVideo(vid, performance.now()); S.detectErrors = 0; }
   catch (e) { if (++S.detectErrors > 30) showError('Pelacak tangan berhenti bekerja. Muat ulang halaman atau pakai sentuh.', 'detectForVideo'); return; }
-  const now = performance.now(), dets = [], maxHands = S.hand === 'dua' ? 2 : 1;
+  const now = performance.now(), dets = [], maxHands = S.ui === 'ovBub' ? 2 : 1;   /* gelembung: dua tangan; menulis aksara dan lainnya: satu tangan */
   if (res && res.landmarks) for (let i = 0; i < res.landmarks.length && i < maxHands; i++) { const p = res.landmarks[i][INDEX_TIP]; dets.push(videoToStage(p.x, p.y)); }
   assignTracks(dets, now);
   const anyNow = TRK.some(function (t) { return t.has; });
@@ -1315,7 +1316,7 @@ function drawSelfieDeco(g) {
   const L = LETTERS[S.idx]; g.save(); g.lineJoin = 'round'; g.lineCap = 'round';
   g.lineWidth = 24; g.strokeStyle = '#D9453B'; g.strokeRect(12, 12, W - 24, H - 24);
   g.lineWidth = 4; g.strokeStyle = 'rgba(255,255,255,.9)'; g.setLineDash([2, 12]); g.strokeRect(12, 12, W - 24, H - 24); g.setLineDash([]);
-  g.save(); g.translate(48, 84); g.rotate(-0.06); g.textAlign = 'left'; g.textBaseline = 'alphabetic'; g.font = '700 40px Fredoka, sans-serif';
+  g.save(); g.translate(48, 150); g.rotate(-0.06); g.textAlign = 'left'; g.textBaseline = 'alphabetic'; g.font = '700 40px Fredoka, sans-serif';
   ['AKU SUDAH', 'BELAJAR AKSARA', L[1].toUpperCase()].forEach(function (t, k) { g.lineWidth = 10; g.strokeStyle = '#fff'; g.strokeText(t, 0, k * 46); g.fillStyle = '#C8332E'; g.fillText(t, 0, k * 46); });
   g.restore();
   mascotLetter(g, 210, 520, 230);
@@ -1361,6 +1362,7 @@ function quizPick(k) {
     after(1100, function () { z.q++; if (z.q >= z.targets.length) showFinal(); else quizSet(); });
   } else { z.fb[k] = -1; z.dw[k] = 0; z.lock = now + 450; z.wrong = (z.wrong || 0) + 1; }
 }
+const QUIZ_PRESS = 380;   /* sentuh kartu sebentar = ditekan lalu terpilih */
 const QUIZ_CARDS = [0, 1, 2].map(function (k) { return { x: 100 + k * 370, y: 250, w: 310, h: 300 }; });
 function quizTouch(x, y) { QUIZ_CARDS.forEach(function (c, k) { if (x > c.x && x < c.x + c.w && y > c.y && y < c.y + c.h) quizPick(k); }); }
 function quizFrame(now) {
@@ -1369,15 +1371,16 @@ function quizFrame(now) {
     let inside = false;
     TRK.forEach(function (t) { if (t.has && t.x > c.x && t.x < c.x + c.w && t.y > c.y && t.y < c.y + c.h) inside = true; });
     z.dw[k] = inside ? z.dw[k] + dtms : Math.max(0, z.dw[k] - dtms * 2);
-    if (z.dw[k] >= 800) { z.dw[k] = 0; quizPick(k); }
+    if (z.dw[k] >= QUIZ_PRESS) { z.dw[k] = 0; quizPick(k); }
     if (z.fb[k] < 0) z.fb[k] *= 0.9; if (z.fb[k] > -0.02 && z.fb[k] < 0) z.fb[k] = 0;
     const fb = z.fb[k], sx = fb < 0 ? Math.sin(now / 40) * 10 * -fb : 0, lift = inside ? -8 : 0;
-    ctx.save(); ctx.translate(sx, lift);
+    const pr = Math.min(1, z.dw[k] / QUIZ_PRESS), sc = 1 - 0.07 * pr;   /* kartu menekan ke bawah */
+    ctx.save(); ctx.translate(c.x + c.w / 2 + sx, c.y + c.h / 2 + lift + 10 * pr); ctx.scale(sc, sc); ctx.translate(-(c.x + c.w / 2), -(c.y + c.h / 2));
     rr(ctx, c.x, c.y, c.w, c.h, 40); ctx.shadowColor = 'rgba(0,0,0,.25)'; ctx.shadowBlur = 20; ctx.shadowOffsetY = 8; ctx.fillStyle = fb > 0 ? '#E6FBD9' : '#FFFFFF'; ctx.fill(); ctx.shadowColor = 'transparent';
     const hint = z.wrong >= 2 && z.cards[k] === z.targets[z.q] && fb === 0; ctx.lineWidth = hint ? 9 + 6 * Math.abs(Math.sin(now / 250)) : 9; ctx.strokeStyle = fb > 0 ? '#3CC36B' : fb < 0 ? '#E8416F' : hint ? '#3CC36B' : inside ? '#FFC93C' : '#F2B63C'; ctx.stroke();
     const gl = LETTERS[z.cards[k]][0]; ctx.font = '700 150px AksaraJawa'; const w = ctx.measureText(gl).width, fs = Math.min(150, 150 * (c.w - 60) / w);
     ctx.font = '700 ' + fs + 'px AksaraJawa'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = COLORS[z.cards[k] % COLORS.length]; fillMid(ctx, gl, c.x + c.w / 2, c.y + c.h / 2 - 10);
-    if (z.dw[k] > 0) { rr(ctx, c.x + 40, c.y + c.h - 26, c.w - 80, 12, 6); ctx.fillStyle = 'rgba(0,0,0,.1)'; ctx.fill(); rr(ctx, c.x + 40, c.y + c.h - 26, Math.max(12, (c.w - 80) * z.dw[k] / 800), 12, 6); ctx.fillStyle = '#25A9A0'; ctx.fill(); }
+    if (z.dw[k] > 0) { rr(ctx, c.x + 40, c.y + c.h - 26, c.w - 80, 12, 6); ctx.fillStyle = 'rgba(0,0,0,.1)'; ctx.fill(); rr(ctx, c.x + 40, c.y + c.h - 26, Math.max(12, (c.w - 80) * z.dw[k] / QUIZ_PRESS), 12, 6); ctx.fillStyle = '#25A9A0'; ctx.fill(); }
     ctx.restore();
   });
 }
