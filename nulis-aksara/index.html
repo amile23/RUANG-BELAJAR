@@ -1096,6 +1096,7 @@ function frame() {
 function pointerPos(e) { const r = cv.getBoundingClientRect(); return { x: ((e.clientX - r.left) / r.width) * W, y: ((e.clientY - r.top) / r.height) * H }; }
 function trackOfPointer(id) { return TRK.findIndex(function (t) { return t.ptr === id; }); }
 cv.addEventListener('pointerdown', function (e) {
+  if (S.mode === 'camera') { const q = pointerPos(e); if (S.ui === 'ovQuiz') quizTouch(q.x, q.y); else if (S.ui === 'ovBub') bubTouch(q.x, q.y); return; }
   if (S.mode !== 'pointer') return;
   const ti = TRK.findIndex(function (t) { return t.ptr === null; }); if (ti < 0) return;
   TRK[ti].ptr = e.pointerId; try { cv.setPointerCapture(e.pointerId); } catch (err) { /* abaikan */ }
@@ -1238,14 +1239,12 @@ function bubBegin() {
   b.phase = 'ready'; $('bubInst').hidden = true; popWord('bubWord', 'SIAP');
   after(900, function () { popWord('bubWord', 'SEDIA'); });
   after(1800, function () { popWord('bubWord', 'AYO!'); });
-  after(2600, function () { popWord('bubWord', ''); b.phase = 'play'; b.last = performance.now(); });
+  after(2600, function () { popWord('bubWord', ''); b.phase = 'play'; b.last = performance.now(); for (let k = 0; k < 3; k++) { bubSpawn(); b.items[b.items.length - 1].y = H * (0.3 + 0.22 * k); } });
 }
 function bubSpawn() {
   const b = S.bub; b.n++;
-  const hasT = b.items.some(function (it) { return it.target && !it.dying; });
-  let li = S.idx;
-  if (hasT && b.n % 3 !== 1 && Math.random() > 0.3) { do { li = Math.floor(Math.random() * LETTERS.length); } while (li === S.idx); }
-  b.items.push({ x: 120 + Math.random() * (W - 300), y: H + 80, r: 62, vy: 0.9 + Math.random() * 0.8, vx: (Math.random() - 0.5) * 0.5, ph: Math.random() * TAU, li: li, target: li === S.idx, dying: false, pop: 0, shake: 0 });
+  const li = S.idx;      /* semua gelembung sama: aksara yang baru dipelajari (anak DCD/ADHD tidak perlu memilih) */
+  b.items.push({ x: 120 + Math.random() * (W - 300), y: H + 80, r: 78, vy: 0.8 + Math.random() * 0.6, vx: (Math.random() - 0.5) * 0.5, ph: Math.random() * TAU, li: li, target: li === S.idx, dying: false, pop: 0, shake: 0 });
 }
 function bubStep(now) {
   const b = S.bub; if (!b) return;
@@ -1265,7 +1264,7 @@ function bubStep(now) {
 function bubTouch(x, y) {
   const b = S.bub; if (!b || b.phase !== 'play' || b.got >= BUB.goal) return;
   b.items.forEach(function (it) {
-    if (it.dying || b.got >= BUB.goal || Math.hypot(x - it.x, y - it.y) > it.r + 24) return;
+    if (it.dying || b.got >= BUB.goal || Math.hypot(x - it.x, y - it.y) > it.r + 40) return;
     if (it.target) {
       it.dying = true; it.pop = 1; b.got++; sparkle(it.x, it.y, 14, ['#FFE066', '#FFFFFF', '#F7A9BC']); bubHud();
       if (b.got >= BUB.goal) after(700, bubEnd);
@@ -1284,7 +1283,7 @@ function drawBubbles(now) {
     g.addColorStop(0, 'rgba(255,255,255,.95)'); g.addColorStop(0.7, 'rgba(255,220,235,.78)'); g.addColorStop(1, 'rgba(255,170,205,.7)');
     ctx.beginPath(); ctx.arc(0, 0, it.r, 0, TAU); ctx.fillStyle = g; ctx.fill(); ctx.lineWidth = 5; ctx.strokeStyle = 'rgba(255,255,255,.95)'; ctx.stroke();
     ctx.beginPath(); ctx.arc(-it.r * 0.42, -it.r * 0.42, it.r * 0.2, Math.PI * 1.05, Math.PI * 1.6); ctx.lineWidth = 6; ctx.lineCap = 'round'; ctx.strokeStyle = 'rgba(255,255,255,.9)'; ctx.stroke();
-    const gl = LETTERS[it.li][0]; ctx.font = '700 64px AksaraJawa'; const w = ctx.measureText(gl).width, fs = Math.min(64, 64 * (it.r * 1.5) / w);
+    const gl = LETTERS[it.li][0]; ctx.font = '700 78px AksaraJawa'; const w = ctx.measureText(gl).width, fs = Math.min(78, 78 * (it.r * 1.5) / w);
     ctx.font = '700 ' + fs + 'px AksaraJawa'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = COLORS[it.li % COLORS.length]; fillMid(ctx, gl, 0, 0);
     ctx.restore();
   });
@@ -1351,7 +1350,7 @@ function startQuiz() {
 }
 function quizSet() {
   const z = S.quiz, t = z.targets[z.q], o = []; for (let k = 0; k < LETTERS.length; k++) if (k !== t) o.push(k);
-  shuffle(o); z.cards = shuffle([t, o[0], o[1]]); z.dw = [0, 0, 0]; z.fb = [0, 0, 0]; z.lock = performance.now() + 700;
+  shuffle(o); z.cards = shuffle([t, o[0], o[1]]); z.dw = [0, 0, 0]; z.fb = [0, 0, 0]; z.wrong = 0; z.lock = performance.now() + 700;
   $('quizQ').innerHTML = 'Sentuh aksara <b>' + LETTERS[t][1] + '</b>'; $('quizN').textContent = (z.q + 1) + ' / ' + z.targets.length;
 }
 function quizPick(k) {
@@ -1360,7 +1359,7 @@ function quizPick(k) {
   if (z.cards[k] === z.targets[z.q]) {
     z.lock = now + 1200; z.fb[k] = 1; sparkle(card.x + card.w / 2, card.y + card.h / 2, 16, ['#FFE066', '#FFFFFF', '#7BCB4F']); spawnConfetti(36, 'burst');
     after(1100, function () { z.q++; if (z.q >= z.targets.length) showFinal(); else quizSet(); });
-  } else { z.fb[k] = -1; z.dw[k] = 0; z.lock = now + 450; }
+  } else { z.fb[k] = -1; z.dw[k] = 0; z.lock = now + 450; z.wrong = (z.wrong || 0) + 1; }
 }
 const QUIZ_CARDS = [0, 1, 2].map(function (k) { return { x: 100 + k * 370, y: 250, w: 310, h: 300 }; });
 function quizTouch(x, y) { QUIZ_CARDS.forEach(function (c, k) { if (x > c.x && x < c.x + c.w && y > c.y && y < c.y + c.h) quizPick(k); }); }
@@ -1375,7 +1374,7 @@ function quizFrame(now) {
     const fb = z.fb[k], sx = fb < 0 ? Math.sin(now / 40) * 10 * -fb : 0, lift = inside ? -8 : 0;
     ctx.save(); ctx.translate(sx, lift);
     rr(ctx, c.x, c.y, c.w, c.h, 40); ctx.shadowColor = 'rgba(0,0,0,.25)'; ctx.shadowBlur = 20; ctx.shadowOffsetY = 8; ctx.fillStyle = fb > 0 ? '#E6FBD9' : '#FFFFFF'; ctx.fill(); ctx.shadowColor = 'transparent';
-    ctx.lineWidth = 9; ctx.strokeStyle = fb > 0 ? '#3CC36B' : fb < 0 ? '#E8416F' : inside ? '#FFC93C' : '#F2B63C'; ctx.stroke();
+    const hint = z.wrong >= 2 && z.cards[k] === z.targets[z.q] && fb === 0; ctx.lineWidth = hint ? 9 + 6 * Math.abs(Math.sin(now / 250)) : 9; ctx.strokeStyle = fb > 0 ? '#3CC36B' : fb < 0 ? '#E8416F' : hint ? '#3CC36B' : inside ? '#FFC93C' : '#F2B63C'; ctx.stroke();
     const gl = LETTERS[z.cards[k]][0]; ctx.font = '700 150px AksaraJawa'; const w = ctx.measureText(gl).width, fs = Math.min(150, 150 * (c.w - 60) / w);
     ctx.font = '700 ' + fs + 'px AksaraJawa'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = COLORS[z.cards[k] % COLORS.length]; fillMid(ctx, gl, c.x + c.w / 2, c.y + c.h / 2 - 10);
     if (z.dw[k] > 0) { rr(ctx, c.x + 40, c.y + c.h - 26, c.w - 80, 12, 6); ctx.fillStyle = 'rgba(0,0,0,.1)'; ctx.fill(); rr(ctx, c.x + 40, c.y + c.h - 26, Math.max(12, (c.w - 80) * z.dw[k] / 800), 12, 6); ctx.fillStyle = '#25A9A0'; ctx.fill(); }
