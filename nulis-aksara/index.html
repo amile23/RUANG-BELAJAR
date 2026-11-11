@@ -130,6 +130,7 @@ body{background:#2B2350;font-family:'Fredoka','Trebuchet MS',system-ui,sans-seri
 .card .note{font-size:calc(var(--u) * 18);color:#7A5A4A}
 .card .row{display:flex;flex-wrap:wrap;gap:calc(var(--u) * 16);justify-content:center}
 .setlist{display:flex;flex-direction:column;gap:calc(var(--u) * 8);width:100%}
+.setrow[hidden]{display:none}
 .setrow{display:flex;align-items:center;justify-content:space-between;gap:calc(var(--u) * 14);background:#fff;border:calc(var(--u) * 3) solid #F2C14E;border-radius:calc(var(--u) * 18);padding:calc(var(--u) * 7) calc(var(--u) * 18);font:600 calc(var(--u) * 23)/1.1 'Fredoka',sans-serif;text-align:left}
 .sw{min-width:calc(var(--u) * 100);height:calc(var(--u) * 42);border-radius:999px;border:calc(var(--u) * 3) solid #3A2620;background:#fff;color:#3A2620;font:700 calc(var(--u) * 20)/1 'Fredoka',sans-serif;cursor:pointer;padding:0}
 .sw[aria-pressed="true"]{background:#25A9A0;border-color:#0F6F6A;color:#fff}
@@ -247,8 +248,8 @@ body{background:#2B2350;font-family:'Fredoka','Trebuchet MS',system-ui,sans-seri
   <div class="ov dim" id="ovSettings" hidden role="dialog" aria-label="Pengaturan"><div class="card">
     <h2>Pengaturan guru dan orang tua</h2>
     <div class="setlist">
-      <div class="setrow"><span>Suara pemandu (Si Kancil bicara)</span><button class="sw" id="tgVoice" type="button" aria-pressed="true">Nyala</button></div>
-      <div class="setrow"><span>Efek suara dan nada gamelan</span><button class="sw" id="tgSfx" type="button" aria-pressed="true">Nyala</button></div>
+      <div class="setrow" hidden><span>Suara pemandu (Si Kancil bicara)</span><button class="sw" id="tgVoice" type="button" aria-pressed="true">Nyala</button></div>
+      <div class="setrow" hidden><span>Efek suara dan nada gamelan</span><button class="sw" id="tgSfx" type="button" aria-pressed="true">Nyala</button></div>
       <div class="setrow"><span>Lanjut otomatis ke aksara berikutnya</span><button class="sw" id="tgAuto" type="button" aria-pressed="true">Nyala</button></div>
       <div class="setrow"><span>Hiasan yang bisa disentuh</span><button class="sw" id="tgDecor" type="button" aria-pressed="true">Nyala</button></div>
       <div class="setrow"><span>Tampilkan waktu (tanpa batas waktu)</span><button class="sw" id="tgTimer" type="button" aria-pressed="true">Nyala</button></div>
@@ -281,6 +282,7 @@ const ITEMS_DEF = [
   { kind: 'andong', name: 'Roda andong', x: 1190, y: 395, note: 4 }, { kind: 'bonang', name: 'Bonang', x: 1190, y: 560, note: 5 }
 ];
 const STORE_KEY = 'dolanGerak.nulisAksara.v2';
+const SOUND_ON = false;   // sementara semua suara dimatikan (belum sinkron)
 const FILLR = 46;
 
 // ===== Elemen =====
@@ -331,6 +333,7 @@ function ac() {
   return S.audio;
 }
 function tone(freq, start, dur, gain, type) {
+  if (!SOUND_ON) return;
   const a = ac(); if (!a || !S.settings.sfx) return;
   const t = a.currentTime + start, o = a.createOscillator(), g = a.createGain();
   o.type = type || 'sine'; o.frequency.value = freq;
@@ -340,6 +343,7 @@ function tone(freq, start, dur, gain, type) {
 function bell(note) { const f = 261.63 * Math.pow(2, note / 5); tone(f, 0, 1.2, 0.2, 'sine'); tone(f * 2.01, 0, 0.7, 0.07, 'sine'); tone(f * 3.97, 0, 0.35, 0.035, 'sine'); }
 function starSound(k) { const f = 392 * Math.pow(2, (k % 10) / 5); tone(f, 0, 0.4, 0.13, 'triangle'); tone(f * 2, 0.02, 0.25, 0.05, 'sine'); }
 function applause() {
+  if (!SOUND_ON) return;
   const a = ac(); if (!a || !S.settings.sfx) return;
   const len = Math.floor(a.sampleRate * 0.15), buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
   for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2);
@@ -351,6 +355,7 @@ function applause() {
   }
 }
 function celebrateSound(big) {
+  if (!SOUND_ON) return;
   [0, 1, 2, 3, 4, 5].forEach(function (n, i) { setTimeout(function () { bell(n); }, i * 110); });
   [523.25, 659.25, 783.99, 1046.5].forEach(function (f, i) { tone(f, 0.05 + i * 0.12, 0.5, 0.2, 'triangle'); });
   if (big) [1046.5, 1318.5, 1568].forEach(function (f, i) { tone(f, 0.8 + i * 0.12, 0.7, 0.16, 'triangle'); });
@@ -363,6 +368,7 @@ function pickVoice() { try { V.voice = (window.speechSynthesis.getVoices() || []
 try { if (window.speechSynthesis) { pickVoice(); window.speechSynthesis.onvoiceschanged = pickVoice; } } catch (e) { /* abaikan */ }
 function speakNow(text) {
   try {
+    if (!SOUND_ON) return;
     const synth = window.speechSynthesis; if (!synth) return;
     synth.cancel();
     const u = new window.SpeechSynthesisUtterance(text);
@@ -482,7 +488,9 @@ function skeletonPath(alpha) {
   const OFF = [-gw - 1, -gw, -gw + 1, -1, 1, gw - 1, gw, gw + 1];
   function nbrs(i) { const r = []; for (let k = 0; k < 8; k++) { const j = i + OFF[k]; if (j >= 0 && j < img.length && img[j]) r.push(j); } return r; }
   let start = -1, bs = 1e9, total = 0;
-  for (let i = 0; i < img.length; i++) if (img[i]) { total++; const sc = (i % gw) + 0.6 * Math.floor(i / gw); if (sc < bs) { bs = sc; start = i; } }
+  let ends = 0;
+  for (let i = 0; i < img.length; i++) if (img[i]) { total++; if (nbrs(i).length === 1) { ends++; const sc = (i % gw) + 0.1 * Math.floor(i / gw); if (sc < bs) { bs = sc; start = i; } } }
+  if (start < 0) for (let i = 0; i < img.length; i++) if (img[i]) { const sc = (i % gw) + 0.6 * Math.floor(i / gw); if (sc < bs) { bs = sc; start = i; } }
   if (start < 0) return [];
   const vis = new Uint8Array(img.length), seen = new Int32Array(img.length); let stamp = 0;
   const order = []; let cur = start, dx0 = 0, dy0 = 0, run = 0;
@@ -498,7 +506,7 @@ function skeletonPath(alpha) {
     let nxt = -1, brk = false;
     if (cands.length) {
       let best = -1e9; const cx = cur % gw, cy = Math.floor(cur / gw);
-      for (let k = 0; k < cands.length; k++) { const j = cands[k], dx = (j % gw) - cx, dy = Math.floor(j / gw) - cy, len = Math.hypot(dx, dy), sc = (dx * dx0 + dy * dy0) / len + (len === 1 ? 0.2 : 0); if (sc > best) { best = sc; nxt = j; } }
+      for (let k = 0; k < cands.length; k++) { const j = cands[k], dx = (j % gw) - cx, dy = Math.floor(j / gw) - cy, len = Math.hypot(dx, dy), sc = (dx * dx0 + dy * dy0) / len + (len === 1 ? 0.2 : 0) + 0.35 * dx / len; if (sc > best) { best = sc; nxt = j; } }
       const nbN = {}; nbrs(nxt).forEach(function (j) { nbN[j] = 1; });
       cands.forEach(function (j) { if (j !== nxt && nbN[j]) { vis[j] = 1; visited++; } });
     } else {
@@ -538,8 +546,8 @@ function placeStars(op) {
   });
   const out = [], pend = {};
   stars.forEach(function (s, n) {
-    const last = out[out.length - 1], firstOfRun = n === 0 || stars[n - 1].run !== s.run;
-    if (last && Math.hypot(s.x - last.x, s.y - last.y) < 50 && n < stars.length - 1 + 1) {
+    const firstOfRun = n === 0 || stars[n - 1].run !== s.run;
+    if (out.some(function (o) { return Math.hypot(s.x - o.x, s.y - o.y) < 62; })) {
       if (firstOfRun) pend[s.run] = s.oi;
       return;
     }
@@ -718,7 +726,8 @@ function drawStars(now) {
     const pul = next ? 1 + 0.18 * Math.sin(now / 160) : 1, r = (next ? 24 : 18) * pul * (hint ? 1.35 : 1);
     if (next) { ctx.beginPath(); ctx.arc(s.x, s.y, r + 14 + 4 * Math.sin(now / 160), 0, TAU); ctx.fillStyle = 'rgba(255,224,102,.45)'; ctx.fill(); }
     ctx.save(); ctx.translate(s.x, s.y + Math.sin(now / 400 + k) * 2); starPath(ctx, r);
-    ctx.fillStyle = next ? '#FFD23C' : '#FFC53D'; ctx.fill(); ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.strokeStyle = '#B7791F'; ctx.stroke(); ctx.restore();
+    ctx.fillStyle = next ? '#FFD23C' : '#FFC53D'; ctx.fill(); ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.strokeStyle = '#B7791F'; ctx.stroke();
+    ctx.fillStyle = '#7A3E00'; ctx.font = '700 ' + (next ? 26 : 21) + 'px Fredoka, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(String(k + 1), 0, next ? 3 : 2); ctx.restore();
   }
 }
 function drawHand(c, x, y, s, cuff) {
