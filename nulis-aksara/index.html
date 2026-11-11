@@ -283,7 +283,7 @@ const ITEMS_DEF = [
 ];
 const STORE_KEY = 'dolanGerak.nulisAksara.v2';
 const SOUND_ON = false;   // sementara semua suara dimatikan (belum sinkron)
-const FILLR = 46;
+const FILLR = 27;               // setengah tebal cat; sedikit lebih lebar dari setengah tebal goresan huruf
 
 // ===== Elemen =====
 const $ = (id) => document.getElementById(id);
@@ -308,7 +308,7 @@ const S = {
   stars: [], op: [], got: 0, color: COLORS[0], fillDirty: false, fullAt: 0,
   handEver: false, hadHand: false, handLostAt: 0, firstHandPrompt: false, playMs: 0, lastTick: 0, lastSecTick: -1,
   letterStartAt: 0, lastGainAt: 0, hintUntil: 0, hints: 0, mission: 0, touches: 0,
-  particles: [], items: [], autoTimer: null, winTimer: null,
+  particles: [], items: [], autoTimer: null, winTimer: null, pq: [], pops: [],
   settings: { voice: true, sfx: true, auto: true, decor: true, timer: true }, saved: { done: {} }, audio: null
 };
 
@@ -570,7 +570,7 @@ function placeStars(op) {
   return { stars: out, keep: keep };
 }
 async function buildLetter(i) {
-  S.idx = i; S.done = false; S.ready = false; S.got = 0; S.stars = []; S.op = []; S.hintUntil = 0; S.hints = 0; S.fullAt = 0; S.playMs = 0; S.particles = [];
+  S.idx = i; S.done = false; S.ready = false; S.got = 0; S.stars = []; S.op = []; S.hintUntil = 0; S.hints = 0; S.fullAt = 0; S.playMs = 0; S.particles = []; S.pq = []; S.pops = [];
   clearTimeout(S.winTimer); clearTimeout(S.autoTimer);
   const g = LETTERS[i][0]; S.color = COLORS[i % COLORS.length];
   try { await document.fonts.load('700 120px AksaraJawa', g); } catch (e) { /* lanjut */ }
@@ -603,14 +603,26 @@ async function buildLetter(i) {
   S.handEver = TRK.some(function (t) { return t.has; });
   S.ready = S.stars.length >= 4; updateHud();
 }
-function paintSeg(k) {
-  const s = S.stars[k], p = S.stars[k - 1];
-  const from = s.from !== undefined ? s.from : (p && p.run === s.run ? p.oi : s.oi);
+function paintRange(from, to, withDot) {
   pctx.strokeStyle = pctx.fillStyle = S.color; pctx.lineWidth = FILLR * 2; pctx.lineCap = pctx.lineJoin = 'round';
-  pctx.beginPath(); for (let i = from; i <= s.oi; i++) { if (i === from) pctx.moveTo(S.op[i].x, S.op[i].y); else pctx.lineTo(S.op[i].x, S.op[i].y); } pctx.stroke();
-  pctx.beginPath(); pctx.arc(s.x, s.y, FILLR, 0, TAU); pctx.fill();
+  pctx.beginPath(); for (let i = from; i <= to; i++) { if (i === from) pctx.moveTo(S.op[i].x, S.op[i].y); else pctx.lineTo(S.op[i].x, S.op[i].y); } pctx.stroke();
+  if (withDot) { pctx.beginPath(); pctx.arc(S.op[to].x, S.op[to].y, FILLR, 0, TAU); pctx.fill(); }
   S.fillDirty = true;
 }
+function queueSeg(k) {                 // cat mengalir pelan dari bintang sebelumnya ke bintang ini
+  const s = S.stars[k], p = S.stars[k - 1];
+  const from = s.from !== undefined ? s.from : (p && p.run === s.run ? p.oi : s.oi);
+  S.pq.push({ pos: from, to: s.oi });
+  paintRange(from, from, true);
+}
+function advancePaint() {
+  for (let n = S.pq.length - 1; n >= 0; n--) {
+    const j = S.pq[n], nx = Math.min(j.to, j.pos + 5);
+    if (nx > j.pos) { paintRange(j.pos, nx, true); j.pos = nx; }
+    if (j.pos >= j.to) S.pq.splice(n, 1);
+  }
+}
+function flushPaint() { S.pq.forEach(function (j) { paintRange(j.pos, j.to, true); }); S.pq = []; }
 function updateFill() {
   fctx.globalCompositeOperation = 'source-over'; fctx.clearRect(0, 0, W, H); fctx.drawImage(paintCv, 0, 0);
   fctx.globalCompositeOperation = 'destination-in'; fctx.drawImage(maskCv, 0, 0); fctx.globalCompositeOperation = 'source-over'; S.fillDirty = false;
@@ -619,7 +631,7 @@ function sparkle(x, y, n, cols) {
   for (let i = 0; i < n; i++) { const a = Math.random() * TAU, sp = 2 + Math.random() * 6; S.particles.push({ x: x, y: y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 2, g: 0.18, c: cols[i % cols.length], s: 10 + Math.random() * 10, rot: 0, vr: 0.2, shape: 'star', life: 1, d: 0.03 }); }
 }
 function takeStar(k) {
-  const s = S.stars[k]; paintSeg(k); S.got++;
+  const s = S.stars[k]; queueSeg(k); S.got++; S.pops.push({ x: s.x, y: s.y, n: k + 1, t: performance.now() });
   sparkle(s.x, s.y, 9, ['#FFE066', '#FFFFFF', '#F7A9BC']); starSound(k); updateHud();
 }
 function collect(t, now) {
@@ -658,7 +670,7 @@ function spawnConfetti(n, mode) {
 }
 function finish() {
   if (S.done) return;
-  S.done = true; S.fullAt = performance.now(); $('say').hidden = true;
+  S.done = true; flushPaint(); updateFill(); S.fullAt = performance.now(); $('say').hidden = true;
   TRK.forEach(function (t) { t.has = false; });
   S.saved.done[S.idx] = 1; save(); S.mission++;
   const mission = S.mission % CFG.missionSize === 0, name = LETTERS[S.idx][1], nxt = LETTERS[(S.idx + 1) % LETTERS.length];
@@ -743,6 +755,15 @@ function drawStars(now) {
     ctx.fillStyle = '#7A3E00'; ctx.font = '700 ' + (next ? 26 : 21) + 'px Fredoka, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(String(k + 1), 0, next ? 3 : 2); ctx.restore();
   }
 }
+function drawPops(now) {
+  for (let i = S.pops.length - 1; i >= 0; i--) {
+    const p = S.pops[i], t = (now - p.t) / 450;
+    if (t >= 1) { S.pops.splice(i, 1); continue; }
+    const e = 1 - Math.pow(1 - t, 3);
+    ctx.save(); ctx.translate(p.x, p.y - 30 * e); ctx.globalAlpha = 1 - t; ctx.scale(1 + 0.9 * e, 1 + 0.9 * e); starPath(ctx, 20);
+    ctx.fillStyle = '#FFE066'; ctx.fill(); ctx.lineWidth = 3; ctx.strokeStyle = '#fff'; ctx.stroke(); ctx.restore();
+  }
+}
 function drawHand(c, x, y, s, cuff) {
   c.save(); c.translate(x + 9 * s, y + 36 * s); c.scale(s, s);
   c.fillStyle = 'rgba(0,0,0,.18)'; c.beginPath(); c.ellipse(-4, 28, 24, 6, 0, 0, TAU); c.fill();
@@ -782,19 +803,37 @@ function drawParticles() {
 
 // ===== Pelacak tangan =====
 function videoToStage(nx, ny) { const vw = vid.videoWidth, vh = vid.videoHeight, s = Math.max(W / vw, H / vh), dw = vw * s, dh = vh * s; return { x: W - ((W - dw) / 2 + nx * dw), y: (H - dh) / 2 + ny * dh }; }
+function stepAt(t, x, y, now) {
+  t.x = x; t.y = y;
+  if (S.ui === null && S.settings.decor) touchItems(x, y, now);
+  if (t.paint) collect(t, now);
+}
+function moveTrack(t, nx, ny, now, sweep) {       // bergerak bertahap supaya bintang tidak terlewat saat tangan cepat
+  if (sweep) { const d = Math.hypot(nx - t.x, ny - t.y), n = Math.max(1, Math.ceil(d / 20)), ox = t.x, oy = t.y; for (let i = 1; i <= n; i++) stepAt(t, ox + (nx - ox) * i / n, oy + (ny - oy) * i / n, now); }
+  else stepAt(t, nx, ny, now);
+  t.x = nx; t.y = ny;
+}
 function applyCursor(ti, tx, ty, painting, smooth) {
-  const t = TRK[ti], now = performance.now();
-  if (!t.has || !smooth) { t.x = tx; t.y = ty; } else { t.x += (tx - t.x) * 0.5; t.y += (ty - t.y) * 0.5; }
-  t.has = true; t.seen = now;
-  if (S.ui === null && S.settings.decor) touchItems(t.x, t.y, now);
-  if (painting) collect(t, now);
+  const t = TRK[ti], now = performance.now(), first = !t.has;
+  t.has = true; t.seen = now; t.paint = painting; t.tx = tx; t.ty = ty;
+  if (first) { t.smooth = smooth; moveTrack(t, tx, ty, now, false); }
+  else if (smooth) t.smooth = true;
+  else { t.smooth = false; moveTrack(t, tx, ty, now, painting); }
+}
+function glideTracks(now) {                       // gerak halus antar deteksi kamera (kamera ~30 kali per detik)
+  for (let i = 0; i < TRK.length; i++) {
+    const t = TRK[i]; if (!t.has || !t.smooth) continue;
+    const dx = t.tx - t.x, dy = t.ty - t.y, d = Math.hypot(dx, dy); if (d < 0.5) continue;
+    const a = Math.min(0.85, 0.22 + d / 220);
+    moveTrack(t, t.x + dx * a, t.y + dy * a, now, true);
+  }
 }
 function assignTracks(dets, now) {
   const pairs = [], dUsed = {}, tUsed = {};
   dets.forEach(function (d, di) { TRK.forEach(function (t, ti) { if (t.has) pairs.push({ di: di, ti: ti, d: Math.hypot(d.x - t.x, d.y - t.y) }); }); });
   pairs.sort(function (a, b) { return a.d - b.d; });
   pairs.forEach(function (p) { if (dUsed[p.di] || tUsed[p.ti] || p.d > 350) return; dUsed[p.di] = tUsed[p.ti] = true; applyCursor(p.ti, dets[p.di].x, dets[p.di].y, true, true); });
-  dets.forEach(function (d, di) { if (dUsed[di]) return; const ti = TRK.findIndex(function (t, i) { return !tUsed[i] && !t.has; }); if (ti >= 0) { tUsed[ti] = true; applyCursor(ti, d.x, d.y, true, false); } });
+  dets.forEach(function (d, di) { if (dUsed[di]) return; const ti = TRK.findIndex(function (t, i) { return !tUsed[i] && !t.has; }); if (ti >= 0) { tUsed[ti] = true; applyCursor(ti, d.x, d.y, true, true); } });
   TRK.forEach(function (t, i) { if (!tUsed[i] && t.has && now - t.seen > 350) t.has = false; });
 }
 function detect() {
@@ -819,6 +858,7 @@ function frame() {
   if (S.ui === null && !S.done && S.lastTick) S.playMs += Math.min(100, now - S.lastTick);
   S.lastTick = now;
   if (S.ui === null && Math.floor(S.playMs / 250) !== S.lastSecTick) { S.lastSecTick = Math.floor(S.playMs / 250); updateHud(); }
+  glideTracks(now); if (S.pq.length) advancePaint();
   if (inGame && S.mode === 'camera' && vid.readyState >= 2) {
     if (vid.currentTime !== S.lastVideoTime) { S.lastVideoTime = vid.currentTime; if (!S.done && S.ui === null) detect(); }
     drawVideo(); ctx.drawImage(fgCv, 0, 0);
@@ -830,6 +870,7 @@ function frame() {
     ctx.drawImage(fillCv, 0, 0);
     if (S.done && S.fullAt) { ctx.globalAlpha = Math.min(1, (now - S.fullAt) / 500); ctx.drawImage(colCv, 0, 0); ctx.globalAlpha = 1; }
     if (!S.done) drawStars(now);
+    drawPops(now);
   }
   if (inGame) { drawItems(now); drawCursors(); }
   drawParticles();
