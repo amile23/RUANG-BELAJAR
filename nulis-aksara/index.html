@@ -99,6 +99,7 @@ body{background:#2B2350;font-family:'Fredoka','Trebuchet MS',system-ui,sans-seri
 .qtop{position:absolute;left:0;right:0;top:calc(var(--u) * 30);display:flex;flex-direction:column;align-items:center;gap:calc(var(--u) * 8)}
 .qq{font:700 calc(var(--u) * 66)/1 'Fredoka',sans-serif;color:#F5B233;text-shadow:calc(var(--u) * -4) 0 #3B72C2,calc(var(--u) * 4) 0 #3B72C2,0 calc(var(--u) * -4) #3B72C2,0 calc(var(--u) * 4) #3B72C2,calc(var(--u) * -3) calc(var(--u) * -3) #3B72C2,calc(var(--u) * 3) calc(var(--u) * -3) #3B72C2,calc(var(--u) * -3) calc(var(--u) * 3) #3B72C2,calc(var(--u) * 3) calc(var(--u) * 3) #3B72C2}
 .qq b{color:#fff}
+.qmsg{top:calc(var(--u) * 585);font-size:calc(var(--u) * 84);-webkit-text-stroke:calc(var(--u) * 9) #2F5DBE}
 .qn{font:700 calc(var(--u) * 32)/1 'Fredoka',sans-serif;color:#fff;background:#3B72C2;border-radius:999px;padding:calc(var(--u) * 6) calc(var(--u) * 22);border:calc(var(--u) * 3) solid #fff}
 .skip{position:absolute;left:calc(var(--u) * 190);top:calc(var(--u) * 20);z-index:7;background:rgba(255,255,255,.92);border-radius:999px;padding:calc(var(--u) * 10) calc(var(--u) * 24);font-size:calc(var(--u) * 26);box-shadow:0 calc(var(--u) * 3) calc(var(--u) * 8) rgba(0,0,0,.25)}
 .chome{position:absolute;left:calc(var(--u) * 20);top:calc(var(--u) * 20);z-index:7;background:rgba(255,255,255,.92);border-radius:999px;padding:calc(var(--u) * 10) calc(var(--u) * 24);font-size:calc(var(--u) * 26);box-shadow:0 calc(var(--u) * 3) calc(var(--u) * 8) rgba(0,0,0,.25)}
@@ -270,11 +271,8 @@ body{background:#2B2350;font-family:'Fredoka','Trebuchet MS',system-ui,sans-seri
   <div class="ov dim" id="ovHow" hidden role="dialog" aria-label="Petunjuk">
     <div class="how">
       <h2>PETUNJUK</h2>
-      <div class="st">1. Pilih tanganmu</div>
-      <div class="hands" role="group" aria-label="Pilih tangan">
-        <button class="hc" type="button" data-hand="kiri" aria-pressed="false"><svg viewBox="0 0 50 78" aria-hidden="true" style="transform:scaleX(-1)"><use href="#hand" width="50" height="78"/></svg>Tangan kiri</button>
-        <button class="hc" type="button" data-hand="kanan" aria-pressed="true"><svg viewBox="0 0 50 78" aria-hidden="true"><use href="#hand" width="50" height="78"/></svg>Tangan kanan</button>
-      </div>
+      <div class="st">1. Angkat satu tangan ke depan kamera</div>
+      <svg viewBox="0 0 50 78" style="width:calc(var(--u) * 44);height:calc(var(--u) * 68)" aria-hidden="true"><use href="#hand" width="50" height="78"/></svg>
       <div class="st">2. Kumpulkan semua bintang untuk menulis aksara</div>
       <svg viewBox="0 0 24 24" style="width:calc(var(--u) * 56);height:calc(var(--u) * 56)" aria-hidden="true"><use href="#star" fill="#FFC93C"/></svg>
       <button class="bigbtn go" id="btnGo" type="button">Mulai</button>
@@ -345,8 +343,9 @@ body{background:#2B2350;font-family:'Fredoka','Trebuchet MS',system-ui,sans-seri
     <div class="prow"><button class="bigbtn sm" id="btnDown" type="button">Unduh</button><button class="bigbtn gold sm" id="btnPhotoHome" type="button">Beranda</button><button class="bigbtn pink sm" id="btnQuiz" type="button">Kuis</button></div>
   </div>
 
-  <div class="ov thru" id="ovQuiz" hidden><div class="qtop"><div class="qq" id="quizQ"></div><div class="qn" id="quizN">1/3</div></div></div>
+  <div class="ov thru" id="ovQuiz" hidden><div class="qtop"><div class="qq" id="quizQ"></div><div class="qn" id="quizN">1/3</div></div><div class="word qmsg" id="quizWord"></div></div>
 
+  <div class="word thru" id="doneWord" style="z-index:6;top:calc(var(--u) * 40)"></div>
   <button class="linkbtn skip" id="btnSkip" type="button" hidden>Lewati ›</button>
   <button class="linkbtn chome" id="btnChainHome" type="button" hidden>Beranda</button>
 
@@ -396,7 +395,7 @@ const MP_BASE = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@' + MP_VER
 const MODEL_URL = 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task';
 const INDEX_TIP = 8;
 const LEVELS = { besar: { R: 66 }, sedang: { R: 52 }, kecil: { R: 40 } };
-const CFG = { idleMs: 6000, noHandMs: 3500, lostMs: 1600, autoNextMs: 10000, winDelayMs: 1800, talkGapMs: 2200, missionSize: 3, lessonMs: 16000, instMs: 9000 };
+const CFG = { idleMs: 6000, noHandMs: 3500, lostMs: 1600, autoNextMs: 10000, winDelayMs: 6000, talkGapMs: 2200, missionSize: 3, lessonMs: 16000, instMs: 9000 };
 const LETTERS = [
   ['ꦲ','ha'],['ꦤ','na'],['ꦕ','ca'],['ꦫ','ra'],['ꦏ','ka'],
   ['ꦢ','da'],['ꦠ','ta'],['ꦱ','sa'],['ꦮ','wa'],['ꦭ','la'],
@@ -404,11 +403,10 @@ const LETTERS = [
   ['ꦩ','ma'],['ꦒ','ga'],['ꦧ','ba'],['ꦛ','tha'],['ꦔ','nga']
 ];
 const COLORS = ['#F2497E', '#E8613A', '#2FA36B', '#E89B12', '#3E86E8', '#9A63D8'];
-const SIDE_X = { kiri: 0.34, kanan: 0.66, dua: 0.5 };
-const ITEMS_DEF = [
-  { kind: 'gunungan', name: 'Gunungan', x: 90, y: 215, note: 0 }, { kind: 'blangkon', name: 'Blangkon', x: 90, y: 395, note: 1 },
-  { kind: 'gong', name: 'Gong', x: 90, y: 560, note: 2 }, { kind: 'kawung', name: 'Batik kawung', x: 1190, y: 215, note: 3 },
-  { kind: 'andong', name: 'Roda andong', x: 1190, y: 395, note: 4 }, { kind: 'bonang', name: 'Bonang', x: 1190, y: 560, note: 5 }
+const SIDE_X = { kiri: 0.5, kanan: 0.5, dua: 0.5 };   /* aksara selalu di tengah */
+const ITEMS_DEF = [   /* hiasan sedikit, kecil, di pojok, tidak bereaksi (supaya anak tetap fokus ke aksara) */
+  { kind: 'blangkon', name: 'Blangkon', x: 62, y: 330, note: 1 }, { kind: 'gong', name: 'Gong', x: 62, y: 600, note: 2 },
+  { kind: 'kawung', name: 'Batik kawung', x: 1218, y: 340, note: 3 }, { kind: 'bonang', name: 'Bonang', x: 1218, y: 600, note: 5 }
 ];
 const STORE_KEY = 'dolanGerak.nulisAksara.v2';
 const SOUND_ON = false;   // sementara semua suara dimatikan (belum sinkron)
@@ -425,7 +423,7 @@ const guideCv = layer(), gctx = guideCv.getContext('2d');
 const colCv = layer(), cctx = colCv.getContext('2d');
 const paintCv = layer(), pctx = paintCv.getContext('2d');
 const fillCv = layer(), fctx = fillCv.getContext('2d');
-const skyCv = layer(), fgCv = layer();
+const skyCv = layer(), fgCv = layer(), skyCalmCv = layer();
 
 const TRK = [
   { x: 0, y: 0, has: false, seen: 0, ptr: null, cuff: '#F2497E' },
@@ -540,18 +538,18 @@ function flower(c, x, y, r, col, stem) {
   for (let i = 0; i < 5; i++) { const a = -Math.PI / 2 + (i * TAU) / 5; c.beginPath(); c.arc(x + Math.cos(a) * r * 0.6, y + Math.sin(a) * r * 0.6, r * 0.52, 0, TAU); c.fill(); c.stroke(); }
   c.fillStyle = col === '#FFFFFF' ? '#F5B233' : '#fff'; c.beginPath(); c.arc(x, y, r * 0.36, 0, TAU); c.fill();
 }
-function drawHills(c) {
+function drawHills(c, calm) {
   c.save(); c.translate(0, 64);   /* rumput diturunkan supaya area bermain lebih luas */
   c.fillStyle = '#A9D14B'; c.beginPath(); c.moveTo(0, 590); c.bezierCurveTo(250, 520, 520, 560, 760, 540); c.bezierCurveTo(1000, 520, 1150, 560, W, 540); c.lineTo(W, H); c.lineTo(0, H); c.fill();
   c.fillStyle = '#BEDC5C'; c.beginPath(); c.moveTo(0, 640); c.bezierCurveTo(300, 560, 800, 590, W, 620); c.lineTo(W, H); c.lineTo(0, H); c.fill();
   c.fillStyle = '#CFE47A'; c.beginPath(); c.ellipse(640, 690, 560, 60, 0, 0, TAU); c.fill();
   c.strokeStyle = 'rgba(255,255,255,.65)'; c.lineWidth = 3; c.setLineDash([10, 10]); c.beginPath(); c.moveTo(0, 640); c.bezierCurveTo(300, 560, 800, 590, W, 620); c.stroke(); c.setLineDash([]);
-  [[40, 580, 60], [110, 575, 48], [1190, 565, 62], [1250, 560, 46], [20, 600, 40]].forEach(function (b) {
+  if (!calm) [[40, 580, 60], [110, 575, 48], [1190, 565, 62], [1250, 560, 46], [20, 600, 40]].forEach(function (b) {
     c.fillStyle = '#8CBF45'; c.beginPath(); c.arc(b[0], b[1], b[2], Math.PI, 0); c.fill();
     c.strokeStyle = 'rgba(255,255,255,.7)'; c.lineWidth = 3; c.setLineDash([8, 8]); c.beginPath(); c.arc(b[0], b[1], b[2] - 8, Math.PI, 0); c.stroke(); c.setLineDash([]);
   });
   [[420, 650, 16, '#FFFFFF'], [250, 690, 17, '#F7A9BC'], [600, 676, 15, '#FFC53D'], [780, 652, 17, '#F7A9BC'], [940, 690, 16, '#FFFFFF'], [1110, 652, 17, '#F46B4E'], [150, 655, 15, '#F46B4E'], [510, 700, 14, '#F7A9BC'], [880, 705, 14, '#FFC53D']].forEach(function (f) { flower(c, f[0], f[1], f[2], f[3], 40); });
-  flower(c, 175, 505, 30, '#F7A9BC', 120); flower(c, 1115, 495, 30, '#F46B4E', 125);
+  if (!calm) { flower(c, 175, 505, 30, '#F7A9BC', 120); flower(c, 1115, 495, 30, '#F46B4E', 125); }
   c.restore();
 }
 function buildScenery() {
@@ -571,7 +569,13 @@ function buildScenery() {
   c.fillStyle = '#F4EFE3'; c.fillRect(578, 500, 28, 52); c.fillRect(586, 430, 12, 72); c.fillStyle = '#E9B949'; c.beginPath(); c.moveTo(584, 432); c.lineTo(592, 394); c.lineTo(600, 432); c.closePath(); c.fill();
   c.fillStyle = '#D9CDB0'; c.fillRect(570, 548, 44, 8);
   drawHills(c);
-  c = fgCv.getContext('2d'); drawHills(c);
+  c = fgCv.getContext('2d'); drawHills(c, true);
+  /* langit tenang untuk layar bermain: tanpa pendopo, gunung, dan hiasan samping */
+  c = skyCalmCv.getContext('2d');
+  const g2 = c.createLinearGradient(0, 0, 0, H); g2.addColorStop(0, '#7FC9EE'); g2.addColorStop(0.55, '#CFEAF7'); g2.addColorStop(1, '#FCE3EA');
+  c.fillStyle = g2; c.fillRect(0, 0, W, H);
+  c.fillStyle = 'rgba(255,236,150,.30)'; c.beginPath(); c.arc(1000, 120, 100, 0, TAU); c.fill(); c.fillStyle = '#FFE066'; c.beginPath(); c.arc(1000, 120, 62, 0, TAU); c.fill();
+  drawHills(c, true);
 }
 const CLOUDS = [{ x: 330, y: 90, s: 1 }, { x: 760, y: 150, s: 0.8 }, { x: 1020, y: 70, s: 1.15 }, { x: 80, y: 280, s: 0.7 }];
 function drawClouds(now) {
@@ -745,9 +749,9 @@ async function buildLetter(i) {
   mctx.clearRect(0, 0, W, H); mctx.textAlign = 'left'; mctx.textBaseline = 'alphabetic'; mctx.font = '700 ' + base + 'px AksaraJawa';
   let m = mctx.measureText(g);
   const bw = m.actualBoundingBoxLeft + m.actualBoundingBoxRight, bh = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent;
-  const k = S.editing ? Math.min((H * 0.56) / bh, (W * 0.60) / bw) : Math.min((H * 0.66) / bh, (W * 0.40) / bw), px = base * k;
+  const k = S.editing ? Math.min((H * 0.56) / bh, (W * 0.60) / bw) : Math.min((H * 0.68) / bh, (W * 0.50) / bw), px = base * k;
   mctx.font = '700 ' + px + 'px AksaraJawa'; m = mctx.measureText(g);
-  const cx = S.editing ? W / 2 : W * SIDE_X[S.hand], cy = S.editing ? H * 0.50 : H * 0.47;
+  const cx = S.editing ? W / 2 : W * SIDE_X[S.hand], cy = S.editing ? H * 0.50 : H * 0.51;
   const x = cx - (m.actualBoundingBoxRight - m.actualBoundingBoxLeft) / 2;
   const y = cy - (m.actualBoundingBoxDescent - m.actualBoundingBoxAscent) / 2;
   S.box = { x: x - m.actualBoundingBoxLeft, y: y - m.actualBoundingBoxAscent, w: m.actualBoundingBoxLeft + m.actualBoundingBoxRight, h: m.actualBoundingBoxAscent + m.actualBoundingBoxDescent };
@@ -856,6 +860,8 @@ function finish() {
   spawnConfetti(mission ? 130 : 80, 'rain'); spawnConfetti(mission ? 90 : 56, 'burst'); celebrateSound(mission);
   say(mission ? 'Yeyyy! Misi selesai! ' + CFG.missionSize + ' aksara berhasil. Kamu hebat sekali!' : 'Yeyyy! Hebat sekali! Aksara ' + name + '.',
     { force: true, key: 'finish', bubble: false, spoken: mission ? 'Hore! Misi selesai! Tiga aksara berhasil. Kamu hebat sekali!' : 'Hore! Hebat sekali! Aksara ' + name + '.' });
+  popWord('doneWord', mission ? 'MISI SELESAI!' : 'HEBAT!');
+  [1500, 3000, 4500].forEach(function (d) { setTimeout(function () { if (S.done && S.ui === null) fireworks(220 + Math.random() * 840, 130 + Math.random() * 250, ['#FFD23C', '#F7648F', '#3CC3B2'][Math.floor(Math.random() * 3)]); }, d); });
   $('winTitle').textContent = mission ? 'Misi selesai!' : 'Yeyyy!';
   $('winText').textContent = 'Aksara ini dibaca “' + name + '”' + (mission ? '. Kamu menulis ' + CFG.missionSize + ' aksara!' : '. Berikutnya: ' + nxt[1] + '.');
   $('teacherNote').textContent = 'Catatan untuk guru: ' + Math.max(1, Math.round(S.playMs / 1000)) + ' detik, bantuan petunjuk ' + S.hints + ' kali.';
@@ -899,6 +905,7 @@ const ICONS = {
 };
 function initItems() { S.items = ITEMS_DEF.map(function (d, i) { return { kind: d.kind, name: d.name, x: d.x, y: d.y, note: d.note, ph: i * 1.3, pop: 0, last: 0, labelUntil: 0 }; }); }
 function touchItems(x, y, now) {
+  return;   /* hiasan tidak bereaksi saat disentuh */
   for (let i = 0; i < S.items.length; i++) {
     const it = S.items[i];
     if (Math.hypot(x - it.x, y - it.y) < 62 && now - it.last > 600) { it.last = now; it.pop = 1; it.labelUntil = now + 1100; S.touches++; bell(it.note); sparkle(it.x, it.y, 12, ['#FFE08A', '#F7A9BC', '#FFFFFF']); }
@@ -908,7 +915,7 @@ function drawItems(now) {
   if (!S.settings.decor) return;
   for (let i = 0; i < S.items.length; i++) {
     const it = S.items[i]; it.pop *= 0.9; if (it.pop < 0.01) it.pop = 0;
-    ctx.save(); ctx.translate(it.x, it.y + Math.sin(now / 650 + it.ph) * 6); const sc = 0.85 * (1 + it.pop * 0.4); ctx.scale(sc, sc); if (it.pop > 0) ctx.rotate(Math.sin(now / 40) * 0.12 * it.pop); ICONS[it.kind](ctx); ctx.restore();
+    ctx.save(); ctx.globalAlpha = 0.82; ctx.translate(it.x, it.y + Math.sin(now / 1400 + it.ph) * 3); const sc = 0.58 * (1 + it.pop * 0.4); ctx.scale(sc, sc); if (it.pop > 0) ctx.rotate(Math.sin(now / 40) * 0.12 * it.pop); ICONS[it.kind](ctx); ctx.restore();
     if (now < it.labelUntil) {
       ctx.font = '700 26px Fredoka, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       const w = ctx.measureText(it.name).width + 28, lx = it.x, ly = it.y + 70;
@@ -967,7 +974,7 @@ function drawCursors() {
 }
 /* Tombol bisa ditekan dengan tangan: tahan jari di atas tombol sampai lingkaran hijau penuh */
 const DWELL_UIS = ['ovLearn', 'ovBub', 'ovGood', 'ovSelfie', 'ovPhoto', 'ovQuiz', 'ovWin'];
-const DWELL_MS = 700;
+const DWELL_MS = 1500;
 function dwellButtons() {
   const out = [];
   document.querySelectorAll('#stage button').forEach(function (b) {
@@ -988,7 +995,7 @@ function dwellStep(now) {
     for (let k = 0; k < btns.length; k++) { const r = btns[k].r; if (sx >= r.left - pad && sx <= r.right + pad && sy >= r.top - pad && sy <= r.bottom + pad) { hit = btns[k].b; break; } }
     if (!hit || (S.dwellLock && now < S.dwellLock && S.dwellStage === S.stage)) { t.dw = null; continue; }
     if (!t.dw || t.dw.b !== hit) t.dw = { b: hit, t0: now, p: 0 };
-    t.dw.need = (hit.id === 'btnSkip' || hit.id === 'btnChainHome') ? 1200 : DWELL_MS; t.dw.p = (now - t.dw.t0) / t.dw.need;
+    t.dw.need = (hit.id === 'btnSkip' || hit.id === 'btnChainHome') ? 2200 : DWELL_MS; t.dw.p = (now - t.dw.t0) / t.dw.need;
     if (t.dw.p >= 1) { S.dwellLock = now + 1500; S.dwellStage = S.stage; t.dw = null; sparkle(t.x, t.y, 18, ['#FFE066', '#FFFFFF', '#7BCB4F', '#5BC0EB']); spawnConfetti(14, 'burst'); hit.click(); return; }
   }
 }
@@ -1071,8 +1078,8 @@ function frame() {
   if (inGame && S.mode === 'camera' && vid.readyState >= 2) {
     if (vid.currentTime !== S.lastVideoTime) { S.lastVideoTime = vid.currentTime; if ((!S.done && S.ui === null) || DWELL_UIS.indexOf(S.ui) >= 0) detect(); }
     drawVideo(); ctx.drawImage(fgCv, 0, 0);
-  } else if (inGame) { ctx.drawImage(skyCv, 0, 0); drawClouds(now); }
-  else if (S.ui === 'ovQuiz') { ctx.drawImage(skyCv, 0, 0); drawClouds(now); quizFrame(now); }
+  } else if (inGame) { ctx.drawImage(skyCalmCv, 0, 0); drawClouds(now); }
+  else if (S.ui === 'ovQuiz') { ctx.drawImage(skyCalmCv, 0, 0); drawClouds(now); quizFrame(now); }
   else if (S.ui === 'ovEdit') { ctx.drawImage(skyCv, 0, 0); drawClouds(now); ctx.drawImage(guideCv, 0, 0); drawEdit(); }
   else { ctx.drawImage(skyCv, 0, 0); drawClouds(now); if (S.ui === 'ovTitle') drawCanting(now); }
   if (!inGame && DWELL_UIS.indexOf(S.ui) >= 0 && S.mode === 'camera' && vid.readyState >= 2 && vid.currentTime !== S.lastVideoTime) { S.lastVideoTime = vid.currentTime; detect(); }
@@ -1143,7 +1150,7 @@ function buildGrid() {
 }
 function openHow() {
   syncHands(); showOnly('ovHow');
-  say('Pilih tanganmu. Lalu kumpulkan semua bintang untuk menulis aksara ' + LETTERS[S.idx][1] + '.', { force: true, key: 'how', bubble: false });
+  say('Angkat satu tangan ke depan kamera. Lalu kumpulkan semua bintang untuk menulis aksara ' + LETTERS[S.idx][1] + '.', { force: true, key: 'how', bubble: false });
 }
 function syncHands() { document.querySelectorAll('.hc').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.hand === S.hand)); }); }
 function syncSettings() {
@@ -1189,12 +1196,12 @@ async function startCamera() {
 async function startPointer() {
   ac(); stopCamera(); S.settingsFrom = null; S.mode = 'pointer'; S.firstHandPrompt = false; TRK.forEach(function (t) { t.has = false; t.ptr = null; });
   await buildLetter(S.idx); showOnly(null); S.lastTick = performance.now();
-  say('Halo, teman! Ayo menulis aksara ' + LETTERS[S.idx][1] + '. Geser jarimu menyentuh bintang yang bersinar. Boleh pakai dua jari!', { force: true, key: 'greet' });
+  say('Halo, teman! Ayo menulis aksara ' + LETTERS[S.idx][1] + '. Geser jarimu menyentuh bintang yang bersinar. Geser jarimu ke bintang berikutnya.', { force: true, key: 'greet' });
 }
 
 // ===== Rangkaian setelah menulis: belajar, gelembung, hebat, selfie, kuis =====
 const HC_LINES = [['Hana caraka', 'ada utusan'], ['Data sawala', 'saling bertengkar'], ['Padha jayanya', 'sama-sama sakti'], ['Maga bathanga', 'inilah jasad mereka']];
-const BUB = { goal: 8, secs: 30 };
+const BUB = { goal: 10, secs: 45 };
 function after(ms, fn) { const id = S.stage; return setTimeout(function () { if (S.stage === id) fn(); }, ms); }
 function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
 function fillMid(c, text, x, y) { c.textBaseline = 'alphabetic'; const m = c.measureText(text); c.fillText(text, x, y + (m.actualBoundingBoxAscent - m.actualBoundingBoxDescent) / 2); }
@@ -1206,6 +1213,7 @@ function fireworks(x, y, col) {
 
 // 1. Belajar: aksara dan tempatnya di baris Hanacaraka
 function startLesson() {
+  popWord('doneWord', '');
   showOnly('ovLearn');
   const i = S.idx, row = Math.floor(i / 5), pos = i % 5, name = LETTERS[i][1];
   $('ovLearn').style.setProperty('--c', S.color);
@@ -1245,16 +1253,16 @@ function bubBegin() {
 function bubSpawn() {
   const b = S.bub; b.n++;
   const li = S.idx;      /* semua gelembung sama: aksara yang baru dipelajari (anak DCD/ADHD tidak perlu memilih) */
-  b.items.push({ x: 120 + Math.random() * (W - 300), y: H + 80, r: 78, vy: 0.8 + Math.random() * 0.6, vx: (Math.random() - 0.5) * 0.5, ph: Math.random() * TAU, li: li, target: li === S.idx, dying: false, pop: 0, shake: 0 });
+  b.items.push({ x: 120 + Math.random() * (W - 300), y: H + 80, r: 78, vy: 1.3 + Math.random() * 0.8, vx: (Math.random() - 0.5) * 0.5, ph: Math.random() * TAU, li: li, target: li === S.idx, dying: false, pop: 0, shake: 0 });
 }
 function bubStep(now) {
   const b = S.bub; if (!b) return;
   const dtms = Math.min(60, now - b.last), dt = dtms / 16.67; b.last = now;
   if (b.phase === 'play') {
     b.left -= dtms / 1000;
-    if (now >= b.spawnAt && b.items.filter(function (it) { return !it.dying; }).length < 7) { bubSpawn(); b.spawnAt = now + 600 + Math.random() * 450; }
+    if (now >= b.spawnAt && b.items.filter(function (it) { return !it.dying; }).length < 8) { bubSpawn(); b.spawnAt = now + 450 + Math.random() * 350; }
     const hs = Math.floor(b.left * 4); if (hs !== b.hudT) { b.hudT = hs; bubHud(); }
-    if (b.left <= 0 && !b.over) { b.left = 0; bubHud(); bubEnd(); return; }
+    if (b.left <= 0 && !b.over) { b.left = 0; bubHud(); bubFinish('SELESAI!'); return; }
   }
   b.items.forEach(function (it) {
     if (it.dying) { it.pop -= 0.07 * dt; return; }
@@ -1268,7 +1276,7 @@ function bubTouch(x, y) {
     if (it.dying || b.got >= BUB.goal || Math.hypot(x - it.x, y - it.y) > it.r + 40) return;
     if (it.target) {
       it.dying = true; it.pop = 1; b.got++; sparkle(it.x, it.y, 14, ['#FFE066', '#FFFFFF', '#F7A9BC']); bubHud();
-      if (b.got >= BUB.goal) after(700, bubEnd);
+      if (b.got >= BUB.goal) bubFinish('YEAY!');
     } else if (it.shake < 0.3) it.shake = 1;
   });
 }
@@ -1289,6 +1297,13 @@ function drawBubbles(now) {
     ctx.restore();
   });
 }
+function bubFinish(word) {     /* berhenti pelan: gelembung sisa pecah, ada kata, baru lanjut (tidak tiba-tiba) */
+  const b = S.bub; if (!b || b.phase !== 'play') return;
+  b.phase = 'finishing';
+  b.items.forEach(function (it) { if (!it.dying) { it.dying = true; it.pop = 1; sparkle(it.x, it.y, 8, ['#FFE066', '#FFFFFF', '#F7A9BC']); } });
+  popWord('bubWord', word); spawnConfetti(40, 'burst');
+  after(3000, function () { popWord('bubWord', ''); bubEnd(); });
+}
 function bubEnd() { const b = S.bub; if (!b || b.over) return; b.over = true; b.phase = 'over'; startGood(); }
 
 // 3. Hebat
@@ -1296,8 +1311,8 @@ function startGood() {
   showOnly('ovGood');
   const got = S.bub ? S.bub.got : 0, cols = ['#FFD23C', '#F7648F', '#3CC3B2', '#7B9CF5', '#F7803F'];
   $('goodSub').textContent = got ? 'Kamu memecahkan ' + got + ' gelembung aksara ' + LETTERS[S.idx][1] + '!' : 'Kamu sudah berusaha. Hebat!';
-  for (let k = 0; k < 9; k++) after(150 + k * 480, function () { fireworks(160 + Math.random() * 960, 110 + Math.random() * 320, cols[k % cols.length]); });
-  after(4800, afterGood);
+  for (let k = 0; k < 14; k++) after(150 + k * 480, function () { fireworks(160 + Math.random() * 960, 110 + Math.random() * 320, cols[k % cols.length]); });
+  after(6800, afterGood);   /* apresiasi dibuat panjang (6-7 detik) */
 }
 function afterGood() { if (S.mode === 'camera' && vid.readyState >= 2 && vid.videoWidth) startSelfie(); else startQuiz(); }
 
@@ -1351,18 +1366,20 @@ function startQuiz() {
 }
 function quizSet() {
   const z = S.quiz, t = z.targets[z.q], o = []; for (let k = 0; k < LETTERS.length; k++) if (k !== t) o.push(k);
-  shuffle(o); z.cards = shuffle([t, o[0], o[1]]); z.dw = [0, 0, 0]; z.fb = [0, 0, 0]; z.wrong = 0; z.lock = performance.now() + 700;
+  shuffle(o); z.cards = shuffle([t, o[0], o[1]]); z.dw = [0, 0, 0]; z.fb = [0, 0, 0]; z.wrong = 0; z.hold = [false, false, false]; z.lock = performance.now() + 2000;
   $('quizQ').innerHTML = 'Sentuh aksara <b>' + LETTERS[t][1] + '</b>'; $('quizN').textContent = (z.q + 1) + ' / ' + z.targets.length;
 }
 function quizPick(k) {
   const z = S.quiz, now = performance.now(); if (!z || now < z.lock) return;
   const card = QUIZ_CARDS[k];
   if (z.cards[k] === z.targets[z.q]) {
-    z.lock = now + 1200; z.fb[k] = 1; sparkle(card.x + card.w / 2, card.y + card.h / 2, 16, ['#FFE066', '#FFFFFF', '#7BCB4F']); spawnConfetti(36, 'burst');
-    after(1100, function () { z.q++; if (z.q >= z.targets.length) showFinal(); else quizSet(); });
-  } else { z.fb[k] = -1; z.dw[k] = 0; z.lock = now + 450; z.wrong = (z.wrong || 0) + 1; }
+    z.lock = now + 5000; z.fb[k] = 1; sparkle(card.x + card.w / 2, card.y + card.h / 2, 16, ['#FFE066', '#FFFFFF', '#7BCB4F']); spawnConfetti(50, 'burst');
+    popWord('quizWord', z.q + 1 >= z.targets.length ? 'HEBAT SEKALI!' : 'BETUL!');
+    after(1500, function () { fireworks(card.x + card.w / 2, card.y + 40, '#FFD23C'); });
+    after(3600, function () { popWord('quizWord', ''); z.q++; if (z.q >= z.targets.length) showFinal(); else quizSet(); });   /* jeda apresiasi sekitar 3,5 detik */
+  } else { z.fb[k] = -1; z.dw[k] = 0; z.hold[k] = true; z.lock = now + 1800; z.wrong = (z.wrong || 0) + 1; popWord('quizWord', 'COBA LAGI YA'); after(1700, function () { if (S.quiz === z && z.fb.every(function (f) { return f <= 0; })) popWord('quizWord', ''); }); }
 }
-const QUIZ_PRESS = 380;   /* sentuh kartu sebentar = ditekan lalu terpilih */
+const QUIZ_PRESS = 1600;   /* sentuh kartu sebentar = ditekan lalu terpilih */
 const QUIZ_CARDS = [0, 1, 2].map(function (k) { return { x: 100 + k * 370, y: 250, w: 310, h: 300 }; });
 function quizTouch(x, y) { QUIZ_CARDS.forEach(function (c, k) { if (x > c.x && x < c.x + c.w && y > c.y && y < c.y + c.h) quizPick(k); }); }
 function quizFrame(now) {
@@ -1370,9 +1387,11 @@ function quizFrame(now) {
   QUIZ_CARDS.forEach(function (c, k) {
     let inside = false;
     TRK.forEach(function (t) { if (t.has && t.x > c.x && t.x < c.x + c.w && t.y > c.y && t.y < c.y + c.h) inside = true; });
-    z.dw[k] = inside ? z.dw[k] + dtms : Math.max(0, z.dw[k] - dtms * 2);
+    if (!inside) z.hold[k] = false;
+    const live = performance.now() >= z.lock && !z.hold[k];      /* saat jeda atau setelah salah, tangan harus keluar dulu */
+    z.dw[k] = inside && live ? z.dw[k] + dtms : Math.max(0, z.dw[k] - dtms * 2);
     if (z.dw[k] >= QUIZ_PRESS) { z.dw[k] = 0; quizPick(k); }
-    if (z.fb[k] < 0) z.fb[k] *= 0.9; if (z.fb[k] > -0.02 && z.fb[k] < 0) z.fb[k] = 0;
+    if (z.fb[k] < 0) z.fb[k] *= 0.97; if (z.fb[k] > -0.02 && z.fb[k] < 0) z.fb[k] = 0;
     const fb = z.fb[k], sx = fb < 0 ? Math.sin(now / 40) * 10 * -fb : 0, lift = inside ? -8 : 0;
     const pr = Math.min(1, z.dw[k] / QUIZ_PRESS), sc = 1 - 0.07 * pr;   /* kartu menekan ke bawah */
     ctx.save(); ctx.translate(c.x + c.w / 2 + sx, c.y + c.h / 2 + lift + 10 * pr); ctx.scale(sc, sc); ctx.translate(-(c.x + c.w / 2), -(c.y + c.h / 2));
@@ -1491,8 +1510,7 @@ $('btnPlay').addEventListener('click', function () { ac(); buildGrid(); showOnly
 $('btnSettings').addEventListener('click', function () { syncSettings(); S.settingsFrom = 'ovTitle'; showOnly('ovSettings'); });
 $('btnSelBack').addEventListener('click', function () { if (S.mode) showOnly('ovPause'); else showOnly('ovTitle'); });
 $('btnHowBack').addEventListener('click', function () { showOnly('ovSelect'); });
-$('btnHowHear').addEventListener('click', function () { say('Pilih tanganmu. Lalu kumpulkan semua bintang untuk menulis aksara.', { force: true, key: 'how', bubble: false }); });
-document.querySelectorAll('.hc').forEach(function (b) { b.addEventListener('click', function () { S.hand = b.dataset.hand; save(); syncHands(); }); });
+$('btnHowHear').addEventListener('click', function () { say('Angkat satu tangan ke depan kamera. Lalu kumpulkan semua bintang untuk menulis aksara.', { force: true, key: 'how', bubble: false }); });
 $('btnGo').addEventListener('click', function () { if (S.mode === 'camera' && S.stream) startGame(S.idx); else if (S.mode === 'pointer') startGame(S.idx); else startCamera(); });
 $('btnNoCam').addEventListener('click', startPointer);
 $('btnRetry').addEventListener('click', startCamera);
