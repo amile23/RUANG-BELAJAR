@@ -488,9 +488,7 @@ function skeletonPath(alpha) {
   const OFF = [-gw - 1, -gw, -gw + 1, -1, 1, gw - 1, gw, gw + 1];
   function nbrs(i) { const r = []; for (let k = 0; k < 8; k++) { const j = i + OFF[k]; if (j >= 0 && j < img.length && img[j]) r.push(j); } return r; }
   let start = -1, bs = 1e9, total = 0;
-  let ends = 0;
-  for (let i = 0; i < img.length; i++) if (img[i]) { total++; if (nbrs(i).length === 1) { ends++; const sc = (i % gw) + 0.1 * Math.floor(i / gw); if (sc < bs) { bs = sc; start = i; } } }
-  if (start < 0) for (let i = 0; i < img.length; i++) if (img[i]) { const sc = (i % gw) + 0.6 * Math.floor(i / gw); if (sc < bs) { bs = sc; start = i; } }
+  for (let i = 0; i < img.length; i++) if (img[i]) { total++; const sc = (i % gw) + 0.6 * Math.floor(i / gw); if (sc < bs) { bs = sc; start = i; } }   // titik paling kiri-atas
   if (start < 0) return [];
   const vis = new Uint8Array(img.length), seen = new Int32Array(img.length); let stamp = 0;
   const order = []; let cur = start, dx0 = 0, dy0 = 0, run = 0;
@@ -512,7 +510,7 @@ function skeletonPath(alpha) {
     let nxt = -1, brk = false;
     if (cands.length) {
       let best = -1e9; const cx = cur % gw, cy = Math.floor(cur / gw);
-      for (let k = 0; k < cands.length; k++) { const j = cands[k], dx = (j % gw) - cx, dy = Math.floor(j / gw) - cy, len = Math.hypot(dx, dy), sc = (dx * dx0 + dy * dy0) / len + (len === 1 ? 0.2 : 0) + 0.35 * dx / len; if (sc > best) { best = sc; nxt = j; } }
+      for (let k = 0; k < cands.length; k++) { const j = cands[k], dx = (j % gw) - cx, dy = Math.floor(j / gw) - cy, len = Math.hypot(dx, dy), sc = 0.5 * (dx * dx0 + dy * dy0) / len + (len === 1 ? 0.2 : 0) + 0.35 * dx / len + 1.1 * dy / len; /* utamakan turun ke bawah dulu, baru ke samping */ if (sc > best) { best = sc; nxt = j; } }
       const nbN = {}; nbrs(nxt).forEach(function (j) { nbN[j] = 1; });
       cands.forEach(function (j) { if (j !== nxt && nbN[j]) { vis[j] = 1; visited++; } });
     } else {
