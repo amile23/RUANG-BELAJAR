@@ -487,9 +487,22 @@ function skeletonPath(alpha) {
   thin(img, gw, gh);
   const OFF = [-gw - 1, -gw, -gw + 1, -1, 1, gw - 1, gw, gw + 1];
   function nbrs(i) { const r = []; for (let k = 0; k < 8; k++) { const j = i + OFF[k]; if (j >= 0 && j < img.length && img[j]) r.push(j); } return r; }
-  let start = -1, bs = 1e9, total = 0;
-  for (let i = 0; i < img.length; i++) if (img[i]) { total++; const sc = (i % gw) + 0.6 * Math.floor(i / gw); if (sc < bs) { bs = sc; start = i; } }   // titik paling kiri-atas
-  if (start < 0) return [];
+  // pisahkan potongan-potongan huruf (komponen terhubung); tiap potongan ditulis mulai dari ujung paling kiri-bawah
+  const lab = new Int32Array(img.length).fill(-1), comps = [];
+  for (let i0 = 0; i0 < img.length; i0++) {
+    if (!img[i0] || lab[i0] >= 0) continue;
+    const members = [i0]; lab[i0] = comps.length;
+    for (let h = 0; h < members.length; h++) { const nb = nbrs(members[h]); for (let k = 0; k < nb.length; k++) if (lab[nb[k]] < 0) { lab[nb[k]] = comps.length; members.push(nb[k]); } }
+    if (members.length < 6) continue;
+    const ends = members.filter(function (i) { return nbrs(i).length === 1; }), pool = ends.length ? ends : members;
+    let st = pool[0], bsc = 1e9;
+    pool.forEach(function (i) { const sc = (i % gw) - 0.3 * Math.floor(i / gw); if (sc < bsc) { bsc = sc; st = i; } });
+    comps.push({ start: st, n: members.length, x: st % gw });
+  }
+  comps.sort(function (a, b) { return a.x - b.x; });
+  if (!comps.length) return [];
+  let total = 0; comps.forEach(function (c) { total += c.n; });
+  const start = comps[0].start;
   const vis = new Uint8Array(img.length), seen = new Int32Array(img.length); let stamp = 0;
   const order = []; let cur = start, dx0 = 0, dy0 = 0, run = 0;
   vis[cur] = 1; order.push({ x: (cur % gw) * 4 + 2, y: Math.floor(cur / gw) * 4 + 2, run: run });
@@ -510,22 +523,28 @@ function skeletonPath(alpha) {
     let nxt = -1, brk = false;
     if (cands.length) {
       let best = -1e9; const cx = cur % gw, cy = Math.floor(cur / gw);
-      for (let k = 0; k < cands.length; k++) { const j = cands[k], dx = (j % gw) - cx, dy = Math.floor(j / gw) - cy, len = Math.hypot(dx, dy), sc = 0.5 * (dx * dx0 + dy * dy0) / len + (len === 1 ? 0.2 : 0) + 0.35 * dx / len + 1.1 * dy / len; /* utamakan turun ke bawah dulu, baru ke samping */ if (sc > best) { best = sc; nxt = j; } }
+      for (let k = 0; k < cands.length; k++) { const j = cands[k], dx = (j % gw) - cx, dy = Math.floor(j / gw) - cy, len = Math.hypot(dx, dy), sc = 0.8 * (dx * dx0 + dy * dy0) / len + (len === 1 ? 0.2 : 0) + 0.35 * dx / len; if (sc > best) { best = sc; nxt = j; } }
       const nbN = {}; nbrs(nxt).forEach(function (j) { nbN[j] = 1; });
       cands.forEach(function (j) { if (j !== nxt && nbN[j]) { vis[j] = 1; visited++; } });
     } else {
-      const path = bfsPath(cur);
-      if (path) {
+      // bagian yang tersisa dan dimulai di sebelah KIRI posisi sekarang ditulis lagi dari ujung paling kiri-bawahnya (pena diangkat)
+      let le = -1, lsc = 1e9;
+      for (let i = 0; i < img.length; i++) if (img[i] && !vis[i] && nbrs(i).length === 1) { const sc = (i % gw) - 0.3 * Math.floor(i / gw); if (sc < lsc) { lsc = sc; le = i; } }
+      const path = (le >= 0 && (le % gw) < (cur % gw) - 10) ? null : bfsPath(cur);
+      if (le >= 0 && !path) { nxt = le; brk = true; }
+      else if (path) {
         order[order.length - 1].turn = true;                 // ujung buntu: bintang wajib di sini
         for (let k = 0; k < path.length - 1; k++) pushPt(path[k], { back: true });   // menelusuri ulang goresan (seperti menulis huruf m)
         const tgt = path[path.length - 1];
         vis[tgt] = 1; visited++; cur = tgt; pushPt(cur, { turn: true }); dx0 = 0; dy0 = 0;
         continue;
       }
-      nxt = -1; let bd = 1e12; const cx2 = cur % gw, cy2 = Math.floor(cur / gw);
-      for (let i = 0; i < img.length; i++) if (img[i] && !vis[i]) { const d = Math.pow((i % gw) - cx2, 2) + Math.pow(Math.floor(i / gw) - cy2, 2); if (d < bd) { bd = d; nxt = i; } }
-      if (nxt < 0) break;
-      brk = true;
+      else {
+        nxt = -1;
+        for (let c = 0; c < comps.length; c++) if (!vis[comps[c].start]) { nxt = comps[c].start; break; }
+        if (nxt < 0) break;
+        brk = true;
+      }
     }
     const ddx = (nxt % gw) - (cur % gw), ddy = Math.floor(nxt / gw) - Math.floor(cur / gw), dl = Math.hypot(ddx, ddy) || 1;
     if (brk) { dx0 = 0; dy0 = 0; run++; } else { dx0 = 0.6 * dx0 + 0.4 * (ddx / dl); dy0 = 0.6 * dy0 + 0.4 * (ddy / dl); }
