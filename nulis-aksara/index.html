@@ -497,10 +497,13 @@ function skeletonPath(alpha) {
     const ends = members.filter(function (i) { return nbrs(i).length === 1; }), pool = ends.length ? ends : members;
     let st = pool[0], bsc = 1e9;
     pool.forEach(function (i) { const sc = (i % gw) - 0.3 * Math.floor(i / gw); if (sc < bsc) { bsc = sc; st = i; } });
-    comps.push({ start: st, n: members.length, x: st % gw });
+    comps.push({ start: st, n: members.length, x: st % gw, id: lab[i0] });
   }
-  comps.sort(function (a, b) { return a.x - b.x; });
   if (!comps.length) return [];
+  // titik/potongan kecil (seperti titik pada da, sa) ditulis paling akhir, setelah goresan utama (seperti di video contoh)
+  let maxN = 0; comps.forEach(function (c) { if (c.n > maxN) maxN = c.n; });
+  const smallId = {}; comps.forEach(function (c) { c.small = comps.length > 1 && c.n < 0.16 * maxN; if (c.small) smallId[c.id] = 1; });
+  comps.sort(function (a, b) { return (a.small ? 1 : 0) - (b.small ? 1 : 0) || a.x - b.x; });
   let total = 0; comps.forEach(function (c) { total += c.n; });
   const start = comps[0].start;
   const vis = new Uint8Array(img.length), seen = new Int32Array(img.length); let stamp = 0;
@@ -529,7 +532,7 @@ function skeletonPath(alpha) {
     } else {
       // bagian yang tersisa dan dimulai di sebelah KIRI posisi sekarang ditulis lagi dari ujung paling kiri-bawahnya (pena diangkat)
       let le = -1, lsc = 1e9;
-      for (let i = 0; i < img.length; i++) if (img[i] && !vis[i] && nbrs(i).length === 1) { const sc = (i % gw) - 0.3 * Math.floor(i / gw); if (sc < lsc) { lsc = sc; le = i; } }
+      for (let i = 0; i < img.length; i++) if (img[i] && !vis[i] && !smallId[lab[i]] && nbrs(i).length === 1) { const sc = (i % gw) - 0.3 * Math.floor(i / gw); if (sc < lsc) { lsc = sc; le = i; } }
       const path = (le >= 0 && (le % gw) < (cur % gw) - 10) ? null : bfsPath(cur);
       if (le >= 0 && !path) { nxt = le; brk = true; }
       else if (path) {
