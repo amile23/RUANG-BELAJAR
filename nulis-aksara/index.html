@@ -496,11 +496,17 @@ function skeletonPath(alpha) {
   const order = []; let cur = start, dx0 = 0, dy0 = 0, run = 0;
   vis[cur] = 1; order.push({ x: (cur % gw) * 4 + 2, y: Math.floor(cur / gw) * 4 + 2, run: run });
   let visited = 1;
-  function bfs(from) {
-    stamp++; const q = [from]; seen[from] = stamp;
-    for (let h = 0; h < q.length; h++) { const i = q[h]; if (!vis[i]) return i; const nb = nbrs(i); for (let k = 0; k < nb.length; k++) if (seen[nb[k]] !== stamp) { seen[nb[k]] = stamp; q.push(nb[k]); } }
-    return -1;
+  const par = new Int32Array(img.length);
+  function bfsPath(from) {
+    stamp++; const q = [from]; seen[from] = stamp; par[from] = -1;
+    for (let h = 0; h < q.length; h++) {
+      const i = q[h];
+      if (!vis[i]) { const path = []; for (let n = i; n !== from; n = par[n]) path.push(n); return path.reverse(); }
+      const nb = nbrs(i); for (let k = 0; k < nb.length; k++) if (seen[nb[k]] !== stamp) { seen[nb[k]] = stamp; par[nb[k]] = i; q.push(nb[k]); }
+    }
+    return null;
   }
+  function pushPt(i, extra) { const o = { x: (i % gw) * 4 + 2, y: Math.floor(i / gw) * 4 + 2, run: run }; if (extra) for (const k in extra) o[k] = extra[k]; order.push(o); }
   while (visited < total) {
     const cands = nbrs(cur).filter(function (j) { return !vis[j]; });
     let nxt = -1, brk = false;
@@ -510,12 +516,17 @@ function skeletonPath(alpha) {
       const nbN = {}; nbrs(nxt).forEach(function (j) { nbN[j] = 1; });
       cands.forEach(function (j) { if (j !== nxt && nbN[j]) { vis[j] = 1; visited++; } });
     } else {
-      nxt = bfs(cur);
-      if (nxt < 0) {
-        let bd = 1e12; const cx2 = cur % gw, cy2 = Math.floor(cur / gw);
-        for (let i = 0; i < img.length; i++) if (img[i] && !vis[i]) { const d = Math.pow((i % gw) - cx2, 2) + Math.pow(Math.floor(i / gw) - cy2, 2); if (d < bd) { bd = d; nxt = i; } }
-        if (nxt < 0) break;
+      const path = bfsPath(cur);
+      if (path) {
+        order[order.length - 1].turn = true;                 // ujung buntu: bintang wajib di sini
+        for (let k = 0; k < path.length - 1; k++) pushPt(path[k], { back: true });   // menelusuri ulang goresan (seperti menulis huruf m)
+        const tgt = path[path.length - 1];
+        vis[tgt] = 1; visited++; cur = tgt; pushPt(cur, { turn: true }); dx0 = 0; dy0 = 0;
+        continue;
       }
+      nxt = -1; let bd = 1e12; const cx2 = cur % gw, cy2 = Math.floor(cur / gw);
+      for (let i = 0; i < img.length; i++) if (img[i] && !vis[i]) { const d = Math.pow((i % gw) - cx2, 2) + Math.pow(Math.floor(i / gw) - cy2, 2); if (d < bd) { bd = d; nxt = i; } }
+      if (nxt < 0) break;
       brk = true;
     }
     const ddx = (nxt % gw) - (cur % gw), ddy = Math.floor(nxt / gw) - Math.floor(cur / gw), dl = Math.hypot(ddx, ddy) || 1;
@@ -531,23 +542,25 @@ function placeStars(op) {
   const keep = []; let totalLen = 0;
   Object.keys(runs).forEach(function (r) {
     const ids = runs[r]; if (ids.length < 4) return;
-    keep.push(ids); for (let k = 1; k < ids.length; k++) totalLen += Math.hypot(op[ids[k]].x - op[ids[k - 1]].x, op[ids[k]].y - op[ids[k - 1]].y);
+    keep.push(ids); for (let k = 1; k < ids.length; k++) if (!op[ids[k]].back) totalLen += Math.hypot(op[ids[k]].x - op[ids[k - 1]].x, op[ids[k]].y - op[ids[k - 1]].y);
   });
-  const spacing = Math.max(78, Math.min(150, totalLen / 11)), stars = [];
+  const spacing = Math.max(74, Math.min(140, totalLen / 11)), stars = [];
   keep.forEach(function (ids, ri) {
-    let acc = 0, lastStarIdx = ids[0];
-    stars.push({ x: op[ids[0]].x, y: op[ids[0]].y, oi: ids[0], run: ri });
+    let acc = 0, lastOi = -1;
+    function add(oi, must) { stars.push({ x: op[oi].x, y: op[oi].y, oi: oi, run: ri, must: !!must }); acc = 0; lastOi = oi; }
+    add(ids[0], true);
     for (let k = 1; k < ids.length; k++) {
-      acc += Math.hypot(op[ids[k]].x - op[ids[k - 1]].x, op[ids[k]].y - op[ids[k - 1]].y);
-      if (acc >= spacing) { stars.push({ x: op[ids[k]].x, y: op[ids[k]].y, oi: ids[k], run: ri }); acc = 0; lastStarIdx = ids[k]; }
+      const o = op[ids[k]], pv = op[ids[k - 1]];
+      if (!o.back) acc += Math.hypot(o.x - pv.x, o.y - pv.y);
+      if (o.turn) { if (lastOi !== ids[k]) add(ids[k], true); }
+      else if (!o.back && acc >= spacing) add(ids[k], false);
     }
-    const last = ids[ids.length - 1];
-    if (last !== lastStarIdx && acc > spacing * 0.45) stars.push({ x: op[last].x, y: op[last].y, oi: last, run: ri });
+    if (lastOi !== ids[ids.length - 1]) add(ids[ids.length - 1], true);
   });
   const out = [], pend = {};
   stars.forEach(function (s, n) {
-    const firstOfRun = n === 0 || stars[n - 1].run !== s.run;
-    if (out.some(function (o) { return Math.hypot(s.x - o.x, s.y - o.y) < 62; })) {
+    const firstOfRun = n === 0 || stars[n - 1].run !== s.run, th = s.must ? 40 : 62;
+    if (out.some(function (o) { return Math.hypot(s.x - o.x, s.y - o.y) < th; })) {
       if (firstOfRun) pend[s.run] = s.oi;
       return;
     }
