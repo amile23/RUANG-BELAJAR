@@ -18,6 +18,7 @@ body{background:#2B2350;font-family:'Fredoka','Trebuchet MS',system-ui,sans-seri
 #cvTop{z-index:8;pointer-events:none}
 .ov{position:absolute;inset:0;z-index:5}
 .ov[hidden]{display:none}
+[hidden]{display:none!important}
 .vid{position:fixed;width:2px;height:2px;opacity:0;pointer-events:none}
 
 .bigbtn{display:inline-flex;align-items:center;justify-content:center;min-width:calc(var(--u) * 250);height:calc(var(--u) * 84);padding:0 calc(var(--u) * 34);border-radius:999px;border:calc(var(--u) * 5) solid #fff;background:linear-gradient(#4A78D6,#2A4FA4);color:#fff;font:700 calc(var(--u) * 36)/1 'Fredoka',sans-serif;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 calc(var(--u) * 8) 0 #17306B,0 calc(var(--u) * 16) calc(var(--u) * 18) rgba(0,0,0,.25);cursor:pointer;transition:transform .1s,box-shadow .1s}
@@ -99,8 +100,8 @@ body{background:#2B2350;font-family:'Fredoka','Trebuchet MS',system-ui,sans-seri
 .qq{font:700 calc(var(--u) * 66)/1 'Fredoka',sans-serif;color:#F5B233;text-shadow:calc(var(--u) * -4) 0 #3B72C2,calc(var(--u) * 4) 0 #3B72C2,0 calc(var(--u) * -4) #3B72C2,0 calc(var(--u) * 4) #3B72C2,calc(var(--u) * -3) calc(var(--u) * -3) #3B72C2,calc(var(--u) * 3) calc(var(--u) * -3) #3B72C2,calc(var(--u) * -3) calc(var(--u) * 3) #3B72C2,calc(var(--u) * 3) calc(var(--u) * 3) #3B72C2}
 .qq b{color:#fff}
 .qn{font:700 calc(var(--u) * 32)/1 'Fredoka',sans-serif;color:#fff;background:#3B72C2;border-radius:999px;padding:calc(var(--u) * 6) calc(var(--u) * 22);border:calc(var(--u) * 3) solid #fff}
-.skip{position:absolute;right:calc(var(--u) * 20);bottom:calc(var(--u) * 12);z-index:7;background:rgba(255,255,255,.88);border-radius:999px;padding:calc(var(--u) * 8) calc(var(--u) * 20);font-size:calc(var(--u) * 22)}
-.chome{position:absolute;left:calc(var(--u) * 20);bottom:calc(var(--u) * 12);z-index:7;background:rgba(255,255,255,.88);border-radius:999px;padding:calc(var(--u) * 8) calc(var(--u) * 20);font-size:calc(var(--u) * 22)}
+.skip{position:absolute;left:calc(var(--u) * 190);top:calc(var(--u) * 20);z-index:7;background:rgba(255,255,255,.92);border-radius:999px;padding:calc(var(--u) * 10) calc(var(--u) * 24);font-size:calc(var(--u) * 26);box-shadow:0 calc(var(--u) * 3) calc(var(--u) * 8) rgba(0,0,0,.25)}
+.chome{position:absolute;left:calc(var(--u) * 20);top:calc(var(--u) * 20);z-index:7;background:rgba(255,255,255,.92);border-radius:999px;padding:calc(var(--u) * 10) calc(var(--u) * 24);font-size:calc(var(--u) * 26);box-shadow:0 calc(var(--u) * 3) calc(var(--u) * 8) rgba(0,0,0,.25)}
 .hud{position:absolute;inset:0;z-index:4;pointer-events:none}
 .hud[hidden]{display:none}
 .hud > * {pointer-events:none}
@@ -331,7 +332,7 @@ body{background:#2B2350;font-family:'Fredoka','Trebuchet MS',system-ui,sans-seri
     <div class="card inst pa" id="bubInst">
       <h2>PETUNJUK</h2>
       <div class="stp"><b>Langkah 1</b><div class="sbub aksara" id="bubTarget">ꦲ</div><span>Pecahkan gelembung yang ada aksara <b id="bubTargetN">“ha”</b></span></div>
-      <div class="stp"><b>Langkah 2</b><svg viewBox="0 0 50 78" style="width:calc(var(--u) * 40);height:calc(var(--u) * 62)" aria-hidden="true"><use href="#hand" width="50" height="78"/></svg><span>Boleh pakai tangan kiri atau kanan</span></div>
+      <div class="stp"><b>Langkah 2</b><svg viewBox="0 0 50 78" style="width:calc(var(--u) * 40);height:calc(var(--u) * 62)" aria-hidden="true"><use href="#hand" width="50" height="78"/></svg><span>Pakai satu atau dua tangan</span></div>
       <button class="bigbtn sm" id="btnBubGo" type="button">Mulai</button>
     </div>
   </div>
@@ -955,11 +956,39 @@ function drawHand(c, x, y, s, cuff) {
   c.restore();
 }
 function drawCursors() {
-  if (S.done && S.ui !== 'ovBub' && S.ui !== 'ovQuiz') return;
+  if (S.done && S.ui !== 'ovBub' && S.ui !== 'ovQuiz' && DWELL_UIS.indexOf(S.ui) < 0) return;
   for (let i = 0; i < TRK.length; i++) {
     const t = TRK[i]; if (!t.has) continue;
-    ctx.beginPath(); ctx.arc(t.x, t.y, 20, 0, TAU); ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.fill(); ctx.lineWidth = 3; ctx.strokeStyle = t.cuff; ctx.stroke();
-    drawHand(ctx, t.x, t.y, 1.5, t.cuff);
+    tctx.beginPath(); tctx.arc(t.x, t.y, 20, 0, TAU); tctx.fillStyle = 'rgba(255,255,255,.55)'; tctx.fill(); tctx.lineWidth = 3; tctx.strokeStyle = t.cuff; tctx.stroke();
+    drawHand(tctx, t.x, t.y, 1.5, t.cuff);
+    if (t.dw && t.dw.p > 0) { tctx.beginPath(); tctx.arc(t.x, t.y, 34, -Math.PI / 2, -Math.PI / 2 + TAU * Math.min(1, t.dw.p)); tctx.lineWidth = 9; tctx.lineCap = 'round'; tctx.strokeStyle = '#2FA84F'; tctx.stroke(); }
+  }
+}
+/* Tombol bisa ditekan dengan tangan: tahan jari di atas tombol sampai lingkaran hijau penuh */
+const DWELL_UIS = ['ovLearn', 'ovBub', 'ovGood', 'ovSelfie', 'ovPhoto', 'ovQuiz', 'ovWin'];
+const DWELL_MS = 1000;
+function dwellButtons() {
+  const out = [];
+  document.querySelectorAll('#stage button').forEach(function (b) {
+    if (b.disabled || b.offsetParent === null) return;
+    const ov = b.closest('.ov'); if (ov && ov.id !== S.ui) return;
+    const r = b.getBoundingClientRect(); if (r.width < 4) return;
+    out.push({ b: b, r: r });
+  });
+  return out;
+}
+function dwellStep(now) {
+  if (S.mode !== 'camera' || DWELL_UIS.indexOf(S.ui) < 0) { TRK.forEach(function (t) { t.dw = null; }); return; }
+  const rc = cv.getBoundingClientRect(), btns = dwellButtons();
+  for (let i = 0; i < TRK.length; i++) {
+    const t = TRK[i]; if (!t.has) { t.dw = null; continue; }
+    const sx = rc.left + t.x / W * rc.width, sy = rc.top + t.y / H * rc.height, pad = 10 * rc.width / W;
+    let hit = null;
+    for (let k = 0; k < btns.length; k++) { const r = btns[k].r; if (sx >= r.left - pad && sx <= r.right + pad && sy >= r.top - pad && sy <= r.bottom + pad) { hit = btns[k].b; break; } }
+    if (!hit || (S.dwellLock && now < S.dwellLock && S.dwellStage === S.stage)) { t.dw = null; continue; }
+    if (!t.dw || t.dw.b !== hit) t.dw = { b: hit, t0: now, p: 0 };
+    t.dw.need = (hit.id === 'btnSkip' || hit.id === 'btnChainHome') ? 1700 : DWELL_MS; t.dw.p = (now - t.dw.t0) / t.dw.need;
+    if (t.dw.p >= 1) { S.dwellLock = now + 1500; S.dwellStage = S.stage; t.dw = null; hit.click(); return; }
   }
 }
 function drawParticles() {
@@ -1039,13 +1068,13 @@ function frame() {
   if (S.ui === null && Math.floor(S.playMs / 250) !== S.lastSecTick) { S.lastSecTick = Math.floor(S.playMs / 250); updateHud(); }
   glideTracks(now); if (S.pq.length) advancePaint();
   if (inGame && S.mode === 'camera' && vid.readyState >= 2) {
-    if (vid.currentTime !== S.lastVideoTime) { S.lastVideoTime = vid.currentTime; if ((!S.done && S.ui === null) || S.ui === 'ovBub') detect(); }
+    if (vid.currentTime !== S.lastVideoTime) { S.lastVideoTime = vid.currentTime; if ((!S.done && S.ui === null) || DWELL_UIS.indexOf(S.ui) >= 0) detect(); }
     drawVideo(); ctx.drawImage(fgCv, 0, 0);
   } else if (inGame) { ctx.drawImage(skyCv, 0, 0); drawClouds(now); }
   else if (S.ui === 'ovQuiz') { ctx.drawImage(skyCv, 0, 0); drawClouds(now); quizFrame(now); }
   else if (S.ui === 'ovEdit') { ctx.drawImage(skyCv, 0, 0); drawClouds(now); ctx.drawImage(guideCv, 0, 0); drawEdit(); }
   else { ctx.drawImage(skyCv, 0, 0); drawClouds(now); if (S.ui === 'ovTitle') drawCanting(now); }
-  if (S.ui === 'ovQuiz' && S.mode === 'camera' && vid.readyState >= 2 && vid.currentTime !== S.lastVideoTime) { S.lastVideoTime = vid.currentTime; detect(); }
+  if (!inGame && DWELL_UIS.indexOf(S.ui) >= 0 && S.mode === 'camera' && vid.readyState >= 2 && vid.currentTime !== S.lastVideoTime) { S.lastVideoTime = vid.currentTime; detect(); }
   if (inGame && S.ready && S.ui !== 'ovBub' && S.ui !== 'ovSelfie') {
     ctx.drawImage(guideCv, 0, 0);
     if (S.fillDirty) updateFill();
@@ -1057,8 +1086,9 @@ function frame() {
   if (S.ui === 'ovBub') { bubStep(now); drawBubbles(now); }
   if (S.ui === 'ovSelfie' && S.selfie && S.selfie.phase === 'cam') drawSelfieDeco(ctx);
   if (inGame && S.ui !== 'ovBub' && S.ui !== 'ovSelfie') drawItems(now);
-  if (inGame || S.ui === 'ovQuiz') drawCursors();
   drawParticles();
+  dwellStep(now);
+  if (inGame || DWELL_UIS.indexOf(S.ui) >= 0) drawCursors();
   tickGuide(now);
 }
 
